@@ -121,6 +121,8 @@ class UsersController extends \BaseController {
 			$user->email      = Input::get('email');
 			$user->summoner_name = Input::get('summoner_name');
 			$user->region = Input::get('region');
+			$roleMember = Role::where('name', 'member')->firstOrFail();
+			$user->roles()->attach($roleMember->id);
 			$user->save();
 
 			// redirect
@@ -190,7 +192,7 @@ class UsersController extends \BaseController {
 
 			// attempt to do the login
 			if (Auth::attempt($userdata, true)) {
-				echo 'SUCCESS!';
+				return Redirect::to('users');
 			} else {	 	
 				return Redirect::to('login');
 			}
@@ -202,6 +204,22 @@ class UsersController extends \BaseController {
 	{
 		Auth::logout(); // log the user out of our application
 		return Redirect::to('login'); // redirect the user to the login screen
+	}
+	
+	public function makeAdmin($id)
+	{
+		if(Auth::user()) {
+			if(Auth::user()->hasRole('admin')) {
+				$user = User::findOrFail($id);
+				$roleAdmin = Role::where('name', 'admin')->firstOrFail(); // Or Role::create(['name' => 'admin']);
+				$user->roles()->attach($roleAdmin->id);
+				echo $user->name." wurde zum Administrator gemacht.";
+			} else {
+				echo "Kein Zugriff";
+			} 
+		} else {
+		return Redirect::to('login');
+		}
 	}
 
 }

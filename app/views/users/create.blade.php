@@ -1,3 +1,5 @@
+@extends('layouts.master')
+@section('content')
 {{ Form::open(array('url'=>'users/store', 'class'=>'')) }}
     <h2 class="form-signup-heading"><?php echo trans('users.welcome'); ?></h2>
  
@@ -11,10 +13,11 @@
     {{ Form::text('email', null, array('class'=>'input-large', 'placeholder'=>'E-Mail')) }}<br/>
 	<br/>
 	{{ Form::text('summoner_name', null, array('class'=>'input-large', 'placeholder'=>'Summoner Name')) }}<br/>
-    {{ Form::text('region', null, array('class'=>'input-large', 'placeholder'=>'Region')) }}<br/>
+	{{ Form::select('region', array('0' => 'Select a Region', 'EUW' => 'euw', 'NA' => 'na'), null, array('class' => 'form-control')) }}<br/>
 	<br/>
     {{ Form::password('password', array('class'=>'input-large', 'placeholder'=>'Password')) }}<br/>
     {{ Form::password('password_confirmation', array('class'=>'input-large', 'placeholder'=>'Confirm Password')) }}<br/>
 	<br/>
     {{ Form::submit('Register', array('class'=>'btn btn-large btn-primary btn-block'))}}
 {{ Form::close() }}
+@stop

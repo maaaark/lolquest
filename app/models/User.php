@@ -23,7 +23,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public static $rules = array(
 		'name'=>'required|alpha|min:3',
-		'summoner_name'=>'required|alpha|min:3',
+		'summoner_name'=>'required|alpha|min:3|unique:users',
 		'region'=>'required|alpha|min:2',
 		'email'=>'required|email|unique:users',
 		'password'=>'required|between:6,12|confirmed',
@@ -91,5 +91,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+	
+	
+	public function roles()
+    {
+        return $this->belongsToMany('Role');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('Permission');
+    }
+
+    public function hasRole($key)
+    {
+        foreach($this->roles as $role){
+            if($role->name === $key)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 
 }

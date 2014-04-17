@@ -2,6 +2,9 @@
 
 return array(
     'welcome' => 'Welcome to lolquest',
-	'thank_you' => "Thank you for register",
-	'profile' => "Profile of "
+	'thank_you' => "Thank you for registration",
+	'profile' => "Profile of ",
+	'register' => "Register",
+	'edit' => "Edit",
+	'login' => "Login"
 );

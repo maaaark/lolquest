@@ -2,22 +2,24 @@
 	<head>
 		<title>LolQuest</title>
 		{{ HTML::style('css/style.css') }}
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		{{ HTML::script('js/custom.js') }}
 	</head>
     <body>
 	
+	@include('layouts.top')
+	
 	<div id="page">
-		@if(Auth::check())
-			<a href="{{ URL::to('logout') }}">Logout {{ Auth::user()->name }}</a>
-		@else
-			<a href="{{ URL::to('login') }}">Login</a>
-		@endif
-		<br/><br/>
 		@if(Session::has('message'))
 			<p class="alert">{{ Session::get('message') }}</p>
 		@endif
+		
 		@yield('content')
 	</div>
     
-	{{ HTML::script('js/custom.js') }}	
     </body>
 </html>

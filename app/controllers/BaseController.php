@@ -1,6 +1,7 @@
 <?php
 
 class BaseController extends Controller {
+	use Efficiently\AuthorityController\ControllerAdditions;
 
 	protected $layout = 'layouts.master';
 

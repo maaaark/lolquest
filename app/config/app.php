@@ -120,6 +120,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Efficiently\AuthorityController\AuthorityControllerServiceProvider',
 
 	),
 
@@ -186,6 +187,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Params'    => 'Efficiently\AuthorityController\Facades\Params',
+		'Authority' => 'Efficiently\AuthorityController\Facades\Authority',
 
 	),
 
