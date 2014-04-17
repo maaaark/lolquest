@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('start');
 });
 Route::resource('users', 'UsersController');
 Route::post('/users/store', 'UsersController@store');

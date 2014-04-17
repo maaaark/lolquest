@@ -25,3 +25,9 @@ body, html {
 	margin: 0 auto;
 	padding-top: 50px;
 }
+.logo {
+	margin-right: 40px;
+}
+.container {
+	width: 1000px !important;
+}
