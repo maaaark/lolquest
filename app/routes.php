@@ -15,3 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::resource('users', 'UsersController');
+Route::post('/users/store', 'UsersController@store');
+Route::get('login', array('uses' => 'UsersController@showLogin'));
+Route::post('login', array('uses' => 'UsersController@doLogin'));
+Route::get('logout', array('uses' => 'UsersController@doLogout'));

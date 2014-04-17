@@ -1,0 +1,9 @@
+nody, html {
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+}
+#page {
+	width: 1000px;
+	margin: 0 auto;
+}
