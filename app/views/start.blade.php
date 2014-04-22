@@ -1,6 +1,5 @@
-@extends('layouts.master')
+@extends('layouts.start')
 @section('content')
-
 
 
     <!-- Marketing messaging and featurettes

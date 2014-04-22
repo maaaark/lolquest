@@ -107,9 +107,9 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::findOrFail($id);
-		$summoner = User::find($id)->summoner;
-
-		return View::make('users.show', compact('user'));
+		$games = Game::all();
+		
+		return View::make('users.show', compact('user', 'games'));
 	}
 	
 	
@@ -117,6 +117,33 @@ class UsersController extends \BaseController {
 	{
 		return View::make('layouts.403');
 	}
+	
+	
+	public function refresh_games()
+	{
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+			$api_key = Config::get('api.key');
+			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			if($json === FALSE) {
+				return View::make('login');
+			} else {
+				$obj = json_decode($json, true);
+				foreach($obj["games"] as $game) {
+					$newGame = new Game;
+					$newGame->summoner_id = $user->summoner->summonerid;
+					$newGame->championId = $game["championId"];
+					$newGame->win = $game["stats"]["win"];
+					$newGame->save();
+				}
+			}
+		} else {
+			return View::make('login');
+		}
+	}
+	
 	
 	public function verify()
 	{

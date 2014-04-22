@@ -1,15 +1,10 @@
 <?php
 
-class Summoner extends \Eloquent {
+class Game extends \Eloquent {
 
-	public function user()
+	public function summoner()
     {
-        return $this->belongsTo('User');
-    }
-	
-	public function games()
-    {
-        return $this->hasMany('Game');
+        return $this->belongsTo('Summoner');
     }
 
 	// Add your validation rules here

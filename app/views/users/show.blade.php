@@ -32,6 +32,28 @@
 			</td>
 		</tr>
 	</table>
+	<br/>
+	<h2>Last Games</h2>
+	<table class="table">
+		@foreach($games as $game)
+			<?php 
+				if($game["win"]==true) {
+					$class = "success";
+				} else {
+					$class = "danger";
+				}
+			?>
+			<tr class="<?php echo $class; ?>">
+				<td>
+					<img src="/img/champions/{{ $game->championId }}_92.png" class="img-circle" width="50" />
+				</td>
+				<td>
+				{{ $game->championId }}
+				</td>
+			</tr>
+		@endforeach
+	</table>
+	
 	@else
 		{{ trans("users.no_summoner") }}
 	@endif

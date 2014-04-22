@@ -87,9 +87,9 @@ body, html {
 margin-bottom: 20px;
 text-align: center;
 }
-
-
-
+.content-wrapper {
+	margin-top: 80px;
+}
 
 
 

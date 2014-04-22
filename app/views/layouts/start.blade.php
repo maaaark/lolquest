@@ -12,6 +12,7 @@
     <body>
 	
 	@include('layouts.top')
+	@include('layouts.carousel')
 
 		@if(Session::has('message'))
 			<div class="bs-callout bs-callout-warning">
@@ -32,7 +33,7 @@
 			@endif
 			
 		@endif
-	<div class="container content-wrapper">	
+	<div class="container">	
 		@yield('content')
 	</div>
     
