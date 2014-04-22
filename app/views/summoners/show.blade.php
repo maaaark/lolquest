@@ -1,0 +1,1 @@
+/home/mark/lolquest/app/views/summoners/show.blade.php

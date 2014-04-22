@@ -3,6 +3,7 @@
 class UsersController extends \BaseController {
 
 	protected $layout = 'layouts.master';
+	
 	/**
 	 * Display a listing of users
 	 *
@@ -37,15 +38,37 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
+			// Create the User
 			$user = new User;
 			$user->name = Input::get('name');
 			$user->summoner_name = Input::get('summoner_name');
 			$user->region = Input::get('region');
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
+			$roleMember = Role::where('name', 'member')->firstOrFail();
+			$user->roles()->attach($roleMember->id);
+			$user->verify_string = str_random(8);
 			$user->save();
+			
+			// Save the Summoner
+			$api_key = Config::get('api.key');
+			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			if($json === FALSE) {
+				
+			} else {
+				$obj = json_decode($json, true);
+				$summoner = new Summoner;
+				$summoner->user_id = $user->id;
+				$summoner->summonerid = $obj[$user->summoner_name]["id"];
+				$summoner->name = $obj[$user->summoner_name]["name"];
+				$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
+				$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
+				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
+				$summoner->save();
+			}
 
-			return Redirect::to('/users')->with('message', trans('users.thank_you'));
+			return Redirect::to('/login')->with('message', trans('users.thank_you'));
 		}
 
 		return Redirect::route('users.create')
@@ -63,8 +86,50 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::findOrFail($id);
+		$summoner = User::find($id)->summoner;
 
 		return View::make('users.show', compact('user'));
+	}
+	
+	
+	public function noAccess()
+	{
+		return View::make('layouts.403');
+	}
+	
+	public function verify()
+	{
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+
+			if($user->summoner_status == 1) { 
+				$api_key = Config::get('api.key');
+				$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/".$user->summoner->summonerid."/runes?api_key=".$api_key;
+				$json = @file_get_contents($summoner_data);
+				if($json === FALSE) {
+					Session::flash('message', 'No Summoner found');
+					return Redirect::to('/edit_summoner');
+				} else {
+					$obj = json_decode($json, true);
+					$runes = $obj[$user->summoner->summonerid]["pages"];
+					
+					foreach($runes as $page) {
+						if($page["name"] == $user->verify_string) {
+							$user->summoner_status = 2;
+							$user->save();
+							return Redirect::to('verify');
+						}
+					}
+				}
+			} else {
+				// No correct summoner status
+				return View::make('users.verify', compact('user', 'runes'));
+			}
+			return View::make('users.verify', compact('user', 'runes'));
+		} else {
+			return Redirect::to('login');
+		}
 	}
 
 	/**
@@ -82,13 +147,28 @@ class UsersController extends \BaseController {
 			if($user->id == Auth::user()->id) {
 				return View::make('users.edit', compact('user'));
 			} else {
-				echo "Keine Rechte";
+				return Redirect::to('403');
 			}
 		} else {
 			return Redirect::to('login');
 		}
 
 		
+	}
+	
+	public function edit_summoner()
+	{
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+			if($user->id == Auth::user()->id) {
+				return View::make('users.edit_summoner', compact('user'));
+			} else {
+				return Redirect::to('403');
+			}
+		} else {
+			return Redirect::to('login');
+		}
 	}
 
 	/**
@@ -104,14 +184,13 @@ class UsersController extends \BaseController {
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
 			'name'       => 'required',
-			'email'      => 'required|email',
-			'summoner_name' => 'required'
+			'email'      => 'required|email'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('nerds/' . $id . '/edit')
+			return Redirect::to('users/' . $id . '/edit')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
@@ -119,32 +198,62 @@ class UsersController extends \BaseController {
 			$user = User::find($id);
 			$user->name       = Input::get('name');
 			$user->email      = Input::get('email');
-			$user->summoner_name = Input::get('summoner_name');
-			$user->region = Input::get('region');
-			$roleMember = Role::where('name', 'member')->firstOrFail();
-			$user->roles()->attach($roleMember->id);
 			$user->save();
 
 			// redirect
 			Session::flash('message', 'Successfully updated!');
 			return Redirect::to('users');
 		}
-
+	}
 	
-		/*
-		$user = User::findOrFail($id);
+	public function update_summoner()
+	{
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		$rules = array(
+			'region'      => 'required',
+			'summoner_name' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
 
-		$validator = Validator::make($data = Input::all(), User::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('/edit_summoner')
+				->withErrors($validator);
+		} else {
+			$user = User::find(Auth::user()->id);
+			$user->region = Input::get('region');
+			$user->summoner_name = Input::get('summoner_name');
+			$user->summoner_status = 1;
+			$user->verify_string = str_random(8);
+			$user->save();
+			
+			if($user->summoner) {
+				$summoner = $user->summoner;
+			} else {
+				$summoner = new Summoner;
+			}
+			
+			$api_key = Config::get('api.key');
+			$summoner_data = "https://prod.api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			if($json === FALSE) {
+				Session::flash('message', 'No Summoner found');
+				return Redirect::to('/edit_summoner');
+			} else {
+				$obj = json_decode($json, true);
+				$summoner->user_id = $user->id;
+				$summoner->summonerid = $obj[$user->summoner_name]["id"];
+				$summoner->name = $obj[$user->summoner_name]["name"];
+				$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
+				$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
+				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
+				$summoner->save();
+				
+				return Redirect::route('users.show', array('user' => $user->id));
+				//return Redirect::to('/users');
+			}			
 		}
-
-		$user->update($data);
-
-		return Redirect::route('users.index');
-		*/
 	}
 
 	/**
@@ -215,7 +324,7 @@ class UsersController extends \BaseController {
 				$user->roles()->attach($roleAdmin->id);
 				echo $user->name." wurde zum Administrator gemacht.";
 			} else {
-				echo "Kein Zugriff";
+				return Redirect::to('403');
 			} 
 		} else {
 		return Redirect::to('login');

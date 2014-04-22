@@ -31,6 +31,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	);
 	
 
+	public function summoner()
+    {
+        return $this->hasOne('Summoner');
+    }
+	
 	/**
 	 * Get the unique identifier for the user.
 	 *
