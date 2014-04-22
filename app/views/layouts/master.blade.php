@@ -12,10 +12,12 @@
     <body>
 	
 	@include('layouts.top')
-	
-	<div id="page">
+	@include('layouts.carousel')
+
 		@if(Session::has('message'))
-			<p class="alert">{{ Session::get('message') }}</p>
+			<div class="bs-callout bs-callout-warning">
+				{{ Session::get('message') }}
+			</div>
 		@endif
 		
 		@if(Auth::check())
@@ -31,7 +33,7 @@
 			@endif
 			
 		@endif
-		
+	<div class="container">	
 		@yield('content')
 	</div>
     

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+<div class="user_form">
 {{ Form::open(array('url' => 'login')) }}
 	<h1>Login</h1>
 
@@ -21,4 +22,5 @@
 
 	<p>{{ Form::submit('Submit!') }}</p>
 {{ Form::close() }}
+</div>
 @stop

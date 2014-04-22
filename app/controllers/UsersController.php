@@ -38,25 +38,43 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
-			// Create the User
-			$user = new User;
-			$user->name = Input::get('name');
-			$user->summoner_name = Input::get('summoner_name');
-			$user->region = Input::get('region');
-			$user->email = Input::get('email');
-			$user->password = Hash::make(Input::get('password'));
-			$roleMember = Role::where('name', 'member')->firstOrFail();
-			$user->roles()->attach($roleMember->id);
-			$user->verify_string = str_random(8);
-			$user->save();
+			// check if validated summoner available
+			//$verified_user = User::where('summoner_name', Input::get('summoner_name')->where('region', Input::get('region')))->first();
+			$verified_user = User::
+			  where('summoner_name', '=', Input::get('summoner_name'))
+			->where('summoner_status', '=', 2)
+			->where('region', '=', Input::get('region'))
+			->first();
+	
+	
+			
+			if($verified_user) {
+				return Redirect::route('users.create')
+				->withInput()
+				->with('message', trans("users.already_one"));
+			}
 			
 			// Save the Summoner
 			$api_key = Config::get('api.key');
-			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
+			$summoner_data = "https://prod.api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
 			$json = @file_get_contents($summoner_data);
 			if($json === FALSE) {
-				
+				return Redirect::route('users.create')
+				->withInput()
+				->with('message', trans("users.not_found"));
 			} else {
+				// Create the User
+				$user = new User;
+				$user->summoner_name = Input::get('summoner_name');
+				$user->region = Input::get('region');
+				$user->email = Input::get('email');
+				$user->password = Hash::make(Input::get('password'));
+				$roleMember = Role::where('name', 'member')->firstOrFail();
+				$user->verify_string = str_random(8);
+				$user->summoner_status = 1;
+				$user->save();
+				$user->roles()->attach($roleMember->id, array("user_id"=>$user->id));
+				
 				$obj = json_decode($json, true);
 				$summoner = new Summoner;
 				$summoner->user_id = $user->id;
@@ -66,8 +84,11 @@ class UsersController extends \BaseController {
 				$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
 				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
 				$summoner->save();
+				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
+					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
+				});
 			}
-
+			$user->save();
 			return Redirect::to('/login')->with('message', trans('users.thank_you'));
 		}
 
@@ -196,8 +217,8 @@ class UsersController extends \BaseController {
 		} else {
 			// store
 			$user = User::find($id);
-			$user->name       = Input::get('name');
-			$user->email      = Input::get('email');
+			//$user->name       = Input::get('name');
+			$user->email = Input::get('email');
 			$user->save();
 
 			// redirect
@@ -221,18 +242,6 @@ class UsersController extends \BaseController {
 			return Redirect::to('/edit_summoner')
 				->withErrors($validator);
 		} else {
-			$user = User::find(Auth::user()->id);
-			$user->region = Input::get('region');
-			$user->summoner_name = Input::get('summoner_name');
-			$user->summoner_status = 1;
-			$user->verify_string = str_random(8);
-			$user->save();
-			
-			if($user->summoner) {
-				$summoner = $user->summoner;
-			} else {
-				$summoner = new Summoner;
-			}
 			
 			$api_key = Config::get('api.key');
 			$summoner_data = "https://prod.api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
@@ -241,6 +250,19 @@ class UsersController extends \BaseController {
 				Session::flash('message', 'No Summoner found');
 				return Redirect::to('/edit_summoner');
 			} else {
+				$user = User::find(Auth::user()->id);
+				$user->region = Input::get('region');
+				$user->summoner_name = Input::get('summoner_name');
+				$user->summoner_status = 1;
+				$user->verify_string = str_random(8);
+				$user->save();
+				
+				if($user->summoner) {
+					$summoner = $user->summoner;
+				} else {
+					$summoner = new Summoner;
+				}
+			
 				$obj = json_decode($json, true);
 				$summoner->user_id = $user->id;
 				$summoner->summonerid = $obj[$user->summoner_name]["id"];
