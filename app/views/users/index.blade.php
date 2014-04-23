@@ -4,8 +4,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="text-left">Summoner Name</th>
-				<th class="text-left">Region</th>
+				<th class="text-left">{{ trans("users.summoner_name") }}</th>
+				<th class="text-left">{{ trans("users.region") }}</th>
 				@if (Authority::can('edit', 'User'))
 					<th></th>
 				@endif
