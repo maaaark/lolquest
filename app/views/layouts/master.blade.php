@@ -12,7 +12,8 @@
     <body>
 	
 	@include('layouts.top')
-
+	
+	<div class="container content-wrapper">	
 		@if(Session::has('message'))
 			<div class="bs-callout bs-callout-warning">
 				{{ Session::get('message') }}
@@ -32,7 +33,7 @@
 			@endif
 			
 		@endif
-	<div class="container content-wrapper">	
+	
 		@yield('content')
 	</div>
     

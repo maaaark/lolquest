@@ -107,7 +107,8 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::findOrFail($id);
-		$games = Game::all();
+		//$games = Game::all();
+		$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->take(10)->get();
 		
 		return View::make('users.show', compact('user', 'games'));
 	}
@@ -137,6 +138,7 @@ class UsersController extends \BaseController {
 					$newGame->championId = $game["championId"];
 					$newGame->win = $game["stats"]["win"];
 					$newGame->save();
+					return Redirect::back();
 				}
 			}
 		} else {

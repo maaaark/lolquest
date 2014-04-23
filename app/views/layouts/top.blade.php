@@ -16,7 +16,6 @@
 		<div class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav">
 			<li><a href="/users">Users</a></li>
-			<li><a href="http://getbootstrap.com/examples/carousel/#about">About</a></li>
 			@if(Auth::check())
 				<li><a href="/users/{{ Auth::user()->id }}">{{ Auth::user()->summoner_name }}</a></li>
 				<li><a href="/logout">Logout</a></li>

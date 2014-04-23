@@ -32,6 +32,11 @@
 			</td>
 		</tr>
 	</table>
+	
+	@if(Auth::user()->id==$user->id)
+	<a href="/refresh_games" class="btn btn-primary">Refresh my last games</a>
+	@endif
+	
 	<br/>
 	<h2>Last Games</h2>
 	<table class="table">
