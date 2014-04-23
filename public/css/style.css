@@ -75,7 +75,6 @@ body, html {
 	list-style: none;
 	color: #333;
 	height:48px;
-	width: 100px;
 	border-left: 1px solid #b9b9b9;
 	text-align: center;
 }
@@ -83,7 +82,15 @@ body, html {
 	border-right: 1px solid #b9b9b9;
 }
 .list ul li a {
+	height:48px;
+	padding: 0 20px 0 20px;
+	display: block;
+	width: 100%;
 	color: #333;
+}
+.list ul li a:hover {
+	background: #eeeeee;
+	text-decoration: none;
 }
 .sidebar {
 	background: #eeeeee;
@@ -122,6 +129,30 @@ body, html {
 	margin-top: 0;
 	margin-bottom: 30px;
 	text-shadow: 1px 1px 8px #000000;
+}
+.change_avatar {
+	font-size: 12px;
+}
+a.logout {
+	color: red;
+}
+.bullets {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.avatar, .name {
+	float: left;
+}
+.avatar {
+	margin-right: 5px;
+	padding-top: 16px;
+}
+.quests {
+	color: #428bca !important;
+	font-weight: bold !important;
+}
+.bullet {
+	text-align: center;
 }
 .clear {
 	clear: both;
@@ -178,6 +209,9 @@ text-align: center;
 .content-wrapper {
 	margin-top: 0px;
 	background: #fff;
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
 
 

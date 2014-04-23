@@ -1,12 +1,13 @@
 <?php
 
 return array(
-    'welcome' => 'Welcome to lolquest',
+    'welcome' => 'Welcome to lolquest.net',
 	'index' => 'Summoner profiles',
 	'thank_you' => "Thank you for registration",
 	'profile' => "Profile of ",
 	'register' => "Register",
 	'edit' => "Edit",
+	'settings' => "Settings of",
 	'login' => "Login",
 	'summoner_name' => "Summoner Name",
 	'level' => "Summoner Level",

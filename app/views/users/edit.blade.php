@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', trans("users.settings")." ".$user->summoner_name)
 @section('content')
 {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
 	<div class="form-group">

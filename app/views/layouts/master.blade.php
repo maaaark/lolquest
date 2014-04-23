@@ -20,8 +20,6 @@
 		</div>
 		<div class="container content-wrapper">	
 			<div class="row">
-				
-				
 				<div class="col-md-8">
 				@if(Session::has('message'))
 						<div class="bs-callout bs-callout-warning">
