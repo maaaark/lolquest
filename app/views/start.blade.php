@@ -1,7 +1,5 @@
 @extends('layouts.start')
 @section('content')
-
-
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->

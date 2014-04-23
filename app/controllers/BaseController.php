@@ -17,5 +17,15 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	
+	public function noAccess()
+	{
+		return View::make('layouts.403');
+	}
+	
+	public function notFound()
+	{
+		return View::make('layouts.404');
+	}
 
 }

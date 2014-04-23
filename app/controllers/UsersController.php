@@ -104,19 +104,16 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($region, $name)
 	{
-		$user = User::findOrFail($id);
-		//$games = Game::all();
-		$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->take(10)->get();
+		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();	
+		if($user) {
+			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->take(10)->get();
+			return View::make('users.show', compact('user', 'games'));
+		} else {
+			return Redirect::to('layouts.404');
+		}
 		
-		return View::make('users.show', compact('user', 'games'));
-	}
-	
-	
-	public function noAccess()
-	{
-		return View::make('layouts.403');
 	}
 	
 	
@@ -352,6 +349,7 @@ class UsersController extends \BaseController {
 
 			// attempt to do the login
 			if (Auth::attempt($userdata, true)) {
+				//return Redirect::route('users.show', array('region' => $userdata->region, 'name' => $userdata->summoner_name));
 				return Redirect::to('users');
 			} else {	 	
 				return Redirect::to('login');

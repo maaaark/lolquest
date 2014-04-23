@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Register')
 @section('content')
 <div class="user_form">
 {{ Form::open(array('url'=>'users/store', 'class'=>'')) }}

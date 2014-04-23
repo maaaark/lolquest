@@ -1,7 +1,10 @@
 body, html {
 	margin: 0;
-	padding: 0;
+	padding: 0 !important;
 	font-family: Arial;
+	height: 100%;
+    width: 100%;
+	font-family: 'Cabin Condensed', 'sans-serif' !important;
 }
 #top {
 	width: 100%;
@@ -25,6 +28,15 @@ body, html {
 	margin: 0 auto;
 	padding-top: 50px;
 }
+.background {
+	background: url("../img/blur.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
+	padding-top: 130px;
+	padding-bottom: 90px;
+}
 .logo {
 	margin-right: 40px;
 }
@@ -43,6 +55,79 @@ body, html {
 .bs-callout .highlight {
   background-color: #fff;
 }
+.logo {
+	float: left;
+	color: #fff;
+	height: 50px;
+	line-height: 50px;
+}
+.list {
+	float: right;
+	height: 50px;
+	line-height: 50px;
+}
+.list ul {
+	margin: 0;
+	padding: 0;
+}
+.list ul li {
+	float: right;
+	list-style: none;
+	color: #333;
+	height:48px;
+	width: 100px;
+	border-left: 1px solid #b9b9b9;
+	text-align: center;
+}
+.list ul li:first-child {
+	border-right: 1px solid #b9b9b9;
+}
+.list ul li a {
+	color: #333;
+}
+.sidebar {
+	background: #eeeeee;
+	color: #000;
+	height: 100%;
+}
+.sidebar a {
+	text-decoration: none;
+	color: #428bca;
+}
+.logged_in {
+	margin-top: 20px;
+	font-size: 14px;
+	line-height: 22px;
+	color: #333;
+}
+.sidebar_input {
+	background: #565656;
+	color: #333;
+	border: 1px solid #000;
+	width: 350px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+.sidebar_button {
+	margin-top: 10px;
+	background: #eeeeee;
+	color: #333;
+	border: 1px solid #000;	
+}
+.title h1 {
+	color: #fff;
+	margin-top: 0;
+	margin-bottom: 30px;
+	text-shadow: 1px 1px 8px #000000;
+}
+.clear {
+	clear: both;
+}
+ 
+ 
  
 /* Themes for different contexts */
 .bs-callout-danger {
@@ -72,13 +157,16 @@ body, html {
 .attribute {
 	font-weight: bold;
 }
-.navbar-wrapper {
-
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 20;
-
+.navigation {
+	height: 50px;
+	position: fixed;
+	z-index: 100;
+	background: #fff;
+	width: 100%;
+	-webkit-box-shadow: 0px 8px 14px -9px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 8px 14px -9px rgba(0,0,0,0.75);
+	box-shadow: 0px 8px 14px -9px rgba(0,0,0,0.75);
+	border-bottom: 2px solid #428bca;
 }
 #myCarousel {
 	margin-bottom: 60px;
@@ -89,6 +177,7 @@ text-align: center;
 }
 .content-wrapper {
 	margin-top: 0px;
+	background: #fff;
 }
 
 

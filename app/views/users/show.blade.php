@@ -1,12 +1,12 @@
 @extends('layouts.master')
+@section('title', trans("users.profile")." ".$user->summoner->name)
 @section('content')
-	<h2> {{ trans("users.profile") }} {{ $user->summoner_name }}</h2>
 	<br/>
 	@if($user->summoner)
-	<table width="100%">
+	<table width="100%" class="profile">
 		<tr>
-			<td valign="top" width="150">
-				<img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" class="img-circle" />
+			<td valign="top" width="130">
+				<img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" width="100" class="img-circle" />
 			</td>
 			<td>
 				<table class="table table-striped" stlye="width: 100%;">
@@ -32,9 +32,10 @@
 			</td>
 		</tr>
 	</table>
-	
-	@if(Auth::user()->id==$user->id)
-	<a href="/refresh_games" class="btn btn-primary">Refresh my last games</a>
+	@if(Auth::check())
+		@if(Auth::user()->id==$user->id)
+		<a href="/refresh_games" class="btn btn-primary">{{ trans("users.refresh") }}</a>
+		@endif
 	@endif
 	
 	<br/>

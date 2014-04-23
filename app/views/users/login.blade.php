@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Login')
 @section('content')
 <div class="user_form">
 {{ Form::open(array('url' => 'login')) }}

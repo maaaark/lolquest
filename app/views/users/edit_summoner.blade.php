@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Edit summoner name')
 {{ Form::model($user, array('action' => 'UsersController@update_summoner')) }}
 @section('content')
 	<div class="bs-callout bs-callout-danger">
