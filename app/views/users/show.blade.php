@@ -54,7 +54,7 @@
 					<img src="/img/champions/{{ $game->championId }}_92.png" class="img-circle" width="50" />
 				</td>
 				<td>
-				{{ $game->championId }}
+				{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}
 				</td>
 			</tr>
 		@endforeach

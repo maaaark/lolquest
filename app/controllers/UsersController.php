@@ -136,12 +136,41 @@ class UsersController extends \BaseController {
 				return View::make('login');
 			} else {
 				$obj = json_decode($json, true);
+				
 				foreach($obj["games"] as $game) {
-					$newGame = new Game;
-					$newGame->summoner_id = $user->summoner->summonerid;
-					$newGame->championId = $game["championId"];
-					$newGame->win = $game["stats"]["win"];
-					$newGame->save();
+					if(!isset($game["stats"]["item0"])) { $item0 = 0; }	else { $item0 = $game["stats"]["item0"]; }
+					if(!isset($game["stats"]["item1"])) { $item1 = 0; }	else { $item1 = $game["stats"]["item1"]; }
+					if(!isset($game["stats"]["item2"])) { $item2 = 0; }	else { $item2 = $game["stats"]["item2"]; }
+					if(!isset($game["stats"]["item3"])) { $item3 = 0; }	else { $item3 = $game["stats"]["item3"]; }
+					if(!isset($game["stats"]["item4"])) { $item4 = 0; }	else { $item4 = $game["stats"]["item4"]; }
+					if(!isset($game["stats"]["item5"])) { $item5 = 0; }	else { $item5 = $game["stats"]["item5"]; }
+					if(!isset($game["stats"]["item6"])) { $item6 = 0; }	else { $item6 = $game["stats"]["item6"]; }
+					if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
+					if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
+					if(!isset($game["stats"]["championsKilled"])) { $championsKilled = 0; }	else { $championsKilled = $game["stats"]["championsKilled"]; }
+						
+					$recent_game = Game::where('gameId', '=', $game["gameId"])->first();
+					if(!isset($recent_game)) {
+						$newGame = new Game;
+						$newGame->summoner_id = $user->summoner->summonerid;
+						$newGame->championId = $game["championId"];
+						$newGame->gameId = $game["gameId"];
+						$newGame->assists = $assists;
+						$newGame->numDeaths = $numDeaths;
+						$newGame->championsKilled = $championsKilled;
+						$newGame->goldEarned = $game["stats"]["goldEarned"];
+						$newGame->wardPlaced = $game["stats"]["wardPlaced"];
+						$newGame->item0 = $item0;
+						$newGame->item1 = $item1;
+						$newGame->item2 = $item2;
+						$newGame->item3 = $item3;
+						$newGame->item4 = $item4;
+						$newGame->item5 = $item5;
+						$newGame->item6 = $item6;
+						$newGame->win = $game["stats"]["win"];
+						$newGame->save();
+					}
+					unset($recent_game);
 				}
 				return Redirect::back();
 			}
