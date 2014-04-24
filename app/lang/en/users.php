@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'region' => 'Region',
     'welcome' => 'Welcome to lolquest.net',
 	'index' => 'Summoner profiles',
 	'thank_you' => "Thank you for registration",
