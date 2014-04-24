@@ -432,4 +432,17 @@ class UsersController extends \BaseController {
 		}
 	}
 
+	public function makeFriend($id)
+	{
+		if(Auth::user()) {
+				$user = User::findOrFail($id);
+				$user_friend = User::where('name', 'mark')->firstOrFail(); // Or Role::create(['name' => 'admin']);
+				$user->friends()->attach($user_friend->id);
+				$user_friend->friends()->attach($user->id);
+				return Redirect::back();
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
 }
