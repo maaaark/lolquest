@@ -123,5 +123,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
+	public function friends()
+    {
+        return $this->belongsToMany('friend');
+    }
 
 }
