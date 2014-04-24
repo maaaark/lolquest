@@ -4,6 +4,13 @@ class UsersController extends \BaseController {
 
 	protected $layout = 'layouts.master';
 	
+	
+	public function __construct()
+    {
+        $this->beforeFilter('notifications');
+    }
+	
+	
 	/**
 	 * Display a listing of users
 	 *
@@ -135,8 +142,8 @@ class UsersController extends \BaseController {
 					$newGame->championId = $game["championId"];
 					$newGame->win = $game["stats"]["win"];
 					$newGame->save();
-					return Redirect::back();
 				}
+				return Redirect::back();
 			}
 		} else {
 			return View::make('login');
@@ -298,7 +305,7 @@ class UsersController extends \BaseController {
 				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
 				$summoner->save();
 				
-				return Redirect::route('users.show', array('user' => $user->id));
+				return Redirect::route('users.show', array('region' => $user->region, 'name' => $user->summoner_name));
 				//return Redirect::to('/users');
 			}			
 		}
@@ -312,7 +319,7 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		User::destroy($id);
+		//User::destroy($id);
 
 		return Redirect::route('users.index');
 	}
@@ -321,6 +328,21 @@ class UsersController extends \BaseController {
 	{
 		// show the form
 		return View::make('users.login');
+	}
+	
+	public function dashboard()
+	{
+	
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+			$notifications = $user->notifications;
+			return View::make('users.dashboard', compact('user', 'notifications'));
+		} else {
+			return Redirect::to('login');
+		}
+		// show the form
+		
 	}
 	
 	public function doLogin()
@@ -361,6 +383,7 @@ class UsersController extends \BaseController {
 	public function doLogout()
 	{
 		Auth::logout(); // log the user out of our application
+		Session::flush();
 		return Redirect::to('login'); // redirect the user to the login screen
 	}
 	

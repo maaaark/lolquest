@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('title', trans("users.profile")." ".$user->summoner->name)
 @section('content')
 	<br/>

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('title', trans("users.index"))
 @section('content')
 	<table class="table table-striped">

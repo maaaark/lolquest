@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('content')
 	@if($user->summoner_status==1)
 		<h2>{{ trans("verify.step_1_headline") }}</h2>

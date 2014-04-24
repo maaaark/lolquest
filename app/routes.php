@@ -13,7 +13,11 @@
 
 Route::get('/', function()
 {
-	return View::make('start');
+	if (Auth::check()) {
+		return Redirect::to('dashboard');
+	} else {
+		return View::make('start');
+	}
 });
 
 Route::resource('users', 'UsersController');
@@ -30,6 +34,7 @@ Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));
 
 Route::get('edit_summoner', 'UsersController@edit_summoner');
+Route::get('dashboard', 'UsersController@dashboard');
 Route::get('login', array('uses' => 'UsersController@showLogin'));
 Route::get('verify', array('uses' => 'UsersController@verify'));
 Route::get('refresh_games', array('uses' => 'UsersController@refresh_games'));

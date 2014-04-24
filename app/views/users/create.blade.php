@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('title', 'Register')
 @section('content')
 <div class="user_form">

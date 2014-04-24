@@ -1,5 +1,5 @@
 @extends('layouts.start')
-@section('title', trans("users.welcome"))
+@section('title', trans("landingpage.welcome"))
 @section('content')
  <div class="row bullets">
         <div class="col-lg-4 bullet">

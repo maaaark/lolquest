@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('title', 'Edit summoner name')
 {{ Form::model($user, array('action' => 'UsersController@update_summoner')) }}
 @section('content')

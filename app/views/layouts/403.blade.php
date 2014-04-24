@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.full')
 @section('content')
 	<div class="bs-callout bs-callout-danger">
 	<h4>403</h4>

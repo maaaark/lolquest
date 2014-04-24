@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('templates.default')
 @section('title', trans("users.settings")." ".$user->summoner_name)
 @section('content')
 {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}

@@ -7,6 +7,7 @@ return array(
 	'profile' => "Profile of ",
 	'register' => "Register",
 	'edit' => "Edit",
+	'dashboard' => "Dashboard",
 	'settings' => "Settings of",
 	'login' => "Login",
 	'summoner_name' => "Summoner Name",
