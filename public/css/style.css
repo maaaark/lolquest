@@ -205,17 +205,61 @@ a.logout {
 	margin-left: 25px;
 }
 .unread_notifications {
-	float: left;
-	margin-top: 16px;
+	position: absolute;
 	background: #428bca;
-	height: 20px;
-	line-height: 20px;
-	width: 20px;
-	margin-left: 5px;
+	height: 15px;
+	line-height: 15px;
+	width: 15px;
+	margin-left: 10px;
+	margin-top: 8px;
 	color: #fff;
 	text-align: center;
+	top: 0;
+	left: 0;
+	font-size: 10px;
 }
-
+.list ul li:hover ul {
+	display: block;
+	position: absolute;
+}
+.list ul li:hover ul li {
+	clear: both;
+}
+.list ul li:hover ul li:hover {
+	background: #eeeeee;
+}
+.notifications_list {
+	display: none;
+	backgrond: #fff;
+}
+.notifications_list li {
+	width: 250px;
+	border: 0 !important;
+	border-bottom: 1px solid #b9b9b9 !important;
+	height: auto !important;
+	text-align: left !important;
+	line-height: 16px !important;
+	font-size: 12px !important;
+	background: #fff !important;
+}
+.questtext {
+	height: 50px;
+}
+.quest {
+	border: 1px solid #b9b9b9;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 10px;
+	text-align: center;
+	padding-top: 10px;
+}
+.myquests {
+	padding-left: 80px;
+}
+.navigation_natifications {
+	position: relative;
+}
  
 /* Themes for different contexts */
 .bs-callout-danger {
