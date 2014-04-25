@@ -251,12 +251,24 @@ a.logout {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	margin: 10px;
 	text-align: center;
 	padding-top: 10px;
+	width: 180px;
+	padding: 10px;
+	height: 360px;
+}
+.inactive_quest_slot {
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 }
 .myquests {
-	padding-left: 80px;
+
+}
+.quest_amount {
+	margin-bottom: 20px;
+}
+.maxquests {
+	padding-top: 140px;
 }
 .navigation_natifications {
 	position: relative;
@@ -268,12 +280,12 @@ a.logout {
  
 /* Themes for different contexts */
 .bs-callout-danger {
-  background-color: #fcf2f2;
-  border-color: #dFb5b4;
+  background-color: #f6b2b0;
+  border-color: #d9534f;
 }
 .bs-callout-warning {
-  background-color: #fefbed;
-  border-color: #f1e7bc;
+  background-color: #ede3c9;
+  border-color: #f0ad4e;
 }
 .bs-callout-info {
   background-color: #f0f7fd;

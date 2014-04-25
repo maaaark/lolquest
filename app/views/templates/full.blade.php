@@ -26,6 +26,11 @@
 						{{ Session::get('message') }}
 					</div>
 				@endif
+				@if(Session::has('error'))
+					<div class="bs-callout bs-callout-danger">
+						{{ Session::get('error') }}
+					</div>
+				@endif
 				
 				@if(Auth::check())
 					@if(Auth::user()->summoner_status == 0)

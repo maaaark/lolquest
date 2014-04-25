@@ -37,7 +37,6 @@
 		<a href="/refresh_games" class="btn btn-primary">{{ trans("users.refresh") }}</a>
 		@endif
 	@endif
-	
 	<br/>
 	<h2>Last Games</h2>
 	<table class="table">

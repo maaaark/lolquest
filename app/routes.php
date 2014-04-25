@@ -23,6 +23,7 @@ Route::get('/', function()
 Route::resource('users', 'UsersController');
 Route::resource('summoners', 'SummonersController');
 Route::resource('champions', 'ChampionsController');
+Route::resource('quests', 'QuestsController');
 
 
 // Base Controller
@@ -49,3 +50,9 @@ Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 
 // Champions Controller
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
+
+
+// Quests Controller
+//Route::get('quests/create_choose_quest', array('uses' => 'QuestsController@create_choose_quest'));
+Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
+Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');

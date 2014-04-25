@@ -2,48 +2,76 @@
 @section('title', trans("users.dashboard"))
 @section('content')
 	<h3>My Quests</h3>
+	 <div class="quest_amount">
+		{{ $myquests->count() }} of 2 {{ trans("dashboard.questlog") }}
+	 </div>
 	 <div class="row myquests">
-		<div class="col-lg-2 quest">
-		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/36_92.png" width="100">
-		  <h2>Quest 1</h2>
-		  <select class="quest_select_champion">
-			<option>Pick a Champion</option>
-			@foreach($champions as $champion)
-			<option value="{{ $champion->id }}">{{ $champion->name }}</option>	
-			@endforeach
-		  </select>
-		  <p class="questtext">Play a game with Mundo.</p>
-		  <p><a href="#">Reroll this Quest</a></p>
-		  <p><a class="btn btn-default" href="#" role="button">Complete this Quest</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-2 quest">
-		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/86_92.png" width="100">
-		  <h2>Quest 2</h2>
-		  <p class="questtext">Buy at least 5 Wards on Summoners Rift.</p>
-		  <p><a href="#">Reroll this Quest</a></p>
-		  <p><a class="btn btn-default" href="#" role="button">Complete this Quest</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-2 quest">
-		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/113_92.png" width="100">
-		  <h2>Quest 3</h2>
-		  <p class="questtext">Win a game as Sejuani.</p>
-		  <p><a href="#">Reroll this Quest</a></p>
-		  <p><a class="btn btn-default" href="#" role="button">Complete this Quest</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-2 quest">
-		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/57_92.png" width="100">
-		  <h2>Quest 4</h2>
-		  <p class="questtext">Win a game as Jungle Maokai.</p>
-		  <p><a href="#">Reroll this Quest</a></p>
-		  <p><a class="btn btn-default" href="#" role="button">Complete this Quest</a></p>
-		</div><!-- /.col-lg-4 -->
-		<div class="col-lg-2 quest">
-		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/0_92.png" width="100">
-		  <h2>Open Slot</h2>
-		  <p class="questtext">Klick to get a new quest</p>
-		  <p><a href="#">Reroll this Quest</a></p>
-		  <p><a class="btn btn-primary" href="#" role="button">Get random Quest</a></p>
-		</div><!-- /.col-lg-4 -->
+	 
+		@foreach($myquests as $quest)
+			<div class="col-lg-2">
+				<div class="quest">
+					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
+					<h2>{{ $quest->questtype->name }}</h2>
+					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
+					<br/> 
+					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
+					<br/>
+					<p><a href="#">{{ trans("dashboard.reroll") }}</a></p>
+					<p><a class="btn btn-default" href="#" role="button">{{ trans("dashboard.complete") }}</a></p>
+					<p>{{ $quest->questtype->exp }} EXP + {{ $quest->questtype->qp }} QP</p>
+				</div>
+			</div>
+		@endforeach
+		
+		
+		@if($myquests->count() < 2)
+			<div class="col-lg-2">
+				<div class="quest">
+				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest')) }}
+				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
+					  <h2>{{ trans("dashboard.choose_slot") }}</h2>
+					  <p class="questtext">{{ trans("dashboard.choose") }}<br/> 
+					  <br/> 
+					  <select name="choose_quest_champion" class="quest_select_champion">
+						<option>{{ trans("dashboard.pick") }}</option>
+						@foreach($champions as $champion)
+						<option value="{{ $champion->champion_id }}">{{ $champion->name }}</option>	
+						@endforeach
+					  </select>
+					  </p>
+					  <br/>
+					  <br/>
+					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
+					  <p>100 EXP + 10 QP</p>
+					{{ Form::close() }}
+				</div>
+			</div>
+
+			<div class="col-lg-2">
+				<div class="quest">
+					{{ Form::model($user, array('action' => 'QuestsController@create_random_quest')) }}
+					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
+					<h2>{{ trans("dashboard.open_slot") }}</h2>
+					<p class="questtext">{{ trans("dashboard.random") }}</p>
+					<br/>
+					<br/>
+					<p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
+					<p>150 EXP + 15 QP</p>
+					{{ Form::close() }}
+				</div>
+			</div>
+		@else
+			<div class="col-lg-2">
+				<div class="quest maxquests">
+					{{ trans("dashboard.maximum_quests") }}
+				</div>
+			</div>
+		@endif
+		
+		
+	
+
+		
 	</div>
 	<h2>Quests</h2>
 	@foreach($myquests as $quest)
