@@ -7,6 +7,14 @@
 		
 		@if(Auth::check())
 			<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs">Logout</span></a></li>
+			<li><a href="#">{{ Auth::user()->exp }} EXP | {{ Auth::user()->qp }} QP</a></li>
+			<li>
+				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
+					<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>
+					<div class="name hidden-xs">{{ Auth::user()->summoner_name }} </div>
+					<div class="clear"></div>
+				</a>
+			</li>
 			<li class="navigation_natifications">
 				
 				<a href="/users"><span class="glyphicon glyphicon-comment"></span> <span class="hidden-xs">Notifications</span> </a> 
@@ -23,13 +31,7 @@
 			@endif	
 			</li>
 			
-			<li>
-				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
-					<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>
-					<div class="name hidden-xs">{{ Auth::user()->summoner_name }} </div>
-					<div class="clear"></div>
-				</a>
-			</li>
+			
 			<li class="quests"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> <span class="hidden-xs">Quests</span></a></li>
 			<li><a href="#"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs">Ladders</span></a></li>
 			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Summoners</span></a></li>
