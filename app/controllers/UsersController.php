@@ -367,7 +367,7 @@ class UsersController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 			$notifications = $user->notifications;
 			$champions = Champion::all();
-			$myquests = Quest::where('user_id', '=', $user->id)->get();
+			$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
 			
 			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests'));
 		} else {

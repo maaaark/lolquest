@@ -1,6 +1,7 @@
 @extends('templates.full')
 @section('title', trans("users.dashboard"))
 @section('content')
+	<br/>
 	<h3>My Quests</h3>
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of 2 {{ trans("dashboard.questlog") }}
@@ -17,7 +18,7 @@
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
 					<p><a href="#">{{ trans("dashboard.reroll") }}</a></p>
-					<p><a class="btn btn-default" href="#" role="button">{{ trans("dashboard.complete") }}</a></p>
+					<p><a class="btn btn-default" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					<p>{{ $quest->questtype->exp }} EXP + {{ $quest->questtype->qp }} QP</p>
 				</div>
 			</div>
@@ -68,9 +69,17 @@
 			</div>
 		@endif
 		
-		
+		<div class="col-lg-2">
+			<div class="quest maxquests inactive_quest_slot">
+				{{ trans("dashboard.empty_slot") }}
+			</div>
+		</div>
 	
-
+		<div class="col-lg-2">
+			<div class="quest maxquests inactive_quest_slot">
+				{{ trans("dashboard.empty_slot") }}
+			</div>
+		</div>
 		
 	</div>
 	<h2>Quests</h2>

@@ -53,6 +53,6 @@ Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refre
 
 
 // Quests Controller
-//Route::get('quests/create_choose_quest', array('uses' => 'QuestsController@create_choose_quest'));
 Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
+Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');

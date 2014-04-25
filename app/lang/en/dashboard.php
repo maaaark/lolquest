@@ -8,6 +8,7 @@ return array(
 	'pick' => 'Pick a champion',
 	'get' => 'Get a random Quest',
 	'open_slot' => 'Open Slot',
+	'empty_slot' => 'This slot can be bought in the shop for 200 QP!',
 	'choose_slot' => 'Choose Slot',
 	'random' => 'Get a random quest with a random champion.',
 	'choose' => 'Choose a Champion and get a random quest.',

@@ -83,35 +83,52 @@ class QuestsController extends \BaseController {
 		}
 	}
 	
-	public function check_quest() {
+	public function check_quest($quest_id) {
 	
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
-		if (Auth::check())
-		{ 
-			if ($validation->passes())
-			{
+		if (Auth::check()) { 
+			if ($validation->passes()) {
 				$user = User::find(Auth::user()->id);
-				$quest = Quest::find(17);
+				//$quest = Quest::find($quest_id);
+				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
 				
 				
-				
-				// Quest Type 1
-				if($quest->questtype->id == 1)
-					$games_since_queststart = Game::where('created_at', '>', $quest->created_at)->where('championId', '=', $quest->champion_id)->get();
-					if(isset($games_since_queststart)) {
-						echo "Quest abgeschlossen";
-						$quest->finished = 1;
-						$quest->save();
-					} else {
-						echo "Nein nein nein";
+				if($quest->count() > 0) {
+
+					// Quest Type 1 - Play a game
+					if($quest->questtype->id == 1) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('created_at', '>', $quest->created_at)->where('championId', '=', $quest->champion_id)->get();
+						if($games_since_queststart->count() > 0) {
+							$quest->finished = 1;
+							$quest->save();
+							$user->exp = $user->exp + $quest->questtype->exp;
+							$user->qp = $user->qp + $quest->questtype->qp;
+							$user->save();
+							return Redirect::to('dashboard')->with('message', '<h3>Quest done</h3>You earned '.$quest->questtype->exp." EXP and ".$quest->questtype->qp." QP");
+						}
 					}
+					
+					// Quest Type 2 - Win a game
+					if($quest->questtype->id == 2) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('created_at', '>', $quest->created_at)->where('championId', '=', $quest->champion_id)->where('win', '=', 1)->get();
+						if($games_since_queststart->count() > 0) {
+							$quest->finished = 1;
+							$quest->save();
+							$user->exp = $user->exp + $quest->questtype->exp;
+							$user->qp = $user->qp + $quest->questtype->qp;
+							$user->save();
+							return Redirect::to('dashboard')->with('message', '<h3>Quest done</h3>You earned '.$quest->questtype->exp." EXP and ".$quest->questtype->qp." QP");
+						}
+					}
+					
+					
+					
+					
 				}
+
 				
-				
-				
-				
-				
+				return Redirect::to('dashboard')->with('error', 'You have not completed this quest yet.');
 				//foreach($games_since_queststart as $game) {
 				//}
 				
@@ -125,8 +142,8 @@ class QuestsController extends \BaseController {
 		} else {
 			return Redirect::to('login');
 		}
-		
 	}
+
 
 	/**
 	 * Store a newly created resource in storage.
