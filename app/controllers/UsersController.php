@@ -115,7 +115,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();	
 		if($user) {
-			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->take(10)->get();
+			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('id', 'desc')->take(10)->get();
 			return View::make('users.show', compact('user', 'games'));
 		} else {
 			return Redirect::to('layouts.404');
