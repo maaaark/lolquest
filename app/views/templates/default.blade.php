@@ -20,7 +20,7 @@
 		</div>
 		<div class="container content-wrapper">	
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 				@if(Session::has('message'))
 						<div class="bs-callout bs-callout-warning">
 							{{ Session::get('message') }}
@@ -41,7 +41,7 @@
 				@endif
 				@yield('content')
 				</div>
-				<div class="col-md-4 sidebar">
+				<div class="col-md-3 sidebar">
 				@include('layouts.sidebar')
 				</div>
 			</div>

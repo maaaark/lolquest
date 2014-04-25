@@ -2,7 +2,7 @@
 
 class UsersController extends \BaseController {
 
-	protected $layout = 'layouts.master';
+	protected $layout = 'templates.default';
 	
 	
 	public function __construct()
@@ -366,7 +366,10 @@ class UsersController extends \BaseController {
 		{
 			$user = User::find(Auth::user()->id);
 			$notifications = $user->notifications;
-			return View::make('users.dashboard', compact('user', 'notifications'));
+			$champions = Champion::all();
+			$myquests = Quest::where('user_id', '=', $user->id)->get();
+			
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests'));
 		} else {
 			return Redirect::to('login');
 		}

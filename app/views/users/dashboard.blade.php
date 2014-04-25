@@ -6,6 +6,12 @@
 		<div class="col-lg-2 quest">
 		  <img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/36_92.png" width="100">
 		  <h2>Quest 1</h2>
+		  <select class="quest_select_champion">
+			<option>Pick a Champion</option>
+			@foreach($champions as $champion)
+			<option value="{{ $champion->id }}">{{ $champion->name }}</option>	
+			@endforeach
+		  </select>
 		  <p class="questtext">Play a game with Mundo.</p>
 		  <p><a href="#">Reroll this Quest</a></p>
 		  <p><a class="btn btn-default" href="#" role="button">Complete this Quest</a></p>
@@ -39,8 +45,12 @@
 		  <p><a class="btn btn-primary" href="#" role="button">Get random Quest</a></p>
 		</div><!-- /.col-lg-4 -->
 	</div>
-
-	Notifications:<br/>
+	<h2>Quests</h2>
+	@foreach($myquests as $quest)
+		<strong>{{ $quest->questtype->name }}</strong> with {{ $quest->champion->name }}<br/>
+	@endforeach
+	<br/>
+	<h2>Notifications</h2>
 	@foreach($user->notifications as $note)
 		{{ $note->message }}<br/>
 	@endforeach

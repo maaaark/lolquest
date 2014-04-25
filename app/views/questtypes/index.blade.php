@@ -1,0 +1,1 @@
+/home/mark/lolquest/app/views/questtypes/index.blade.php

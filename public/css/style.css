@@ -117,7 +117,8 @@ body, html {
 	text-decoration: none;
 }
 .sidebar {
-	background: #eeeeee;
+	background: #fff;
+	border-left: 1px solid #eeeeee;
 	color: #000;
 	height: 100%;
 }
@@ -259,6 +260,10 @@ a.logout {
 }
 .navigation_natifications {
 	position: relative;
+}
+.quest_select_champion {
+	width: 100%;
+	margin-bottom: 15px;
 }
  
 /* Themes for different contexts */

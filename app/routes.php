@@ -22,6 +22,7 @@ Route::get('/', function()
 
 Route::resource('users', 'UsersController');
 Route::resource('summoners', 'SummonersController');
+Route::resource('champions', 'ChampionsController');
 
 
 // Base Controller
@@ -44,3 +45,7 @@ Route::get('/user_friend/{id}', array('uses' => 'UsersController@makeFriend'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
+
+
+// Champions Controller
+Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
