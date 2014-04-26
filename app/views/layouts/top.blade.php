@@ -7,7 +7,7 @@
 		
 		@if(Auth::check())
 			<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs">Logout</span></a></li>
-			<li><a href="#">{{ Auth::user()->qp }} QP</a></li>
+			<li><a href="#">LVL {{Auth::user()->level}} | {{Auth::user()->exp}} / {{Level::find(Auth::user()->level)->exp}} EXP | {{ Auth::user()->qp }} QP</a></li>
 			<li>
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
 					<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>

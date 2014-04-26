@@ -2,8 +2,10 @@
 
 return array(
     'region' => 'Region',
+	'friends' => 'get friends',
     'welcome' => 'Welcome to lolquest.net',
 	'index' => 'Summoner profiles',
+	'invite' => 'invite',
 	'thank_you' => "Thank you for registration",
 	'profile' => "Profile of ",
 	'register' => "Register",
