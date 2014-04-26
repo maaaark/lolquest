@@ -3,13 +3,7 @@
 class UsersController extends \BaseController {
 
 	protected $layout = 'templates.default';
-	
-	
-	public function __construct()
-    {
-        $this->beforeFilter('notifications');
-		$this->beforeFilter('my_open_quests');
-    }
+
 	
 	
 	/**
@@ -440,7 +434,7 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::user()) {
 				$user = User::findOrFail($id);
-				$user_friend = User::where('name', 'mark')->firstOrFail(); // Or Role::create(['name' => 'admin']);
+				$user_friend = User::findOrFail(Auth::user()->id);
 				$user->friends()->attach($user_friend->id);
 				$user_friend->friends()->attach($user->id);
 				return Redirect::back();

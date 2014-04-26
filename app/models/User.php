@@ -29,6 +29,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password_confirmation'=>'required|between:6,12'
 	);
 	
+		public function levels()
+    {
+		return $this->hasOne('level', 'id', 'level');
+    }
 
 	public function summoner()
     {
