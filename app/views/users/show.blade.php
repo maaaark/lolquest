@@ -59,6 +59,10 @@
 		@endforeach
 	</table>
 	
+	@foreach($user->friends as $friend)
+		{{ $friend->summoner_name }}<br/>
+	@endforeach
+	
 	@else
 		{{ trans("users.no_summoner") }}
 	@endif
