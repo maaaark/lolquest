@@ -1,5 +1,6 @@
 @if(Auth::check())
-<h2>{{ trans("sidebar.logged_in_headline") }}</h2>
+<br/>
+<h3>{{ trans("sidebar.logged_in_headline") }}</h3>
 <table class="logged_in">
 	<tr>
 		<td valign="top" width="120" style="text-align: center;">
@@ -14,8 +15,26 @@
 		</td>
 	</tr>
 </table>
+<br/>
+<h3>{{ trans("sidebar.active_quests") }}</h3>
+<table class="sidebar_questlist">
+	@if(Session::has('my_open_quests'))
+		@foreach(Session::get('my_open_quests') as $quest)
+		<tr>
+			<td valign="top" width="50"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></td>
+			<td valign="top">
+				<strong>{{ $quest->questtype->name }}</strong><br/>
+				<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
+			</td>
+		</tr>
+		@endforeach
+	@else
+		Keine Quest vorhanden
+	@endif
+</table>
 @else
-<h2>{{ trans("sidebar.login_headline") }}</h2>
+<br/>
+<h3>{{ trans("sidebar.login_headline") }}</h3>
 {{ Form::open(array('url' => 'login')) }}
 	{{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'sidebar_input')) }}
 	{{ Form::password('password', array('class' => 'sidebar_input')) }}

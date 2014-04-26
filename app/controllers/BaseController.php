@@ -4,7 +4,15 @@ class BaseController extends Controller {
 	use Efficiently\AuthorityController\ControllerAdditions;
 
 	protected $layout = 'layouts.master';
-
+	
+	/*
+	View::composer('sidebar', function($view)
+	{
+		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
+		$view->with('my_active_quests', $myquests);
+	});
+	*/
+	
 	/**
 	 * Setup the layout used by the controller.
 	 *

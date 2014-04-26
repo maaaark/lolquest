@@ -1,4 +1,4 @@
-@extends('templates.full')
+@extends('templates.default')
 @section('title', trans("users.dashboard"))
 @section('content')
 	<br/>
@@ -9,7 +9,7 @@
 	 <div class="row myquests">
 	 
 		@foreach($myquests as $quest)
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<div class="quest">
 					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
 					<h2>{{ $quest->questtype->name }}</h2>
@@ -26,7 +26,7 @@
 		
 		
 		@if($myquests->count() < 2)
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<div class="quest">
 				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest')) }}
 				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<div class="quest">
 					{{ Form::model($user, array('action' => 'QuestsController@create_random_quest')) }}
 					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
@@ -62,34 +62,19 @@
 				</div>
 			</div>
 		@else
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<div class="quest maxquests">
 					{{ trans("dashboard.maximum_quests") }}
 				</div>
 			</div>
 		@endif
 		
-		<div class="col-lg-2">
-			<div class="quest maxquests inactive_quest_slot">
-				{{ trans("dashboard.empty_slot") }}
-			</div>
-		</div>
-	
-		<div class="col-lg-2">
+		<div class="col-lg-3">
 			<div class="quest maxquests inactive_quest_slot">
 				{{ trans("dashboard.empty_slot") }}
 			</div>
 		</div>
 		
 	</div>
-	<h2>Quests</h2>
-	@foreach($myquests as $quest)
-		<strong>{{ $quest->questtype->name }}</strong> with {{ $quest->champion->name }}<br/>
-	@endforeach
-	<br/>
-	<h2>Notifications</h2>
-	@foreach($user->notifications as $note)
-		{{ $note->message }}<br/>
-	@endforeach
 	
 @stop

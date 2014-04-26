@@ -8,5 +8,6 @@ return array(
 	'logged_in_as' => 'Logged in as',
 	'logged_in_headline' => 'My account',
 	'login_headline' => 'Login',
+	'active_quests' => 'My active quests',
 	
 );

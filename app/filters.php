@@ -96,3 +96,15 @@ Route::filter('notifications', function()
 		Session::put('notifications', $notifications);
 	}
 });
+
+Route::filter('my_open_quests', function()
+{
+	Session::forget('my_open_quests');
+	if (Auth::check()) {
+		$user = User::find(Auth::user()->id);
+		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
+		Session::put('my_open_quests', $myquests);
+	}
+});
+
+

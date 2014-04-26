@@ -8,6 +8,7 @@ class UsersController extends \BaseController {
 	public function __construct()
     {
         $this->beforeFilter('notifications');
+		$this->beforeFilter('my_open_quests');
     }
 	
 	

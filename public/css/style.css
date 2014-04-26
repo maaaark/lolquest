@@ -283,6 +283,17 @@ a.logout {
 	width: 100%;
 	margin-bottom: 15px;
 }
+.sidebar_questtext {
+	font-size: 11px;
+}
+.sidebar_questlist {
+	width: 100%;
+}
+.sidebar_questlist tr td {
+	border-bottom: 1px solid #eeeeee;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
  
 /* Themes for different contexts */
 .bs-callout-danger {
