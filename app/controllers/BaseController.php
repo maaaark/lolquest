@@ -5,6 +5,14 @@ class BaseController extends Controller {
 
 	protected $layout = 'layouts.master';
 	
+	
+		public function __construct()
+    {
+        $this->beforeFilter('notifications');
+		$this->beforeFilter('my_open_quests');
+    }
+	
+	
 	/*
 	View::composer('sidebar', function($view)
 	{

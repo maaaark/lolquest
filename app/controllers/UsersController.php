@@ -5,13 +5,6 @@ class UsersController extends \BaseController {
 	protected $layout = 'templates.default';
 	
 	
-	public function __construct()
-    {
-        $this->beforeFilter('notifications');
-		$this->beforeFilter('my_open_quests');
-    }
-	
-	
 	/**
 	 * Display a listing of users
 	 *
