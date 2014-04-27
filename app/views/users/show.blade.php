@@ -59,7 +59,7 @@
 		@endforeach
 	</table>
 
-<h2>Friends</h2>
+<h2>Friends test 22</h2>
 	@foreach($user->friends as $friend)
 		{{ $friend->summoner_name }}<br/>
 	@endforeach

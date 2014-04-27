@@ -8,7 +8,18 @@
 		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="/js/jquery.countdown.js"></script>
 		{{ HTML::script('js/custom.js') }}
+		
+		<script>
+		$( document ).ready(function() {
+			$(function() {
+				$('.refresh_cooldown').countdown({
+					date: "04 27, 2014 18:12:26"
+				});
+			});
+		});
+		</script>
 	</head>
     <body>
 	

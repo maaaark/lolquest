@@ -139,6 +139,7 @@ class UsersController extends \BaseController {
 					if(!isset($game["stats"]["item4"])) { $item4 = 0; }	else { $item4 = $game["stats"]["item4"]; }
 					if(!isset($game["stats"]["item5"])) { $item5 = 0; }	else { $item5 = $game["stats"]["item5"]; }
 					if(!isset($game["stats"]["item6"])) { $item6 = 0; }	else { $item6 = $game["stats"]["item6"]; }
+                    if(!isset($game["stats"]["wardPlaced"])) { $wardPlaced = 0; } else { $wardPlaced = $game["stats"]["wardPlaced"]; }
 					if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
 					if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
 					if(!isset($game["stats"]["championsKilled"])) { $championsKilled = 0; }	else { $championsKilled = $game["stats"]["championsKilled"]; }
@@ -153,7 +154,7 @@ class UsersController extends \BaseController {
 						$newGame->numDeaths = $numDeaths;
 						$newGame->championsKilled = $championsKilled;
 						$newGame->goldEarned = $game["stats"]["goldEarned"];
-						$newGame->wardPlaced = $game["stats"]["wardPlaced"];
+						$newGame->wardPlaced = $wardPlaced;
 						$newGame->item0 = $item0;
 						$newGame->item1 = $item1;
 						$newGame->item2 = $item2;

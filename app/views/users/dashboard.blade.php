@@ -18,8 +18,9 @@
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
 					<p><a href="#">{{ trans("dashboard.reroll") }}</a></p>
-					<p><a class="btn btn-default" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+					<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					<p>{{ $quest->questtype->exp }} EXP + {{ $quest->questtype->qp }} QP</p>
+					<p><div class="refresh_cooldown"></div></p>
 				</div>
 			</div>
 		@endforeach
