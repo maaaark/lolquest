@@ -58,7 +58,8 @@
 			</tr>
 		@endforeach
 	</table>
-	
+
+<h2>Friends</h2>
 	@foreach($user->friends as $friend)
 		{{ $friend->summoner_name }}<br/>
 	@endforeach

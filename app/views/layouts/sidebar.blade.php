@@ -32,6 +32,13 @@
 		Keine Quest vorhanden
 	@endif
 </table>
+@if(Session::has('my_open_quests'))
+<br/>
+@if(Auth::user()->id==$user->id)
+<a href="/refresh_games" style="color: #ffffff;" class="btn btn-primary btn-block">{{ trans("users.refresh") }}</a>
+@endif
+@endif
+
 @else
 <br/>
 <h3>{{ trans("sidebar.login_headline") }}</h3>
