@@ -109,7 +109,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();	
 		if($user) {
-			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('id', 'desc')->take(10)->get();
+			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
 			return View::make('users.show', compact('user', 'games'));
 		} else {
 			return Redirect::to('layouts.404');
@@ -144,7 +144,7 @@ class UsersController extends \BaseController {
 					if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
 					if(!isset($game["stats"]["championsKilled"])) { $championsKilled = 0; }	else { $championsKilled = $game["stats"]["championsKilled"]; }
 						
-					$recent_game = Game::where('gameId', '=', $game["gameId"])->first();
+					$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
 					if(!isset($recent_game)) {
 						$newGame = new Game;
 						$newGame->summoner_id = $user->summoner->summonerid;
@@ -162,6 +162,8 @@ class UsersController extends \BaseController {
 						$newGame->item4 = $item4;
 						$newGame->item5 = $item5;
 						$newGame->item6 = $item6;
+						$mil = $game["createDate"];
+						$newGame->createDate = $mil;
 						$newGame->win = $game["stats"]["win"];
 						$newGame->save();
 					}

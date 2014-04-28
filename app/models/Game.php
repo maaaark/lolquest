@@ -1,7 +1,7 @@
 <?php
 
 class Game extends \Eloquent {
-
+	
 	public function summoner()
     {
         return $this->belongsTo('Summoner');

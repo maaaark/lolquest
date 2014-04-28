@@ -17,10 +17,39 @@
 					<br/> 
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
-					<p><a href="#">{{ trans("dashboard.reroll") }}</a></p>
+					<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
 					<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					<p>{{ $quest->questtype->exp }} EXP + {{ $quest->questtype->qp }} QP</p>
 					<p><div class="refresh_cooldown"></div></p>
+				</div>
+			</div>
+			
+			<!-- Modal for QP Warning / Buy -->
+			<div class="modal fade" id="myModal-{{ $quest->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">{{ trans("dashboard.reroll_modal") }} "{{ $quest->questtype->name }}"</h4>
+					  </div>
+					  <div class="modal-body">
+						<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
+						<br/>
+						<h3>{{ $quest->questtype->name }}</h3>
+						{{ trans("quests.".$quest->type_id) }}<br/>
+						<br/>
+						Kosten: {{ Config::get('costs.reroll') }}<br/>
+						Haben: {{ $user->rerolls; }}<br/>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
+						@if(Config::get('costs.reroll') > $user->qp)
+							<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
+						@else
+							<a href="/quests/reroll_quest/{{ $quest->id }}" class="btn btn-primary">{{ trans("dashboard.reroll") }}</a>
+						@endif
+					  </div>
+					</div>
 				</div>
 			</div>
 		@endforeach
@@ -77,5 +106,6 @@
 		</div>
 		
 	</div>
+	
 	
 @stop

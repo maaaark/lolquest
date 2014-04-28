@@ -12,6 +12,41 @@ class QuestsController extends \BaseController {
 		//
 	}
 
+	
+	public function reroll_quest($quest_id) {
+		$input = Input::all();
+		$validation = Validator::make($input, Quest::$rules);
+		if (Auth::check()) { 
+			if ($validation->passes()) {
+				$user = User::find(Auth::user()->id);
+				$quest = Quest::where('user_id', '=', $user->id)->where('id', '=', $quest_id)->first();
+				$costs = Config::get('costs.reroll');
+				
+				if($quest->quest_slot == "random") {
+					$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+					$quest->type_id = $questtype->id;
+					$champion = Champion::orderBy(DB::raw('RAND()'))->first();
+					$quest->champion_id = $champion->champion_id;
+				} elseif($quest->quest_slot == "choose") {
+					$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+					$quest->type_id = $questtype->id;
+				}
+				$user->rerolls = $user->rerolls - 1;
+				$user->save();
+				$quest->save();
+				return Redirect::to('dashboard')->with('message', trans("dashboard.rerolled"));
+				
+			} else {
+				return Redirect::to('dashboard')
+				->withInput()
+				->withErrors($validation)
+				->with('error', 'There were validation errors.');
+			}
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -35,6 +70,8 @@ class QuestsController extends \BaseController {
 					$quest->user_id = $user->id;
 					$quest->type_id = $questtype->id;
 					$quest->exp = 100;
+					$quest->quest_slot = "choose";
+					$quest->createDate = date("U")*1000;
 					$quest->save();
 					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 				}
@@ -44,7 +81,7 @@ class QuestsController extends \BaseController {
 				return Redirect::to('dashboard')
 				->withInput()
 				->withErrors($validation)
-				->with('message', 'There were validation errors.');
+				->with('error', 'There were validation errors.');
 			}
 		} else {
 			return Redirect::to('login');
@@ -68,6 +105,8 @@ class QuestsController extends \BaseController {
 					$quest->user_id = $user->id;
 					$quest->type_id = $questtype->id;
 					$quest->exp = 100;
+					$quest->quest_slot = "random";
+					$quest->createDate = date("U")*1000;
 					$quest->save();
 					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 				
@@ -76,7 +115,7 @@ class QuestsController extends \BaseController {
 				return Redirect::to('dashboard')
 				->withInput()
 				->withErrors($validation)
-				->with('message', 'There were validation errors.');
+				->with('error', 'There were validation errors.');
 			}
 		} else {
 			return Redirect::to('login');
@@ -92,13 +131,11 @@ class QuestsController extends \BaseController {
 				$user = User::find(Auth::user()->id);
 				//$quest = Quest::find($quest_id);
 				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
-				
-				
 				if($quest->count() > 0) {
 
 					// Quest Type 1 - Play a game
 					if($quest->questtype->id == 1) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('created_at', '>', $quest->created_at)->where('championId', '=', $quest->champion_id)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->get();
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
@@ -111,7 +148,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 2 - Win a game
 					if($quest->questtype->id == 2) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('created_at', '>', $quest->created_at)->where('championId', '=', $quest->champion_id)->where('win', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('win', '=', 1)->get();
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
@@ -121,23 +158,20 @@ class QuestsController extends \BaseController {
 							return Redirect::to('dashboard')->with('message', '<h3>Quest done</h3>You earned '.$quest->questtype->exp." EXP and ".$quest->questtype->qp." QP");
 						}
 					}
-					
-					
-					
-					
-				}
 
+					
+				} else {
+					return Redirect::to('dashboard')->with('error', 'No active quest found');
+				}
 				
 				return Redirect::to('dashboard')->with('error', 'You have not completed this quest yet.');
-				//foreach($games_since_queststart as $game) {
-				//}
 				
 				
 			} else {
 				return Redirect::to('dashboard')
 					->withInput()
 					->withErrors($validation)
-					->with('message', 'There were validation errors.');
+					->with('error', 'There were validation errors.');
 			}
 		} else {
 			return Redirect::to('login');

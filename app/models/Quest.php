@@ -1,7 +1,7 @@
 <?php
 
 class Quest extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = [];	
 	
 	public static $rules = array();
 	

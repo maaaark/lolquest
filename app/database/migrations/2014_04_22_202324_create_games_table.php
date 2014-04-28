@@ -62,7 +62,7 @@ class CreateGamesTable extends Migration {
 			$table->integer('mapId');
 			$table->boolean('invalid');
 			$table->string('subType');
-			$table->integer('createDate');
+			$table->bigInteger('createDate');
 			$table->integer('championId');
 			$table->timestamps();
 		});

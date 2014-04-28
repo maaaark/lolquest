@@ -11,15 +11,6 @@
 		<script src="/js/jquery.countdown.js"></script>
 		{{ HTML::script('js/custom.js') }}
 		
-		<script>
-		$( document ).ready(function() {
-			$(function() {
-				$('.refresh_cooldown').countdown({
-					date: "04 27, 2014 18:12:26"
-				});
-			});
-		});
-		</script>
 	</head>
     <body>
 	
@@ -36,6 +27,11 @@
 						<div class="bs-callout bs-callout-warning">
 							{{ Session::get('message') }}
 						</div>
+				@endif
+				@if(Session::has('error'))
+					<div class="bs-callout bs-callout-danger">
+						{{ Session::get('error') }}
+					</div>
 				@endif
 				
 				@if(Auth::check())
