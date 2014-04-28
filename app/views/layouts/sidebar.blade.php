@@ -3,7 +3,7 @@
 <h3>{{ trans("sidebar.logged_in_headline") }}</h3>
 <table class="logged_in">
 	<tr>
-		<td valign="top" width="120" style="text-align: center;">
+		<td valign="top" width="100" style="text-align: center;">
 			<img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="70" /><br/>
 			<a href="#" class="change_avatar">change avatar</a>
 		</td>

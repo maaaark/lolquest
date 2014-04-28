@@ -3,6 +3,9 @@
 return array(
     'questlog' => "Slots are locked. <a href='#'>Take a look in the shop to unlock more quest slots.</a>",
 	'with' => 'as',	
+	'quest_done' => "<h3>Quest done</h3>You earned :exp EXP and :qp QP",
+	'quest_not_done' => "You have not completed this quest yet.",
+	'no_active_quest' => "No active quest found",
 	'reroll' => 'Reroll this Quest',
 	'rerolled' => 'Quest has been rerolled! Have fun!',
 	'close' => 'Schließen',

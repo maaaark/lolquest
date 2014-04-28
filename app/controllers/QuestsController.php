@@ -40,7 +40,7 @@ class QuestsController extends \BaseController {
 				return Redirect::to('dashboard')
 				->withInput()
 				->withErrors($validation)
-				->with('error', 'There were validation errors.');
+				->with('error', trans("warnings.validation_errors"));
 			}
 		} else {
 			return Redirect::to('login');
@@ -81,7 +81,7 @@ class QuestsController extends \BaseController {
 				return Redirect::to('dashboard')
 				->withInput()
 				->withErrors($validation)
-				->with('error', 'There were validation errors.');
+				->with('error', trans("warnings.validation_errors"));
 			}
 		} else {
 			return Redirect::to('login');
@@ -115,7 +115,7 @@ class QuestsController extends \BaseController {
 				return Redirect::to('dashboard')
 				->withInput()
 				->withErrors($validation)
-				->with('error', 'There were validation errors.');
+				->with('error', trans("warnings.validation_errors"));
 			}
 		} else {
 			return Redirect::to('login');
@@ -142,7 +142,7 @@ class QuestsController extends \BaseController {
 							$user->exp = $user->exp + $quest->questtype->exp;
 							$user->qp = $user->qp + $quest->questtype->qp;
 							$user->save();
-							return Redirect::to('dashboard')->with('message', '<h3>Quest done</h3>You earned '.$quest->questtype->exp." EXP and ".$quest->questtype->qp." QP");
+							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
 					
@@ -155,23 +155,23 @@ class QuestsController extends \BaseController {
 							$user->exp = $user->exp + $quest->questtype->exp;
 							$user->qp = $user->qp + $quest->questtype->qp;
 							$user->save();
-							return Redirect::to('dashboard')->with('message', '<h3>Quest done</h3>You earned '.$quest->questtype->exp." EXP and ".$quest->questtype->qp." QP");
+							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
 
 					
 				} else {
-					return Redirect::to('dashboard')->with('error', 'No active quest found');
+					return Redirect::to('dashboard')->with('error', trans("dashboard.no_active_quest"));
 				}
 				
-				return Redirect::to('dashboard')->with('error', 'You have not completed this quest yet.');
+				return Redirect::to('dashboard')->with('error', trans("dashboard.quest_not_done"));
 				
 				
 			} else {
 				return Redirect::to('dashboard')
 					->withInput()
 					->withErrors($validation)
-					->with('error', 'There were validation errors.');
+					->with('error', trans("warnings.validation_errors"));
 			}
 		} else {
 			return Redirect::to('login');
