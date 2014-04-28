@@ -31,7 +31,7 @@
 			@endif
 			</li>
 			
-			<li><a href="#"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs">Ladders</span></a></li>
+			<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs">Ladders</span></a></li>
 			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Summoners</span></a></li>
 			
 		@else

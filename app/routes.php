@@ -61,3 +61,5 @@ Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
 
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
+Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
+Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
