@@ -140,8 +140,8 @@ class QuestsController extends \BaseController {
 							$quest->finished = 1;
 							$quest->save();
 							$user->exp = $user->exp + $quest->questtype->exp;
-							if($user->exp > level::find($user->level)->exp) {
-								$user->level +=1;
+							if($user->exp > Level::find($user->ulevel)->exp) {
+								$user->ulevel +=1;
 							}
 							$user->qp = $user->qp + $quest->questtype->qp;
 							$user->save();
