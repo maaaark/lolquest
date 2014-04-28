@@ -57,3 +57,7 @@ Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
 Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
+
+
+// Ladders Controller
+Route::get('/ladders', 'LaddersController@index');

@@ -28,11 +28,9 @@
 					@endforeach
 				</ul>
 				<div class="clear"></div>
-			@endif	
+			@endif
 			</li>
 			
-			
-			<li class="quests"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> <span class="hidden-xs">Quests</span></a></li>
 			<li><a href="#"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs">Ladders</span></a></li>
 			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Summoners</span></a></li>
 			

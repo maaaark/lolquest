@@ -33,10 +33,10 @@
 	@endif
 </table>
 @if(Session::has('my_open_quests'))
-<br/>
-@if(Auth::user())
-<a href="/refresh_games" style="color: #ffffff;" class="btn btn-primary btn-block">{{ trans("users.refresh") }}</a>
-@endif
+	<br/>
+	@if(Auth::user())
+	<a href="/refresh_games" style="color: #ffffff;" class="btn btn-primary btn-block">{{ trans("users.refresh") }}</a>
+	@endif
 @endif
 
 @else
