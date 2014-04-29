@@ -6,6 +6,8 @@
 	<strong>{{ trans("ladders.archive") }}</strong>
 	<select id="dynamic_select" width="200">
 		<option value="/ladders/{{ $year }}/{{ $month }}" selected>{{ trans("month.".$month) }} {{ $year }}</option>
+		<option value="/ladders/2014/04">{{ trans("month.04") }} 2014</option>
+		<option value="/ladders/2014/03">{{ trans("month.03") }} 2014</option>
 	</select> 
 	
 	<br/>
@@ -26,4 +28,5 @@
 		</tr>
 	@endforeach
 	</table>
+	<a href="/ladders/refresh_ladder" class="btn btn-primary">Refresh Ladder (Admin only)</a>
 @stop

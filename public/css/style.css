@@ -261,7 +261,6 @@ a.logout {
 	height: 360px;
 }
 .quest:hover {
-	background: #eeeeee;
 }
 .inactive_quest_slot {
 	filter: alpha(opacity=50);
@@ -352,8 +351,16 @@ a.logout {
 	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
-
-
+.ribbon_1 {
+	background: url("../img/quests/random.png");
+	background-position: 123px 0px;
+	background-repeat: no-repeat;
+}
+.ribbon_2{
+	background: url("../img/quests/choose.png");
+	background-position: 123px 0px;
+	background-repeat: no-repeat;
+}
 
 
 

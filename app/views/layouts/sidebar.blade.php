@@ -20,24 +20,20 @@
 <table class="sidebar_questlist">
 	@if(Session::has('my_open_quests'))
 		@foreach(Session::get('my_open_quests') as $quest)
+		
 		<tr>
-			<td valign="top" width="50"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></td>
+			<td valign="top" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
 			<td valign="top">
-				<strong>{{ $quest->questtype->name }}</strong><br/>
+				<a href="/dashboard"><strong>{{ $quest->questtype->name }}</strong></a><br/>
 				<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
 			</td>
 		</tr>
+		
 		@endforeach
 	@else
 		Keine Quest vorhanden
 	@endif
 </table>
-@if(Session::has('my_open_quests'))
-	<br/>
-	@if(Auth::user())
-	<a href="/refresh_games" style="color: #ffffff;" class="btn btn-primary btn-block">{{ trans("users.refresh") }}</a>
-	@endif
-@endif
 
 @else
 <br/>

@@ -169,14 +169,16 @@ class UsersController extends \BaseController {
 					}
 					unset($recent_game);
 				}
-				return Redirect::back();
+				$user->last_checked = date("U");
+				$user->save();
+				
 			}
 		} else {
 			return View::make('login');
 		}
 	}
 	
-public function refresh_level()
+	public function refresh_level()
 	{
 		$users = User::all();
 		$levels = Level::orderBy('id')->get();;
@@ -379,8 +381,10 @@ public function refresh_level()
 			$notifications = $user->notifications;
 			$champions = Champion::orderBy('name')->get();
 			$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
+			$time = date("U");
+			$time_waited = $time - $user->last_checked;
 			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited'));
 		} else {
 			return Redirect::to('login');
 		}

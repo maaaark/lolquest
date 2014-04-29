@@ -122,17 +122,23 @@ class QuestsController extends \BaseController {
 		}
 	}
 	
-	public function check_quest($quest_id) {
+	public static function check_quest($quest_id) {
 	
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
 		if (Auth::check()) { 
 			if ($validation->passes()) {
 				$user = User::find(Auth::user()->id);
+				
 				//$quest = Quest::find($quest_id);
 				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
 				if($quest->count() > 0) {
+					
+					// Refresh the Quests for this summoner
+					$request = Request::create('/refresh_games', 'GET', array());
+					Route::dispatch($request)->getContent();
 
+				
 					// Quest Type 1 - Play a game
 					if($quest->questtype->id == 1) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->get();

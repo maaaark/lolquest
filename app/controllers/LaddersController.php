@@ -49,6 +49,8 @@ class LaddersController extends \BaseController {
 			$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year)->where('month', '=', $month)->first();
 			if($participant) {
 				$participant->rang = $i;
+				$participant->month_exp = $row->total_exp;
+				$participant->total_quests = $row->total_quests;
 				$participant->save();
 			} else {
 				$ladder = new Ladder;
@@ -59,6 +61,7 @@ class LaddersController extends \BaseController {
 			}
 			$i++;
 		}
+		return Redirect::to('/ladders/refresh_ladder')->with('message', "Ladder refreshed");
 		
 	}
 	

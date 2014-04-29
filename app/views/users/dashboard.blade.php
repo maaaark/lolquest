@@ -10,7 +10,7 @@
 	 
 		@foreach($myquests as $quest)
 			<div class="col-lg-3">
-				<div class="quest">
+				<div class="quest ribbon_{{ $quest->type_id }}">
 					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
 					<h2>{{ $quest->questtype->name }}</h2>
 					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
@@ -18,7 +18,11 @@
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
 					<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
-					<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+					@if($time_waited < 120)
+						<button class="btn btn-inactive">Wait {{ 120-$time_waited }} secounds ...  </button>
+					@else
+						<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+					@endif
 					<p>{{ $quest->questtype->exp }} EXP + {{ $quest->questtype->qp }} QP</p>
 					<p><div class="refresh_cooldown"></div></p>
 				</div>
@@ -91,6 +95,7 @@
 					{{ Form::close() }}
 				</div>
 			</div>
+			
 		@else
 			<div class="col-lg-3">
 				<div class="quest maxquests">
@@ -99,11 +104,21 @@
 			</div>
 		@endif
 		
+		@if($myquests->count() == 0)
 		<div class="col-lg-3">
 			<div class="quest maxquests inactive_quest_slot">
 				{{ trans("dashboard.empty_slot") }}
 			</div>
 		</div>
+		@endif
+		
+		@if($myquests->count() <= 1)
+		<div class="col-lg-3">
+			<div class="quest maxquests inactive_quest_slot">
+				{{ trans("dashboard.empty_slot") }}
+			</div>
+		</div>
+		@endif
 		
 	</div>
 	
