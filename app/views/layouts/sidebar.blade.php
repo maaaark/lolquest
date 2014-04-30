@@ -16,8 +16,8 @@
 	<br/>
 	<strong>{{ trans("sidebar.level") }} {{ Auth::user()->ulevel }}:</strong><br/>
 	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-		60%
+	  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}% ;">
+		{{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}%
 	  </div>
 	</div>
 	<br/>
