@@ -59,22 +59,18 @@
 				{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}<br/>
 				KDA: {{ round(($game->championsKilled+$game->assists)/$game->numDeaths,2) }}
 				</td>
+				<td class="game_kda">
+					{{ $game->gameMode }}<br/>
+					{{ $game->minionsKilled }} ( {{ $game->neutralMinionsKilled }} neutral )
+				</td>
 				<td>
 					<img src="/img/spells/{{ $game->spell1 }}.png" width="35" class="img-circle" > 
 					<img src="/img/spells/{{ $game->spell2 }}.png" width="35" class="img-circle" >
 				</td>
 				<td id="items">
 					@foreach($game->items as $item)
-						{{ $item->item_id }}
-					@endforeach
-					<img src="/img/items/{{ $game->item0 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" > 
-					<img src="/img/items/{{ $game->item1 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" >
-					<img src="/img/items/{{ $game->item2 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" >
-					<img src="/img/items/{{ $game->item3 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" >
-					<img src="/img/items/{{ $game->item4 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" >
-					<img src="/img/items/{{ $game->item5 }}_64.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" width="35" class="img-circle items" >
-					&nbsp;&nbsp;&nbsp;
-					<img src="/img/items/{{ $game->item6 }}_64.png" width="35" class="img-circle" >	
+						<a href="/items/{{ $item->id }}"><img src="/img/items/{{ $item->id }}_64.png" data-toggle="tooltip" data-placement="top" title="{{ $item->name }}" width="35" class="img-circle items" ></a>
+					@endforeach	
 				</td>
 			</tr>
 		@endforeach

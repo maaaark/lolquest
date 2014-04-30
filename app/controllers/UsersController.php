@@ -167,6 +167,7 @@ class UsersController extends \BaseController {
 						$newGame->item6 = $item6;
 						$newGame->spell1 = $game["spell1"];
 						$newGame->spell2 = $game["spell2"];
+						$newGame->gameMode = $game["gameMode"];
 						$newGame->minionsKilled = $minionsKilled;
 						$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 						$mil = $game["createDate"];

@@ -81,8 +81,10 @@ class BaseController extends Controller {
 						if(!isset($obj_de["data"][$key]["plaintext"])) {
 							$plaintext_de = "";
 						}
-							
+						
+						$new_item->id = $item["id"];
 						$new_item->item_id = $item["id"];
+						$new_item->riot_id = $item["id"];
 						
 						$new_item->description = $item["description"];
 						$new_item->plaintext = $plaintext;
