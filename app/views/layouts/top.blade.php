@@ -15,7 +15,7 @@
 					<div class="clear"></div>
 				</a>
 			</li>
-			<li class="navigation_natifications">
+			<!--<li class="navigation_natifications">
 				
 				<a href="/users"><span class="glyphicon glyphicon-comment"></span></a> 
 			@if(Session::get('notifications_amount') > 0)
@@ -29,10 +29,10 @@
 				</ul>
 				<div class="clear"></div>
 			@endif
-			</li>
+			</li>-->
 			
 			<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs">Ladders</span></a></li>
-			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Summoners</span></a></li>
+			<li><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">My Quests</span></a></li>
 			
 		@else
 			<li><a href="/login"><span class="glyphicon glyphicon-user"> </span> <span class="hidden-xs">Login</span></a></li>
