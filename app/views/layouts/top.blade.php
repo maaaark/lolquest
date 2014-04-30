@@ -17,7 +17,7 @@
 			</li>
 			<li class="navigation_natifications">
 				
-				<a href="/users"><span class="glyphicon glyphicon-comment"></span> <span class="hidden-xs">Notifications</span> </a> 
+				<a href="/users"><span class="glyphicon glyphicon-comment"></span></a> 
 			@if(Session::get('notifications_amount') > 0)
 				<span class="unread_notifications img-circle">{{ Session::get('notifications_amount') }}</span>
 			@endif

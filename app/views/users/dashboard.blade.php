@@ -9,8 +9,8 @@
 	 <div class="row myquests">
 	 
 		@foreach($myquests as $quest)
-			<div class="col-lg-3">
-				<div class="quest ribbon_{{ $quest->type_id }}">
+			<div class="col-sm-3">
+				<div class="quest">
 					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
 					<h2>{{ $quest->questtype->name }}</h2>
 					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
@@ -18,8 +18,8 @@
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
 					<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
-					@if($time_waited < 120)
-						<button class="btn btn-inactive">Wait {{ 120-$time_waited }} secounds ...  </button>
+					@if($time_waited < Config::get('api.refresh_time'))
+						<button class="btn btn-inactive">{{ trans("dashboard.wait", array('time'=>Config::get('api.refresh_time')-$time_waited)) }}</button>
 					@else
 						<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					@endif
@@ -37,13 +37,30 @@
 						<h4 class="modal-title" id="myModalLabel">{{ trans("dashboard.reroll_modal") }} "{{ $quest->questtype->name }}"</h4>
 					  </div>
 					  <div class="modal-body">
-						<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
-						<br/>
-						<h3>{{ $quest->questtype->name }}</h3>
-						{{ trans("quests.".$quest->type_id) }}<br/>
-						<br/>
-						Kosten: {{ Config::get('costs.reroll') }}<br/>
-						Haben: {{ $user->rerolls; }}<br/>
+						<table>
+							<tr>
+								<td valign="top" width="120"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100"></td>
+								<td valign="top">
+									<h3>{{ $quest->questtype->name }}</h3>
+									{{ trans("quests.".$quest->type_id) }}<br/>
+									<br/>
+									<table class="table table-striped">
+										<tr>
+											<td>{{ trans("dashboard.balance") }}</td>
+											<td>{{ $user->qp; }}</td>
+										</tr>
+										<tr>
+											<td>{{ trans("dashboard.costs_reroll") }}</td>
+											<td>{{ Config::get('costs.reroll') }}</td>
+										</tr>
+										<tr>
+											<td><strong>{{ trans("dashboard.balance_after") }}</strong></td>
+											<td><strong>{{ $user->qp-Config::get('costs.reroll') }}</strong></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
@@ -60,7 +77,7 @@
 		
 		
 		@if($myquests->count() < 2)
-			<div class="col-lg-3">
+			<div class="col-sm-3">
 				<div class="quest">
 				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest')) }}
 				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
@@ -68,7 +85,7 @@
 					  <p class="questtext">{{ trans("dashboard.choose") }}<br/> 
 					  <br/> 
 					  <select name="choose_quest_champion" class="quest_select_champion">
-						<option>{{ trans("dashboard.pick") }}</option>
+						<option value="0">{{ trans("dashboard.random_champion") }}</option>
 						@foreach($champions as $champion)
 						<option value="{{ $champion->champion_id }}">{{ $champion->name }}</option>	
 						@endforeach
@@ -77,27 +94,13 @@
 					  <br/>
 					  <br/>
 					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
-					  <p>100 EXP + 10 QP</p>
 					{{ Form::close() }}
 				</div>
 			</div>
 
-			<div class="col-lg-3">
-				<div class="quest">
-					{{ Form::model($user, array('action' => 'QuestsController@create_random_quest')) }}
-					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
-					<h2>{{ trans("dashboard.open_slot") }}</h2>
-					<p class="questtext">{{ trans("dashboard.random") }}</p>
-					<br/>
-					<br/>
-					<p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
-					<p>150 EXP + 15 QP</p>
-					{{ Form::close() }}
-				</div>
-			</div>
-			
+
 		@else
-			<div class="col-lg-3">
+			<div class="col-sm-3">
 				<div class="quest maxquests">
 					{{ trans("dashboard.maximum_quests") }}
 				</div>
@@ -105,7 +108,7 @@
 		@endif
 		
 		@if($myquests->count() == 0)
-		<div class="col-lg-3">
+		<div class="col-sm-3">
 			<div class="quest maxquests inactive_quest_slot">
 				{{ trans("dashboard.empty_slot") }}
 			</div>
@@ -113,7 +116,7 @@
 		@endif
 		
 		@if($myquests->count() <= 1)
-		<div class="col-lg-3">
+		<div class="col-sm-3">
 			<div class="quest maxquests inactive_quest_slot">
 				{{ trans("dashboard.empty_slot") }}
 			</div>
@@ -121,6 +124,6 @@
 		@endif
 		
 	</div>
-	
+	<br/><br/>
 	
 @stop

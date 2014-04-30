@@ -14,14 +14,15 @@
 	<br/>
 	<table class="table table-striped">
 		<tr>
-			<th>Place</th>
-			<th>Summoner</th>
-			<th>Quests completed</th>
-			<th>Total EXP this month</th>
+			<th>{{ trans("ladders.rang") }}</th>
+			<th colspan="2">{{ trans("ladders.summoner") }}</th>
+			<th>{{ trans("ladders.quests") }}</th>
+			<th>{{ trans("ladders.total_exp") }}</th>
 		</tr>
 	@foreach($ladder as $row)
 		<tr>
-			<td>{{ $row->rang }}</td>
+			<td width="60">{{ $row->rang }}.</td>
+			<td width="20"><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $row->user->summoner->profileIconId }}.jpg" class="img-circle" width="20" /></a></td>
 			<td><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}">{{ $row->user->summoner_name }}</a></td>
 			<td>{{ $row->total_quests }}</td>
 			<td>{{ $row->month_exp }}</td>

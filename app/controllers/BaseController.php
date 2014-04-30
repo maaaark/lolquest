@@ -43,5 +43,69 @@ class BaseController extends Controller {
 	{
 		return View::make('layouts.404');
 	}
+	
+	
+	
+	public function refresh_items()
+	{
+		if (Auth::check())
+		{
+			if(Auth::user()->hasRole('admin')) {
+				$api_key = Config::get('api.key');
+				$item_data = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/item?itemListData=stats&api_key=".$api_key;
+				$json = @file_get_contents($item_data);
+				
+				$item_data_de = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/item?locale=de_DE&itemListData=stats&api_key=".$api_key;
+				$json_de = @file_get_contents($item_data_de);
+				
+				if($json === FALSE) {
+					return Redirect::to('404');
+				} else {
+					$obj = json_decode($json, true);
+					$obj_de = json_decode($json_de, true);
+					
+					foreach($obj["data"] as $key => $item) {
+						$recent_item = Item::where('item_id', '=', $item["id"])->first();
+						
+						if(!isset($recent_item)) {
+							$new_item = new Item;
+							echo "Saved Item ".$item["name"]." ********** NEW ITEM<br/>";
+						} else {
+							$new_item = $recent_item;
+						}
+						
+						if(!isset($item["plaintext"])) {
+							$plaintext = "";
+						}
+							
+						if(!isset($obj_de["data"][$key]["plaintext"])) {
+							$plaintext_de = "";
+						}
+							
+						$new_item->item_id = $item["id"];
+						
+						$new_item->description = $item["description"];
+						$new_item->plaintext = $plaintext;
+						$new_item->name = $item["name"];
+						
+						$new_item->description_de = $obj_de["data"][$key]["description"];
+						$new_item->name_de = $obj_de["data"][$key]["name"];
+						$new_item->plaintext_de = $plaintext_de;
+						
+						$new_item->save();
+							
+							
+						unset($recent_item);
+					}
+				}
+			} else {
+				return Redirect::to('403');
+			}
+		} else {
+			return View::make('login');
+		}
+	}
+	
+	
 
 }

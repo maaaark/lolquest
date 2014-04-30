@@ -10,42 +10,23 @@
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.countdown.js"></script>
 		{{ HTML::script('js/custom.js') }}
-		
 	</head>
     <body>
 	
+	
 	@include('layouts.top')
 	
-	<div class="background">
-		<div class="container">
+	<img src="/img/blur.jpg" class="bg" />
+
+	<div id="wrapper">
+		<div class="container title-wrapper">
 			<div class="title"><h1>@yield('title')</h1></div>
 		</div>
 		<div class="container content-wrapper">	
 			<div class="row">
 				<div class="col-md-9">
-				@if(Session::has('message'))
-						<div class="bs-callout bs-callout-warning">
-							{{ Session::get('message') }}
-						</div>
-				@endif
-				@if(Session::has('error'))
-					<div class="bs-callout bs-callout-danger">
-						{{ Session::get('error') }}
-					</div>
-				@endif
-				
-				@if(Auth::check())
-					@if(Auth::user()->summoner_status == 0)
-					<div class="bs-callout bs-callout-warning">
-						<h4>Warning!</h4>
-						{{ trans("users.empty_summoner") }}
-					</div>
-					@elseif(Auth::user()->summoner_status == 1)
-					<div class="bs-callout bs-callout-warning">
-						{{ trans("users.not_verified") }}
-					</div>
-					@endif
-				@endif
+				@include('layouts.errors')
+
 				@yield('content')
 				</div>
 				<div class="col-md-3 sidebar">

@@ -26,11 +26,6 @@ h3 {
 	color: #fff;
 	text-decoration: none;
 }
-#page {
-	width: 1000px;
-	margin: 0 auto;
-	padding-top: 50px;
-}
 .background {
 	background: url("../img/blur.jpg") no-repeat center center fixed;
     -webkit-background-size: cover; /* For WebKit*/
@@ -41,6 +36,29 @@ h3 {
 	padding-bottom: 90px;
 	height: 100%;
 }
+.game_kda {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+
 .fullwidth_box {
 	width: 100%;
 	background: #fff;
@@ -123,7 +141,6 @@ h3 {
 	background: #fff;
 	border-left: 1px solid #eeeeee;
 	color: #000;
-	height: 100%;
 }
 .sidebar a {
 	text-decoration: none;
@@ -293,6 +310,10 @@ a.logout {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+.view_ladder {
+	width: 100%;
+	text-align: right;
+}
 
 
 
@@ -346,10 +367,23 @@ a.logout {
 }
 .content-wrapper {
 	margin-top: 0px;
-	background: #fff;
+	background: #fff !important;
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	left: 10%;
+}
+#wrapper {
+	position: relative;
+
+}
+.title-wrapper {
+	padding-top: 130px;
+}
+.ribbon_daily {
+	background: url("../img/quests/ribbon_daily.png");
+	background-position: 123px 0px;
+	background-repeat: no-repeat;
 }
 .ribbon_1 {
 	background: url("../img/quests/random.png");

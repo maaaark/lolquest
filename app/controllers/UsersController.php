@@ -107,9 +107,10 @@ class UsersController extends \BaseController {
 	 */
 	public function show($region, $name)
 	{
-		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();	
+		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();
 		if($user) {
 			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
+			
 			return View::make('users.show', compact('user', 'games'));
 		} else {
 			return Redirect::to('layouts.404');
@@ -139,6 +140,8 @@ class UsersController extends \BaseController {
 					if(!isset($game["stats"]["item4"])) { $item4 = 0; }	else { $item4 = $game["stats"]["item4"]; }
 					if(!isset($game["stats"]["item5"])) { $item5 = 0; }	else { $item5 = $game["stats"]["item5"]; }
 					if(!isset($game["stats"]["item6"])) { $item6 = 0; }	else { $item6 = $game["stats"]["item6"]; }
+					if(!isset($game["stats"]["minionsKilled"])) { $minionsKilled = 0; }	else { $minionsKilled = $game["stats"]["minionsKilled"]; }
+					if(!isset($game["stats"]["neutralMinionsKilled"])) { $neutralMinionsKilled = 0; }	else { $neutralMinionsKilled = $game["stats"]["neutralMinionsKilled"]; }
                     if(!isset($game["stats"]["wardPlaced"])) { $wardPlaced = 0; } else { $wardPlaced = $game["stats"]["wardPlaced"]; }
 					if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
 					if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
@@ -162,10 +165,22 @@ class UsersController extends \BaseController {
 						$newGame->item4 = $item4;
 						$newGame->item5 = $item5;
 						$newGame->item6 = $item6;
+						$newGame->spell1 = $game["spell1"];
+						$newGame->spell2 = $game["spell2"];
+						$newGame->minionsKilled = $minionsKilled;
+						$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 						$mil = $game["createDate"];
 						$newGame->createDate = $mil;
 						$newGame->win = $game["stats"]["win"];
 						$newGame->save();
+						
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item0));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item1));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item2));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item3));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item4));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item5));
+						$newGame->items()->attach($newGame->id, array("item_id"=>$item6));
 					}
 					unset($recent_game);
 				}

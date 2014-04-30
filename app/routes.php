@@ -24,7 +24,11 @@ Route::resource('users', 'UsersController');
 Route::resource('summoners', 'SummonersController');
 Route::resource('champions', 'ChampionsController');
 Route::resource('quests', 'QuestsController');
+Route::resource('items', 'ItemsController');
 
+// Admin Functions
+Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
+Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));
@@ -47,10 +51,6 @@ Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
-
-
-// Champions Controller
-Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 
 
 // Quests Controller

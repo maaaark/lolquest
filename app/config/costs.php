@@ -1,4 +1,4 @@
 <?php
-$setting_data['reroll'] = 1;
+$setting_data['reroll'] = 100;
 
 return $setting_data;

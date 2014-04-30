@@ -61,7 +61,7 @@ class LaddersController extends \BaseController {
 			}
 			$i++;
 		}
-		return Redirect::to('/ladders/refresh_ladder')->with('message', "Ladder refreshed");
+		return Redirect::to('/ladders')->with('message', "Ladder refreshed");
 		
 	}
 	
