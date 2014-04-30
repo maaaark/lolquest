@@ -29,9 +29,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password_confirmation'=>'required|between:6,12'
 	);
 	
-		public function levels()
+ public function level()
     {
-		return $this->hasOne('level', 'id', 'level');
+        return $this->belongsTo('Level');
     }
 
 	public function summoner()
@@ -136,6 +136,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return false;
     }
+	
+	public function isFriend($key)
+    {
+        foreach($this->friends as $friend){
+            if($friend->name == $key)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 	
 	public function friends()
     {
