@@ -128,7 +128,7 @@ img.bg {
 }
 .list ul li a {
 	height:48px;
-	padding: 0 20px 0 20px;
+	padding: 0 15px 0 15px;
 	display: block;
 	width: 100%;
 	color: #333;
@@ -168,6 +168,12 @@ img.bg {
 	background: #eeeeee;
 	color: #333;
 	border: 1px solid #000;	
+}
+.search_field {
+	float: left;
+}
+.search_summoner_name {
+	width: 200px !important;
 }
 .title h1 {
 	color: #fff;
@@ -273,9 +279,37 @@ a.logout {
 	border-radius: 5px;
 	text-align: center;
 	padding-top: 10px;
-	width: 180px;
 	padding: 10px;
 	height: 360px;
+	margin-bottom: 10px;
+}
+.daily_quest {
+	background: #e4f2ff;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.daily_reward {
+	margin-top: 5px;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accept_daily {
+	text-align: right;
+}
+.product {
+	border: 1px solid #b9b9b9;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.product_description {
+	height: 80px;
 }
 .quest:hover {
 }
@@ -380,9 +414,9 @@ a.logout {
 .title-wrapper {
 	padding-top: 130px;
 }
-.ribbon_daily {
+.daily_ribbon {
 	background: url("../img/quests/ribbon_daily.png");
-	background-position: 123px 0px;
+	background-position: 133px 0px;
 	background-repeat: no-repeat;
 }
 .ribbon_1 {

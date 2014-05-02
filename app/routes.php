@@ -25,15 +25,17 @@ Route::resource('summoners', 'SummonersController');
 Route::resource('champions', 'ChampionsController');
 Route::resource('quests', 'QuestsController');
 Route::resource('items', 'ItemsController');
+Route::resource('products', 'ProductsController');
 
 // Admin Functions
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
+Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));
 Route::get('404', array('uses' => 'BaseController@notFound'));
-
+Route::post('search', array('uses' => 'BaseController@search_summoner'));
 
 // Users Controller
 Route::post('/users/store', 'UsersController@store');
@@ -58,9 +60,14 @@ Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
 Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
+Route::get('/accept_daily', 'QuestsController@accept_daily');
 
 
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
 Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
+
+
+// Products Controller
+Route::get('/shop', 'ProductsController@index');

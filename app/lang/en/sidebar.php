@@ -12,4 +12,5 @@ return array(
 	'active_quests' => 'My active quests',
 	'friends_ladder' => 'Rang of my friends',
 	'view_ladder' => 'View the full ladder',
+	'accept_quest' => 'Accept this Quest',
 );

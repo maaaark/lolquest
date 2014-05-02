@@ -87,33 +87,24 @@ class QuestsController extends \BaseController {
 		
 	}
 	
-	public function create_random_quest()
-	{
-		$input = Input::all();
-		$validation = Validator::make($input, Quest::$rules);
+	public function accept_daily() {
+
 		if (Auth::check())
 		{
-			if ($validation->passes())
-			{
-					$user = User::find(Auth::user()->id);
-					$champion = Champion::orderBy(DB::raw('RAND()'))->first();
-					$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
-					$quest = new Quest;
-					$quest->champion_id = $champion->champion_id;
-					$quest->user_id = $user->id;
-					$quest->type_id = $questtype->id;
-					$quest->exp = 100;
-					$quest->quest_slot = "random";
-					$quest->createDate = date("U")*1000;
-					$quest->save();
-					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
-				
+			$user = User::find(Auth::user()->id);
+			$free_slots = $user->quest_slots - $user->quests->count();
+			if($free_slots>0) {
+				$daily = Daily::where('active', '=', 1)->first();
+				$quest = new Quest;
+				$quest->champion_id = $daily->champion_id;
+				$quest->user_id = $user->id;
+				$quest->type_id = $daily->type_id;
+				$quest->quest_slot = "choose";
+				$quest->createDate = date("U")*1000;
+				$quest->save();
+				return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 			} else {
-				// Back
-				return Redirect::to('dashboard')
-				->withInput()
-				->withErrors($validation)
-				->with('error', trans("warnings.validation_errors"));
+				return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
 			}
 		} else {
 			return Redirect::to('login');
@@ -276,7 +267,9 @@ class QuestsController extends \BaseController {
 		}
 	}
 
-
+	
+	
+	
 	/**
 	 * Store a newly created resource in storage.
 	 *

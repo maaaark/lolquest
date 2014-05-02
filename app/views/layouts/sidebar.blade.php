@@ -1,9 +1,34 @@
 @if(Auth::check())
 	<br/>
+	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner')) }}
+		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
+		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
+		<div class="clear"></div>
+	{{ Form::close() }}
+	<br/>
+	
+	@if(Session::has('daily_quest'))
+	<h3>Daily Quest</h3>
+	<div class="daily_quest">
+		<table>
+			<tr>
+				<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
+				<td valign="top" width="100%" style="padding-left: 10px;">
+					<strong>{{ Session::get('daily_quest')->questtype->name }}</strong><br/>
+					<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
+					<div class="daily_reward">50 QP + 500 EXP</div>
+					<div class="accept_daily"><a href="/accept_daily" class="">{{ trans("sidebar.accept_quest") }}</a></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	@endif
+	
 	<h3>{{ trans("sidebar.logged_in_headline") }}</h3>
 	<table class="logged_in">
 		<tr>
-			<td valign="top" width="100" style="text-align: center;">
+			<td valign="top" width="100" style="text-align: center;" class="hidden-sm hidden-xs">
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="70" /></a><br/>
 			</td>
 			<td valign="top">
@@ -14,7 +39,7 @@
 		</tr>
 	</table>
 	<br/>
-	<strong>{{ trans("sidebar.level") }} {{ Auth::user()->ulevel }}:</strong><br/>
+	<strong>{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{Auth::user()->exp}} / {{Auth::user()->level->exp}}):</strong><br/>
 	<div class="progress">
 	  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}% ;">
 		{{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}%
@@ -26,7 +51,7 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
+				<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard"><strong>{{ $quest->questtype->name }}</strong></a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
@@ -38,27 +63,29 @@
 		@endif
 	</table>
 	<br/><br/>
-	<h3>{{ trans("sidebar.friends_ladder") }}</h3>
-	<table class="table table-striped" style="margin-bottom: 5px;">
-		@foreach(Auth::user()->friends as $friend)
-			@if($friend->ladder)
+	@if(Session::has('friend_ladder'))
+		<h3>{{ trans("sidebar.friends_ladder") }} ({{ date("F") }})</h3>
+		<table class="table table-striped" style="margin-bottom: 5px;">
+			@foreach(Session::get('friend_ladder') as $friend_ladder)
 				<tr>
-					<td width="30">{{ $friend->ladder->rang }}.</td>
-					<td width="40"><a href="/summoner/{{ $friend->region }}/{{ $friend->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $friend->summoner->profileIconId }}.jpg" class="img-circle" width="25" /></a></td>
-					<td><a href="/summoner/{{ $friend->region }}/{{ $friend->summoner_name }}">{{ $friend->summoner_name }}</a></td>
-					<td>{{ $friend->ladder->month_exp }} EXP</td>			
+					<td width="30">{{ $friend_ladder->rang }}.</td>
+					<td width="40" class="hidden-sm hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
+					<img src="/img/profileicons/profileIcon{{ $friend_ladder->profileIconId }}.jpg" class="img-circle" width="25" />
+					</a></td>
+					<td><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
+					<td class="hidden-sm hidden-xs">{{ $friend_ladder->month_exp }} EXP</td>			
 				</tr>
-			@endif
-		@endforeach
-	</tr>
-	</table>
-	<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a></div>
+			@endforeach
+		</table>
+		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a></div><br/>
+	@endif
+	<br/>
 @else
 	<br/>
 	<h3>{{ trans("sidebar.login_headline") }}</h3>
 	{{ Form::open(array('url' => 'login')) }}
-		{{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'sidebar_input')) }}
-		{{ Form::password('password', array('class' => 'sidebar_input')) }}
-		{{ Form::submit('Login', array('class' => 'sidebar_button')) }}
+		{{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'form-control')) }}
+		{{ Form::password('password', array('class' => 'form-control')) }}
+		{{ Form::submit('Login', array('class' => 'btn btn-primary')) }}
 	{{ Form::close() }}
 @endif

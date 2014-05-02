@@ -61,7 +61,7 @@
 				</td>
 				<td class="game_kda">
 					{{ $game->gameMode }}<br/>
-					{{ $game->minionsKilled }} ( {{ $game->neutralMinionsKilled }} neutral )
+					{{ $game->minionsKilled }} CS ( {{ $game->neutralMinionsKilled }} neutral )
 				</td>
 				<td>
 					<img src="/img/spells/{{ $game->spell1 }}.png" width="35" class="img-circle" > 
@@ -76,10 +76,6 @@
 		@endforeach
 	</table>
 
-<h2>Friends test 22</h2>
-	@foreach($user->friends as $friend)
-		{{ $friend->summoner_name }}<br/>
-	@endforeach
 	
 	@else
 		{{ trans("users.no_summoner") }}

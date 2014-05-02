@@ -57,6 +57,8 @@ class LaddersController extends \BaseController {
 				$ladder->user_id = $row->user_id;
 				$ladder->month_exp = $row->total_exp;
 				$ladder->total_quests = $row->total_quests;
+				$ladder->month = $month;
+				$ladder->year = $year;
 				$ladder->save();
 			}
 			$i++;

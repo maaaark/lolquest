@@ -8,6 +8,11 @@ class Champion extends \Eloquent {
 		//return $this->hasMany('Quest', 'quest_id', 'champion_id');
     }
 	
+	public function daylies()
+    {
+        return $this->hasMany('Daily');
+    }
+	
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'

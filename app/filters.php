@@ -88,7 +88,6 @@ Route::filter('csrf', function()
 
 Route::filter('notifications', function()
 {
-	Session::forget('notifications_amount');
 	if (Auth::check()) {
 		$user = User::find(Auth::user()->id);
 		$notifications = Notification::where('user_id', '=', $user->id)->where('seen', '=', 0)->get();
@@ -97,9 +96,29 @@ Route::filter('notifications', function()
 	}
 });
 
+Route::filter('friend_ladders', function()
+{
+	if (Auth::check()) {
+		$friend_ladder = array();
+		$month = date("n");
+		$year = date("Y");
+		$friends_ladder = DB::table('ladders')->join('friend_user', 'ladders.user_id', '=', 'friend_user.friend_id')->join('users', 'ladders.user_id', '=', 'users.id')->join('summoners', 'users.id', '=', 'summoners.user_id')->where('ladders.month', '=', $month)->where('ladders.year', '=', $year)->where('friend_user.user_id', '=', Auth::user()->id)->get();
+		Session::put('friend_ladder', $friends_ladder);
+	}
+});
+
+
+Route::filter('get_daily', function()
+{
+	if (Auth::check()) {
+		$daily_quest = Daily::where('active', '=', 1)->first();
+		Session::put('daily_quest', $daily_quest);
+	}
+});
+
+
 Route::filter('my_open_quests', function()
 {
-	Session::forget('my_open_quests');
 	if (Auth::check()) {
 		$user = User::find(Auth::user()->id);
 		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();

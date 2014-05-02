@@ -400,6 +400,9 @@ class UsersController extends \BaseController {
 			$time = date("U");
 			$time_waited = $time - $user->last_checked;
 			
+			
+			
+			
 			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited'));
 		} else {
 			return Redirect::to('login');
