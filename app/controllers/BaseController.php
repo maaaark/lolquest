@@ -12,6 +12,7 @@ class BaseController extends Controller {
 		$this->beforeFilter('my_open_quests');
 		$this->beforeFilter('friend_ladders');
 		$this->beforeFilter('get_daily');
+		$this->beforeFilter('my_ladder_rang');
     }
 	
 	

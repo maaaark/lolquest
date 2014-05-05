@@ -60,6 +60,7 @@ Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
 Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
+Route::get('/quests/cancel_quest/{quest_id?}', 'QuestsController@cancel_quest');
 Route::get('/accept_daily', 'QuestsController@accept_daily');
 
 

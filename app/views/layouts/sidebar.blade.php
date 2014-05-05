@@ -67,6 +67,9 @@
 	@if(Session::has('friend_ladder'))
 		<h3>{{ trans("sidebar.friends_ladder") }} ({{ date("F") }})</h3>
 		<table class="table table-striped" style="margin-bottom: 5px;">
+			@if(Session::get('my_ladder_rang'))
+				test
+			@endif
 			@foreach(Session::get('friend_ladder') as $friend_ladder)
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>

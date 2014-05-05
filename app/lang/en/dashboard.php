@@ -12,6 +12,7 @@ return array(
 	'close' => 'Close',
 	'low_qp' => 'You do not have enough QP',
 	'balance' => "My QP balance",
+	'deleted' => "Daily quest was successfully deleted.",
 	'costs_reroll'=> "Reroll price",
 	'balance_after'=> "New QP balance",
 	'reroll_modal' => 'Reroll the Quest',
@@ -30,5 +31,6 @@ return array(
 	'empty_champion' => "Please choose a champion!",
 	'accepted' => "Your Quest has been created! Have fun!",
 	'has_daily' => "You already have one daily quest.",
+	'no_quest_found' => "No quest found.",
 	'maximum_quests' => "You have reached your maximum amount of Quests. <a href='/shop'>Take a look in the shop to unlock more quest slots.</a>"
 );

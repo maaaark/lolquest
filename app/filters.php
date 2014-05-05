@@ -126,4 +126,11 @@ Route::filter('my_open_quests', function()
 	}
 });
 
+Route::filter('my_ladder_rang', function()
+{
+	if (Auth::check()) {
+		$my_ladder_rang = Ladder::where("user_id", "=", Auth::user()->id)->where("month", "=", date("n"))->where("year", "=", date("Y"))->first();
+		Session::put('my_ladder_rang', $my_ladder_rang);
+	}
+});
 

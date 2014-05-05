@@ -403,7 +403,7 @@ class UsersController extends \BaseController {
 			
 			
 			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang'));
 		} else {
 			return Redirect::to('login');
 		}

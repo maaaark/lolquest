@@ -13,6 +13,25 @@ class QuestsController extends \BaseController {
 	}
 
 	
+	public function cancel_quest($quest_id) {
+		if (Auth::check()) { 
+				$user = User::find(Auth::user()->id);
+				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->where("daily", "=", 1)->first();
+				if($quest) {
+					$quest->delete();
+					$user->qp = $user->qp - Config::get('costs.delete_daily');
+					$user->save();
+					return Redirect::to('dashboard')->with('message', trans("dashboard.deleted"));
+				} else {
+					return Redirect::to('dashboard')->with('error', trans("dashboard.no_quest_found"));
+				}
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
+	
+	
 	public function reroll_quest($quest_id) {
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
@@ -226,7 +245,8 @@ class QuestsController extends \BaseController {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->gameMode == "CLASSIC" && $game->minionsKilled >= 200) {
+							$total_minions = $game->minionsKilled+$game->neutralMinionsKilled;
+							if(($game->gameMode == "CLASSIC") && ($total_minions >= 200)) {
 								$quest->finished = 1;
 								$quest->save();
 								$user->exp = $user->exp + $quest->questtype->exp;

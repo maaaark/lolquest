@@ -67,11 +67,11 @@
 										</tr>
 										<tr>
 											<td>{{ trans("dashboard.cancel") }}</td>
-											<td>-{{ Config::get('costs.reroll') }}</td>
+											<td>-{{ Config::get('costs.delete_daily') }}</td>
 										</tr>
 										<tr>
 											<td><strong>{{ trans("dashboard.balance_after") }}</strong></td>
-											<td><strong>{{ $user->qp-Config::get('costs.reroll') }}</strong></td>
+											<td><strong>{{ $user->qp-Config::get('costs.delete_daily') }}</strong></td>
 										</tr>
 									</table>
 								</td>
@@ -80,7 +80,7 @@
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
-						@if(Config::get('costs.reroll') > $user->qp)
+						@if(Config::get('costs.delete_daily') > $user->qp)
 							<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
 						@else
 							<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
