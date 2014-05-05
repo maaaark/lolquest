@@ -76,7 +76,12 @@
 		@endforeach
 	</table>
 
-	
+		<h2>{{ trans("achievements.achievements") }}</h2>
+		<p>
+			@foreach($user->achievements as $achiv)
+				{{$achiv->name}}
+			@endforeach
+		</p>
 	@else
 		{{ trans("users.no_summoner") }}
 	@endif

@@ -480,6 +480,21 @@ class UsersController extends \BaseController {
 		} else {
 		return Redirect::to('login');
 		}
+	} 
+	
+	public function becomeAchievement($type, $factor, $id)
+	{
+		if(Auth::user()) {
+				$user = User::findOrFail($id);
+				$user_achievement = Achievement::where('type', $type)->get(); 
+				foreach($user_achievement as $achiv) {
+					if($achiv["factor"] >= $factor) {
+						$user->achievements()->attach($achiv->id);
+					}
+				}
+		} else {
+		return Redirect::to('login');
+		}
 	}
 	
 }
