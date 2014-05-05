@@ -17,6 +17,7 @@ return array(
 	'reroll_modal' => 'Reroll the Quest',
 	'complete' => 'Complete this Quest',
 	'pick' => 'Pick a champion',
+	'cancel' => 'Cancel this daily',
 	'get' => 'Get a random Quest',
 	'wait' => 'Wait :time secounds ...',
 	'no_free_slot' => 'You have no free quest slot. <a href="/shop">Take a look in the shop to unlock more quest slots.</a>',
@@ -28,5 +29,6 @@ return array(
 	'choose' => 'Choose a Champion and get a random quest.',
 	'empty_champion' => "Please choose a champion!",
 	'accepted' => "Your Quest has been created! Have fun!",
+	'has_daily' => "You already have one daily quest.",
 	'maximum_quests' => "You have reached your maximum amount of Quests. <a href='/shop'>Take a look in the shop to unlock more quest slots.</a>"
 );

@@ -24,7 +24,12 @@
 					<br/> 
 					{{ trans("dashboard.with") }} {{ $quest->champion->name }}</p>
 					<br/>
-					<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
+					@if($quest->daily == 1)
+						
+						<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
+					@else
+						<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
+					@endif
 					@if($time_waited < Config::get('api.refresh_time'))
 						<button class="btn btn-inactive">{{ trans("dashboard.wait", array('time'=>Config::get('api.refresh_time')-$time_waited)) }}</button>
 					@else

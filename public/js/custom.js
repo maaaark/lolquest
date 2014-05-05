@@ -1,8 +1,8 @@
 $( document ).ready(function() {
-	$(function(){
-	
+
 	$('.items').tooltip();
-	
+
+	$(function(){
       // bind change event to select
       $('#dynamic_select').on('change', function () {
           var url = $(this).val(); // get selected value
@@ -12,4 +12,6 @@ $( document ).ready(function() {
           return false;
       });
     });
+
+
 });

@@ -41,7 +41,9 @@ h3 {
 	font-weight: bold;
 }
 
-
+a.cancel, a.cancel:hover {
+	color: red;
+}
 img.bg {
   /* Set rules to fill background */
   min-height: 100%;
@@ -415,8 +417,8 @@ a.logout {
 	padding-top: 130px;
 }
 .daily_ribbon {
-	background: url("../img/quests/ribbon_daily.png");
-	background-position: 133px 0px;
+	background: url("../img/quests/daily.png");
+	background-position: 0px 0px;
 	background-repeat: no-repeat;
 }
 .ribbon_1 {

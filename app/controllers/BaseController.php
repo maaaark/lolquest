@@ -117,31 +117,5 @@ class BaseController extends Controller {
 		}
 	}
 	
-	public function create_daily()
-	{
-		if (Auth::check())
-		{
-			if(Auth::user()->hasRole('admin')) {
-				$old_daily = Daily::where('active', '=', 1)->first();
-				$old_daily->active = 0;
-				$old_daily->save();
-				
-				$daily = new Daily;
-				$champion = Champion::orderBy(DB::raw('RAND()'))->first();
-				$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
-				$daily->champion_id = $champion->id;
-				$daily->type_id = $questtype->id;
-				$daily->active = 1;
-				
-				$daily->save();
-				
-				echo "New daily quest created";
-			} else {
-				return Redirect::to('403');
-			}
-		} else {
-			return View::make('login');
-		}
-	}
 
 }

@@ -92,19 +92,27 @@ class QuestsController extends \BaseController {
 		if (Auth::check())
 		{
 			$user = User::find(Auth::user()->id);
-			$free_slots = $user->quest_slots - $user->quests->count();
-			if($free_slots>0) {
-				$daily = Daily::where('active', '=', 1)->first();
-				$quest = new Quest;
-				$quest->champion_id = $daily->champion_id;
-				$quest->user_id = $user->id;
-				$quest->type_id = $daily->type_id;
-				$quest->quest_slot = "choose";
-				$quest->createDate = date("U")*1000;
-				$quest->save();
-				return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+			
+			$amount_dailies = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->where("daily", "=", "1")->count();
+			if($amount_dailies>0) {
+				return Redirect::to('dashboard')->with('error', trans("dashboard.has_daily"));
 			} else {
-				return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
+				$open_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->count();
+				$free_slots = $user->quest_slots - $open_quests;
+				if($free_slots>0) {
+					$daily = Daily::where('active', '=', 1)->first();
+					$quest = new Quest;
+					$quest->champion_id = $daily->champion_id;
+					$quest->user_id = $user->id;
+					$quest->type_id = $daily->type_id;
+					$quest->daily = 1;
+					$quest->quest_slot = "choose";
+					$quest->createDate = date("U")*1000;
+					$quest->save();
+					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+				} else {
+					return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
+				}
 			}
 		} else {
 			return Redirect::to('login');
