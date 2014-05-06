@@ -38,6 +38,12 @@ class RefreshDaily extends Command {
 	public function fire()
 	{
 		echo "\nRefreshing daily Quest ...\n";
+		
+		$undone_dailies = Quest::where("daily","=", 1)->where("finished", "=", 0)->get();
+		foreach($undone_dailies as $delete) {
+			$delete->delete();
+		}
+		
 		$old_daily = Daily::where('active', '=', 1)->first();
 		$old_daily->active = 0;
 		$old_daily->save();
@@ -45,7 +51,7 @@ class RefreshDaily extends Command {
 		$daily = new Daily;
 		$champion = Champion::orderBy(DB::raw('RAND()'))->first();
 		$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
-		$daily->champion_id = $champion->id;
+		$daily->champion_id = $champion->champion_id;
 		$daily->type_id = $questtype->id;
 		$daily->active = 1;
 		

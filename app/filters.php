@@ -111,8 +111,13 @@ Route::filter('friend_ladders', function()
 Route::filter('get_daily', function()
 {
 	if (Auth::check()) {
-		$daily_quest = Daily::where('active', '=', 1)->first();
-		Session::put('daily_quest', $daily_quest);
+		$daily = Quest::where("user_id", "=", Auth::user()->id)->where("daily","=", 1)->where("finished","=", "0")->first();
+		if($daily) {
+			Session::forget('daily_quest');
+		} else {
+			$daily_quest = Daily::where('active', '=', 1)->first();
+			Session::put('daily_quest', $daily_quest);
+		}
 	}
 });
 

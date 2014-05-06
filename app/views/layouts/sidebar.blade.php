@@ -42,7 +42,7 @@
 	<br/>
 	<strong>{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{Auth::user()->exp}} / {{Auth::user()->level->exp}}):</strong><br/>
 	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}% ;">
+	  <div class="progress-bar" role="progressbar" aria-valuenow="{{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}% ;">
 		{{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}%
 	  </div>
 	</div>
@@ -66,10 +66,19 @@
 	<br/><br/>
 	@if(Session::has('friend_ladder'))
 		<h3>{{ trans("sidebar.friends_ladder") }} ({{ date("F") }})</h3>
-		<table class="table table-striped" style="margin-bottom: 5px;">
+		<table class="table table-striped" style="margin-bottom: 10px; border-bottom: 1px solid #ddd;">
 			@if(Session::get('my_ladder_rang'))
-				test
+				<tr style="background: #000;">
+					<td width="30"><strong>{{ Session::get('my_ladder_rang')->rang }}.</strong></td>
+					<td width="40" class="hidden-sm hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
+					<img src="/img/profileicons/profileIcon{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.jpg" class="img-circle" width="25" />
+					</a></strong></td>
+					<td><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
+					<td class="hidden-sm hidden-xs"><strong>{{ Session::get('my_ladder_rang')->month_exp }} EXP</strong></td>			
+				</tr>
 			@endif
+		</table>
+		<table class="table table-striped" style="margin-bottom: 5px;">
 			@foreach(Session::get('friend_ladder') as $friend_ladder)
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
