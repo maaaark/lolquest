@@ -42,7 +42,8 @@ class LaddersController extends \BaseController {
 			AND finished = 1
 			GROUP BY user_id
 			ORDER BY total_exp DESC, total_quests DESC, updated_at ASC
-		'));
+		'));	
+
 		
 		foreach($ladder as $key => $row) {
 			$user = User::find($row->user_id);

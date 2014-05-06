@@ -400,10 +400,21 @@ class UsersController extends \BaseController {
 			$time = date("U");
 			$time_waited = $time - $user->last_checked;
 			
+			$champion_quests = DB::select(DB::raw('
+			SELECT * , (
+				SELECT COUNT( * ) 
+				FROM quests
+				WHERE user_id = 3
+				AND finished = 1
+				AND champion_id = champions.champion_id
+				) AS quests
+			FROM champions
+			ORDER BY name ASC
+			'));
 			
 			
 			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests'));
 		} else {
 			return Redirect::to('login');
 		}

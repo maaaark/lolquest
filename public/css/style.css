@@ -36,11 +36,23 @@ h3 {
 	padding-bottom: 90px;
 	height: 100%;
 }
+.champions_finished {
+	margin: 0;
+	padding: 0;
+}
+.champions_finished li {
+	float: left;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
 .game_kda {
 	font-size: 12px;
 	font-weight: bold;
 }
-
+.quest_avatar {
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
 a.cancel, a.cancel:hover {
 	color: red;
 }

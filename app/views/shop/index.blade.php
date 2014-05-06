@@ -10,9 +10,11 @@
 			<div class="product_description">
 			{{ $product->description }}
 			</div>
-			<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} {{ $product->price_qp }} QP</a><br/>
-			or<br/>
-			<a class="btn btn-success" href="" role="button">{{ trans("dashboard.complete") }}</a>
+			@if($product->cat_id == 2)
+				<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy") }}</a><br/>
+			@else
+				<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} {{ $product->price_qp }} QP</a><br/>
+			@endif
 		</div>
 	</div>
 	
