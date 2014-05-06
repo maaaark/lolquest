@@ -175,17 +175,18 @@
 		@endfor
 		
 	</div>
-	<h2>Quests done</h2>
+	<h2>{{ trans("dashboard.quest_status") }}</h2>
 	<ul class="champions_finished">
 	@foreach($champion_quests as $champion_quest)
 		<li>
 		@if($champion_quest->quests == 0)
-			<img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions/{{ $champion_quest->champion_id }}_92.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" />
+			<img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" />
 		@else
-			<img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions/{{ $champion_quest->champion_id }}_92.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" />
+			<img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" />
 		@endif
 		</li>
 	@endforeach
 	</ul>
 	<div class="clear"></div>
+	<br/><br/>
 @stop

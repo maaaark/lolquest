@@ -25,6 +25,7 @@ return array(
 	'open_slot' => 'Open Slot',
 	'empty_slot' => 'This slot can be bought in the shop for 200 QP!',
 	'choose_slot' => 'Choose Slot',
+	'quest_status' => 'Your champion quest status',
 	'random' => 'Get a random quest with a random champion.',
 	'random_champion' => "Random Champion",
 	'choose' => 'Choose a Champion and get a random quest.',
