@@ -197,11 +197,11 @@ class UsersController extends \BaseController {
 	public function refresh_level()
 	{
 		$users = User::all();
-		$levels = Level::orderBy('id')->get();;
+		$levels = Level::orderBy('id')->get();
 		foreach($users as $user) {
 			foreach($levels as $level){
-				if($user->exp > $level->exp){
-					$user->level = $level->id;
+				if($user->exp > ($level->exp-1)){
+					$user->level_id = $level->id+1;
 					$user->save();
 				}
 			}
