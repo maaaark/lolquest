@@ -207,6 +207,17 @@ class UsersController extends \BaseController {
 			}
 		}
 	}	
+	
+	public function update_level_table()
+	{
+		$levels = Level::orderBy('id')->get();
+		foreach($levels as $level) {
+			if($level->id > 1){
+				$level->exp_level = $level->exp - Level::find($level->id-1)->exp;
+				$level->save();
+			}
+		}
+	}	
 
 	
 	public function verify()

@@ -51,6 +51,7 @@ Route::get('register', array('uses' => 'UsersController@create'));
 Route::get('/user_friend/{id}', array('uses' => 'UsersController@makeFriend'));
 
 Route::get('/achiv/{type}/{factor}/{id}', array('uses' => 'UsersController@becomeAchievement'));
+Route::get('/update_level_table', array('uses' => 'UsersController@update_level_table'));
 
 Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
