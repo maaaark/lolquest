@@ -25,9 +25,9 @@
 					{{ trans("dashboard.with") }} <strong>{{ $quest->champion->name }}</strong></p>
 					<br/>
 					@if($quest->daily == 1)
-						<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
+					<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
 					@else
-						<p><a href="#" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.reroll") }}</a></p>
+					<p><a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
 					@endif
 					@if($time_waited < Config::get('api.refresh_time'))
 						<button class="btn btn-inactive">{{ trans("dashboard.wait", array('time'=>Config::get('api.refresh_time')-$time_waited)) }}</button>
@@ -43,8 +43,7 @@
 				</div>
 			</div>
 			
-			@if($quest->daily == 1)
-			<!-- Cancel Daily Quest Popup -->
+			<!-- Cancel Quest Popup -->
 			<div class="modal fade" id="myModal-{{ $quest->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -89,53 +88,6 @@
 					</div>
 				</div>
 			</div>
-			@else
-			<!-- Modal for QP Warning / Buy -->
-			<div class="modal fade" id="myModal-{{ $quest->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">{{ trans("dashboard.reroll_modal") }} "{{ $quest->questtype->name }}"</h4>
-					  </div>
-					  <div class="modal-body">
-						<table>
-							<tr>
-								<td valign="top" width="120"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100" style="margin-right: 15px;"></td>
-								<td valign="top" width="100%">
-									<h3>{{ $quest->questtype->name }}</h3>
-									{{ trans("quests.".$quest->type_id) }}<br/>
-									<br/>
-									<table class="table table-striped">
-										<tr>
-											<td>{{ trans("dashboard.balance") }}</td>
-											<td>{{ $user->qp; }}</td>
-										</tr>
-										<tr>
-											<td>{{ trans("dashboard.costs_reroll") }}</td>
-											<td>-{{ Config::get('costs.reroll') }}</td>
-										</tr>
-										<tr>
-											<td><strong>{{ trans("dashboard.balance_after") }}</strong></td>
-											<td><strong>{{ $user->qp-Config::get('costs.reroll') }}</strong></td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
-						@if(Config::get('costs.reroll') > $user->qp)
-							<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
-						@else
-							<a href="/quests/reroll_quest/{{ $quest->id }}" class="btn btn-primary">{{ trans("dashboard.reroll") }}</a>
-						@endif
-					  </div>
-					</div>
-				</div>
-			</div>
-			@endif
 		@endforeach
 		
 		
@@ -153,8 +105,15 @@
 						<option value="{{ $champion->champion_id }}">{{ $champion->name }}</option>	
 						@endforeach
 					  </select>
+					  <select name="choose_playerrole" class="quest_select_champion">
+						<option value="0">{{ trans("dashboard.random_role") }}</option>
+						@foreach($playerroles as $role)
+						<option value="{{ $role->id }}">{{ $role->name }}</option>	
+						@endforeach
+					  </select>
 					  </p>
 					  <br/>
+					  <br/><br/>
 					  <br/>
 					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
 					{{ Form::close() }}

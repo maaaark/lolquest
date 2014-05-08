@@ -7,5 +7,10 @@ class Questtype extends \Eloquent {
         return $this->hasMany('Quest');
     }
 	
+	public function playerrole()
+    {
+        return $this->belongsTo('Playerrole');
+    }
+	
 	protected $fillable = [];
 }

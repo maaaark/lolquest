@@ -410,6 +410,7 @@ class UsersController extends \BaseController {
 			$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
 			$time = date("U");
 			$time_waited = $time - $user->last_checked;
+			$playerroles = Playerrole::all();
 			
 			$champion_quests = DB::select(DB::raw('
 			SELECT * , (
@@ -425,7 +426,7 @@ class UsersController extends \BaseController {
 			
 			
 			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests', 'playerroles'));
 		} else {
 			return Redirect::to('login');
 		}

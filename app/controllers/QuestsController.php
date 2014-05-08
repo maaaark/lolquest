@@ -16,7 +16,7 @@ class QuestsController extends \BaseController {
 	public function cancel_quest($quest_id) {
 		if (Auth::check()) { 
 				$user = User::find(Auth::user()->id);
-				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->where("daily", "=", 1)->first();
+				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->first();
 				if($quest) {
 					$quest->delete();
 					$user->qp = $user->qp - Config::get('costs.delete_daily');
@@ -31,7 +31,7 @@ class QuestsController extends \BaseController {
 	}
 	
 	
-	
+	/*
 	public function reroll_quest($quest_id) {
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
@@ -41,7 +41,7 @@ class QuestsController extends \BaseController {
 				$costs = Config::get('costs.reroll');
 				if($user->qp >= $costs) {
 					$quest = Quest::where('user_id', '=', $user->id)->where('id', '=', $quest_id)->first();
-					$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+					$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $quest->playerrole_id)->orWhere("playerrole_id", "=", 0)->first();
 					$quest->type_id = $questtype->id;
 					//$champion = Champion::orderBy(DB::raw('RAND()'))->first();
 					//$quest->champion_id = $champion->champion_id;
@@ -61,6 +61,7 @@ class QuestsController extends \BaseController {
 			return Redirect::to('login');
 		}
 	}
+	*/
 	
 	/**
 	 * Show the form for creating a new resource.
@@ -76,8 +77,13 @@ class QuestsController extends \BaseController {
 			if ($validation->passes())
 			{
 					$champion = Input::get('choose_quest_champion');
+					$role = Input::get('choose_playerrole');
 					$user = User::find(Auth::user()->id);
-					$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+					if($role == 0) {
+						$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+					} else {
+						$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
+					}
 					$quest = new Quest;
 					if($champion == 0) {
 						$champion = Champion::orderBy(DB::raw('RAND()'))->first();
