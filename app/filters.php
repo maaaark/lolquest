@@ -112,7 +112,7 @@ Route::filter('get_daily', function()
 {
 	if (Auth::check()) {
 		$daily = Quest::where("user_id", "=", Auth::user()->id)->where("daily","=", 1)->where("finished","=", "0")->first();
-		if($daily) {
+		if($daily || Auth::user()->daily_done == 1) {
 			Session::forget('daily_quest');
 		} else {
 			$daily_quest = Daily::where('active', '=', 1)->first();

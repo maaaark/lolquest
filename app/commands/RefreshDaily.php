@@ -44,6 +44,12 @@ class RefreshDaily extends Command {
 			$delete->delete();
 		}
 		
+		$users = User::all();
+		foreach($users as $user) {
+			$user->daily_done = 0;
+			$user->save();
+		}
+		
 		$old_daily = Daily::where('active', '=', 1)->first();
 		$old_daily->active = 0;
 		$old_daily->save();

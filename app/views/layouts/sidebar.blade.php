@@ -18,7 +18,6 @@
 					<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
 					<div class="daily_reward">50 QP + 500 EXP</div>
 					<div class="accept_daily"><a href="/accept_daily" class="">{{ trans("sidebar.accept_quest") }}</a></div>
-					
 				</td>
 			</tr>
 		</table>

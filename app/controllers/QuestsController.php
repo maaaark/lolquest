@@ -119,7 +119,7 @@ class QuestsController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 			
 			$amount_dailies = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->where("daily", "=", "1")->count();
-			if($amount_dailies>0) {
+			if($amount_dailies>0 || $user->daily_done == 1) {
 				return Redirect::to('dashboard')->with('error', trans("dashboard.has_daily"));
 			} else {
 				$open_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->count();
@@ -169,11 +169,17 @@ class QuestsController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
-							$user->exp = $user->exp + $quest->questtype->exp;
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
-							$user->qp = $user->qp + $quest->questtype->qp;
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
+								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 							$user->save();
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -189,7 +195,15 @@ class QuestsController extends \BaseController {
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
-							$user->qp = $user->qp + $quest->questtype->qp;
+							
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
+								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 							$user->save();
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -210,7 +224,16 @@ class QuestsController extends \BaseController {
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
+								
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
 								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
+							
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -231,7 +254,15 @@ class QuestsController extends \BaseController {
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
+								
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
 								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -251,7 +282,15 @@ class QuestsController extends \BaseController {
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
+								
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
 								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -271,7 +310,15 @@ class QuestsController extends \BaseController {
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
 							}
+								
+							if($quest->daily == 1) {
+								$user->qp = $user->qp + (2*$quest->questtype->qp);
+								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->daily_done = 1;
+							} else {
 								$user->qp = $user->qp + $quest->questtype->qp;
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -289,10 +336,18 @@ class QuestsController extends \BaseController {
 									$quest->finished = 1;
 									$quest->save();
 									$user->exp = $user->exp + $quest->questtype->exp;
-							if($user->exp > ($user->level->exp-1)) {
-								$user->level_id +=1;
-							}
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+								}
+									
+								if($quest->daily == 1) {
+									$user->qp = $user->qp + (2*$quest->questtype->qp);
+									$user->exp = $user->exp + (2*$quest->questtype->exp);
+									$user->daily_done = 1;
+								} else {
 									$user->qp = $user->qp + $quest->questtype->qp;
+									$user->exp = $user->exp + $quest->questtype->exp;
+								}
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 								}
