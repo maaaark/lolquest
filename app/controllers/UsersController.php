@@ -79,11 +79,12 @@ class UsersController extends \BaseController {
 				$obj = json_decode($json, true);
 				$summoner = new Summoner;
 				$summoner->user_id = $user->id;
-				$summoner->summonerid = $obj[$user->summoner_name]["id"];
-				$summoner->name = $obj[$user->summoner_name]["name"];
-				$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
-				$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
-				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
+				$summoner_name_clear = str_replace(' ', '',strtolower($user->summoner_name));
+				$summoner->summonerid = $obj[$summoner_name_clear]["id"];
+				$summoner->name = $obj[$summoner_name_clear]["name"];
+				$summoner->profileIconId = $obj[$summoner_name_clear]["profileIconId"];
+				$summoner->summonerLevel = $obj[$summoner_name_clear]["summonerLevel"];
+				$summoner->revisionDate = $obj[$summoner_name_clear]["revisionDate"];
 				$summoner->save();
 				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
@@ -109,11 +110,14 @@ class UsersController extends \BaseController {
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();
 		if($user) {
-			$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
-			
-			return View::make('users.show', compact('user', 'games'));
+			if($user->summoner) {
+				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
+				return View::make('users.show', compact('user', 'games'));
+			} else {
+				return View::make('users.show', compact('user'));
+			}
 		} else {
-			return Redirect::to('layouts.404');
+			return Redirect::to('404');
 		}
 		
 	}
@@ -461,7 +465,7 @@ class UsersController extends \BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, true)) {
 				//return Redirect::route('users.show', array('region' => $userdata->region, 'name' => $userdata->summoner_name));
-				return Redirect::to('users');
+				return Redirect::to('/dashboard');
 			} else {	 	
 				return Redirect::to('login');
 			}

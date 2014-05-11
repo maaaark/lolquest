@@ -1,5 +1,9 @@
 @extends('templates.default')
+@if($user->summoner)
 @section('title', trans("users.profile")." ".$user->summoner->name)
+@else
+@section('title', trans("users.profile")." ".$user->summoner_name)
+@endif
 @section('content')
 	<br/>
 	@if($user->summoner)
@@ -57,7 +61,11 @@
 				</td>
 				<td class="game_kda">
 				{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}<br/>
+				@if($game->numDeaths  >0)
 				KDA: {{ round(($game->championsKilled+$game->assists)/$game->numDeaths,2) }}
+				@else
+				KDA: {{ ($game->championsKilled+$game->assists) }}
+				@endif
 				</td>
 				<td class="game_kda">
 					{{ $game->gameMode }}<br/>

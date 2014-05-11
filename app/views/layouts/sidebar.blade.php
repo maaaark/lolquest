@@ -41,8 +41,8 @@
 	<br/>
 	<strong>{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{Auth::user()->exp-(Auth::user()->level->exp-Auth::user()->level->exp_level)}} / {{Auth::user()->level->exp_level}}):</strong><br/>
 	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuenow="{{round(Auth::user()->exp/Auth::user()->level->exp*100,0) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{round((Auth::user()->exp-(Auth::user()->level->exp-Auth::user()->level->exp_level))/Auth::user()->level->exp_level*100,0) }}% ;">
-		{{round((Auth::user()->exp-(Auth::user()->level->exp-Auth::user()->level->exp_level))/Auth::user()->level->exp_level*100,0) }}%
+	  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 50% ;">
+50 %
 	  </div>
 	</div>
 	<br/>
