@@ -75,4 +75,5 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 
 
 // Products Controller
-Route::get('/shop', 'ProductsController@index');
+Route::get('shop', 'ProductsController@index');
+Route::get('shop/buy/{id}', 'ProductsController@buy');
