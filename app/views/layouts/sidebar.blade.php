@@ -42,10 +42,10 @@
 		</tr>
 	</table>
 	<br/>
-	<strong>{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{Auth::user()->exp-(Auth::user()->level->exp-Auth::user()->level->exp_level)}} / {{Auth::user()->level->exp_level}}):</strong><br/>
+	<strong>{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</strong><br/>
 	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 50% ;">
-50 %
+	  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ Session::get('user_percent') }}% ;">
+{{ Session::get('user_percent') }}  %
 	  </div>
 	</div>
 	<br/>

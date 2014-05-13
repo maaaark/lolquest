@@ -201,14 +201,11 @@ class UsersController extends \BaseController {
 	public function refresh_level()
 	{
 		$users = User::all();
-		$levels = Level::orderBy('id')->get();
 		foreach($users as $user) {
-			foreach($levels as $level){
-				if($user->exp > ($level->exp-1)){
-					$user->level_id = $level->id+1;
+				if($user->exp > $user->level->exp_level-1){
+					$user->level_id += 1;
 					$user->save();
 				}
-			}
 		}
 	}	
 	
@@ -217,7 +214,7 @@ class UsersController extends \BaseController {
 		$levels = Level::orderBy('id')->get();
 		foreach($levels as $level) {
 			if($level->id > 1){
-				$level->exp_level = $level->exp - Level::find($level->id-1)->exp;
+				$level->exp = Level::find($level->id-1)->exp_level;
 				$level->save();
 			}
 		}
