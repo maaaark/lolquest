@@ -420,7 +420,7 @@ class UsersController extends \BaseController {
 			SELECT * , (
 				SELECT COUNT( * ) 
 				FROM quests
-				WHERE user_id = 3
+				WHERE user_id = '.$user->id.'
 				AND finished = 1
 				AND champion_id = champions.champion_id
 				) AS quests

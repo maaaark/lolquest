@@ -36,4 +36,5 @@ return array(
 	'no_quest_found' => "No quest found.",
 	'maximum_quests' => "You have reached your maximum amount of Quests. <a href='/shop'>Take a look in the shop to unlock more quest slots.</a>",
 	'empty_quests' => 'Empty Quest Slot',
+	'verify_first' => 'Verify Summoner',
 );

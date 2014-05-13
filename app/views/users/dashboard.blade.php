@@ -115,7 +115,11 @@
 					  <br/>
 					  <br/><br/>
 					  <br/>
+					  @if($user->summoner_status == 2)
 					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
+					  @else
+						<a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a>
+					  @endif
 					{{ Form::close() }}
 				</div>
 			</div>
@@ -123,7 +127,7 @@
 			
 		@endif
 		
-		@for ($i = $myquests->count()+2; $i < 4; $i++)
+		@for ($i = $myquests->count()+2; $i <= 2; $i++)
 			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
 				<div class="quest empty_quest">
 					{{ trans("dashboard.empty_quests") }}

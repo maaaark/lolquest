@@ -105,39 +105,5 @@ class ChampionsController extends \BaseController {
 	}
 	
 	
-	public function refresh_champions()
-	{
-		if (Auth::check())
-		{
-			if(Auth::user()->hasRole('admin')) {
-				$api_key = Config::get('api.key');
-				$summoner_data = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/champion?locale=de_DE&dataById=true&champData=info,partype&api_key=".$api_key;
-				$json = @file_get_contents($summoner_data);
-				if($json === FALSE) {
-					return View::make('login');
-				} else {
-					$obj = json_decode($json, true);
-					
-					foreach($obj["data"] as $champion) {
-						$recent_champion = Champion::where('champion_id', '=', $champion["id"])->first();
-						if(!isset($recent_champion)) {
-							$new_champion = new Champion;
-							$new_champion->name = $champion["name"];
-							$new_champion->champion_id = $champion["id"];
-							$new_champion->save();
-							echo "Saved Champion".$champion["name"]."<br/>";
-						}
-						unset($recent_champion);
-					}
-				}
-			} else {
-				return Redirect::to('403');
-			}
-		} else {
-			return View::make('login');
-		}
-	}
-	
-	
 
 }

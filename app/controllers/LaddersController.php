@@ -25,48 +25,7 @@ class LaddersController extends \BaseController {
 
 		return View::make('ladders.index', compact('ladder', 'month', 'year'));
 	}
-	
-	public function refresh_ladder() {
 
-		$year = date("Y");
-		$month = date("m");
-		$i = 1;
-			
-		$ladder = DB::select(DB::raw('
-			SELECT user_id, updated_at, 
-			SUM( exp ) AS total_exp,
-			COUNT( * ) AS total_quests
-			FROM quests
-			WHERE MONTH( updated_at ) = '.$month.'
-			AND YEAR( updated_at ) = '.$year.'
-			AND finished = 1
-			GROUP BY user_id
-			ORDER BY total_exp DESC, total_quests DESC, updated_at ASC
-		'));	
-
-		
-		foreach($ladder as $key => $row) {
-			$user = User::find($row->user_id);
-			$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year)->where('month', '=', $month)->first();
-			if($participant) {
-				$participant->rang = $i;
-				$participant->month_exp = $row->total_exp;
-				$participant->total_quests = $row->total_quests;
-				$participant->save();
-			} else {
-				$ladder = new Ladder;
-				$ladder->user_id = $row->user_id;
-				$ladder->month_exp = $row->total_exp;
-				$ladder->total_quests = $row->total_quests;
-				$ladder->month = $month;
-				$ladder->year = $year;
-				$ladder->save();
-			}
-			$i++;
-		}
-		return Redirect::to('/ladders')->with('message', "Ladder refreshed");
-		
-	}
 	
 	/**
 	 * Show the form for creating a new resource.

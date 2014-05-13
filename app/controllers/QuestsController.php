@@ -118,27 +118,32 @@ class QuestsController extends \BaseController {
 		{
 			$user = User::find(Auth::user()->id);
 			
-			$amount_dailies = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->where("daily", "=", "1")->count();
-			if($amount_dailies>0 || $user->daily_done == 1) {
-				return Redirect::to('dashboard')->with('error', trans("dashboard.has_daily"));
-			} else {
-				$open_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->count();
-				$free_slots = $user->quest_slots - $open_quests;
-				if($free_slots>0) {
-					$daily = Daily::where('active', '=', 1)->first();
-					$quest = new Quest;
-					$quest->champion_id = $daily->champion_id;
-					$quest->user_id = $user->id;
-					$quest->type_id = $daily->type_id;
-					$quest->daily = 1;
-					$quest->quest_slot = "choose";
-					$quest->createDate = date("U")*1000;
-					$quest->save();
-					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+			if($user->summoner_status == 2) {
+				$amount_dailies = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->where("daily", "=", "1")->count();
+				if($amount_dailies>0 || $user->daily_done == 1) {
+					return Redirect::to('dashboard')->with('error', trans("dashboard.has_daily"));
 				} else {
-					return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
+					$open_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->count();
+					$free_slots = $user->quest_slots - $open_quests;
+					if($free_slots>0) {
+						$daily = Daily::where('active', '=', 1)->first();
+						$quest = new Quest;
+						$quest->champion_id = $daily->champion_id;
+						$quest->user_id = $user->id;
+						$quest->type_id = $daily->type_id;
+						$quest->daily = 1;
+						$quest->quest_slot = "choose";
+						$quest->createDate = date("U")*1000;
+						$quest->save();
+						return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+					} else {
+						return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
+					}
 				}
+			} else {
+				return Redirect::to('/verify')->with('error', trans("dashboard.verify_first"));
 			}
+	
 		} else {
 			return Redirect::to('login');
 		}
