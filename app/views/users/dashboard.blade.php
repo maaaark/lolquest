@@ -119,16 +119,24 @@
 					{{ Form::close() }}
 				</div>
 			</div>
-
-
 		@else
 			
 		@endif
 		
-		@for ($i = $user->quest_slots; $i <= 3; $i++)
+		@for ($i = $myquests->count()+2; $i < 4; $i++)
+			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+				<div class="quest empty_quest">
+					{{ trans("dashboard.empty_quests") }}
+				</div>
+			</div>
+		@endfor
+		
+		@for ($i = $user->quest_slots +1; $i <= 4; $i++)
 			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
 				<div class="quest maxquests">
-					{{ trans("dashboard.maximum_quests") }}
+					{{ trans("dashboard.maximum_quests") }}<br/>
+					<br/>
+					<a href="/shop" class="btn btn-primary">Buy Quest Slot</a>
 				</div>
 			</div>
 		@endfor

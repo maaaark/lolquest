@@ -338,7 +338,13 @@ a.logout {
 	margin-bottom: 20px;
 }
 .maxquests {
-	padding-top: 140px;
+	padding-top: 20px;
+	background: url("../img/slots/slot_background.jpg");
+}
+.empty_quest {
+	padding-top: 20px;
+	font-weight: bold;
+	background: url("../img/slots/slot_background_vi.jpg");
 }
 .navigation_natifications {
 	position: relative;
