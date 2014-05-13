@@ -362,7 +362,20 @@ a.logout {
 	width: 100%;
 	text-align: right;
 }
-
+.summoner_avatar {
+	position: relative;
+	display:block;
+}
+.summoner_avatar .border {
+	position:absolute;
+	top: 0;
+	left: 0;
+}
+.profile_avatar {
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+}
 
 
 

@@ -28,8 +28,11 @@
 	<h3>{{ trans("sidebar.logged_in_headline") }}</h3>
 	<table class="logged_in">
 		<tr>
-			<td valign="top" width="100" style="text-align: center;" class="hidden-sm hidden-xs">
-				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="70" /></a><br/>
+			<td valign="top" style="text-align: center; padding-right: 10px;" class="hidden-sm hidden-xs">
+				<a class="summoner_avatar" href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
+					<img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" width="70" class="profile_avatar" />
+					<span class="border"><img src="/img/border/silver_border.png" width="70" /></span>
+				</a><br/>
 			</td>
 			<td valign="top">
 				<a href="/dashboard">{{ trans("sidebar.myquest") }}</a><br/>
