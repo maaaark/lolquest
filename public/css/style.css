@@ -152,9 +152,12 @@ img.bg {
 	text-decoration: none;
 }
 .sidebar {
-	background: #fff;
+	background: #fafafa;
 	border-left: 1px solid #eeeeee;
 	color: #000;
+	-webkit-box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
+box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
 }
 .sidebar a {
 	text-decoration: none;
@@ -182,6 +185,13 @@ img.bg {
 	background: #eeeeee;
 	color: #333;
 	border: 1px solid #000;	
+}
+.sidebar_headline {
+	background: #fff;
+}
+.sidebar_headline h3 {
+	font-size: 16px;
+	font-weight: bold;
 }
 .search_field {
 	float: left;
