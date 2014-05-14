@@ -427,7 +427,7 @@ class UsersController extends \BaseController {
 			
 			
 			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests', 'playerroles'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests', 'playerroles', 'time'));
 		} else {
 			return Redirect::to('login');
 		}

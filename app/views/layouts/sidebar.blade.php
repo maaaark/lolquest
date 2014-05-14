@@ -8,7 +8,9 @@
 	<br/>
 	
 	@if(Session::has('daily_quest'))
-	<h3>Daily Quest</h3>
+	<div class="sidebar_headline">
+		<h3>Daily Quest</h3>
+	</div>
 	<div class="daily_quest">
 		<table>
 			<tr>

@@ -37,4 +37,7 @@ return array(
 	'maximum_quests' => "You have reached your maximum amount of Quests. <a href='/shop'>Take a look in the shop to unlock more quest slots.</a>",
 	'empty_quests' => 'Empty Quest Slot',
 	'verify_first' => 'Verify Summoner',
+	'delete_free' => '24 hours passed - Delete this Quest for free',
+	'free_in' => 'Delete this Quest for free in',
+	'buy_qp' => 'Buy more QP',
 );

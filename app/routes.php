@@ -77,3 +77,18 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 // Products Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
+
+
+// App Login
+Route::get('/app_login', array('before' => 'api_login', function()
+{
+	$user = Auth::user();
+    return "\n\nHallo $user->summoner_name\n";
+}));
+
+
+// Route group for API versioning
+Route::group(array('prefix' => 'api/v1', 'before' => 'api_login'), function()
+{
+    Route::get('user', 'ApiController@user');
+});

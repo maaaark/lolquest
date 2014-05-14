@@ -66,11 +66,26 @@
 										</tr>
 										<tr>
 											<td>{{ trans("dashboard.cancel") }}</td>
-											<td>-{{ Config::get('costs.delete_daily') }}</td>
+											@if(($quest->createDate + 86400000) > ($time*1000) )
+											<td>-{{ Config::get('costs.delete_daily') }} QP</td>
+											@else
+											<td>{{ trans("dashboard.delete_free") }}</td>
+											@endif
 										</tr>
+										@if(($quest->createDate + 86400000) > ($time*1000) )
+											<?php $free_in = ($quest->createDate + 86400000)-($time *1000); ?>
+											<tr>
+												<td width="200">{{ trans("dashboard.free_in") }}</td>
+												<td>{{ date("H:i:s",$free_in/1000) }}</td>
+											</tr>
+										@endif
 										<tr>
 											<td><strong>{{ trans("dashboard.balance_after") }}</strong></td>
+											@if(($quest->createDate + 86400000) > ($time*1000) )
 											<td><strong>{{ $user->qp-Config::get('costs.delete_daily') }}</strong></td>
+											@else
+											<td><strong>{{ $user->qp-0 }}</strong></td>
+											@endif
 										</tr>
 									</table>
 								</td>
@@ -79,11 +94,19 @@
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
-						@if(Config::get('costs.delete_daily') > $user->qp)
-							<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
-						@else
-							<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
+						@if(($quest->createDate + 86400000) > ($time*1000) )
+							@if(Config::get('costs.delete_daily') > $user->qp)
+								<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
+								<a href="/shop" class="btn btn-primary">{{ trans("dashboard.buy_qp") }}</a>
+							@else
+								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
+							@endif
+							@else
+								<!-- FREE TO DELETE -->
+								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
 						@endif
+						
+						
 					  </div>
 					</div>
 				</div>

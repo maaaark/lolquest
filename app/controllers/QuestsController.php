@@ -19,7 +19,10 @@ class QuestsController extends \BaseController {
 				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->first();
 				if($quest) {
 					$quest->delete();
-					$user->qp = $user->qp - Config::get('costs.delete_daily');
+					$time = date("U");
+					if(($quest->createDate + 86400000) > ($time*1000)) {
+						$user->qp = $user->qp - Config::get('costs.delete_daily');
+					}
 					$user->save();
 					return Redirect::to('dashboard')->with('message', trans("dashboard.deleted"));
 				} else {
