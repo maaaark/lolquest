@@ -202,7 +202,7 @@ class UsersController extends \BaseController {
 	{
 		$users = User::all();
 		foreach($users as $user) {
-				if($user->exp > $user->level->exp_level-1){
+				if($user->exp > ($user->level->exp_level)-1){
 					$user->level_id += 1;
 					$user->save();
 				}
