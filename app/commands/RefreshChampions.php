@@ -38,7 +38,7 @@ class RefreshChampions extends Command {
 	public function fire()
 	{
 		$api_key = Config::get('api.key');
-		$summoner_data = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/champion?locale=de_DE&dataById=true&champData=info,partype&api_key=".$api_key;
+		$summoner_data = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/champion?dataById=true&champData=info,stats&api_key=".$api_key;
 		$json = @file_get_contents($summoner_data);
 		if($json === FALSE) {
 			return View::make('login');
@@ -51,6 +51,30 @@ class RefreshChampions extends Command {
 					$new_champion = new Champion;
 					$new_champion->name = $champion["name"];
 					$new_champion->champion_id = $champion["id"];
+					$new_champion->key = $champion["key"];
+					
+					$new_champion->attackrange = $champion["stats"]["attackrange"];
+					$new_champion->mpperlevel = $champion["stats"]["mpperlevel"];
+					$new_champion->mp = $champion["stats"]["mp"];
+					$new_champion->attackdamage = $champion["stats"]["attackdamage"];
+					$new_champion->hp = $champion["stats"]["hp"];
+					$new_champion->hpperlevel = $champion["stats"]["hpperlevel"];
+					$new_champion->attackdamageperlevel = $champion["stats"]["attackdamageperlevel"];
+					$new_champion->armor = $champion["stats"]["armor"];
+					$new_champion->mpregenperlevel = $champion["stats"]["mpregenperlevel"];
+					$new_champion->hpregen = $champion["stats"]["hpregen"];
+					$new_champion->critperlevel = $champion["stats"]["critperlevel"];
+					$new_champion->spellblockperlevel = $champion["stats"]["spellblockperlevel"];
+					$new_champion->mpregen = $champion["stats"]["mpregen"];
+					$new_champion->attackspeedperlevel = $champion["stats"]["attackspeedperlevel"];
+					$new_champion->spellblock = $champion["stats"]["spellblock"];
+					$new_champion->movespeed = $champion["stats"]["movespeed"];
+					$new_champion->attackspeedoffset = $champion["stats"]["attackspeedoffset"];
+					$new_champion->crit = $champion["stats"]["crit"];
+					$new_champion->hpregenperlevel = $champion["stats"]["hpregenperlevel"];
+					$new_champion->armorperlevel = $champion["stats"]["armorperlevel"];
+					
+					
 					$new_champion->save();
 					echo "Saved Champion".$champion["name"]."<br/>";
 				}

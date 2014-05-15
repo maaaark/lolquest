@@ -19,25 +19,26 @@
 				<div class="quest">
 				@endif
 					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
-					<h2>{{ $quest->questtype->name }}</h2>
+					<h3>{{ $quest->questtype->name }}</h3>
 					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
 					<br/> 
 					{{ trans("dashboard.with") }} <strong>{{ $quest->champion->name }}</strong></p>
 					<br/>
 					@if($quest->daily == 1)
-					<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
+						<p><strong>{{ $quest->questtype->qp*2 }} QP + {{ $quest->questtype->exp*2 }} EXP</strong></p>
 					@else
-					<p><a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
+						<p><strong>{{ $quest->questtype->qp }} QP + {{ $quest->questtype->exp }} EXP</strong></p>
 					@endif
+				
 					@if($time_waited < Config::get('api.refresh_time'))
 						<button class="btn btn-inactive">{{ trans("dashboard.wait", array('time'=>Config::get('api.refresh_time')-$time_waited)) }}</button>
 					@else
 						<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					@endif
 					@if($quest->daily == 1)
-						<p><strong>{{ $quest->questtype->qp*2 }} QP + {{ $quest->questtype->exp*2 }} EXP</strong></p>
+					<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
 					@else
-						<p><strong>{{ $quest->questtype->qp }} QP + {{ $quest->questtype->exp }} EXP</strong></p>
+					<p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
 					@endif
 					<p><div class="refresh_cooldown"></div></p>
 				</div>
@@ -59,7 +60,7 @@
 									<h3>{{ $quest->questtype->name }}</h3>
 									{{ trans("quests.".$quest->type_id) }}<br/>
 									<br/>
-									<table class="table table-striped">
+									<table class="table table-striped payment-table">
 										<tr>
 											<td>{{ trans("dashboard.balance") }}</td>
 											<td>{{ $user->qp; }}</td>
@@ -119,9 +120,9 @@
 				<div class="quest">
 				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest')) }}
 				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
-					  <h2>{{ trans("dashboard.choose_slot") }}</h2>
+					  <h3>{{ trans("dashboard.choose_slot") }}</h3>
 					  <p class="questtext">{{ trans("dashboard.choose") }}<br/> 
-					  <br/> 
+					  <br/>  <br/> 
 					  <select name="choose_quest_champion" class="quest_select_champion">
 						<option value="0">{{ trans("dashboard.random_champion") }}</option>
 						@foreach($champions as $champion)
@@ -139,7 +140,7 @@
 					  <br/><br/>
 					  <br/>
 					  @if($user->summoner_status == 2)
-					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary')) }}</p>
+					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;')) }}</p>
 					  @else
 						<a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a>
 					  @endif

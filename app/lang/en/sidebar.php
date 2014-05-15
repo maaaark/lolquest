@@ -13,4 +13,6 @@ return array(
 	'friends_ladder' => 'Rang of my friends',
 	'view_ladder' => 'View the full ladder',
 	'accept_quest' => 'Accept this Quest',
+	'no_quest' => 'You have no active Quests<br/><a href="/dashboard">Get some Quests</a>',
+	'search' => 'Search',
 );

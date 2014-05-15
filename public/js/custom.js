@@ -3,6 +3,7 @@ $( document ).ready(function() {
 	$('.items').tooltip();
 	$('.quest_avatar').tooltip();
 
+
 	$(function(){
       // bind change event to select
       $('#dynamic_select').on('change', function () {

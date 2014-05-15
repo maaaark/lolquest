@@ -1,10 +1,10 @@
 body, html {
 	margin: 0;
 	padding: 0 !important;
-	font-family: Arial;
 	height: 100%;
     width: 100%;
-	font-family: 'Cabin Condensed', 'sans-serif' !important;
+	font-family: 'Roboto', sans-serif !important;
+	font-size: 12px !important;
 }
 h3 {
 	margin-top: 0 !important;
@@ -47,7 +47,6 @@ h3 {
 }
 .game_kda {
 	font-size: 12px;
-	font-weight: bold;
 }
 .quest_avatar {
 	margin-right: 3px;
@@ -152,16 +151,19 @@ img.bg {
 	text-decoration: none;
 }
 .sidebar {
-	background: #fafafa;
-	border-left: 1px solid #eeeeee;
-	color: #000;
-	-webkit-box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
--moz-box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
-box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
+	background: #333333;
+	padding-right: 0 !important;
+	color: #fff;
+	border-left: 1px solid #b9b9b9;
+	-webkit-box-shadow: inset 2px 0px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 2px 0px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: inset 2px 0px 5px 0px rgba(0,0,0,0.5);
 }
 .sidebar a {
 	text-decoration: none;
-	color: #428bca;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 12px;
 }
 .logged_in {
 	margin-top: 20px;
@@ -187,17 +189,38 @@ box-shadow: inset 1px 0px 5px -1px rgba(0,0,0,0.75);
 	border: 1px solid #000;	
 }
 .sidebar_headline {
-	background: #fff;
+	width: 307px;
+	background: #232323;
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	text-transform: uppercase;
+	padding-left: 10px;
+	margin-left: -10px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #414141;	
+	border-top: 1px solid #414141;
 }
-.sidebar_headline h3 {
-	font-size: 16px;
-	font-weight: bold;
+.daily_headline {
+	color: #fff;
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.sidebar_box {
+	font-size: 12px !important;
+	margin-left: -5px;
+	padding-bottom: 15px;
 }
 .search_field {
 	float: left;
 }
 .search_summoner_name {
 	width: 200px !important;
+	background: #232323 !important;
+	color: #999999 !important;
+	border: 1px solid #414141 !important;
 }
 .title h1 {
 	color: #fff;
@@ -306,18 +329,16 @@ a.logout {
 	padding: 10px;
 	height: 360px;
 	margin-bottom: 10px;
+	font-size: 12px;
 }
 .daily_quest {
-	background: #e4f2ff;
 	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	color: #fff !important;
 }
 .daily_reward {
 	margin-top: 5px;
-	font-size: 12px;
-	font-weight: bold;
+	font-size: 11px;
+	color: #999999;
 }
 .accept_daily {
 	text-align: right;
@@ -346,6 +367,7 @@ a.logout {
 }
 .quest_amount {
 	margin-bottom: 20px;
+	font-size: 12px;
 }
 .maxquests {
 	padding-top: 20px;
@@ -353,8 +375,16 @@ a.logout {
 }
 .empty_quest {
 	padding-top: 20px;
-	font-weight: bold;
 	background: url("../img/slots/slot_background_vi.jpg");
+}
+.quest h3 {
+	margin-top: 15px !important;
+}
+.quest a.btn {
+	width: 155px;
+}
+.payment-table {
+	font-size: 12px;
 }
 .navigation_natifications {
 	position: relative;
@@ -365,14 +395,18 @@ a.logout {
 }
 .sidebar_questtext {
 	font-size: 11px;
+	color: #999999;
 }
 .sidebar_questlist {
 	width: 100%;
 }
 .sidebar_questlist tr td {
-	border-bottom: 1px solid #eeeeee;
+	border-bottom: 1px solid #414141;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	font-size: 12px;
+	padding-left: 5px;
+	color: #999999;
 }
 .view_ladder {
 	width: 100%;
@@ -448,7 +482,6 @@ a.logout {
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
-	left: 10%;
 }
 #wrapper {
 	position: relative;
@@ -456,6 +489,11 @@ a.logout {
 }
 .title-wrapper {
 	padding-top: 130px;
+}
+.group_ribbon {
+	background: url("../img/quests/group.png");
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
 }
 .daily_ribbon {
 	background: url("../img/quests/daily.png");
@@ -472,8 +510,26 @@ a.logout {
 	background-position: 123px 0px;
 	background-repeat: no-repeat;
 }
-
-
+#footer {
+	margin-bottom: 25px;
+}
+#footer ul {
+	margin: 0;
+	padding: 0;
+	margin-top: 15px;
+}
+#footer ul li {
+	float: left;
+	list-style: none;
+	margin-right: 15px;
+}
+#footer ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+.row {
+	font-size: 12px !important;
+}
 
 
 

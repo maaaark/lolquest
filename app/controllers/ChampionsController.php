@@ -49,10 +49,9 @@ class ChampionsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($name)
 	{
-		$champion = Champion::findOrFail($id);
-
+		$champion = Champion::where('key', '=', $name)->first();
 		return View::make('champions.show', compact('champion'));
 	}
 

@@ -37,6 +37,11 @@ Route::get('403', array('uses' => 'BaseController@noAccess'));
 Route::get('404', array('uses' => 'BaseController@notFound'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
 
+
+// Base Controller
+Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
+
+
 // Users Controller
 Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));
@@ -77,6 +82,17 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 // Products Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
+
+
+// Pages
+Route::get('contact', function()
+{
+	return View::make('pages.contact');
+});
+Route::get('impress', function()
+{
+	return View::make('pages.impress');
+});
 
 
 // App Login
