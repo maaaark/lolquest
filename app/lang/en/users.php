@@ -15,6 +15,7 @@ return array(
 	'login' => "Login",
 	'summoner_name' => "Summoner Name",
 	'level' => "Summoner Level",
+	'level_profile' => "Profile Level",
 	'not_found' => "No summoner found with this name",
 	'no_summoner' => "No Summoner defined",
 	'empty_summoner' => "No Summoner defined. <a href='edit_summoner'>Click here to define your summoner name.</a>",
@@ -25,5 +26,11 @@ return array(
 	'is_verified' => "Summoner is verified",
 	'profile_not_verified' => "Not verified",
 	'refresh' => "Refresh my last games",
-	'already_one' => "There is already a verified summoner with this name in our system.<br/>If this is not your summoner, please contact the support at <a href='mailto:help@lolquest.net'>help@lolquest.net</a>"
+	'already_one' => "There is already a verified summoner with this name in our system.<br/>If this is not your summoner, please contact the support at <a href='mailto:help@lolquest.net'>help@lolquest.net</a>",
+	'registered' => 'Member since',
+	'quests_completed' => 'Quests completed',
+	'friend_request' => 'Friend request',
+	'ranked_stats' => 'Season 4 Ranked Stats',
+	'achievements' => 'Achievements',
+	'quests_done' => 'Recent Quests done',
 );

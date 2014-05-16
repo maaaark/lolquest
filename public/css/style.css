@@ -332,8 +332,14 @@ a.logout {
 	font-size: 12px;
 }
 .daily_quest {
-	padding: 10px;
+	padding: 5px;
 	color: #fff !important;
+}
+.daily_quest table {
+	width: 98%;
+}
+.quest_description {
+	font-size: 10px;
 }
 .daily_reward {
 	margin-top: 5px;
@@ -355,6 +361,7 @@ a.logout {
 }
 .product_description {
 	height: 80px;
+	font-size: 12px;
 }
 .quest:hover {
 }
@@ -378,6 +385,9 @@ a.logout {
 	background: url("../img/slots/slot_background_vi.jpg");
 }
 .quest h3 {
+	margin-top: 15px !important;
+}
+.product h3 {
 	margin-top: 15px !important;
 }
 .quest a.btn {
@@ -425,6 +435,17 @@ a.logout {
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
+}
+.profile td {
+	font-size: 12px;
+}
+.profile_season_stats {
+	width: 290px;
+	margin-left: 10px;
+	overflow: auto;
+	height: 200px;
+	border: 1px solid #dddddd;
+	border-top: 0;
 }
 
 

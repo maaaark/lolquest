@@ -112,7 +112,8 @@ class UsersController extends \BaseController {
 		if($user) {
 			if($user->summoner) {
 				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
-				return View::make('users.show', compact('user', 'games'));
+				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->take(5)->get();
+				return View::make('users.show', compact('user', 'games', 'quests_done'));
 			} else {
 				return View::make('users.show', compact('user'));
 			}
