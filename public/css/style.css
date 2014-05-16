@@ -69,7 +69,9 @@ img.bg {
   top: 0;
   left: 0;
 }
-
+.champion_stats {
+	font-size: 12px;
+}
 
 
 .fullwidth_box {

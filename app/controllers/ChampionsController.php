@@ -52,7 +52,17 @@ class ChampionsController extends \BaseController {
 	public function show($name)
 	{
 		$champion = Champion::where('key', '=', $name)->first();
-		return View::make('champions.show', compact('champion'));
+		$champion_games = Game::where('championId', '=', $champion->champion_id)->count();
+		$champion_wins = Game::where('championId', '=', $champion->champion_id)->where('win', '=', 1)->count();
+		if($champion_games==0) {
+			$champion_wins = 0;
+			$champion_losses = 0;
+		} else {
+			$champion_wins = round((100/$champion_games) * $champion_wins,2);
+			$champion_losses = 100 - $champion_wins;
+		}
+		
+		return View::make('champions.show', compact('champion', 'champion_games', 'champion_wins', 'champion_losses'));
 	}
 
 	/**
