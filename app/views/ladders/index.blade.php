@@ -29,6 +29,6 @@
 			<td>{{ $row->month_exp }}</td>
 		</tr>
 	@endforeach
-	</table>
-	<a href="/ladders/refresh_ladder" class="btn btn-primary">Refresh Ladder (Admin only)</a>
+	</table> 
+	<?php echo $ladder->links(); ?>
 @stop
