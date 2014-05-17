@@ -13,12 +13,22 @@
 				<img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" width="100" class="img-circle" /><br/>
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
-				<a href="#" class="btn btn-primary">{{ trans("users.friend_request") }}</a>
+				@if($user->id != Auth::user()->id)
+					@if ( Auth::user()->isFriend($user->id) == 'checked')
+						You are already Friends
+					@elseif ( Auth::user()->isFriend( $user->id) == 'unchecked')
+						Your are not submitted
+					@elseif (Auth::user()->isFriend( $user->id) == 'nofriends') 
+						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("users.friend_request") }}</a>
+					@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
+						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">submit</a>
+					@endif
+				@endif
 			</td>
 			<td width="400" valign="top">
 				<table class="table table-striped" stlye="width: 100%;">
 					<tr>
-						<td width="130" class="attribute">{{ trans("users.summoner_name") }}</td>
+						<td width="130" class="attribute">{{ trans("users.summoner_name") }} </td>
 						<td>{{ $user->summoner->name }}</td>
 					</tr>
 					<tr>
@@ -163,7 +173,30 @@
 			</tr>
 		@endforeach
 	</table>
-
+	
+	@if(Auth::user()->id == $user->id)
+	<h2>Friends</h2>
+				<table class="table table-striped">
+					<tr>
+				@foreach($user->friends as $friend)
+						<td width="50">
+							<img src="/img/profileicons/profileIcon{{ $friend->summoner->profileIconId }}.jpg" width="40" class="img-circle" /><br/>
+						</td>
+						<td>
+							<div class="quest_description">{{$friend->summoner_name}}</div>
+						</td>
+					@if ( Auth::user()->isFriend( $friend->id) == 'unchecked')
+						<td>
+							<div class="quest_description">Not submitted</div>
+						</td>
+					@else
+						<td></td>
+					@endif
+					</tr>
+				@endforeach
+				</table>
+	@endif
+	
 	@else
 		{{ trans("users.no_summoner") }}
 	@endif

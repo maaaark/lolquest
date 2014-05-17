@@ -137,16 +137,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
-	public function isFriend($key)
+	public function isFriend($friend_id)
     {
-        foreach($this->friends as $friend){
-            if($friend->name == $key)
-            {
-                return true;
-            }
-        }
-        return false;
+        $isfriend = DB::table('friend_user')->where('user_id', '=', Auth::user()->id)->where('friend_id', '=', $friend_id)->first();
+        $isfriend_check = DB::table('friend_user')->where('user_id', '=', $friend_id )->where('friend_id', '=', Auth::user()->id)->first();
+		if($isfriend)
+		{
+			if( $isfriend_check){
+				return 'checked';
+			} else {
+				return 'unchecked';
+			}
+		} elseif ($isfriend_check){
+			return 'invited';
+		} else {
+			return 'nofriends';
+		}
     }
+
 	
 	public function achievements()
     {

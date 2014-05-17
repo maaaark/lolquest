@@ -499,14 +499,13 @@ class UsersController extends \BaseController {
 		if(Auth::user()) {
 				$user = User::findOrFail($id);
 				$user_friend = User::findOrFail(Auth::user()->id);
-				$user->friends()->attach($user_friend->id);
 				$user_friend->friends()->attach($user->id);
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
 		}
 	} 
-	
+		
 	public function becomeAchievement($type, $factor, $id)
 	{
 		if(Auth::user()) {
