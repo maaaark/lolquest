@@ -18,7 +18,7 @@
 				@else
 				<div class="quest">
 				@endif
-					<img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100">
+					<a href="/champions/{{ $quest->champion->key }}"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100"></a>
 					<h3>{{ $quest->questtype->name }}</h3>
 					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
 					<br/> 
@@ -36,7 +36,7 @@
 						<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
 					@endif
 					@if($quest->daily == 1)
-					<p><span class="clock"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="cancel" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
+					<p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p><span class="clock"></span>
 					@else
 					<p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p>
 					@endif

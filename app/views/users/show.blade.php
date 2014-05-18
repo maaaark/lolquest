@@ -147,7 +147,7 @@
 			?>
 			<tr class="<?php echo $class; ?>">
 				<td>
-					<img src="/img/champions/{{ $game->championId }}_92.png" class="img-circle" width="35" />
+					<a href="/champions/{{ $game->champion->key }}"><img src="/img/champions/{{ $game->championId }}_92.png" class="img-circle" width="35" /></a>
 				</td>
 				<td class="game_kda">
 				{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}<br/>

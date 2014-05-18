@@ -7,6 +7,11 @@ class Game extends \Eloquent {
         return $this->belongsTo('Summoner');
     }
 	
+	public function champion()
+    {
+        return $this->hasOne('Champion', 'champion_id', 'championId');
+    }
+	
 	public function items()
     {
 		return $this->belongsToMany('Item');
