@@ -25,18 +25,23 @@
 			});
 			
 			// QUESTS DONE
-			var data = {
-			labels : ["January","February","March","April","May","June","July"],
-			datasets : [
-					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#fff",
-						data : [65,59,90,81,56,55,40]
-					},
-				]
-			}
+			
+			var lineChartData = {
+				labels : [{{ $dates }}],
+						datasets : [
+							{
+								fillColor : "rgba(151,187,205,0.5)",
+								strokeColor : "rgba(151,187,205,1)",
+								pointColor : "rgba(151,187,205,1)",
+								pointStrokeColor : "#fff",
+								data : [{{ $counts }}]
+							}
+						]
+
+					}
+
+				var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+			
 			
 		});
 	</script>
@@ -75,19 +80,19 @@
 		<tr>
 			<td valign="top" width="50%">
 				<h3>Win/Loss Ratio for {{ $champion->name }}</h3>
-				@if($champion_games <= 0)
-					No data available for this Champion
+				@if($champion_games <= 1)
+					{{ trans("champions.no_data") }}
 				@else
-					<canvas id="winloss" height="200" width="300"></canvas><br/>
+					<canvas id="winloss" height="200" width="300"></canvas><br/><br/>
 					Based on {{ $champion_games }} Games with {{ $champion->name }}<br/>
 				@endif
 			</td>
 			<td valign="top" width="50%">
-				<h3>Picked</h3>
-				@if($champion_games <= 0)
-					No data available for this Champion
+				<h3>Quests with {{ $champion->name }}</h3>
+				@if($champion_games <= 1)
+					{{ trans("champions.no_data") }}
 				@else
-					<canvas id="quests" height="200" width="300"></canvas><br/>
+					<canvas id="canvas" height="200" width="500"></canvas><br/><br/>
 					Based on {{ $champion_games }} Games with {{ $champion->name }}
 				@endif
 			</td>

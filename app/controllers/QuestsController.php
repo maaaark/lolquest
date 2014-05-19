@@ -100,6 +100,18 @@ class QuestsController extends \BaseController {
 					$quest->quest_slot = "choose";
 					$quest->createDate = date("U")*1000;
 					$quest->save();
+					
+					$quest_count = ChampionQuest::where("champion_id", "=", $quest->champion_id)->where("quest_date", "=", date("y.m.d"))->first();
+					if(!isset($quest_count)) {
+						$quest_count = new ChampionQuest;
+						$quest_count->quest_date = date("y.m.d");
+						$quest_count->champion_id = $quest->champion_id;
+						$quest_count->quest_count = 1;
+					} else {
+						$quest_count->quest_count = $quest_count->quest_count + 1;
+					}
+					$quest_count->save();
+					
 					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 
 			} else {

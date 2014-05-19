@@ -50,10 +50,17 @@ class ChampionsController extends \BaseController {
 	 * @return Response
 	 */
 	public function show($name)
-	{
+	{	
+		$dates = "";
+		$counts = "";
 		$champion = Champion::where('key', '=', $name)->first();
 		$champion_games = Game::where('championId', '=', $champion->champion_id)->count();
 		$champion_wins = Game::where('championId', '=', $champion->champion_id)->where('win', '=', 1)->count();
+		$quest_count = ChampionQuest::where('champion_id', '=', $champion->champion_id)->get();
+		foreach($quest_count as $count) {
+			$dates = $dates.$count->quest_date.",";
+			$counts = $counts.$count->quest_count.","; 
+		}
 		if($champion_games==0) {
 			$champion_wins = 0;
 			$champion_losses = 0;
@@ -62,7 +69,7 @@ class ChampionsController extends \BaseController {
 			$champion_losses = 100 - $champion_wins;
 		}
 		
-		return View::make('champions.show', compact('champion', 'champion_games', 'champion_wins', 'champion_losses'));
+		return View::make('champions.show', compact('champion', 'champion_games', 'champion_wins', 'champion_losses', 'counts', 'dates'));
 	}
 
 	/**
