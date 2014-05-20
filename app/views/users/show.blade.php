@@ -15,13 +15,13 @@
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
 				@if($user->id != Auth::user()->id)
 					@if ( Auth::user()->isFriend($user->id) == 'checked')
-						You are already Friends
+						{{ trans("friends.already") }}
 					@elseif ( Auth::user()->isFriend( $user->id) == 'unchecked')
-						Your are not submitted
+						{{ trans("friends.unconfirmed") }}
 					@elseif (Auth::user()->isFriend( $user->id) == 'nofriends') 
-						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("users.friend_request") }}</a>
+						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.request") }}</a>
 					@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
-						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">submit</a>
+						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
 					@endif
 				@endif
 			</td>

@@ -29,7 +29,6 @@ return array(
 	'already_one' => "There is already a verified summoner with this name in our system.<br/>If this is not your summoner, please contact the support at <a href='mailto:help@lolquest.net'>help@lolquest.net</a>",
 	'registered' => 'Member since',
 	'quests_completed' => 'Quests completed',
-	'friend_request' => 'Friend request',
 	'ranked_stats' => 'Season 4 Ranked Stats',
 	'achievements' => 'Achievements',
 	'quests_done' => 'Recent Quests done',

@@ -509,12 +509,21 @@ class UsersController extends \BaseController {
 	public function becomeAchievement($type, $factor, $id)
 	{
 		if(Auth::user()) {
+				$achiv_id = 0;
 				$user = User::findOrFail($id);
-				$user_achievement = Achievement::where('type', $type)->get(); 
-				foreach($user_achievement as $achiv) {
-					if($achiv["factor"] >= $factor) {
-						$user->achievements()->attach($achiv->id);
+				foreach($user->achievements as $achievement) {
+					if($achievement->type == $type){
+						$achiv_id = $achievement->id;
 					}
+				}
+				$user_achievement = Achievement::where('type', $type)->where('id','>',$achiv_id)->firstOrFail(); 
+				if($user_achievement){
+					if($user_achievement->factor <= $factor) {
+						$user->achievements()->attach($user_achievement->id);
+						echo $user->name."hat ein achiement bekommen";
+					}
+				} else {
+					echo $user->name."hat eindsfsdf achiement bekommen";
 				}
 		} else {
 		return Redirect::to('login');
