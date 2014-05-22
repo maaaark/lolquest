@@ -46,6 +46,17 @@ class ProductsController extends \BaseController {
 		}
 	}
 	
+	public function buy_qp()
+	{
+		$products = Product::where("cat_id", "=", 2)->get();
+		return View::make('shop.buy_qp', compact('products'));
+	}
+	
+	public function backgrounds()
+	{
+		$products = Product::where("cat_id", "=", 3)->get();
+		return View::make('shop.backgrounds', compact('products'));
+	}
 	
 	/**
 	 * Show the form for creating a new resource.

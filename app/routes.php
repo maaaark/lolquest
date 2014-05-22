@@ -80,9 +80,15 @@ Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 
 
-// Products Controller
+// Shop Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
+Route::get('shop/offers', 'ProductsController@offers');
+Route::get('shop/buy_qp', 'ProductsController@buy_qp');
+Route::get('shop/riot_points', 'ProductsController@riot_points');
+Route::get('shop/ep_boosts', 'ProductsController@ep_boosts');
+Route::get('shop/backgrounds', 'ProductsController@backgrounds');
+Route::get('shop/skins', 'ProductsController@skins');
 
 
 // Pages

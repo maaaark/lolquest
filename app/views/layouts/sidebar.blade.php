@@ -1,14 +1,6 @@
 @if(Auth::check())
-	<div class="sidebar_box">
-	<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
-	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
-		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
-		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
-		<div class="clear"></div>
-	{{ Form::close() }}
-	</div>
 	
-	<!--
+
 	<div class="sidebar_box">
 	<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ trans("sidebar.logged_in_headline") }}</div>
 	<div class="uppercase">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>
@@ -33,7 +25,17 @@
 		</tr>
 	</table>
 	</div>
-	-->
+
+	<!-- SEARCH -->
+	<div class="sidebar_box">
+	<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
+	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
+		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
+		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
+		<div class="clear"></div>
+	{{ Form::close() }}
+	</div>
+	
 	
 	@if(Session::has('daily_quest'))
 	<div class="sidebar_box">
@@ -102,7 +104,7 @@
 				@endif
 			@endforeach
 		</table>
-		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a></div><br/>
+		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
 	

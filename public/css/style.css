@@ -449,7 +449,22 @@ a.logout {
 	border: 1px solid #dddddd;
 	border-top: 0;
 }
+.buy_qp {
+	background-image: -webkit-linear-gradient(top,#d9534f 0,#c12e2a 100%);
+	background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	background-repeat: repeat-x;
+	border-color: #b92c28;
+	color: #fff;
+	border-radius: 4px;
+}
+.buy_qp:hover {
 
+}
+.buy_qp a {
+	color: #fff;
+}
 
 
  

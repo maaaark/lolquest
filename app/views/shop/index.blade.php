@@ -5,14 +5,7 @@
 	<table>
 		<tr>
 			<td valign="top">
-				<ul class="nav nav-pills nav-stacked">
-				  <li class="active"><a href="#">Angebote</a></li>
-				  <li><a href="#">Buy QP</a></li>
-				  <li><a href="#">Backgrounds</a></li>
-				  <li><a href="#">RP Cards</a></li>
-				  <li><a href="#">EP Boosts</a></li>
-				  <li><a href="#">Skins</a></li>
-				</ul>
+				@include('shop.sidebar')
 			</td>
 			<td valign="top">
 				@foreach($products as $product)
