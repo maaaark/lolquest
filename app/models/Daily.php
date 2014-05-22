@@ -5,7 +5,7 @@ class Daily extends \Eloquent {
 	
 	public function champion()
     {
-        return $this->belongsTo('Champion');
+        return $this->hasOne('Champion', 'champion_id', 'champion_id');
     }
 	
 	public function questtype()

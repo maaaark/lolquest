@@ -56,7 +56,7 @@ class ChampionsController extends \BaseController {
 		$champion = Champion::where('key', '=', $name)->first();
 		$champion_games = Game::where('championId', '=', $champion->champion_id)->count();
 		$champion_wins = Game::where('championId', '=', $champion->champion_id)->where('win', '=', 1)->count();
-		$quest_count = ChampionQuest::where('champion_id', '=', $champion->champion_id)->orderBy('quest_date', 'asc')->get();
+		$quest_count = ChampionQuest::where('champion_id', '=', $champion->champion_id)->orderBy('quest_date', 'asc')->take(5)->get();
 		foreach($quest_count as $count) {
 			$dates = $dates.'"'.date("d.m",strtotime($count->quest_date)).'",';
 			$counts = $counts.$count->quest_count.","; 
