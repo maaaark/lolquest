@@ -325,6 +325,9 @@ a.logout {
 .delete_node a {
 	color: red !important;
 }
+.faq {
+	font-size: 12px;
+}
 .notifications_list li {
 	border: 0;
 	border-bottom: 1px solid #414141;

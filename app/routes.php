@@ -109,6 +109,14 @@ Route::get('impress', function()
 {
 	return View::make('pages.impress');
 });
+Route::get('faq', function()
+{
+	return View::make('pages.faq');
+});
+Route::get('team', function()
+{
+	return View::make('pages.team');
+});
 
 
 // App Login
