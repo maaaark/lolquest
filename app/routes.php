@@ -68,10 +68,12 @@ Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 // Quests Controller
 Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
+Route::post('/quests/create_challenge', 'QuestsController@create_challenge');
 Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
 Route::get('/quests/cancel_quest/{quest_id?}', 'QuestsController@cancel_quest');
 Route::get('/accept_daily', 'QuestsController@accept_daily');
+Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
 // Ladders Controller
@@ -89,6 +91,7 @@ Route::get('shop/riot_points', 'ProductsController@riot_points');
 Route::get('shop/ep_boosts', 'ProductsController@ep_boosts');
 Route::get('shop/backgrounds', 'ProductsController@backgrounds');
 Route::get('shop/skins', 'ProductsController@skins');
+Route::get('shop/history', 'ProductsController@history');
 
 
 // Pages

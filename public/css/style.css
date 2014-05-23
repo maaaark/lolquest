@@ -395,6 +395,18 @@ a.logout {
 .quest a.btn {
 	width: 155px;
 }
+.challenge {
+	font-size: 12px;
+	line-height: 20px;
+	border: 1px solid #b9b9b9;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+}
+.challenge_sidebar {
+	text-align: center;
+}
 .payment-table {
 	font-size: 12px;
 }

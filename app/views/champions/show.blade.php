@@ -41,10 +41,7 @@
 						]
 
 					}
-
-				var myLine = new Chart(document.getElementById("champion_quests").getContext("2d")).Line(lineChartData, { scaleOverlay : true, scaleOverride : true, scaleSteps : 1, scaleStepWidth : 1, scaleStartValue:0, scaleLabel : "<%=value%> Quest", animationEasing : "easeOutQuart",});
-			
-			
+				var myLine = new Chart(document.getElementById("champion_quests").getContext("2d")).Line(lineChartData);
 		});
 	</script>
 	<br/>

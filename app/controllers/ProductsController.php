@@ -58,6 +58,31 @@ class ProductsController extends \BaseController {
 		return View::make('shop.backgrounds', compact('products'));
 	}
 	
+	public function riot_points()
+	{
+		return View::make('shop.rp');
+	}
+	
+	public function ep_boosts()
+	{
+		return View::make('shop.boosts');
+	}
+	
+	public function skins()
+	{
+		return View::make('shop.skins');
+	}
+	
+	public function history()
+	{
+		return View::make('shop.history');
+	}
+	
+	public function offers()
+	{
+		return View::make('shop.offers');
+	}
+	
 	/**
 	 * Show the form for creating a new resource.
 	 *

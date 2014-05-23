@@ -1,13 +1,13 @@
 @extends('templates.default')
-@section('title', 'Shop')
+@section('title', trans("shop.shop").' - '.trans("shop.buy_qp"))
 @section('content')
 	<br/>
-	<table>
+	<table width="100%">
 		<tr>
-			<td valign="top">
+			<td valign="top" width="20%">
 				@include('shop.sidebar')
 			</td>
-			<td valign="top">
+			<td valign="top" width="80%">
 				@foreach($products as $product)
 					<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
 						<div class="product">
@@ -19,7 +19,6 @@
 								<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy") }}</a><br/>
 						</div>
 					</div>
-
 				@endforeach
 			</td>
 		</tr>

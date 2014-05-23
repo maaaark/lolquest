@@ -166,24 +166,61 @@
 				<div class="quest maxquests">
 					{{ trans("dashboard.maximum_quests") }}<br/>
 					<br/>
-					<a href="/shop" class="btn btn-primary">Buy Quest Slot</a>
+					<a href="/shop" class="btn btn-primary">{{ trans("dashboard.buy_quest_slots") }}</a>
 				</div>
 			</div>
 		@endfor
 		
 	</div>
-	<h2>{{ trans("dashboard.quest_status") }}</h2>
-	<ul class="champions_finished">
-	@foreach($champion_quests as $champion_quest)
-		<li>
-		@if($champion_quest->quests == 0)
-			<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
-		@else
-			<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
-		@endif
-		</li>
-	@endforeach
-	</ul>
-	<div class="clear"></div>
+	
+	<br/><br/>
+	<!-- END OF QUESTSLOTS -->
+	
+	<h3>Challenges</h3>
+	<div class="challenge">
+		<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+			<div class="challenge_sidebar">
+				@if($user->challenge_mode == 0)
+				<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100"><br/>
+				<br/>
+				{{ Form::model($user, array('action' => 'QuestsController@create_challenge')) }}
+				<select name="challenge_mode" class="quest_select_champion">
+					<option value="1">Top-Lane</option>
+					<option value="2">Jungle</option>
+					<option value="3">Mid-Lane</option>
+					<option value="4">Marksman</option>
+					<option value="5">Support</option>
+				</select>
+				<br/>
+				{{ Form::submit(trans("dashboard.start_challenge"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;')) }}<br/><br/>
+				<strong>{{ trans("dashboard.challenge_exp") }}</strong>
+				{{ Form::close() }}
+				@else
+					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100"><br/>
+					<br/>
+					<strong>{{ trans("dashboard.challenge_mode") }}:</strong> <br/>
+					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
+					<br/>
+					<a href="/cancel_challenge" class="btn btn-danger">{{ trans("dashboard.cancel_challenge") }}</a>
+				@endif
+			</div>
+		</div>
+		<div class="col-lg-9 col-sm-6 col-md-8 col-sm-8 col-xs-6">
+			@if($user->challenge_mode == 0)
+				{{ trans("dashboard.challenge_desc") }}
+			@else
+				<h4>{{ trans("dashboard.current_challenge") }}:</h4>
+				Secure a Baron for your team.<br/>
+				<br/>
+				<h4>{{ trans("dashboard.challenge_progress") }}:</h4>
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					0%
+				  </div>
+				</div>
+			@endif
+		</div>
+		<div class="clear"></div>
+	</div>
 	<br/><br/>
 @stop

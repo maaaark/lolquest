@@ -66,6 +66,39 @@ class QuestsController extends \BaseController {
 	}
 	*/
 	
+	public function create_challenge() {
+		$input = Input::all();
+		$validation = Validator::make($input, Quest::$rules);
+		if (Auth::check())
+		{
+			$mode = Input::get('challenge_mode');
+			$user = User::find(Auth::user()->id);
+			$user->challenge_mode = $mode;
+			$user->challenge_step = 1;
+			$user->save();
+			
+			return Redirect::to('dashboard');
+			
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
+	public function cancel_challenge() {
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+			$user->challenge_mode = 0;
+			$user->challenge_step = 0;
+			$user->save();
+			
+			return Redirect::to('dashboard');
+			
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -357,7 +390,7 @@ class QuestsController extends \BaseController {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->spell1 == 11 || $game->spell1 == 11) {
+							if($game->spell1 == 11 || $game->spell2 == 11) {
 								if($game->neutralMinionsKilled >= 50) {
 									$quest->finished = 1;
 									$quest->save();

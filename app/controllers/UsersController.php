@@ -113,7 +113,20 @@ class UsersController extends \BaseController {
 			if($user->summoner) {
 				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
 				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->take(5)->get();
-				return View::make('users.show', compact('user', 'games', 'quests_done'));
+				
+				$champion_quests = DB::select(DB::raw('
+				SELECT * , (
+					SELECT COUNT( * ) 
+					FROM quests
+					WHERE user_id = '.$user->id.'
+					AND finished = 1
+					AND champion_id = champions.champion_id
+					) AS quests
+				FROM champions
+				ORDER BY name ASC
+				'));
+			
+				return View::make('users.show', compact('user', 'games', 'quests_done', 'champion_quests'));
 			} else {
 				return View::make('users.show', compact('user'));
 			}
@@ -414,21 +427,7 @@ class UsersController extends \BaseController {
 			$time_waited = $time - $user->last_checked;
 			$playerroles = Playerrole::all();
 			
-			$champion_quests = DB::select(DB::raw('
-			SELECT * , (
-				SELECT COUNT( * ) 
-				FROM quests
-				WHERE user_id = '.$user->id.'
-				AND finished = 1
-				AND champion_id = champions.champion_id
-				) AS quests
-			FROM champions
-			ORDER BY name ASC
-			'));
-			
-			
-			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests', 'playerroles', 'time'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'playerroles', 'time'));
 		} else {
 			return Redirect::to('login');
 		}
