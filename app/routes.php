@@ -38,7 +38,7 @@ Route::get('404', array('uses' => 'BaseController@notFound'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
 
 
-// Base Controller
+// Champions Controller
 Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 
 
@@ -80,6 +80,10 @@ Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 Route::get('/ladders', 'LaddersController@index');
 Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
+
+
+// Notification Controller
+Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_note');
 
 
 // Shop Controller

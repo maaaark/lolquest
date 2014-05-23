@@ -1,6 +1,33 @@
 @if(Auth::check())
 	
+	@if(Session::get('notifications_amount') > 0)
 
+	<div class="sidebar_box">
+		<div class="sidebar_headline"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }} new Notifications</div>
+		<ul class="notifications_list">
+			@foreach(Session::get('notifications') as $note)
+			
+			<li id="note_{{ $note->id }}">
+				<div class="note_icon">
+					@if($note->type == 1)
+						<span class="glyphicon glyphicon-asterisk"></span>
+					@elseif($note->type == 2)
+						<span class="glyphicon glyphicon-comment"></span>
+					@endif
+				</div>
+				<div class="note_message">
+					<a href="#">{{ $note->message }}</a>
+				</div>
+				<div class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>
+				<div class="clear"></div>
+			</li>
+			@endforeach
+		</ul>
+		<div class="clear"></div>
+	</div>
+	@endif
+			
+	
 	<div class="sidebar_box">
 	<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ trans("sidebar.logged_in_headline") }}</div>
 	<div class="uppercase">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>

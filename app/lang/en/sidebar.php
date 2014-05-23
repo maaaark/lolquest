@@ -3,6 +3,7 @@
 return array(
     'edit' => 'Edit summoner name',
 	'settings' => 'Settings',
+	'save' => 'Save',
 	'myquest' => 'My Quests',
 	'logout' => 'Logout',
 	'level' => 'Level',

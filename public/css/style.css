@@ -305,18 +305,45 @@ a.logout {
 	background: #eeeeee;
 }
 .notifications_list {
-	display: none;
-	backgrond: #fff;
+	margin: 0;
+	color: #999999;
+	padding: 0;
+	padding-right: 10px;
+}
+.note_icon {
+	width: 20px;
+	color: #999999;
+	float: left;
+}
+.note_message {
+	float: left;
+	width: 260px;
+}
+.delete_node {
+	float: left;
+}
+.delete_node a{
+	color: red !important;
 }
 .notifications_list li {
-	width: 250px;
-	border: 0 !important;
-	border-bottom: 1px solid #b9b9b9 !important;
-	height: auto !important;
-	text-align: left !important;
-	line-height: 16px !important;
-	font-size: 12px !important;
-	background: #fff !important;
+	border: 0;
+	border-bottom: 1px solid #414141;
+	color: #999999;
+	height: auto;
+	text-align: left;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	line-height: 16px;
+	list-style: none;
+	font-size: 12px;
+}
+.notifications_list li a {
+	color: #999999;
+	text-transform: none;
+}
+.notifications_list li a:hover {
+	color: #fff;
+	text-decoration: none;
 }
 .questtext {
 	height: 50px;
