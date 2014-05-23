@@ -27,10 +27,12 @@ Route::resource('quests', 'QuestsController');
 Route::resource('items', 'ItemsController');
 Route::resource('products', 'ProductsController');
 
+
 // Admin Functions
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
+
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));

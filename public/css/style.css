@@ -322,7 +322,7 @@ a.logout {
 .delete_node {
 	float: left;
 }
-.delete_node a{
+.delete_node a {
 	color: red !important;
 }
 .notifications_list li {

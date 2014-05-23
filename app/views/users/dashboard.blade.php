@@ -210,7 +210,7 @@
 				{{ trans("dashboard.challenge_desc") }}
 			@else
 				<h4>{{ trans("dashboard.current_challenge") }}:</h4>
-				Secure a Baron for your team.<br/>
+				{{ trans("challenges.".$user->challenge_mode."_".$user->challenge_step) }}<br/>
 				<br/>
 				<h4>{{ trans("dashboard.challenge_progress") }}:</h4>
 				<div class="progress">
