@@ -54,11 +54,8 @@ Route::get('refresh_games', array('uses' => 'UsersController@refresh_games'));
 Route::get('logout', array('uses' => 'UsersController@doLogout'));
 Route::get('register', array('uses' => 'UsersController@create'));
 Route::get('/user_friend/{id}', array('uses' => 'UsersController@makeFriend'));
-Route::get('/submit_friend/{id}', array('uses' => 'UsersController@makeFriend'));
-
-Route::get('/achiv/{type}/{factor}/{id}', array('uses' => 'UsersController@becomeAchievement'));
+Route::get('/accept_friend/{id}', array('uses' => 'UsersController@acceptFriend'));
 Route::get('/update_level_table', array('uses' => 'UsersController@update_level_table'));
-
 Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));

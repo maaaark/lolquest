@@ -187,6 +187,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 							$user->save();
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -210,6 +211,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 							$user->save();
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -238,6 +240,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -258,6 +261,7 @@ class QuestsController extends \BaseController {
 								$user->exp = $user->exp + $quest->questtype->exp;
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								
 							if($quest->daily == 1) {
@@ -270,6 +274,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -289,6 +294,7 @@ class QuestsController extends \BaseController {
 								$user->exp = $user->exp + $quest->questtype->exp;
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								
 							if($quest->daily == 1) {
@@ -301,6 +307,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -320,6 +327,7 @@ class QuestsController extends \BaseController {
 								$user->exp = $user->exp + $quest->questtype->exp;
 							if($user->exp > ($user->level->exp-1)) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								
 							if($quest->daily == 1) {
@@ -332,6 +340,7 @@ class QuestsController extends \BaseController {
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -352,6 +361,7 @@ class QuestsController extends \BaseController {
 									$user->exp = $user->exp + $quest->questtype->exp;
 								if($user->exp > ($user->level->exp-1)) {
 									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
 								}
 									
 								if($quest->daily == 1) {
@@ -364,6 +374,7 @@ class QuestsController extends \BaseController {
 								}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
+								$user->checkAchievement(1, $user->level_id);
 							}
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
