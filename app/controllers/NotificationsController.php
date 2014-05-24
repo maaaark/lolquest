@@ -13,7 +13,21 @@ class NotificationsController extends \BaseController {
 
 		return View::make('notifications.index', compact('notifications'));
 	}
-
+	
+	public function delete_note($id) {
+		if(Auth::check()) {
+			$note = Notification::where("id", "=", $id)->where("user_id", "=", Auth::user()->id)->get();
+			if($note) {
+				Notification::destroy($id);
+				return Redirect::back();
+			} else {
+				return Redirect::back();
+			}
+		} else {
+			return Redirect::to("login");
+		}
+	}
+	
 	/**
 	 * Show the form for creating a new notification
 	 *

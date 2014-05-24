@@ -173,6 +173,21 @@
 			</tr>
 		@endforeach
 	</table>
+	<br/>
+	<h2>{{ trans("dashboard.quest_status") }}</h2>
+	<ul class="champions_finished">
+	@foreach($champion_quests as $champion_quest)
+		<li>
+		@if($champion_quest->quests == 0)
+			<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
+		@else
+			<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
+		@endif
+		</li>
+	@endforeach
+	</ul>
+	<div class="clear"></div>
+	<br/>
 	
 	@if(Auth::user()->id == $user->id)
 	<h2>Friends</h2>

@@ -15,23 +15,7 @@
 					<div class="name hidden-xs hidden-sm">{{ Auth::user()->summoner_name }} </div>
 					<div class="clear"></div>
 				</a>
-			</li>
-			<!--<li class="navigation_natifications">
-				
-				<a href="/users"><span class="glyphicon glyphicon-comment"></span></a> 
-			@if(Session::get('notifications_amount') > 0)
-				<span class="unread_notifications img-circle">{{ Session::get('notifications_amount') }}</span>
-			@endif
-			@if(Session::get('notifications_amount') > 0)	
-				<ul class="notifications_list">
-					@foreach(Session::get('notifications') as $note)
-						<li><a href="#">{{ $note->message }}</a></li>
-					@endforeach
-				</ul>
-				<div class="clear"></div>
-			@endif
-			</li>-->
-			
+			</li>			
 			<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
 			<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">My Quests</span></a></li>
 			

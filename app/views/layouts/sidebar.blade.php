@@ -1,14 +1,33 @@
 @if(Auth::check())
-	<div class="sidebar_box">
-	<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
-	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
-		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
-		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
-		<div class="clear"></div>
-	{{ Form::close() }}
-	</div>
 	
-	<!--
+	@if(Session::get('notifications_amount') > 0)
+
+	<div class="sidebar_box">
+		<div class="sidebar_headline"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }} new Notifications</div>
+		<ul class="notifications_list">
+			@foreach(Session::get('notifications') as $note)
+			
+			<li id="note_{{ $note->id }}">
+				<div class="note_icon">
+					@if($note->type == 1)
+						<span class="glyphicon glyphicon-asterisk"></span>
+					@elseif($note->type == 2)
+						<span class="glyphicon glyphicon-comment"></span>
+					@endif
+				</div>
+				<div class="note_message">
+					<a href="#">{{ $note->message }}</a>
+				</div>
+				<div class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>
+				<div class="clear"></div>
+			</li>
+			@endforeach
+		</ul>
+		<div class="clear"></div>
+	</div>
+	@endif
+			
+	
 	<div class="sidebar_box">
 	<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ trans("sidebar.logged_in_headline") }}</div>
 	<div class="uppercase">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>
@@ -33,7 +52,17 @@
 		</tr>
 	</table>
 	</div>
-	-->
+
+	<!-- SEARCH -->
+	<div class="sidebar_box">
+	<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
+	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
+		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
+		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
+		<div class="clear"></div>
+	{{ Form::close() }}
+	</div>
+	
 	
 	@if(Session::has('daily_quest'))
 	<div class="sidebar_box">
@@ -41,11 +70,11 @@
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
+					<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
-						<div class="daily_reward">50 QP + 500 EXP</div>
+						<div class="daily_reward">{{ Session::get('daily_quest')->questtype->qp * 2 }} QP + {{ Session::get('daily_quest')->questtype->exp * 2 }} EXP</div>
 						<div class="accept_daily"><a href="/accept_daily" class="">{{ trans("sidebar.accept_quest") }}</a></div>
 					</td>
 				</tr>
@@ -102,7 +131,7 @@
 				@endif
 			@endforeach
 		</table>
-		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a></div><br/>
+		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
 	

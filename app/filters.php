@@ -96,8 +96,7 @@ Route::filter('csrf', function()
 Route::filter('notifications', function()
 {
 	if (Auth::check()) {
-		$user = User::find(Auth::user()->id);
-		$notifications = Notification::where('user_id', '=', $user->id)->where('seen', '=', 0)->get();
+		$notifications = Notification::where('user_id', '=', Auth::user()->id)->where('seen', '=', 0)->get();
 		Session::put('notifications_amount', $notifications->count());
 		Session::put('notifications', $notifications);
 	}

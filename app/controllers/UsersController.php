@@ -113,7 +113,20 @@ class UsersController extends \BaseController {
 			if($user->summoner) {
 				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
 				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->take(5)->get();
-				return View::make('users.show', compact('user', 'games', 'quests_done'));
+				
+				$champion_quests = DB::select(DB::raw('
+				SELECT * , (
+					SELECT COUNT( * ) 
+					FROM quests
+					WHERE user_id = '.$user->id.'
+					AND finished = 1
+					AND champion_id = champions.champion_id
+					) AS quests
+				FROM champions
+				ORDER BY name ASC
+				'));
+			
+				return View::make('users.show', compact('user', 'games', 'quests_done', 'champion_quests'));
 			} else {
 				return View::make('users.show', compact('user'));
 			}
@@ -123,81 +136,6 @@ class UsersController extends \BaseController {
 		
 	}
 	
-	
-	public function refresh_games()
-	{
-		if (Auth::check())
-		{
-			$user = User::find(Auth::user()->id);
-			$api_key = Config::get('api.key');
-			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
-			$json = @file_get_contents($summoner_data);
-			if($json === FALSE) {
-				return View::make('login');
-			} else {
-				$obj = json_decode($json, true);
-				
-				foreach($obj["games"] as $game) {
-					if(!isset($game["stats"]["item0"])) { $item0 = 0; }	else { $item0 = $game["stats"]["item0"]; }
-					if(!isset($game["stats"]["item1"])) { $item1 = 0; }	else { $item1 = $game["stats"]["item1"]; }
-					if(!isset($game["stats"]["item2"])) { $item2 = 0; }	else { $item2 = $game["stats"]["item2"]; }
-					if(!isset($game["stats"]["item3"])) { $item3 = 0; }	else { $item3 = $game["stats"]["item3"]; }
-					if(!isset($game["stats"]["item4"])) { $item4 = 0; }	else { $item4 = $game["stats"]["item4"]; }
-					if(!isset($game["stats"]["item5"])) { $item5 = 0; }	else { $item5 = $game["stats"]["item5"]; }
-					if(!isset($game["stats"]["item6"])) { $item6 = 0; }	else { $item6 = $game["stats"]["item6"]; }
-					if(!isset($game["stats"]["minionsKilled"])) { $minionsKilled = 0; }	else { $minionsKilled = $game["stats"]["minionsKilled"]; }
-					if(!isset($game["stats"]["neutralMinionsKilled"])) { $neutralMinionsKilled = 0; }	else { $neutralMinionsKilled = $game["stats"]["neutralMinionsKilled"]; }
-                    if(!isset($game["stats"]["wardPlaced"])) { $wardPlaced = 0; } else { $wardPlaced = $game["stats"]["wardPlaced"]; }
-					if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
-					if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
-					if(!isset($game["stats"]["championsKilled"])) { $championsKilled = 0; }	else { $championsKilled = $game["stats"]["championsKilled"]; }
-						
-					$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
-					if(!isset($recent_game)) {
-						$newGame = new Game;
-						$newGame->summoner_id = $user->summoner->summonerid;
-						$newGame->championId = $game["championId"];
-						$newGame->gameId = $game["gameId"];
-						$newGame->assists = $assists;
-						$newGame->numDeaths = $numDeaths;
-						$newGame->championsKilled = $championsKilled;
-						$newGame->goldEarned = $game["stats"]["goldEarned"];
-						$newGame->wardPlaced = $wardPlaced;
-						$newGame->item0 = $item0;
-						$newGame->item1 = $item1;
-						$newGame->item2 = $item2;
-						$newGame->item3 = $item3;
-						$newGame->item4 = $item4;
-						$newGame->item5 = $item5;
-						$newGame->item6 = $item6;
-						$newGame->spell1 = $game["spell1"];
-						$newGame->spell2 = $game["spell2"];
-						$newGame->gameMode = $game["gameMode"];
-						$newGame->minionsKilled = $minionsKilled;
-						$newGame->neutralMinionsKilled = $neutralMinionsKilled;
-						$mil = $game["createDate"];
-						$newGame->createDate = $mil;
-						$newGame->win = $game["stats"]["win"];
-						$newGame->save();
-						
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item0));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item1));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item2));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item3));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item4));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item5));
-						$newGame->items()->attach($newGame->id, array("item_id"=>$item6));
-					}
-					unset($recent_game);
-				}
-				$user->last_checked = date("U");
-				$user->save();
-				
-			}
-		} else {
-			return View::make('login');
-		}
-	}
 	
 	public function refresh_level()
 	{
@@ -414,21 +352,7 @@ class UsersController extends \BaseController {
 			$time_waited = $time - $user->last_checked;
 			$playerroles = Playerrole::all();
 			
-			$champion_quests = DB::select(DB::raw('
-			SELECT * , (
-				SELECT COUNT( * ) 
-				FROM quests
-				WHERE user_id = '.$user->id.'
-				AND finished = 1
-				AND champion_id = champions.champion_id
-				) AS quests
-			FROM champions
-			ORDER BY name ASC
-			'));
-			
-			
-			
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'champion_quests', 'playerroles', 'time'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'playerroles', 'time'));
 		} else {
 			return Redirect::to('login');
 		}

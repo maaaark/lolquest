@@ -27,10 +27,12 @@ Route::resource('quests', 'QuestsController');
 Route::resource('items', 'ItemsController');
 Route::resource('products', 'ProductsController');
 
+
 // Admin Functions
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
+
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));
@@ -38,7 +40,7 @@ Route::get('404', array('uses' => 'BaseController@notFound'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
 
 
-// Base Controller
+// Champions Controller
 Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 
 
@@ -65,10 +67,12 @@ Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 // Quests Controller
 Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
+Route::post('/quests/create_challenge', 'QuestsController@create_challenge');
 Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
 Route::get('/quests/cancel_quest/{quest_id?}', 'QuestsController@cancel_quest');
 Route::get('/accept_daily', 'QuestsController@accept_daily');
+Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
 // Ladders Controller
@@ -77,9 +81,20 @@ Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 
 
-// Products Controller
+// Notification Controller
+Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_note');
+
+
+// Shop Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
+Route::get('shop/offers', 'ProductsController@offers');
+Route::get('shop/buy_qp', 'ProductsController@buy_qp');
+Route::get('shop/riot_points', 'ProductsController@riot_points');
+Route::get('shop/ep_boosts', 'ProductsController@ep_boosts');
+Route::get('shop/backgrounds', 'ProductsController@backgrounds');
+Route::get('shop/skins', 'ProductsController@skins');
+Route::get('shop/history', 'ProductsController@history');
 
 
 // Pages
@@ -90,6 +105,14 @@ Route::get('contact', function()
 Route::get('impress', function()
 {
 	return View::make('pages.impress');
+});
+Route::get('faq', function()
+{
+	return View::make('pages.faq');
+});
+Route::get('team', function()
+{
+	return View::make('pages.team');
 });
 
 

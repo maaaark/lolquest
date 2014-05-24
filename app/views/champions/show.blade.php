@@ -4,40 +4,44 @@
 	<script src="/js/chart.min.js"></script>
 	<script>
 		$( document ).ready(function() {
-		
+			
 			// WIN LOSS
-			var pieData = [
-				{
-					value : {{ $champion_wins }},
-					color : "#6dba4d",
-				},
-				{
-					value : {{ $champion_losses }},
-					color : "#c13333",
-					
-				},
-			];
-			var myChart = new Chart(document.getElementById("winloss").getContext("2d"));
-			var myPie = myChart.Pie(pieData, {
-				animationSteps: 100,
-				animationEasing: 'easeOutBounce',
-				scaleLabel : "<%=value%> %"
-			});
+			@if($champion_games > 1)
+				var pieData = [
+					{
+						value : {{ $champion_wins }},
+						color : "#6dba4d",
+					},
+					{
+						value : {{ $champion_losses }},
+						color : "#c13333",
+						
+					},
+				];
+				var myChart = new Chart(document.getElementById("winloss").getContext("2d"));
+				var myPie = myChart.Pie(pieData, {
+					animationSteps: 100,
+					animationEasing: 'easeOutQuart',
+					scaleLabel : "<%=value%> %"
+				});
+			@endif
 			
 			// QUESTS DONE
-			var data = {
-			labels : ["January","February","March","April","May","June","July"],
-			datasets : [
-					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#fff",
-						data : [65,59,90,81,56,55,40]
-					},
-				]
-			}
 			
+			var lineChartData = {
+				labels : [{{ $dates }}],
+						datasets : [
+							{
+								fillColor : "rgba(151,187,205,0.5)",
+								strokeColor : "rgba(151,187,205,1)",
+								pointColor : "rgba(151,187,205,1)",
+								pointStrokeColor : "#fff",
+								data : [{{ $counts }}]
+							}
+						]
+
+					}
+				var myLine = new Chart(document.getElementById("champion_quests").getContext("2d")).Line(lineChartData);
 		});
 	</script>
 	<br/>
@@ -49,21 +53,21 @@
 			<td valign="top">
 				<table class="table table-striped champion_stats">
 					<tr>
-						<td width="120"><strong>Attack Damage</strong></td>
+						<td width="120"><strong>{{ trans("champions.attack_damage") }}</strong></td>
 						<td>{{ $champion->attackdamage }} (+ {{ $champion->attackdamageperlevel }} / Level)</td>
-						<td width="120"><strong>Health</strong></td>
+						<td width="120"><strong>{{ trans("champions.health") }}</strong></td>
 						<td>{{ $champion->hp }} (+ {{ $champion->hpperlevel }} / Level)</td>
 					</tr>
 					<tr>
-						<td><strong>Attack Range</strong></td>
+						<td><strong>{{ trans("champions.attack_range") }}</strong></td>
 						<td>{{ $champion->attackrange }}</td>
-						<td><strong>Mana / Energie</strong></td>
+						<td><strong>{{ trans("champions.mana_energy") }}</strong></td>
 						<td>{{ $champion->mp }} (+ {{ $champion->mpperlevel }} / Level)</td>
 					</tr>
 					<tr>
-						<td><strong>Armor</strong></td>
+						<td><strong>{{ trans("champions.armor") }}</strong></td>
 						<td>{{ $champion->armor }} (+ {{ $champion->armorperlevel }} / Level)</td>
-						<td><strong>Movespeed</strong></td>
+						<td><strong>{{ trans("champions.movespeed") }}</strong></td>
 						<td>{{ $champion->movespeed }}</td>
 					</tr>
 				</table>
@@ -74,23 +78,21 @@
 	<table  width="100%">
 		<tr>
 			<td valign="top" width="50%">
-				<h3>Win/Loss Ratio for {{ $champion->name }}</h3>
-				@if($champion_games <= 0)
-					No data available for this Champion
+				<h3>{{ trans("champions.wl_ratio") }} {{ $champion->name }}</h3>
+				@if($champion_games <= 1)
+					{{ trans("champions.no_data") }}
 				@else
-					<canvas id="winloss" height="200" width="300"></canvas><br/>
-					Based on {{ $champion_games }} Games with {{ $champion->name }}<br/>
+					<canvas id="winloss" height="200" width="300"></canvas><br/><br/>
 				@endif
 			</td>
 			<td valign="top" width="50%">
-				<h3>Picked</h3>
-				@if($champion_games <= 0)
-					No data available for this Champion
-				@else
-					<canvas id="quests" height="200" width="300"></canvas><br/>
-					Based on {{ $champion_games }} Games with {{ $champion->name }}
-				@endif
+				<h3>{{ trans("champions.quests_with") }} {{ $champion->name }}</h3>
+					<canvas id="champion_quests" height="200" width="500"></canvas><br/><br/>
 			</td>
 		</tr>
 	</table>
+	@if($champion_games >= 2)
+		<br/>
+		Based on {{ $champion_games }} Games with {{ $champion->name }}
+	@endif
 @stop

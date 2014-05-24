@@ -1,8 +1,8 @@
 @extends('templates.default')
-@section('title', trans("shop.shop"))
+@section('title', trans("shop.shop").' - '.trans("shop.backgrounds"))
 @section('content')
 	<br/>
-	<table>
+	<table width="100%">
 		<tr>
 			<td valign="top" width="20%">
 				@include('shop.sidebar')

@@ -1,1 +1,0 @@
-/home/mark/lolquest/app/views/questtypes/create.blade.php

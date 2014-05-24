@@ -1,1 +1,0 @@
-/home/mark/lolquest/app/views/games/show.blade.php
