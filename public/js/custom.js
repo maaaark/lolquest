@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
 	$('.items').tooltip();
+	$('.trophy').tooltip();
 	$('.quest_avatar').tooltip();
 
 

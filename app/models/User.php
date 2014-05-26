@@ -159,6 +159,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return 'nofriends';
 		}
     }
+	
+	
+	public function reward($qp, $exp, $daily) {
+		$user = User::find(Auth::user()->id);
+		
+		if($daily == true) {
+			$user->qp = $user->qp + ($qp * 2);
+			$user->exp = $user->exp + ($exp * 2);
+		} else {
+			$user->qp = $user->qp + $qp;
+			$user->exp = $user->exp + $exp;
+		}
+		$user->save();
+	}
 
 	
 	

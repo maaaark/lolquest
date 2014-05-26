@@ -53,4 +53,5 @@ return array(
 	'challenge_mode_5' => 'Support',
 	'challenge_progress' => 'Challenge Progress',
 	'current_challenge' => 'Current Challenge',
+	'finish_challenge' => 'Finish Challenge',
 );

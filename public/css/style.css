@@ -36,6 +36,18 @@ h3 {
 	padding-bottom: 90px;
 	height: 100%;
 }
+.challenge_tropy_open {
+	float: left;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	margin-right: 10px;
+}
+.challenge_tropy_finished {
+	float: left;
+	filter: alpha(opacity=100);
+	opacity: 1;
+	margin-right: 10px;
+}
 .transactions {
 	font-size: 12px;
 }
@@ -53,6 +65,7 @@ h3 {
 }
 .champions_finished li {
 	float: left;
+	list-style: none;
 	margin-bottom: 5px;
 	margin-left: 5px;
 }
@@ -281,7 +294,6 @@ a.logout {
 }
 .avatar {
 	margin-right: 5px;
-	padding-top: 16px;
 }
 .quests {
 	color: #428bca !important;

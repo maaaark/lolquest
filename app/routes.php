@@ -75,6 +75,10 @@ Route::get('/accept_daily', 'QuestsController@accept_daily');
 Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
+// Challenges Controller
+Route::get('/finish_challenge', 'ChallengesController@finish_challenge');
+
+
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
 Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');

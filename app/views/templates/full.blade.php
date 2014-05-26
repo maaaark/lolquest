@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>lolquest.net - @yield('title')</title>
+		<meta name="description" content="{{ trans('meta.description') }}" />
+		<meta name="keywords" content="league of legends, quest, daily, skins, reward, lol, euw, na, rp, ep-boost, qp"/>
 		{{ HTML::style('css/style.css') }}
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">

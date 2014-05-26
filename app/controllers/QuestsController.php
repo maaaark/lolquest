@@ -75,6 +75,7 @@ class QuestsController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 			$user->challenge_mode = $mode;
 			$user->challenge_step = 1;
+			$user->challenge_time = date("U")*1000;
 			$user->save();
 			
 			return Redirect::to('dashboard');
@@ -224,12 +225,10 @@ class QuestsController extends \BaseController {
 							$quest->finished = 1;
 							$quest->save();
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -248,12 +247,10 @@ class QuestsController extends \BaseController {
 							$quest->save();
 							$user->exp = $user->exp + $quest->questtype->exp;							
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -275,14 +272,13 @@ class QuestsController extends \BaseController {
 							if($kda >= 3) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;						
+								$user->exp = $user->exp + $quest->questtype->exp;
+							}
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -311,13 +307,12 @@ class QuestsController extends \BaseController {
 							}
 								
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
+							
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
@@ -344,12 +339,10 @@ class QuestsController extends \BaseController {
 							}
 								
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -377,13 +370,12 @@ class QuestsController extends \BaseController {
 							}
 								
 							if($quest->daily == 1) {
-								$user->qp = $user->qp + (2*$quest->questtype->qp);
-								$user->exp = $user->exp + (2*$quest->questtype->exp);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
-								$user->qp = $user->qp + $quest->questtype->qp;
-								$user->exp = $user->exp + $quest->questtype->exp;
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
+							
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
@@ -411,13 +403,12 @@ class QuestsController extends \BaseController {
 								}
 									
 								if($quest->daily == 1) {
-									$user->qp = $user->qp + (2*$quest->questtype->qp);
-									$user->exp = $user->exp + (2*$quest->questtype->exp);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
 								} else {
-									$user->qp = $user->qp + $quest->questtype->qp;
-									$user->exp = $user->exp + $quest->questtype->exp;
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
+							
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
