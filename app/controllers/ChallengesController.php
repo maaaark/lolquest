@@ -23,7 +23,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(20,200,false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 							$user->challenge_time = date("U")*1000;
 							$user->save();
 							
@@ -52,7 +52,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(20,200,false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								return Redirect::to("dashboard");
@@ -85,7 +85,7 @@ class ChallengesController extends \BaseController {
 							
 							if($item_count >= 3) {
 								$user->challenge_step = 4;
-								$user->reward(20,200,false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								return Redirect::to("dashboard");
