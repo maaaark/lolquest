@@ -3,10 +3,9 @@
 	@if(Session::get('notifications_amount') > 0)
 
 	<div class="sidebar_box">
-		<div class="sidebar_headline"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }} new Notifications</div>
+		<div class="sidebar_headline"><span class="new_notifications"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }}</span> &nbsp;&nbsp;{{ trans("sidebar.new_note") }}</div>
 		<ul class="notifications_list">
 			@foreach(Session::get('notifications') as $note)
-			
 			<li id="note_{{ $note->id }}">
 				<div class="note_icon">
 					@if($note->type == 1)
@@ -55,12 +54,12 @@
 
 	<!-- SEARCH -->
 	<div class="sidebar_box">
-	<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
-	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
-		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
-		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
-		<div class="clear"></div>
-	{{ Form::close() }}
+		<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
+		{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
+			<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
+			<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
+			<div class="clear"></div>
+		{{ Form::close() }}
 	</div>
 	
 	

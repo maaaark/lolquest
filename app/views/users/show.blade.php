@@ -1,8 +1,8 @@
 @extends('templates.default')
 @if($user->summoner)
-@section('title', trans("users.profile")." ".$user->summoner->name)
+@section('title', trans("users.profile")." ".$user->summoner->name." ".$user->region)
 @else
-@section('title', trans("users.profile")." ".$user->summoner_name)
+@section('title', trans("users.profile")." ".$user->summoner_name." ".$user->region)
 @endif
 @section('content')
 	<br/>
@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("users.registered") }}</td>
-						<td>{{ $user->created_at }}</td>
+						<td>{{ date("d.m.Y",strtotime($user->created_at)) }}</td>
 					</tr>
 				</table>
 			</td>

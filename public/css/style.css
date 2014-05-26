@@ -36,9 +36,20 @@ h3 {
 	padding-bottom: 90px;
 	height: 100%;
 }
+.transactions {
+	font-size: 12px;
+}
 .champions_finished {
 	margin: 0;
 	padding: 0;
+}
+.new_notifications {
+	color: #fff;
+	background: red;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
 }
 .champions_finished li {
 	float: left;
@@ -47,6 +58,9 @@ h3 {
 }
 .game_kda {
 	font-size: 12px;
+}
+.progress-bar {
+	color: #414141 !important;
 }
 .quest_avatar {
 	margin-right: 3px;
@@ -72,8 +86,30 @@ img.bg {
 .champion_stats {
 	font-size: 12px;
 }
-
-
+.product_skin {
+	position: relative;
+	border: 1px solid #b9b9b9;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 10px;
+	padding: 10px;
+	height: 300px;
+	margin-bottom: 10px;
+}
+.skin_description {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	background: rgba(0,0,0,0.4);
+	bottom: 10px;
+	margin-left: -10px;
+}
+.skin_description h3 {
+	color: #fff;
+}
 .fullwidth_box {
 	width: 100%;
 	background: #fff;

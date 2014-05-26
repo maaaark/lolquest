@@ -2,6 +2,11 @@
 
 class ProductsController extends \BaseController {
 
+	public function __construct()
+    {
+		$this->beforeFilter('auth');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -28,8 +33,16 @@ class ProductsController extends \BaseController {
 						$user->qp = $user->qp - $product->price_qp;
 						$user->quest_slots = $user->quest_slots +1;
 						$user->save();
+						
+						$transaction = new Transaction;
+						$transaction->user_id = Auth::user()->id;
+						$transaction->product_id = $product->id;
+						$transaction->currency = "QP";
+						$transaction->price = $product->price_qp;
+						$transaction->description = Auth::user()->summoner_name." bought ".$product->name." (".$product->id.") for ".$product->price_qp." ".$transaction->currency;
+						$transaction->save();
+						
 						return View::make('shop.success')->with('message', trans("shop.new_slot"));
-						//return Redirect::to('shop/success')->with('message', trans("shop.new_slot"));
 					} else {
 						return Redirect::to('shop')->with('error', trans("shop.slots_full"));
 					}
@@ -75,7 +88,9 @@ class ProductsController extends \BaseController {
 	
 	public function history()
 	{
-		return View::make('shop.history');
+		$user = User::find(Auth::user()->id);
+		$transactions = $user->transactions;
+		return View::make('shop.history', compact('transactions'));
 	}
 	
 	public function offers()
@@ -83,25 +98,6 @@ class ProductsController extends \BaseController {
 		return View::make('shop.offers');
 	}
 	
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
 
 	/**
 	 * Display the specified resource.
@@ -110,39 +106,6 @@ class ProductsController extends \BaseController {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
 	{
 		//
 	}

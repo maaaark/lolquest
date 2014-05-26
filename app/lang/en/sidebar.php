@@ -16,4 +16,5 @@ return array(
 	'accept_quest' => 'Accept this Quest',
 	'no_quest' => 'You have no active Quests<br/><a href="/dashboard">Get some Quests</a>',
 	'search' => 'Search',
+	'new_note' => 'new Notification',
 );

@@ -118,7 +118,7 @@
 		@if($myquests->count() < $user->quest_slots)
 			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
 				<div class="quest">
-				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest')) }}
+				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest', 'name' => 'frm', 'id' => 'frm' )) }}
 				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
 					  <h3>{{ trans("dashboard.choose_slot") }}</h3>
 					  <p class="questtext">{{ trans("dashboard.choose") }}<br/> 
@@ -140,7 +140,7 @@
 					  <br/><br/>
 					  <br/>
 					  @if($user->summoner_status == 2)
-					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;')) }}</p>
+					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;', 'name' => 'send', 'id' => 'send')) }}</p>
 					  @else
 						<a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a>
 					  @endif
@@ -198,7 +198,7 @@
 				@else
 					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100"><br/>
 					<br/>
-					<strong>{{ trans("dashboard.challenge_mode") }}:</strong> <br/>
+					<h4>{{ trans("dashboard.challenge_mode") }}:</h4>
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
 					<br/>
 					<a href="/cancel_challenge" class="btn btn-danger">{{ trans("dashboard.cancel_challenge") }}</a>

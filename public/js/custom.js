@@ -14,6 +14,11 @@ $( document ).ready(function() {
           return false;
       });
     });
+	
+	
+	$('#frm').bind('submit', function(e) {
+	   $('#send').attr('disabled', 'disabled');
+	});
 
 
 });
