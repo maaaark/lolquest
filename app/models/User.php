@@ -246,6 +246,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 	
 	
+	public function checkAchievement($type, $factor)
+	{
+		if(Auth::user()) {
+				$achiv_id = 0;
+				foreach(Auth::user()->achievements as $achievement) {
+					if($achievement->type == $type){
+						if($achiv_id < $achievement->id){
+							$achiv_id = $achievement->id;
+						}
+					}
+				}
+				$user_achievement = Achievement::where('type', $type)->where('id','>',$achiv_id)->firstOrFail(); 
+				if($user_achievement){
+					if($user_achievement->factor <= $factor) {
+						Auth::user()->achievements()->attach($user_achievement->id);
+						echo Auth::user()->name."hat ein achiement bekommen";
+					}
+				} else {
+					echo Auth::user()->name."hat eindsfsdf achiement bekommen";
+				}
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
+	
 	public function friends()
     {
         return $this->belongsToMany('User', 'friend_user', 'user_id', 'friend_id');

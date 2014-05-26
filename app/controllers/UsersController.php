@@ -429,29 +429,18 @@ class UsersController extends \BaseController {
 		return Redirect::to('login');
 		}
 	} 
-		
-	public function becomeAchievement($type, $factor, $id)
+	
+		public function acceptFriend($id)
 	{
 		if(Auth::user()) {
-				$achiv_id = 0;
 				$user = User::findOrFail($id);
-				foreach($user->achievements as $achievement) {
-					if($achievement->type == $type){
-						$achiv_id = $achievement->id;
-					}
-				}
-				$user_achievement = Achievement::where('type', $type)->where('id','>',$achiv_id)->firstOrFail(); 
-				if($user_achievement){
-					if($user_achievement->factor <= $factor) {
-						$user->achievements()->attach($user_achievement->id);
-						echo $user->name."hat ein achiement bekommen";
-					}
-				} else {
-					echo $user->name."hat eindsfsdf achiement bekommen";
-				}
+				$user_friend = User::findOrFail(Auth::user()->id);
+				$user_friend->friends()->attach($user->id);
+				$user-> checkAchievement(3, $user->friends->count());
+				return Redirect::back();
 		} else {
 		return Redirect::to('login');
 		}
-	}
+	} 
 	
 }

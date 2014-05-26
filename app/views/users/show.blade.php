@@ -21,7 +21,7 @@
 					@elseif (Auth::user()->isFriend( $user->id) == 'nofriends') 
 						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.request") }}</a>
 					@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
-						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
+						<a href="/accept_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
 					@endif
 				@endif
 			</td>
