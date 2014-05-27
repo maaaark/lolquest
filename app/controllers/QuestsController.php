@@ -286,7 +286,6 @@ class QuestsController extends \BaseController {
 							}
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
-							}
 						}
 					}
 					
@@ -419,7 +418,264 @@ class QuestsController extends \BaseController {
 							}
 						}
 					}
+					
+					
+					// Quest Type 8 - Dont die!
+					if($quest->questtype->id == 8) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->numDeaths == 0) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					
+					// Quest Type 9 - At least 10k Gold
+					if($quest->questtype->id == 9) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->goldEarned >= 11000) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					
+					// Quest Type 10 - At least 10k Gold (Support only)
+					if($quest->questtype->id == 10) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->assists >= 15) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					// Quest Type 11 - Kill at least 5 Wards
+					if($quest->questtype->id == 11) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->wardKilled >= 5) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					// Quest Type 12 - Finish under 30 minutes
+					if($quest->questtype->id == 12) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->timePlayed <= 1800) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					
+					// Quest Type 13 - Mind 2 Turrets
+					if($quest->questtype->id == 13) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->turretsKilled >= 2) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					
+					// Quest Type 14 - Get on a Killing Spree
+					if($quest->questtype->id == 14) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->killingSprees >= 1) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
 
+					
+					
+					// Quest Type 15 - At least 5000 Heal (Support Only)
+					if($quest->questtype->id == 15) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->totalHeal >= 5000) {
+								$quest->finished = 1;
+								$quest->save();
+								$user->exp = $user->exp + $quest->questtype->exp;
+								if($user->exp > ($user->level->exp-1)) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+								
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+							
+								if($user->exp > ($user->level->exp_level)-1) {
+									$user->level_id +=1;
+									$user->checkAchievement(1, $user->level_id);
+								}
+									$user->save();
+									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							}
+						}
+					}
+					
+					
+					
 					
 				} else {
 					return Redirect::to('dashboard')->with('error', trans("dashboard.no_active_quest"));

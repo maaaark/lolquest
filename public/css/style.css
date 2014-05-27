@@ -38,8 +38,8 @@ h3 {
 }
 .challenge_tropy_open {
 	float: left;
-	filter: alpha(opacity=50);
-	opacity: 0.5;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
 	margin-right: 10px;
 }
 .challenge_tropy_finished {

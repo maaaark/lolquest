@@ -197,6 +197,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					if(!isset($game["stats"]["item4"])) { $item4 = 0; }	else { $item4 = $game["stats"]["item4"]; }
 					if(!isset($game["stats"]["item5"])) { $item5 = 0; }	else { $item5 = $game["stats"]["item5"]; }
 					if(!isset($game["stats"]["item6"])) { $item6 = 0; }	else { $item6 = $game["stats"]["item6"]; }
+					if(!isset($game["stats"]["totalHeal"])) { $totalHeal = 0; }	else { $totalHeal = $game["stats"]["totalHeal"]; }
+					if(!isset($game["stats"]["killingSprees"])) { $killingSprees = 0; }	else { $killingSprees = $game["stats"]["killingSprees"]; }
+					if(!isset($game["stats"]["wardKilled"])) { $wardKilled = 0; }	else { $wardKilled = $game["stats"]["wardKilled"]; }
+					if(!isset($game["stats"]["turretsKilled"])) { $turretsKilled = 0; }	else { $turretsKilled = $game["stats"]["turretsKilled"]; }
 					if(!isset($game["stats"]["minionsKilled"])) { $minionsKilled = 0; }	else { $minionsKilled = $game["stats"]["minionsKilled"]; }
 					if(!isset($game["stats"]["neutralMinionsKilled"])) { $neutralMinionsKilled = 0; }	else { $neutralMinionsKilled = $game["stats"]["neutralMinionsKilled"]; }
                     if(!isset($game["stats"]["wardPlaced"])) { $wardPlaced = 0; } else { $wardPlaced = $game["stats"]["wardPlaced"]; }
@@ -226,6 +230,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$newGame->spell2 = $game["spell2"];
 						$newGame->gameMode = $game["gameMode"];
 						$newGame->gameType = $game["gameType"];
+						$newGame->wardKilled = $wardKilled;
+						$newGame->totalHeal = $totalHeal;
+						$newGame->killingSprees = $killingSprees;
+						$newGame->timePlayed = $game["stats"]["timePlayed"];
+						$newGame->turretsKilled = $turretsKilled;
 						$newGame->subType = $game["subType"];
 						$newGame->minionsKilled = $minionsKilled;
 						$newGame->neutralMinionsKilled = $neutralMinionsKilled;

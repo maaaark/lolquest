@@ -196,7 +196,7 @@
 				<strong>{{ trans("dashboard.challenge_exp") }}</strong>
 				{{ Form::close() }}
 				@else
-					<img class="img-circle" alt="" src="/img/champions/0_92.png" width="100"><br/>
+					<img class="img-circle" alt="" src="/img/trophy/{{ $user->challenge_mode }}.jpg" width="100"><br/>
 					<br/>
 					<h4>{{ trans("dashboard.challenge_mode") }}:</h4>
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
@@ -218,33 +218,33 @@
 				{{ trans("dashboard.challenge_desc") }}<br/>
 				<br/>
 				@if($user->trophy_top == 0) 
-					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/top.png" title="Top Lane Trophy" width="70"></div>
+					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/top.jpg" title="Top Lane Trophy" width="70"></div>
 				@else 
-					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/top.png" title="Top Lane Trophy" width="70"></div>
+					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/top.jpg" title="Top Lane Trophy" width="70"></div>
 				@endif
 				
 				@if($user->trophy_jungle == 0) 
-					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/jungle.png" title="Jungler Trophy" width="70"></div>
+					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/jungle.jpg" title="Jungler Trophy" width="70"></div>
 				@else 
-					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/jungle.png" title="Jungler Trophy" width="70"></div>
+					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/jungle.jpg" title="Jungler Trophy" width="70"></div>
 				@endif
 				
 				@if($user->trophy_mid == 0) 
-					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/mid.png" title="Mid Lane Trophy" width="70"></div>
+					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/mid.jpg" title="Mid Lane Trophy" width="70"></div>
 				@else 
-					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/mid.png" title="Mid Lane Trophy" width="70"></div>
+					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/mid.jpg" title="Mid Lane Trophy" width="70"></div>
 				@endif
 				
 				@if($user->trophy_marksman == 0) 
-					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/marksman.png" title="Marksman Trophy" width="70"></div>
+					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/marksman.jpg" title="Marksman Trophy" width="70"></div>
 				@else 
-					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/marksman.png" title="Marksman Trophy" width="70"></div>
+					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/marksman.jpg" title="Marksman Trophy" width="70"></div>
 				@endif
 				
 				@if($user->trophy_support == 0) 
-					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/support.png" title="Support Trophy" width="70"></div>
+					<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/support.jpg" title="Support Trophy" width="70"></div>
 				@else 
-					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/support.png" title="Support Trophy" width="70"></div>
+					<div class="challenge_tropy_finished"><img class="img-circle trophy" alt="" src="/img/trophy/support.jpg" title="Support Trophy" width="70"></div>
 				@endif
 				<div class="clear"></div>
 			@else

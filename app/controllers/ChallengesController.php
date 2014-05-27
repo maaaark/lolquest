@@ -100,12 +100,16 @@ class ChallengesController extends \BaseController {
 					
 					
 				} elseif($user->challenge_mode == 2) { // JUNGLE CHALLENGES
+					$jungle_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
 				
 				} elseif($user->challenge_mode == 3) { // MID CHALLENGES
+					$mid_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
 				
 				} elseif($user->challenge_mode == 4) { // MARKSMAN CHALLENGES
+					$marksman_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
 				
 				} elseif($user->challenge_mode == 5) { // SUPPORT CHALLENGES
+					$support_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
 				
 				}
 		} else {
