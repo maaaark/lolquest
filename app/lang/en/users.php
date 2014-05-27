@@ -32,4 +32,5 @@ return array(
 	'ranked_stats' => 'Season 4 Ranked Stats',
 	'achievements' => 'Achievements',
 	'quests_done' => 'Recent Quests done',
+	'settings' => 'Settings',
 );

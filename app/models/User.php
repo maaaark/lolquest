@@ -183,6 +183,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$user = User::find(Auth::user()->id);
 		if($user->show_in_timeline == 1) {
 			$timeline = new Timeline;
+			$timeline->user_id = $user->id;
 			$timeline->event_type = $event_type;
 			$timeline->quest_id = $quest_id;
 			$timeline->achievement_id = $achievement_id;

@@ -21,7 +21,7 @@ class LaddersController extends \BaseController {
 		if($month == NULL)
 			$month = date("m");
 		
-		$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(2);
+		$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(25);
 
 		return View::make('ladders.index', compact('ladder', 'month', 'year'));
 	}

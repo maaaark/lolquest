@@ -25,15 +25,17 @@
 		<div class="container title-wrapper">
 			<div class="title"><h1>@yield('title')</h1></div>
 		</div>
+		
 		<div class="container content-wrapper">	
-			<div id="navigation">
-				@include('layouts.navigation')
-			</div>
-			<div class="row">
 			
+			<div class="row">
+				<div id="navigation">
+			@include('layouts.navigation')
+		</div>
 				<table>
 					<tr>
 						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+							
 							@include('layouts.errors')
 
 							@yield('content')

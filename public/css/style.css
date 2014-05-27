@@ -27,16 +27,50 @@ h3 {
 	text-decoration: none;
 }
 #navigation {
-	background: #fff !important;
-	color: #000;
+	background: #333333 !important;
+	color: #fff;
 	width: 100%;
-	height: 40px;
+	margin: 0 auto;
+	height: 50px;
 	font-size: 14px;
 }
+#navigation ul {
+	margin: 0;
+	padding: 0;
+}
+#navigation ul li a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding-right: 15px;
+	padding-left: 15px;
+	height: 100%;
+	width: 100%;
+}
 #navigation ul li {
+	height: 50px;
+	line-height: 50px;
+	border-right: 1px solid #414141;
 	float: left;
 	list-style: none;
-	margin-right: 10px;
+}
+#navigation ul li:hover {
+	background: #232323;
+}
+.timeline-table td {
+	height: 50px;
+	line-height: 50px;
+}
+.timeline_quest{
+	padding-top: 15px !important;
+}
+.search  {
+	width: 307px;
+	height: 50px;
+	background: #232323;
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
 }
 .background {
 	background: url("../img/blur.jpg") no-repeat center center fixed;
@@ -86,6 +120,9 @@ h3 {
 }
 .progress-bar {
 	color: #414141 !important;
+}
+.navigation .progress {
+	height: 10px !important;
 }
 .quest_avatar {
 	margin-right: 3px;
@@ -271,10 +308,18 @@ img.bg {
 .uppercase {
 	text-transform: uppercase;
 }
+.small {
+	font-size: 10px;
+}
 .sidebar_box {
 	font-size: 12px !important;
 	margin-left: -5px;
 	padding-bottom: 15px;
+}
+.search {
+	padding-top: 8px;
+	padding-right: 10px;
+	float: right;
 }
 .search_field {
 	float: left;
@@ -282,8 +327,22 @@ img.bg {
 .search_summoner_name {
 	width: 200px !important;
 	background: #232323 !important;
-	color: #999999 !important;
+	color: #ffffff !important;
+	border: 0px solid #414141 !important;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 12px !important;
+}
+.search_icon {
+	color: #fff !important;
+	padding-left: 10px;
+	font-size: 12px;
+	padding-top: 9px;
+}
+.btn-dark {
+	background: #232323;
 	border: 1px solid #414141 !important;
+	color: #999999;
 }
 .title h1 {
 	color: #fff;
@@ -622,6 +681,9 @@ a.logout {
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 #wrapper {
 	position: relative;

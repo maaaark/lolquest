@@ -26,15 +26,10 @@
 	</div>
 	@endif
 			
-	
+	<!--
 	<div class="sidebar_box">
 	<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ trans("sidebar.logged_in_headline") }}</div>
-	<div class="uppercase">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>
-	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ Session::get('user_percent') }}% ;">
-		{{ Session::get('user_percent') }} %
-	  </div>
-	</div>
+	
 	<table class="logged_in">
 		<tr>
 			<td valign="top" style="text-align: center; padding-right: 10px;" class="hidden-sm hidden-xs">
@@ -52,7 +47,7 @@
 	</table>
 	</div>
 
-	<!-- SEARCH -->
+	 SEARCH 
 	<div class="sidebar_box">
 		<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
 		{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
@@ -61,7 +56,7 @@
 			<div class="clear"></div>
 		{{ Form::close() }}
 	</div>
-	
+	-->
 	
 	@if(Session::has('daily_quest'))
 	<div class="sidebar_box">

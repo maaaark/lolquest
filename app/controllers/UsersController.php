@@ -201,12 +201,11 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		$user = User::find($id);
-		
 		if (Auth::check())
 		{
+			$user = User::find(Auth::user()->id);
 			if($user->id == Auth::user()->id) {
 				return View::make('users.edit', compact('user'));
 			} else {

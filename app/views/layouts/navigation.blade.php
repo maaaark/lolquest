@@ -1,14 +1,16 @@
 <ul>
-	<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs hidden-sm">Logout</span></a></li>
-	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>
-	<li class=""><a href="#">{{ Auth::user()->qp }} QP</a></li>
-	<li>
-		<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
-			<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>
-			<div class="name hidden-xs hidden-sm">{{ Auth::user()->summoner_name }} </div>
-			<div class="clear"></div>
-		</a>
-	</li>			
+	<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+	<li><a href="/timeline"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Timeline</span></a></li>
+	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>			
 	<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
-	<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">My Quests</span></a></li>
+	<li><a href="/champions"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Champions</span></a></li>
 </ul>
+<div class="search">
+	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
+		<div class="search_field search_icon"><span class="glyphicon glyphicon-search"> </span></div>
+		<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
+		<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-dark')) }}</div>
+		<div class="clear"></div>
+	{{ Form::close() }}
+</div>
+<div class="clear"></div>

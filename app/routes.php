@@ -38,6 +38,7 @@ Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'))
 Route::get('403', array('uses' => 'BaseController@noAccess'));
 Route::get('404', array('uses' => 'BaseController@notFound'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
+Route::get('search', array('uses' => 'BaseController@search_summoner'));
 
 
 // Champions Controller
@@ -66,6 +67,7 @@ Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
+Route::get('/settings', 'UsersController@edit');
 
 
 // Quests Controller

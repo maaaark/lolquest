@@ -7,7 +7,6 @@
 		
 		@if(Auth::check())
 			<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs hidden-sm">Logout</span></a></li>
-			<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>
 			<li class=""><a href="#">{{ Auth::user()->qp }} QP</a></li>
 			<li>
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
@@ -15,10 +14,15 @@
 					<div class="name hidden-xs hidden-sm">{{ Auth::user()->summoner_name }} </div>
 					<div class="clear"></div>
 				</a>
-			</li>			
-			<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
-			<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">My Quests</span></a></li>
+			</li>
 			
+			<li style="width: 230px !important; padding-left: 10px; padding-right: 10px; padding-top: 7px; line-height: 20px !important;">
+				<div class="uppercase small">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ Session::get('user_percent') }}% ;"></div>
+				</div>
+			</li>
+			<li></li>
 		@else
 			<li><a href="/login"><span class="glyphicon glyphicon-user"> </span> <span class="hidden-xs">Login</span></a></li>
 			<li><a href="/users/create"><span class="glyphicon glyphicon-ok"></span> <span class="hidden-xs">Register</span></a></li>

@@ -3,6 +3,8 @@ $( document ).ready(function() {
 	$('.items').tooltip();
 	$('.trophy').tooltip();
 	$('.quest_avatar').tooltip();
+	$('.timeline_info').tooltip();
+	
 
 
 	$(function(){

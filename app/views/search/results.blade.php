@@ -10,7 +10,7 @@
 	</tr>
 	@foreach($users as $user)
 		<tr>
-			<td><a href="/summoners/{{ $user->region }}/{{ $user->summoner_name }}">{{ $user->summoner_name }}</a></td>
+			<td><a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $user->summoner_name }}</a></td>
 			<td>{{ $user->region }}</td>
 			<td>
 			@if( $user->summoner_status == 2)

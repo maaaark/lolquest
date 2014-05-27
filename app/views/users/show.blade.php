@@ -23,6 +23,8 @@
 					@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
 						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
 					@endif
+				@else
+					<a href="/settings" class="btn btn-primary">{{ trans("users.settings") }}</a>
 				@endif
 			</td>
 			<td width="400" valign="top">

@@ -76,6 +76,7 @@ class QuestsController extends \BaseController {
 			$user->challenge_mode = $mode;
 			$user->challenge_step = 1;
 			$user->challenge_time = date("U")*1000;
+			$user->timeline("challenge_start", 0, 0, $mode, $user->challenge_step);
 			$user->save();
 			
 			return Redirect::to('dashboard');
@@ -145,6 +146,7 @@ class QuestsController extends \BaseController {
 						$quest_count->quest_count = $quest_count->quest_count + 1;
 					}
 					$quest_count->save();
+					$user->timeline("quest_start", $quest->id, 0, 0, 0);
 					
 					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 
@@ -184,6 +186,9 @@ class QuestsController extends \BaseController {
 						$quest->quest_slot = "choose";
 						$quest->createDate = date("U")*1000;
 						$quest->save();
+						
+						$user->timeline("daily_start", $quest->id, 0, 0, 0);
+						
 						return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
 					} else {
 						return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
@@ -234,7 +239,9 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 							$user->save();
+							
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
@@ -256,6 +263,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 							$user->save();
 							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -284,6 +292,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -316,6 +325,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -347,6 +357,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -379,6 +390,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 								$user->save();
 								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -412,6 +424,7 @@ class QuestsController extends \BaseController {
 								$user->level_id +=1;
 								$user->checkAchievement(1, $user->level_id);
 							}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 								}
@@ -445,6 +458,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -477,6 +491,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -509,6 +524,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -540,6 +556,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -571,6 +588,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -603,6 +621,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -635,6 +654,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -668,6 +688,7 @@ class QuestsController extends \BaseController {
 									$user->level_id +=1;
 									$user->checkAchievement(1, $user->level_id);
 								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0);
 									$user->save();
 									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}

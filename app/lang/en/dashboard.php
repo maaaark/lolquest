@@ -13,7 +13,7 @@ return array(
 	'close' => 'Close',
 	'low_qp' => 'You do not have enough QP',
 	'balance' => "My QP balance",
-	'deleted' => "Daily quest was successfully deleted.",
+	'deleted' => "Quest was successfully deleted.",
 	'costs_reroll'=> "Reroll price",
 	'balance_after'=> "New QP balance",
 	'reroll_modal' => 'Reroll the Quest',
