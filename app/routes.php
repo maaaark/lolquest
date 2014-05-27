@@ -44,6 +44,10 @@ Route::post('search', array('uses' => 'BaseController@search_summoner'));
 Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 
 
+// Timelines Controller
+Route::get('/timeline', array('uses' => 'TimelinesController@index'));
+
+
 // Users Controller
 Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));

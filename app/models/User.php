@@ -49,6 +49,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Notification');
     }
 	
+	public function timelines()
+    {
+        return $this->hasMany('Timeline');
+    }
+	
 	public function quests()
     {
         return $this->hasMany('Quest');
@@ -172,6 +177,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$user->exp = $user->exp + $exp;
 		}
 		$user->save();
+	}
+	
+	public function timeline($event_type,$quest_id, $achievement_id, $challenge_mode, $challenge_step) {
+		$user = User::find(Auth::user()->id);
+		if($user->show_in_timeline == 1) {
+			$timeline = new Timeline;
+			$timeline->event_type = $event_type;
+			$timeline->quest_id = $quest_id;
+			$timeline->achievement_id = $achievement_id;
+			$timeline->challenge_mode = $challenge_mode;
+			$timeline->challenge_step = $challenge_step;
+			$timeline->save();
+		}
 	}
 
 	

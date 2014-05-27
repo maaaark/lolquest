@@ -22,4 +22,9 @@ class Quest extends \Eloquent {
 		return $this->hasOne('Questtype', 'id', 'type_id');
     }
 	
+	public function timelines()
+    {
+        return $this->hasMany('Timeline');
+    }
+	
 }

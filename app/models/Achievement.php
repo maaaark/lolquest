@@ -10,5 +10,12 @@ class Achievement extends \Eloquent {
 						
     }
 	
+	
+	public function timelines()
+    {
+        return $this->hasMany('Timeline');
+    }
+	
+	
 	protected $fillable = [];
 }

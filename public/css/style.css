@@ -26,6 +26,18 @@ h3 {
 	color: #fff;
 	text-decoration: none;
 }
+#navigation {
+	background: #fff !important;
+	color: #000;
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+}
+#navigation ul li {
+	float: left;
+	list-style: none;
+	margin-right: 10px;
+}
 .background {
 	background: url("../img/blur.jpg") no-repeat center center fixed;
     -webkit-background-size: cover; /* For WebKit*/
