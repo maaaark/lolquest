@@ -18,6 +18,8 @@
 				<td class="timeline_quest"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has started the Quest <a href="#" class="timeline_info" title="{{ trans('quests.'.$post->quest->type_id) }}">{{ $post->quest->questtype->name }}</a>  ({{ $post->quest->questtype->qp }} QP + {{ $post->quest->questtype->exp }} EXP)</td>
 				@elseif($post->event_type == "challenge_start")
 				<td class="timeline_quest" colspan="2"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has started the <strong>{{ trans("dashboard.challenge_mode_".$post->challenge_mode) }} Challenge</strong></td>
+				@elseif($post->event_type == "level_up")
+				<td class="timeline_quest" colspan="2"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> is now <strong>Level {{ $post->user->level_id }}</strong></td>
 				@endif
 				<td class="timeline_quest">{{ $post->created_at->diffForHumans() }}</td>
 			</tr>
