@@ -26,12 +26,18 @@ Route::resource('champions', 'ChampionsController');
 Route::resource('quests', 'QuestsController');
 Route::resource('items', 'ItemsController');
 Route::resource('products', 'ProductsController');
+Route::resource('blogs', 'BlogsController');
 
 
 // Admin Functions
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
+
+
+// Blog Controller
+Route::post('create_comment', array('uses' => 'BlogsController@create_comment'));
+
 
 
 // Base Controller

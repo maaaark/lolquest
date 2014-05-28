@@ -72,6 +72,55 @@ h3 {
 	text-decoration: none;
 	font-weight: bold;
 }
+a.comment_name {
+	font-weight: bold;
+}
+.blog_picture {
+	float: left;
+	width: 150px;
+}
+.blog_overview {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #bbbbbb;
+}
+.blog_content {
+	width: 670px;
+	margin-left: 15px;
+	float: left;
+	line-height: 20px;
+}
+.blog_content h4 {
+	margin-top: 0;
+	margin-bottom: 2px;
+	line-height: auto;
+}
+.blog_date {
+	border-top: 1px solid #bbbbbb;
+	padding: 5px;
+	border-bottom: 1px solid #bbbbbb;
+	margin-bottom: 15px;
+}
+.blog_post {
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 15px;
+}
+.comment {
+	border-bottom: 1px solid #bbbbbb;
+	padding: 5px;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+}
+.comment_time {
+	margin-top: 10px;
+	font-size: 10px;
+	color: #bbbbbb;
+}
+.comment_text {
+	margin-top: 5px;
+	line-height: 20px;
+}
 .background {
 	background: url("../img/blur.jpg") no-repeat center center fixed;
     -webkit-background-size: cover; /* For WebKit*/
