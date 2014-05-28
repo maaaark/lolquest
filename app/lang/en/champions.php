@@ -13,4 +13,6 @@ return array(
 	'mana_energy' => 'Mana / Energy',
 	'wl_ratio' => 'Win/Loss Ratio for',
 	'quests_with' => 'Quests with',
+	'last_quests' => 'Last Quests',
+	'last_achievements' => 'Last Achievements',
 );

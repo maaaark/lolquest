@@ -95,4 +95,29 @@
 		<br/>
 		Based on {{ $champion_games }} Games with {{ $champion->name }}
 	@endif
+	
+	<br/>
+	<table  width="100%">
+		<tr>
+			<td valign="top" width="50%">
+				<h3>{{ trans("champions.last_quests") }}</h3>
+				<table class="table table-striped" style="margin-right: 15px;">
+				@foreach($last_quests as $last)
+					<tr>
+						<td style="width: 30px !important;">
+						<a href="/users/{{ $last->user->region }}/{{ $last->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $last->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" /></a>
+						</td>
+						<td class="timeline_quest">
+							<a href="/users/{{ $last->user->region }}/{{ $last->user->summoner_name }}">{{ $last->user->summoner_name }}</a> - <a href="#" class="timeline_info" title="{{ trans('quests.'.$last->type_id) }}">{{ $last->questtype->name }}</a>
+						</td>
+					</tr>
+				@endforeach
+				</table>
+			</td>
+			<td valign="top" width="50%">
+				<h3>{{ trans("champions.last_achievements") }}</h3>
+				
+			</td>
+		</tr>
+	</table>
 @stop
