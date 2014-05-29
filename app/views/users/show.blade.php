@@ -242,7 +242,7 @@
 						<a href="/accept_friend/{{$user->getFriendUser($openfriend->user_id)->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
 						</td>
 						<td>
-						<a href="/remove_friend/{{$friend->id}}" class="btn btn-primary">{{ trans("friends.remove") }}</a>
+						<a href="/remove_friend/{{$openfriend->id}}" class="btn btn-primary">{{ trans("friends.remove") }}</a>
 						</td>
 					</tr>
 						@endif
