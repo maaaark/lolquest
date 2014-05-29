@@ -74,6 +74,7 @@ Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin')
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 Route::get('/settings', 'UsersController@edit');
+Route::get('/challenges', 'UsersController@challenges');
 
 
 // Quests Controller

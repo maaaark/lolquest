@@ -129,6 +129,7 @@
 	</div>
 	@endif
 	
+	<?php var_dump(Session::get('friend_ladder')) ?>
 @else
 	<br/>
 	<h3>{{ trans("sidebar.login_headline") }}</h3>

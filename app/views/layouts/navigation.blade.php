@@ -1,5 +1,6 @@
 <ul>
-	<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+	<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Quests</span></a></li>
+	<li><a href="/challenges"><span class="glyphicon glyphicon-certificate"></span> <span class="hidden-xs hidden-sm">Challenges</span></a></li>
 	<li><a href="/timeline"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Timeline</span></a></li>
 	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>			
 	<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>

@@ -7,7 +7,8 @@
 		
 		@if(Auth::check())
 			<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs hidden-sm">Logout</span></a></li>
-			<li class=""><a href="#">{{ Auth::user()->qp }} QP</a></li>
+			<li class=""><strong><a href="/shop">{{ Auth::user()->qp }} QP</a></strong></li>
+			<li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> <span class="hidden-xs hidden-sm">Settings</span></a></li>
 			<li>
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
 					<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>

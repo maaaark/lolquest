@@ -359,6 +359,23 @@ class UsersController extends \BaseController {
 		
 	}
 	
+	public function challenges()
+	{
+	
+		if (Auth::check())
+		{
+			$user = User::find(Auth::user()->id);
+
+			$playerroles = Playerrole::all();
+			
+			return View::make('users.challenges', compact('user','playerroles'));
+		} else {
+			return Redirect::to('login');
+		}
+		// show the form
+		
+	}
+	
 	public function doLogin()
 	{
 		// validate the info, create rules for the inputs
