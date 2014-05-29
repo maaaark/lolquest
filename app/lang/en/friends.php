@@ -7,4 +7,5 @@ return array(
 	'already' => 'You are already Friends',
 	'request' => 'Friend request',
 	'unconfirmed' => 'Friendship unconfirmed',
+	'remove' => 'Remove friendship',
 );

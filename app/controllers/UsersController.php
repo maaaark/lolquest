@@ -350,7 +350,6 @@ class UsersController extends \BaseController {
 			$time = date("U");
 			$time_waited = $time - $user->last_checked;
 			$playerroles = Playerrole::all();
-			
 			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'playerroles', 'time'));
 		} else {
 			return Redirect::to('login');
@@ -420,23 +419,49 @@ class UsersController extends \BaseController {
 	public function makeFriend($id)
 	{
 		if(Auth::user()) {
-				$user = User::findOrFail($id);
-				$user_friend = User::findOrFail(Auth::user()->id);
-				$user_friend->friends()->attach($user->id);
+				$user_friend = Auth::user();
+				$user_friend->friends()->attach($id);
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
 		}
 	} 
 	
-		public function acceptFriend($id)
+	public function removeFriend($id)
 	{
 		if(Auth::user()) {
+			$friend_user = User::findOrFail($id);
+			if($friend_user){
+				$friend_user->friends()->detach(Auth::user()->id);
+			}
+			$user_friend = Auth::user();
+			$user_friend->friends()->detach($id);
+			return Redirect::back();
+		} else {
+		return Redirect::to('login');
+		}
+	} 
+	
+	
+	public function acceptFriend($id)
+	{
+		if(Auth::user()) {
+			if(Auth::user()->id != $id){
 				$user = User::findOrFail($id);
 				$user_friend = User::findOrFail(Auth::user()->id);
 				$user_friend->friends()->attach($user->id);
 				$user-> checkAchievement(3, $user->friends->count());
+				$model = new FriendUser;
+				$model->setTable("friend_users");
+				$friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
+				$friend->validate = 1;
+				$friend->save();
+				$myfriend = $model->where("user_id","=", Auth::user()->id)->where('friend_id','=', $id)->first();
+				$myfriend->validate = 1;
+				$myfriend->save();
 				return Redirect::back();
+			}
+			return Redirect::back();
 		} else {
 		return Redirect::to('login');
 		}

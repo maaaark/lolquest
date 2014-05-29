@@ -147,10 +147,26 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
+	public function openFriends()
+    {
+        $isfriend_check = DB::table('friend_users')->where('friend_id', '=', Auth::user()->id)->where('validate', '=', 0)->get();
+		return $isfriend_check;
+    }
+	
+	public function getFriendUser($fid)
+    {
+		if(Auth::user()) {
+		$frienduser = User::where('id', '=', $fid)->first();
+		  return $frienduser;
+		} else {
+		return View::make('login');
+		}
+    }
+	
 	public function isFriend($friend_id)
     {
-        $isfriend = DB::table('friend_user')->where('user_id', '=', Auth::user()->id)->where('friend_id', '=', $friend_id)->first();
-        $isfriend_check = DB::table('friend_user')->where('user_id', '=', $friend_id )->where('friend_id', '=', Auth::user()->id)->first();
+        $isfriend = DB::table('friend_users')->where('user_id', '=', Auth::user()->id)->where('friend_id', '=', $friend_id)->first();
+        $isfriend_check = DB::table('friend_users')->where('user_id', '=', $friend_id )->where('friend_id', '=', Auth::user()->id)->first();
 		if($isfriend)
 		{
 			if( $isfriend_check){
@@ -164,7 +180,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return 'nofriends';
 		}
     }
-	
 	
 	public function reward($qp, $exp, $daily) {
 		$user = User::find(Auth::user()->id);
@@ -316,7 +331,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function friends()
     {
-        return $this->belongsToMany('User', 'friend_user', 'user_id', 'friend_id');
+        return $this->belongsToMany('User', 'friend_users', 'user_id', 'friend_id');
     }
 
 }
