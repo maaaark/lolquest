@@ -36,6 +36,7 @@ class ChallengesController extends \BaseController {
 					if($user->challenge_step == 2) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)
 						->where('gameType', '=', "MATCHED_GAME")
+						->where('win', '=', 1)
 						->whereIn('championId', $top_champions)
 						->where('createDate', '>', $user->challenge_time)
 						->get();
@@ -100,16 +101,16 @@ class ChallengesController extends \BaseController {
 					
 					
 				} elseif($user->challenge_mode == 2) { // JUNGLE CHALLENGES
-					$jungle_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+					$jungle_champions = array(64, 77, 5, 80, 121, 32, 120, 11, 111, 56, 33, 107, 35, 19, 254);
 				
 				} elseif($user->challenge_mode == 3) { // MID CHALLENGES
-					$mid_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+					$mid_champions = array();
 				
 				} elseif($user->challenge_mode == 4) { // MARKSMAN CHALLENGES
-					$marksman_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+					$marksman_champions = array();
 				
 				} elseif($user->challenge_mode == 5) { // SUPPORT CHALLENGES
-					$support_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+					$support_champions = array();
 				
 				}
 		} else {
