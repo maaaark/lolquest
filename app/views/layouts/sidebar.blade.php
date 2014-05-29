@@ -113,7 +113,6 @@
 		</table>
 		<table class="sidebar_questlist" style="margin-bottom: 5px;">
 			@foreach(Session::get('friend_ladder') as $friend_ladder)
-				@if ( Auth::user()->isFriend( $friend_ladder->id) == 'checked')
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
 					<td width="40" class="hidden-sm hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
@@ -122,14 +121,12 @@
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
 					<td class="hidden-sm hidden-xs">{{ $friend_ladder->month_exp }} EXP</td>			
 				</tr>
-				@endif
 			@endforeach
 		</table>
 		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
-	
-	<?php var_dump(Session::get('friend_ladder')) ?>
+
 @else
 	<br/>
 	<h3>{{ trans("sidebar.login_headline") }}</h3>
