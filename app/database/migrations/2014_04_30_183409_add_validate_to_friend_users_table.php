@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddValidateToFriendUserTable extends Migration {
+class AddValidateToFriendUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
