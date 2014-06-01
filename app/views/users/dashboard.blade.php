@@ -33,7 +33,11 @@
 					@if($time_waited < Config::get('api.refresh_time'))
 						<p><button class="btn btn-inactive">{{ trans("dashboard.wait", array('time'=>Config::get('api.refresh_time')-$time_waited)) }}</button></p>
 					@else
-						<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+						@if(Config::get('api.use_riot_api')  == 0 && $quest->questtype->id == 12)
+							<p><a class="btn btn-warning" href="" role="button">{{ trans("dashboard.inactive") }}</a></p>
+						@else
+							<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+						@endif
 					@endif
 					@if($quest->daily == 1)
 					<p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $quest->id }}">{{ trans("dashboard.cancel") }}</a></p><span class="clock"></span>
@@ -142,7 +146,7 @@
 					  @if($user->summoner_status == 2)
 					  <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;', 'name' => 'send', 'id' => 'send')) }}</p>
 					  @else
-						<a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a>
+						<p><a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a></p>
 					  @endif
 					{{ Form::close() }}
 				</div>

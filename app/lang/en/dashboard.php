@@ -54,4 +54,5 @@ return array(
 	'challenge_progress' => 'Challenge Progress',
 	'current_challenge' => 'Current Challenge',
 	'finish_challenge' => 'Finish Challenge',
+	'inactive' => 'Quest inactive',
 );
