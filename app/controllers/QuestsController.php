@@ -18,6 +18,8 @@ class QuestsController extends \BaseController {
 				$user = User::find(Auth::user()->id);
 				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->first();
 				if($quest) {
+					$timeline = Timeline::where("user_id", "=", $user->id)->where('quest_id', '=', $quest_id)->first();
+					$timeline->delete();
 					$quest->delete();
 					$time = date("U");
 					if(($quest->createDate + 86400000) > ($time*1000)) {
@@ -79,7 +81,7 @@ class QuestsController extends \BaseController {
 			$user->timeline("challenge_start", 0, 0, $mode, $user->challenge_step);
 			$user->save();
 			
-			return Redirect::to('dashboard');
+			return Redirect::to('challenges');
 			
 		} else {
 			return Redirect::to('login');

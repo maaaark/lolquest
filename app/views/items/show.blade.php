@@ -2,7 +2,7 @@
 @section('title', trans("items.index"))
 @section('content')
 	<br/>
-	<a href="/items">< All items</a><br/>
+	<a href="/items">Items</a> > <a href="/items/{{ $item->item_id }}">{{ $item->name }}</a><br/>
 	<br/>
 	<table class="table">
 		<tbody>

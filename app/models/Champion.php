@@ -4,8 +4,8 @@ class Champion extends \Eloquent {
 	
 	public function quests()
     {
-        return $this->hasMany('Quest');
-		//return $this->hasMany('Quest', 'quest_id', 'champion_id');
+        //return $this->hasMany('Quest');
+		return $this->hasMany('Quest', 'champion_id', 'champion_id');
     }
 	
 	public function daylies()

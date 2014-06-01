@@ -41,8 +41,13 @@ class RefreshDaily extends Command {
 		
 		$undone_dailies = Quest::where("daily","=", 1)->where("finished", "=", 0)->get();
 		foreach($undone_dailies as $delete) {
+			$timeline = Timeline::where('quest_id', '=', $delete->id)->first();
+			$timeline->delete();
 			$delete->delete();
 		}
+		
+		
+		
 		
 		$users = User::all();
 		foreach($users as $user) {

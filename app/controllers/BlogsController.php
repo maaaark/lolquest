@@ -28,13 +28,24 @@ class BlogsController extends \BaseController {
 	public function create_comment() {
 		if(Auth::check()) {
 			
-			$comment = new Comment;
-			$comment->comment = Input::get('comment');
-			$comment->user_id = Auth::user()->id;
-			$comment->blog_id = Input::get('blog_id');
-			$comment->save();
+			$input = Input::all();
+			$validation = Validator::make($input, Comment::$rules);
 			
-			return Redirect::to("/blogs/".Input::get('blog_id'));
+			if ($validation->passes())
+			{
+				$comment = new Comment;
+				$comment->comment = Input::get('comment');
+				$comment->user_id = Auth::user()->id;
+				$comment->blog_id = Input::get('blog_id');
+				$comment->save();
+				
+				return Redirect::to("/blogs/".Input::get('blog_id'));
+			} else {
+				return Redirect::to("/blogs/".Input::get('blog_id'))
+				->withInput()
+				->withErrors($validation)
+				->with('error', 'There were validation errors.');
+			}
 			
 		} else {
 			return Redirect::to("login");

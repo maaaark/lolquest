@@ -12,6 +12,8 @@
 						<span class="glyphicon glyphicon-asterisk"></span>
 					@elseif($note->type == 2)
 						<span class="glyphicon glyphicon-comment"></span>
+					@elseif($note->type == 3)
+						<span class="glyphicon glyphicon-user"></span>
 					@endif
 				</div>
 				<div class="note_message">

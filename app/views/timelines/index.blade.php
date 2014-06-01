@@ -16,8 +16,13 @@
 				@elseif($post->event_type == "quest_start")
 				<td  style="width: 30px !important;"><a href="/champions/{{ $post->quest->champion->key }}"><img class="img-circle quest_avatar" alt="{{ $post->quest->champion->name }}" src="/img/champions_small/{{ $post->quest->champion->champion_id }}_92.png" width="30" title="{{ $post->quest->champion->name }}" /></a></td>
 				<td class="timeline_quest"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has started the Quest <a href="#" class="timeline_info" title="{{ trans('quests.'.$post->quest->type_id) }}">{{ $post->quest->questtype->name }}</a>  ({{ $post->quest->questtype->qp }} QP + {{ $post->quest->questtype->exp }} EXP)</td>
+				@elseif($post->event_type == "daily_start")
+				<td  style="width: 30px !important;"><a href="/champions/{{ $post->quest->champion->key }}"><img class="img-circle quest_avatar" alt="{{ $post->quest->champion->name }}" src="/img/champions_small/{{ $post->quest->champion->champion_id }}_92.png" width="30" title="{{ $post->quest->champion->name }}" /></a></td>
+				<td class="timeline_quest"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has started the Daily Quest <a href="#" class="timeline_info" title="{{ trans('quests.'.$post->quest->type_id) }}">{{ $post->quest->questtype->name }}</a>  ({{ $post->quest->questtype->qp }} QP + {{ $post->quest->questtype->exp }} EXP)</td>
 				@elseif($post->event_type == "challenge_start")
 				<td class="timeline_quest" colspan="2"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has started the <strong>{{ trans("dashboard.challenge_mode_".$post->challenge_mode) }} Challenge</strong></td>
+				@elseif($post->event_type == "challenge_step")
+				<td class="timeline_quest" colspan="2"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> finished Step {{ $post->challenge_step }} of the <strong>{{ trans("dashboard.challenge_mode_".$post->challenge_mode) }} Challenge</strong></td>
 				@elseif($post->event_type == "level_up")
 				<td class="timeline_quest" colspan="2"><a href="/users/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> is now <strong>Level {{ $post->user->level_id }}</strong></td>
 				@endif
