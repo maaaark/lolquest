@@ -530,7 +530,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
-						echo Auth::user()->name."hat ein achiement bekommen";
+						Auth::user()->notify(1, '1234test');
 					}
 				} else {
 					echo Auth::user()->name."hat eindsfsdf achiement bekommen";
