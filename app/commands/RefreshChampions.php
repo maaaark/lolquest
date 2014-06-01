@@ -50,6 +50,7 @@ class RefreshChampions extends Command {
 				if(!isset($recent_champion)) {
 					$new_champion = new Champion;
 					$new_champion->name = $champion["name"];
+					$new_champion->title = $champion["title"];
 					$new_champion->champion_id = $champion["id"];
 					$new_champion->key = $champion["key"];
 					
@@ -76,7 +77,7 @@ class RefreshChampions extends Command {
 					
 					
 					$new_champion->save();
-					echo "Saved Champion".$champion["name"]."<br/>";
+					echo "Saved Champion".$champion["name"]."\n";
 				}
 				unset($recent_champion);
 			}

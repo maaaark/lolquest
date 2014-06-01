@@ -6,6 +6,7 @@
 	<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
 	<li><a href="/champions"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Champions</span></a></li>
 	<li><a href="/blogs"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Blog</span></a></li>
+	<li><a href="#"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Forum</span></a></li>
 </ul>
 <div class="search">
 	{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}

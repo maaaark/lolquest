@@ -163,6 +163,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $isfriend_check;
     }
 	
+	
+	public function notify($type, $message)
+    {
+        $note = new Notification;
+		$note->user_id = $this->user_id;
+		$note->message = $message;
+		$note->save();
+    }
+	
 	public function getFriendUser($fid)
     {
 		if(Auth::user()) {
