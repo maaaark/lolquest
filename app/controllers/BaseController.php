@@ -38,6 +38,15 @@ class BaseController extends Controller {
 		}
 	}
 	
+	public function start() {
+		if (Auth::check()) {
+			return Redirect::to('dashboard');
+		} else {
+			$timelines = Timeline::orderBy('id', 'desc')->take(5)->get();
+			return View::make('start', compact('timelines'));
+		}
+	}
+	
 	public function noAccess()
 	{
 		return View::make('layouts.403');

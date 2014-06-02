@@ -57,7 +57,14 @@ h3 {
 #navigation ul li:hover {
 	background: #232323;
 }
+.navigation_wrapper {
+	background: #333333;
+}
+.recent_activity {
+
+}
 .timeline-table td {
+	font-size: 12px;
 	height: 50px;
 	line-height: 50px;
 }
@@ -71,6 +78,21 @@ h3 {
 	color: #000;
 	text-decoration: none;
 	font-weight: bold;
+}
+.bullet {
+	width: 120px;
+	float: left;
+}
+.bullet_desc {
+	text-align: left;
+	width: 490px;
+	float: left;
+}
+.info_bullet {
+	margin-bottom: 25px;
+}
+.bullet_desc h2 {
+	margin-top: 0;
 }
 a.comment_name {
 	font-weight: bold;
@@ -235,7 +257,6 @@ img.bg {
 	color: #fff;
 	font-weight: bold;
 	font-size: 16px;
-	width: 560px;
 	line-height: 26px;
 	text-shadow: 1px 1px 8px #000000;
 	padding-bottom: 50px;
@@ -420,18 +441,27 @@ a.logout {
 	font-weight: bold !important;
 }
 .bullet {
-	text-align: center;
+	text-align: left;
 }
 .clear {
 	clear: both;
 }
 .register_form {
-	margin-top: -270px;
+	float: right;
+	width: 450px;
+	margin-top: -65px;
+	margin-bottom: 15px;
+	padding: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	background: #fff;
 	border: 1px solid #e1e1e8;
 	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 .register_form input, .register_form select {
 	margin-bottom: 10px;

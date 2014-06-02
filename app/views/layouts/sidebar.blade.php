@@ -66,7 +66,7 @@
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
+					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
@@ -85,7 +85,7 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
+				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard">{{ $quest->questtype->name }}</a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
@@ -105,7 +105,7 @@
 			@if(Session::get('my_ladder_rang'))
 				<tr style="background: #2d2d2d;">
 					<td width="30">{{ Session::get('my_ladder_rang')->rang }}.</td>
-					<td width="40" class="hidden-sm hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
+					<td width="40" class="hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
 					<img src="/img/profileicons/profileIcon{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.jpg" class="img-circle" width="25" />
 					</a></strong></td>
 					<td width="140"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
@@ -117,7 +117,7 @@
 			@foreach(Session::get('friend_ladder') as $friend_ladder)
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
-					<td width="40" class="hidden-sm hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
+					<td width="40" class="hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
 					<img src="/img/profileicons/profileIcon{{ $friend_ladder->profileIconId }}.jpg" class="img-circle" width="25" />
 					</a></td>
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>

@@ -12,7 +12,7 @@
 	 <div class="row myquests">
 	 
 		@foreach($myquests as $quest)
-			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 				@if($quest->daily == 1)
 				<div class="quest daily_ribbon">
 				@else
@@ -120,7 +120,7 @@
 		
 		
 		@if($myquests->count() < $user->quest_slots)
-			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 				<div class="quest">
 				{{ Form::model($user, array('action' => 'QuestsController@create_choose_quest', 'name' => 'frm', 'id' => 'frm' )) }}
 				  <img class="img-circle" alt="" src="/img/champions/0_92.png" width="100">
@@ -157,7 +157,7 @@
 		
 		<?php $free_slots = $user->quest_slots - ($myquests->count()+1); ?>
 		@for ($i = 1; $i <= $free_slots; $i++)
-			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 				<div class="quest empty_quest">
 					{{ trans("dashboard.empty_quests") }}
 				</div>
@@ -166,7 +166,7 @@
 		
 		<?php $buyable_slots = 4 -$user->quest_slots; ?>
 		@for ($i = 1; $i <= $buyable_slots; $i++)
-			<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 				<div class="quest maxquests">
 					{{ trans("dashboard.maximum_quests") }}<br/>
 					<br/>

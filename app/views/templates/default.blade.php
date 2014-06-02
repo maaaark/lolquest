@@ -7,11 +7,6 @@
 		{{ HTML::style('css/style.css') }}
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/jquery.countdown.min.js"></script>
-		@include('layouts.countdown')
-		{{ HTML::script('js/custom.js') }}
 	</head>
     <body>
 	
@@ -30,8 +25,8 @@
 			
 			<div class="row">
 				<div id="navigation">
-			@include('layouts.navigation')
-		</div>
+					@include('layouts.navigation')
+				</div>
 				<table>
 					<tr>
 						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">

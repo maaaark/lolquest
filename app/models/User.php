@@ -206,14 +206,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if($daily == true) {
 			$user->qp = $user->qp + ($qp * 2);
 			$user->exp = $user->exp + ($exp * 2);
+			$user->lifetime_qp = $user->lifetime_qp + ($qp * 2);
 		} else {
 			$user->qp = $user->qp + $qp;
 			$user->exp = $user->exp + $exp;
+			$user->lifetime_qp = $user->lifetime_qp + $qp;
 		}
 		$user->save();
 	}
 	
-	public function timeline($event_type,$quest_id, $achievement_id, $challenge_mode, $challenge_step) {
+	public function timeline($event_type,$quest_id, $achievement_id, $challenge_mode, $challenge_step, $comment_id, $friend_id) {
 		$user = User::find(Auth::user()->id);
 		if($user->show_in_timeline == 1) {
 			$timeline = new Timeline;
@@ -223,6 +225,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$timeline->achievement_id = $achievement_id;
 			$timeline->challenge_mode = $challenge_mode;
 			$timeline->challenge_step = $challenge_step;
+			$timeline->comment_id = $comment_id;
+			$timeline->friend_id = $friend_id;
 			$timeline->save();
 		}
 	}
