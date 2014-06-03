@@ -28,45 +28,15 @@
 	</div>
 	@endif
 			
-	<!--
-	<div class="sidebar_box">
-	<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ trans("sidebar.logged_in_headline") }}</div>
-	
-	<table class="logged_in">
-		<tr>
-			<td valign="top" style="text-align: center; padding-right: 10px;" class="hidden-sm hidden-xs">
-				<a class="summoner_avatar" href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
-					<img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" width="70" class="profile_avatar" />
-					<span class="border"><img src="/img/border/silver_border.png" width="70" /></span>
-				</a><br/>
-			</td>
-			<td valign="top">
-				<a href="/dashboard">{{ trans("sidebar.myquest") }}</a><br/>
-				<a href="/users/{{ Auth::user()->id }}/edit">{{ trans("sidebar.settings") }}</a><br/>
-				<a href="/logout" class="logout">{{ trans("sidebar.logout") }}</a>
-			</td>
-		</tr>
-	</table>
-	</div>
 
-	 SEARCH 
-	<div class="sidebar_box">
-		<div class="sidebar_headline"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;{{ trans("sidebar.search") }}</div>
-		{{ Form::open(array('url'=>'/search','action' => 'BaseController@search_summoner', 'style'=>'margin-bottom: 0;')) }}
-			<div class="search_field">{{ Form::text('summoner_name', null, array('class' => 'form-control search_summoner_name', 'placeholder' => 'Search Summoner')) }}</div>
-			<div class="search_field">{{ Form::submit('Search', array('class' => 'btn btn-primary')) }}</div>
-			<div class="clear"></div>
-		{{ Form::close() }}
-	</div>
-	-->
-	
+
 	@if(Session::has('daily_quest'))
 	<div class="sidebar_box">
 		<div class="sidebar_headline"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;Daily Quest</div>
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
+					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
@@ -78,6 +48,9 @@
 		</div>
 	</div>
 	@endif
+
+
+
 	
 	<div class="sidebar_box">
 	<div class="sidebar_headline"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;&nbsp;{{ trans("sidebar.active_quests") }}</div>
@@ -85,7 +58,7 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" class="hidden-sm hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
+				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard">{{ $quest->questtype->name }}</a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
@@ -105,7 +78,7 @@
 			@if(Session::get('my_ladder_rang'))
 				<tr style="background: #2d2d2d;">
 					<td width="30">{{ Session::get('my_ladder_rang')->rang }}.</td>
-					<td width="40" class="hidden-sm hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
+					<td width="40" class="hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
 					<img src="/img/profileicons/profileIcon{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.jpg" class="img-circle" width="25" />
 					</a></strong></td>
 					<td width="140"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
@@ -117,7 +90,7 @@
 			@foreach(Session::get('friend_ladder') as $friend_ladder)
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
-					<td width="40" class="hidden-sm hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
+					<td width="40" class="hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
 					<img src="/img/profileicons/profileIcon{{ $friend_ladder->profileIconId }}.jpg" class="img-circle" width="25" />
 					</a></td>
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
@@ -128,13 +101,23 @@
 		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
-
 @else
-	<br/>
-	<h3>{{ trans("sidebar.login_headline") }}</h3>
-	{{ Form::open(array('url' => 'login')) }}
-		{{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'form-control')) }}
-		{{ Form::password('password', array('class' => 'form-control')) }}
-		{{ Form::submit('Login', array('class' => 'btn btn-primary')) }}
-	{{ Form::close() }}
+
+	<div class="sidebar_box">
+		<div class="sidebar_headline"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Login / Register</div>
+		{{ Form::open(array('url' => 'login')) }}
+		<p>
+			{{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', "class" => "sidebar_input")) }}
+		</p>
+		<p>
+			{{ Form::password('password', array("class" => "sidebar_input")) }}
+		</p>
+		{{ Form::submit('Login', array("class" => "btn btn-primary")) }}
+		{{ Form::close() }}
+		<br/>
+		No Account yet? Register for FREE!
+		<a href="/register"><div class="btn btn-success">Register now</div></a>
+	</div>
+
+
 @endif

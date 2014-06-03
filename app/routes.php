@@ -11,14 +11,8 @@
 |
 */
 
-Route::get('/', function()
-{
-	if (Auth::check()) {
-		return Redirect::to('dashboard');
-	} else {
-		return View::make('start');
-	}
-});
+
+Route::get('/', array('uses' => 'BaseController@start'));
 
 Route::resource('users', 'UsersController');
 Route::resource('summoners', 'SummonersController');

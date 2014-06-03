@@ -27,7 +27,7 @@ class BlogsController extends \BaseController {
 	
 	public function create_comment() {
 		if(Auth::check()) {
-			
+			$user = User::find(Auth::user()->id);
 			$input = Input::all();
 			$validation = Validator::make($input, Comment::$rules);
 			
@@ -38,6 +38,7 @@ class BlogsController extends \BaseController {
 				$comment->user_id = Auth::user()->id;
 				$comment->blog_id = Input::get('blog_id');
 				$comment->save();
+				$user->timeline("new_comment",0, 0, 0, 0, $comment->id, 0);
 				
 				return Redirect::to("/blogs/".Input::get('blog_id'));
 			} else {

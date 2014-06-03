@@ -3,9 +3,9 @@
 return array(
     'friends' => 'Friends',
 	'request' => 'request',
-	'accept' => 'Accept friendship',
+	'accept' => 'Accept Friend',
 	'already' => 'You are already Friends',
 	'request' => 'Friend request',
 	'unconfirmed' => 'Friendship unconfirmed',
-	'remove' => 'Remove friendship',
+	'remove' => 'Remove Friend',
 );
