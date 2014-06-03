@@ -467,7 +467,8 @@ class UsersController extends \BaseController {
 				$user = User::findOrFail($id);
 				$user_friend = User::findOrFail(Auth::user()->id);
 				$user_friend->friends()->attach($user->id);
-				$user-> checkAchievement(3, $user->friends->count());
+				$user-> checkAchievement_friend($user->id, 3, $user->friends->count());
+				$user_friend-> checkAchievement(3, $user_friend->friends->count());
 				$model = new FriendUser;
 				$model->setTable("friend_users");
 				$friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();

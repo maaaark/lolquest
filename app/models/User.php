@@ -167,8 +167,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function notify($type, $message)
     {
         $note = new Notification;
-		$note->user_id = $this->user_id;
+		$note->user_id = $this->id;
 		$note->message = $message;
+		$note->type = $type;
 		$note->save();
     }
 	
@@ -337,7 +338,33 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
-						Auth::user()->notify(1, '1234test');
+						Auth::user()->notify(1, trans("achievements.receive").$user_achievement->name);
+					}
+				} else {
+					echo Auth::user()->name."hat eindsfsdf achiement bekommen";
+				}
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
+		public function checkAchievement_friend($friend, $type, $factor)
+	{
+		if($friend) {
+				$achiv_id = 0;
+				$user = User::find($friend);
+				foreach($user->achievements as $achievement) {
+					if($achievement->type == $type){
+						if($achiv_id < $achievement->id){
+							$achiv_id = $achievement->id;
+						}
+					}
+				}
+				$user_achievement = Achievement::where('type', $type)->where('id','>',$achiv_id)->firstOrFail(); 
+				if($user_achievement){
+					if($user_achievement->factor <= $factor) {
+						$user->achievements()->attach($user_achievement->id);
+						$user->notify(1, trans("achievements.receive").$user_achievement->name);
 					}
 				} else {
 					echo Auth::user()->name."hat eindsfsdf achiement bekommen";
