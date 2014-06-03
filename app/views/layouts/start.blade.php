@@ -65,11 +65,19 @@
 				<div class="row">
 					
 					<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+						<div class="lolquest_description">
 						<h2>{{ trans("start.what_can_i_do_headline") }}</h2>
-						{{ trans("start.what_can_i_do") }}
+						{{ trans("start.what_can_i_do") }}<br/>
+						<br/>
+						{{ trans("start.free") }}<br/>
+						<br/>
+						<a href="#" class="btn btn-success">Register a new Account</a> or <a class="btn btn-primary" href="#">Login</a>
+						</div>
 					</div>
-					<div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
-						VIDEO
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+						<div class="lolquest_video">
+							<img src="/img/lolquest_video.jpg" width="100%" alt="lolquest Video" />
+						</div>
 					</div>
 				</div>
 			</div>

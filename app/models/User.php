@@ -447,7 +447,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$game_date=date("Y-m-d H:i:s", strtotime($game['createDate']));
 						$summoner_1 =$game['spell1'];
 						$summoner_2 =$game['spell2'];
-						$gametype =$game['queueType'];
+						$gametype =$game['gameType'];
 						$gamemode =$game['gameMode'];
 						$skin_id = $game['skinIndex'];
 						$premade = $game['premadeSize'];
@@ -534,7 +534,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
-						Auth::user()->notify(1, '1234test');
+						//Auth::user()->notify(1, '1234test');
 					}
 				} else {
 					echo Auth::user()->name."hat eindsfsdf achiement bekommen";

@@ -25,8 +25,8 @@
 			</li>
 			<li></li>
 		@else
-			<li><a href="/login"><span class="glyphicon glyphicon-user"> </span> <span class="hidden-xs">Login</span></a></li>
-			<li><a href="/users/create"><span class="glyphicon glyphicon-ok"></span> <span class="hidden-xs">Register</span></a></li>
+			<li><a href="/login"><span class="glyphicon glyphicon-ok"> </span> <span class="hidden-xs">Login</span></a></li>
+			<li><a href="/users/create"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs">Register</span></a></li>
 		@endif
 		
 	</ul>

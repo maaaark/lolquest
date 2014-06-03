@@ -79,6 +79,22 @@ h3 {
 	text-decoration: none;
 	font-weight: bold;
 }
+.lolquest_video {
+	padding-top: 20px;
+	
+	
+}
+.lolquest_video img {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+}
+.lolquest_description {
+	line-height: 20px;
+}
 .bullet {
 	width: 120px;
 	float: left;
@@ -250,7 +266,7 @@ img.bg {
 .fullwidth_box_grey {
 	width: 100%;
 	background: #f7f7f9;
-	padding-bottom: 40px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid #e1e1e8;
 }
 .landingpage_teaser {
@@ -342,14 +358,14 @@ img.bg {
 	color: #333;
 }
 .sidebar_input {
-	background: #565656;
-	color: #333;
-	border: 1px solid #000;
-	width: 350px;
-	height: 30px;
-	line-height: 30px;
+	background: #232323;
+	color: #999999;
+	border: 1px solid #333333;
+	width: 280px;
+	height: 40px;
+	padding: 5px;
+	line-height: 40px;
 	padding-left: 10px;
-	margin-top: 10px;
 	font-size: 14px;
 }
 .sidebar_button {

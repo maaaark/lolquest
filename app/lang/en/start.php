@@ -16,4 +16,5 @@ return array(
 	'login' => 'Login',
 	'have_account' => 'Already have an lolquest.net account?',
 	'register_now' => 'Register now!',
+	'free' => 'The best thing is: <strong>It`s all FREE. Get RP or Rare Skins without spending any money!</strong>',
 );
