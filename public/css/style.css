@@ -83,6 +83,21 @@ h3 {
 	float: left;
 	margin-right: 5px;
 }
+.forum_category {
+	border: 1px solid #333333;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 30px;
+}
+.forum_headline {
+	background: #333333;
+	color: #fff;
+	height: 30px;
+	padding-left: 10px;
+	line-height: 30px;
+	font-weight: bold;
+}
 .search  {
 	width: 307px;
 	height: 50px;
