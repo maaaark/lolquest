@@ -3,4 +3,5 @@
 @section('content')
 	<br/>
 	@include('timelines.clean_timeline')
+	<?php echo $timelines->links(); ?>
 @stop

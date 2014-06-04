@@ -165,10 +165,10 @@
 					{{ trans("achievements.no_achievements") }}
 				@else
 					@foreach($user->achievements as $achievement)
-						{{ $achievement->name }}
+						<div class="achievement"><img src="/img/trophy/gold.png" title="{{ $achievement->name }}" class="trophy"  /></div>
 					@endforeach
 				@endif
-				
+				<div class="clear"></div>
 			</td>
 		</tr>
 	</table>
@@ -225,7 +225,7 @@
 	@endforeach
 	</ul>
 	<div class="clear"></div>
-	
+	<br/><br/>
 	@else
 		{{ trans("users.no_summoner") }}
 	@endif

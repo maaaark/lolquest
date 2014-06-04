@@ -10,7 +10,7 @@ return array(
 	'step_3' => 'Save your runepage and refresh this page.',
 	'refresh' => 'Refresh this page',
 	'done_headline' => "Congratulations!",
-	'done' => "Your account is now verified. Have fun with lolquest.net!<br/><br/>Click here to get your first quest!",
+	'done' => "Your account is now verified. Have fun with lolquest.net!<br/><br/><a href='/dashboard'>Click here to get your first quest!</a>",
 	'no_name' => "No summoner name",
 	'no_name_disc' => "First set a summoner name to your profile.",
 	'current_runes' => "Your current runepages are"

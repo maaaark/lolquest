@@ -9,7 +9,7 @@ class TimelinesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$timelines = Timeline::orderBy('id', 'desc')->get();
+		$timelines = Timeline::orderBy('id', 'desc')->paginate(25);
 		return View::make('timelines.index', compact('timelines'));
 	}
 
