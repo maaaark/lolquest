@@ -165,7 +165,7 @@
 					{{ trans("achievements.no_achievements") }}
 				@else
 					@foreach($user->achievements as $achievement)
-						<div class="achievement"><img src="/img/trophy/gold.png" title="{{ $achievement->name }}" class="trophy"  /></div>
+						<div class="achievement"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></div>
 					@endforeach
 				@endif
 				<div class="clear"></div>
