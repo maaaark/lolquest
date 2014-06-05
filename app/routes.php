@@ -37,7 +37,10 @@ Route::post('create_comment', array('uses' => 'BlogsController@create_comment'))
 Route::get('/forum', array('uses' => 'ForumController@index'));
 Route::get('/forum/{url_name}', array('uses' => 'ForumController@category'));
 Route::get('/forum/{url_name}/{topic_url_name}', array('uses' => 'ForumController@topic'));
-
+Route::get('/forum/{url_name}/{topic_url_name}/reply', array('uses' => 'ForumController@reply'));
+Route::get('/forum/{url_name}/create_topic/new', array('uses' => 'ForumController@create_topic'));
+Route::post('/forum/{url_name}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
+Route::post('/forum/{url_name}/create_topic/save_topic', array('uses' => 'ForumController@save_topic'));
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));

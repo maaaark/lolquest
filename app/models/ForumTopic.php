@@ -4,7 +4,8 @@ class ForumTopic extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'title' => 'required',
+		'content' => 'required'
 	];
 
 	// Don't forget to fill this array
@@ -12,7 +13,7 @@ class ForumTopic extends \Eloquent {
 	
 	public function category()
     {
-        return $this->hasOne('ForumCategory');
+        return $this->belongsTo('ForumCategory', 'forum_category_id', 'id');
     }
 	
 	public function replies()
