@@ -38,5 +38,16 @@ $( document ).ready(function() {
 	$('#frm').bind('submit', function(e) {
 	   $('#send').attr('disabled', 'disabled');
 	});
+	
+	$('#myTab a[href="#profile"]').tab('show')
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+	
+	$(function () {
+    $('#myTab a:first').tab('show')
+  })
+	
 
 });

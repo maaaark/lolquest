@@ -7,6 +7,8 @@
 		{{ HTML::style('css/style.css') }}
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<script src="/js/jquery.min.js"></script>
 	</head>
     <body>
 	

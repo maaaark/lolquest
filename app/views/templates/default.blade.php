@@ -20,7 +20,10 @@
 
 	
 	<div id="wrapper">
+		
 		<div class="container title-wrapper">
+			<div id="banner_1">728x90</div>
+			<div id="banner_2">160x600</div>
 			<div class="title"><h1>@yield('title')</h1></div>
 		</div>
 		

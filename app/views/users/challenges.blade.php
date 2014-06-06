@@ -1,8 +1,7 @@
 @extends('templates.default')
-@section('title', trans("users.dashboard"))
+@section('title', trans("users.challenges"))
 @section('content')
 	<br/>	
-	<h3>Challenges</h3>
 	<div class="challenge">
 		<div class="col-lg-3 col-sm-6 col-md-4 col-sm-4 col-xs-6">
 			<div class="challenge_sidebar">
@@ -35,8 +34,19 @@
 		<div class="col-lg-9 col-sm-6 col-md-8 col-sm-8 col-xs-6">
 			<h4>{{ trans("dashboard.challenge_progress") }}:</h4>
 			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-				0%
+			@if($user->challenge_step == 1)
+				<?php $challenge_percent = 0; ?>
+			@elseif($user->challenge_step == 2)
+				<?php $challenge_percent = 20; ?>
+			@elseif($user->challenge_step == 3)
+				<?php $challenge_percent = 40; ?>
+			@elseif($user->challenge_step == 4)
+				<?php $challenge_percent = 60; ?>
+			@elseif($user->challenge_step == 5)
+				<?php $challenge_percent = 80; ?>
+			@endif
+			  <div class="progress-bar" role="progressbar" aria-valuenow="{{ $challenge_percent }}" aria-valuemin="{{ $challenge_percent }}" aria-valuemax="100" style="width: {{ $challenge_percent }}%;">
+				{{ $challenge_percent }}%
 			  </div>
 			</div>
 			<br/>

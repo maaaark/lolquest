@@ -33,4 +33,5 @@ return array(
 	'achievements' => 'Achievements',
 	'quests_done' => 'Recent Quests done',
 	'settings' => 'Settings',
+	'challenges' => 'Challenges',
 );

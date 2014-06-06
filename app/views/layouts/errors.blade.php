@@ -1,3 +1,9 @@
+@if(Session::has('success'))
+	<div class="bs-callout bs-callout-success">
+		{{ Session::get('success') }}
+	</div>
+@endif
+
 @if(Session::has('message'))
 		<div class="bs-callout bs-callout-warning">
 			{{ Session::get('message') }}

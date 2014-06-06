@@ -113,10 +113,10 @@
 			{{ Form::password('password', array("class" => "sidebar_input")) }}
 		</p>
 		{{ Form::submit('Login', array("class" => "btn btn-primary")) }}
+		<a href="/register" style="text-transform: normal !important;"><div style="text-transform: normal !important;"class="btn btn-success">Register now</div></a>
 		{{ Form::close() }}
 		<br/>
-		No Account yet? Register for FREE!
-		<a href="/register"><div class="btn btn-success">Register now</div></a>
+		
 	</div>
 
 

@@ -27,9 +27,9 @@ class ChallengesController extends \BaseController {
 							$user->challenge_time = date("U")*1000;
 							$user->save();
 							
-							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1);
+							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 							
-							return Redirect::to("challenges");
+							return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 						}
 					}
 					
@@ -58,8 +58,8 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1);
-								return Redirect::to("challenges");
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
+								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
 						}
@@ -92,8 +92,8 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1);
-								return Redirect::to("challenges");
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
+								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
 						}

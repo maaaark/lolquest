@@ -1,8 +1,6 @@
 <html>
 	<head>
 		<title>lolquest.net - @yield('title')</title>
-		
-		
 	</head>
     <body>
 	
@@ -22,7 +20,8 @@
 			<br/>
 			<div class="landingpage_teaser">
 				<br/>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.<br/>
+				{{ trans("start.teaser") }} 
+				<br/>
 				<br/>	
 			</div>
 			</div>
@@ -37,15 +36,38 @@
 								@endforeach
 							</ul>
 						 
-							{{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'E-Mail')) }}
-							{{ Form::text('summoner_name', null, array('class'=>'form-control', 'placeholder'=>'Summoner Name')) }}
-							{{ Form::select('region', array('0' => 'Select a Region', 'euw' => 'euw', 'na' => 'na'), null, array('class' => 'form-control')) }}
-							{{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password')) }}
-							{{ Form::password('password_confirmation', array('class'=>'form-control', 'placeholder'=>'Confirm Password')) }}
+							<div class="input-group">
+								  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+								  {{ Form::text('email', Input::old('email'), array('class'=>'form-control', 'placeholder'=>'E-Mail', 'class' => 'form-control')) }}
+								</div>
+								<br/>
+								
+								<div class="input-group">
+								  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+								  {{ Form::text('summoner_name', null, array('class'=>'form-control', 'placeholder'=>'Summoner Name', 'class' => 'form-control')) }}
+								</div>
+								<br/>
+								
+								<div class="input-group">
+								  <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+								  {{ Form::select('region', array('0' => 'Select a Region', 'euw' => 'euw', 'na' => 'na'), null, array('class' => 'form-control')) }}
+								</div>
+								<br/>
+								
+								<div class="input-group">
+								  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+								  {{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password', 'class' => 'form-control')) }}
+								</div>
+								<br/>
+								
+								<div class="input-group">
+								  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+								  {{ Form::password('password_confirmation', array('class'=>'form-control', 'placeholder'=>'Confirm Password', 'class' => 'form-control')) }}
+								</div>
+								<br/>
 							{{ Form::submit('Register', array('class'=>'btn btn-large btn-success btn-block'))}}
 						{{ Form::close() }}
 						<hr/>
-						{{ trans("start.have_account") }}<br/><br/>
 						<a href="/login" class="btn btn-primary btn-large btn-block">{{ trans("start.login") }}</a><br/>
 						<br/>
 				</div>
@@ -71,7 +93,7 @@
 						<br/>
 						{{ trans("start.free") }}<br/>
 						<br/>
-						<a href="#" class="btn btn-success">Register a new Account</a> or <a class="btn btn-primary" href="#">Login</a>
+						<a href="/register" class="btn btn-success">{{ trans("start.register_now") }}</a>&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="/login">Login</a>
 						</div>
 					</div>
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -93,6 +115,7 @@
 					<div class="recent_activity">
 						@include('timelines.clean_timeline', array('timelines' => $timelines))
 					</div>
+					<a href="/timeline">See the full timeline</a>
 				</div>
 			</div>
 		</div>
@@ -105,6 +128,7 @@
 	{{ HTML::style('css/style.css') }}
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:400,700' rel='stylesheet' type='text/css'>
     <script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

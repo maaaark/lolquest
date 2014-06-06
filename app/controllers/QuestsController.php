@@ -150,7 +150,7 @@ class QuestsController extends \BaseController {
 					$quest_count->save();
 					$user->timeline("quest_start", $quest->id, 0, 0, 0,0,0);
 					
-					return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.accepted"));
 
 			} else {
 				// Back
@@ -191,7 +191,7 @@ class QuestsController extends \BaseController {
 						
 						$user->timeline("daily_start", $quest->id, 0, 0, 0, 0, 0);
 						
-						return Redirect::to('dashboard')->with('message', trans("dashboard.accepted"));
+						return Redirect::to('dashboard')->with('success', trans("dashboard.accepted"));
 					} else {
 						return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
 					}
@@ -244,7 +244,7 @@ class QuestsController extends \BaseController {
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 							$user->save();
 							
-							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
 					
@@ -267,7 +267,7 @@ class QuestsController extends \BaseController {
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 							$user->save();
-							return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+							return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
 					
@@ -296,7 +296,7 @@ class QuestsController extends \BaseController {
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 								$user->save();
-								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
 					}
 					
@@ -325,7 +325,7 @@ class QuestsController extends \BaseController {
 							
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 								$user->save();
-								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -353,7 +353,7 @@ class QuestsController extends \BaseController {
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 								$user->save();
-								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -382,7 +382,7 @@ class QuestsController extends \BaseController {
 							
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 								$user->save();
-								return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -411,7 +411,7 @@ class QuestsController extends \BaseController {
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 								}
 							}
 						}
@@ -440,7 +440,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -469,7 +469,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -497,7 +497,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -524,7 +524,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -551,7 +551,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -579,7 +579,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -607,7 +607,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
@@ -636,7 +636,7 @@ class QuestsController extends \BaseController {
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
 									$user->save();
-									return Redirect::to('dashboard')->with('message', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
+									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
 						}
 					}
