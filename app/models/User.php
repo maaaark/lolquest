@@ -229,6 +229,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$user->exp = $user->exp + $exp;
 			$user->lifetime_qp = $user->lifetime_qp + $qp;
 		}
+		if($user->exp > ($user->level->exp_level-1)) {
+			$user->level_id +=1;
+			$user->checkAchievement(1, $user->level_id);
+		}						
 		$user->save();
 	}
 	

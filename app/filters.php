@@ -149,7 +149,7 @@ Route::filter('user_exp_percent', function()
 {
 	if (Auth::check()) {
 		$user = User::find(Auth::user()->id);
-		$user_percent = Round( ($user->exp - $user->level->exp) / $user->level->exp_level*100,0);
+		$user_percent = Round( ($user->exp - $user->level->exp) / ($user->level->exp_level-$user->level->exp) *100,0);
 		$user_exp_level = $user->exp - $user->level->exp;
 		Session::put('user_percent', $user_percent);
 		Session::put('user_exp', $user_exp_level);

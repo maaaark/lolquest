@@ -18,7 +18,7 @@
 			</li>
 			
 			<li style="width: 230px !important; padding-left: 10px; padding-right: 10px; padding-top: 7px; line-height: 20px !important;">
-				<div class="uppercase small">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level}}):</div>
+				<div class="uppercase small">{{ trans("sidebar.level") }} {{Auth::user()->level_id}} ({{ Session::get('user_exp') }}  / {{Auth::user()->level->exp_level - Auth::user()->level->exp}}):</div>
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ Session::get('user_percent') }}% ;"></div>
 				</div>
