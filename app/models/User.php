@@ -173,6 +173,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $isfriend_check;
     }
 	
+	public function finishedQuestsCount()
+    {
+        $quests = DB::table('quests')->where('user_id', '=', Auth::user()->id)->where('finished', '=', 1)->count();
+		return $quests;
+    }
+	
 	
 	public function notify($type, $message)
     {
