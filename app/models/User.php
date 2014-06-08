@@ -347,7 +347,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$item_6 = 0;
 						$item_7 = 0;
 						$multikill = 0;
-						$killingspree = 0;
+						$killingsprees = 0;
 						$crit = 0;
 						$dead = 0;
 						$deaths = 0;
