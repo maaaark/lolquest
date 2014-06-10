@@ -237,11 +237,8 @@ class QuestsController extends \BaseController {
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+							$user->checkAchievement(2, $user->finishedQuestsCount());
 							$user->save();
 							
 							return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
@@ -254,18 +251,14 @@ class QuestsController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
-							$user->exp = $user->exp + $quest->questtype->exp;							
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+							$user->checkAchievement(2, $user->finishedQuestsCount());
 							$user->save();
 							return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -282,7 +275,6 @@ class QuestsController extends \BaseController {
 							if($kda >= 3) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
 							}
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
@@ -290,11 +282,8 @@ class QuestsController extends \BaseController {
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+							$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
 								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 						}
@@ -310,12 +299,6 @@ class QuestsController extends \BaseController {
 							if($game->wardPlaced >= 15) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-							if($user->exp > ($user->level->exp-1)) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
-								
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
@@ -324,6 +307,7 @@ class QuestsController extends \BaseController {
 							}
 							
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+							$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
 								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -339,12 +323,6 @@ class QuestsController extends \BaseController {
 							if($game->gameMode == "CLASSIC" && $game->championsKilled >= 6) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-							if($user->exp > ($user->level->exp-1)) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
-								
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
@@ -352,6 +330,7 @@ class QuestsController extends \BaseController {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+							$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
 								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -366,21 +345,15 @@ class QuestsController extends \BaseController {
 							$total_minions = $game->minionsKilled+$game->neutralMinionsKilled;
 							if(($game->gameMode == "CLASSIC") && ($total_minions >= 200)) {
 								$quest->finished = 1;
-								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-							if($user->exp > ($user->level->exp-1)) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
-								
+								$quest->save();	
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 							}
-							
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
 								return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -397,12 +370,6 @@ class QuestsController extends \BaseController {
 								if($game->neutralMinionsKilled >= 50) {
 									$quest->finished = 1;
 									$quest->save();
-									$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-									
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -410,6 +377,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 								}
@@ -426,12 +394,6 @@ class QuestsController extends \BaseController {
 							if($game->numDeaths == 0) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -439,6 +401,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -455,12 +418,6 @@ class QuestsController extends \BaseController {
 							if($game->goldEarned >= 11000) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -468,6 +425,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -483,12 +441,6 @@ class QuestsController extends \BaseController {
 							if($game->assists >= 15) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -496,6 +448,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -510,12 +463,6 @@ class QuestsController extends \BaseController {
 							if($game->wardKilled >= 5) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -523,6 +470,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -537,12 +485,6 @@ class QuestsController extends \BaseController {
 							if($game->timePlayed <= 1800) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -550,6 +492,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -565,12 +508,6 @@ class QuestsController extends \BaseController {
 							if($game->turretsKilled >= 2) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -578,6 +515,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -593,12 +531,6 @@ class QuestsController extends \BaseController {
 							if($game->killingSprees >= 1) {
 								$quest->finished = 1;
 								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -606,6 +538,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}
@@ -621,13 +554,7 @@ class QuestsController extends \BaseController {
 								
 							if($game->totalHeal >= 5000) {
 								$quest->finished = 1;
-								$quest->save();
-								$user->exp = $user->exp + $quest->questtype->exp;
-								if($user->exp > ($user->level->exp-1)) {
-									$user->level_id +=1;
-									$user->checkAchievement(1, $user->level_id);
-								}
-								
+								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
 									$user->daily_done = 1;
@@ -635,6 +562,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
 									$user->save();
 									return Redirect::to('dashboard')->with('success', trans("dashboard.quest_done", array('exp'=>$quest->questtype->exp, 'qp'=>$quest->questtype->qp)));
 							}

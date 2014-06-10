@@ -173,6 +173,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $isfriend_check;
     }
 	
+	public function finishedQuestsCount()
+    {
+        $quests = DB::table('quests')->where('user_id', '=', Auth::user()->id)->where('finished', '=', 1)->count();
+		return $quests;
+    }
+	
 	
 	public function notify($type, $message)
     {
@@ -223,6 +229,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$user->exp = $user->exp + $exp;
 			$user->lifetime_qp = $user->lifetime_qp + $qp;
 		}
+		if($user->exp > ($user->level->exp_level-1)) {
+			$user->level_id +=1;
+			$user->checkAchievement(1, $user->level_id);
+		}						
 		$user->save();
 	}
 	
@@ -357,7 +367,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$item_6 = 0;
 						$item_7 = 0;
 						$multikill = 0;
-						$killingsprees = 0;
+						$killingSprees = 0;
 						$crit = 0;
 						$dead = 0;
 						$deaths = 0;
