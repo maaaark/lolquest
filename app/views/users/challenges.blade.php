@@ -10,11 +10,21 @@
 				<br/>
 				{{ Form::model($user, array('action' => 'QuestsController@create_challenge')) }}
 				<select name="challenge_mode" class="quest_select_champion">
+					@if($user->trophy_top == 0)
 					<option value="1">Top-Lane</option>
+					@endif
+					@if($user->trophy_jungle == 0)
 					<option value="2">Jungle</option>
+					@endif
+					@if($user->trophy_mid == 0)
 					<option value="3">Mid-Lane</option>
+					@endif
+					@if($user->trophy_marksman == 0)
 					<option value="4">Marksman</option>
+					@endif
+					@if($user->trophy_support == 0)
 					<option value="5">Support</option>
+					@endif
 				</select>
 				<br/>
 				{{ Form::submit(trans("dashboard.start_challenge"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;')) }}<br/><br/>
@@ -34,6 +44,7 @@
 		<div class="col-lg-9 col-sm-6 col-md-8 col-sm-8 col-xs-6">
 			<h4>{{ trans("dashboard.challenge_progress") }}:</h4>
 			<div class="progress">
+			<?php $challenge_percent = 0; ?>
 			@if($user->challenge_step == 1)
 				<?php $challenge_percent = 0; ?>
 			@elseif($user->challenge_step == 2)

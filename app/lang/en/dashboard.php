@@ -43,7 +43,7 @@ return array(
 	'buy_qp' => 'Buy more QP',
 	'cancel_challenge' => 'Cancel Challenge',
 	'start_challenge' => 'Start Challenge',
-	'challenge_desc' => '<strong>What are Challenges?</strong><br/>Choose your role and start a quest challenge. You will get several quests for your specific role, one after the other. These quest getting harder and harder but if you complete them all, you will be rewarded with the badge for your role.<br/><br/> You can have only one Challenge active at a time. If you cancel the Challenge, your progress will be lost.',
+	'challenge_desc' => '<h4>What are Challenges?</h4><br/>Choose your role and start a quest challenge. You will get several quests for your specific role, one after the other. These quest getting harder and harder but if you complete them all, you will be rewarded with the badge for your role.<br/><br/> You can have only one Challenge active at a time. If you cancel the Challenge, your progress will be lost.',
 	'challenge_exp' => '20 QP and 200 EXP<br/>for each quest',
 	'challenge_mode' => 'Challenge Mode',
 	'challenge_mode_1' => 'Top Lane',

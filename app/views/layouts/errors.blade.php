@@ -1,3 +1,9 @@
+@if(Config::get('api.problems') == 1)
+<div class="bs-callout bs-callout-danger">
+		{{ trans("warnings.api_error") }}
+</div>
+@endif
+
 @if(Session::has('success'))
 	<div class="bs-callout bs-callout-success">
 		{{ Session::get('success') }}

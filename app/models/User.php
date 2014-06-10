@@ -302,6 +302,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->gameType = $game["gameType"];
 							$newGame->wardKilled = $wardKilled;
 							$newGame->totalHeal = $totalHeal;
+							$newGame->totalDamageTaken = $game["stats"]["totalDamageTaken"];
+							$newGame->totalDamageDealt = $game["stats"]["totalDamageDealt"];
 							$newGame->killingSprees = $killingSprees;
 							$newGame->timePlayed = $game["stats"]["timePlayed"];
 							$newGame->turretsKilled = $turretsKilled;
@@ -335,6 +337,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				$summoner_name = urlencode($summoner_name);
 				$test = @file_get_contents($url);
 				$data = json_decode($test, true);
+				
+			if($data["success"] == false ) {
+				var_dump($data);
+				return Redirect::to("404");
+				
+			} else {
+				
+				
 				
 				foreach($data["data"]["gameStatistics"] as $games) {
 					foreach($games as $game) {
@@ -446,6 +456,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
 									$neutralMinionsKilled=$stat['value'];
 								  }
+								  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
+									$totalDamageTaken=$stat['value'];
+								  }
+								  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
+									$totalDamageDealt=$stat['value'];
+								  }
 								  
 								  
 								  
@@ -496,6 +512,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->subType = $game["subType"];
 							$newGame->minionsKilled = $cs;
 							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
+							$newGame->totalDamageTaken = $totalDamageTaken;
+							$newGame->totalDamageDealt = $totalDamageDealt;
 							$mil = $game["createDate"];
 							$time = strtotime($mil);
 							$newformat = date('U',$time);
@@ -515,6 +533,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						
 					} // END FOR EACH GAME
 				} // END OF STATS	
+				
+			} // END API CHECK
+				
+				
 			}
 			
 			
