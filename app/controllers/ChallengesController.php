@@ -127,7 +127,7 @@ class ChallengesController extends \BaseController {
 							}
 							
 							if($challenge_done == 1) {
-								$user->challenge_step = 3;
+								$user->challenge_step = 5;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
@@ -156,7 +156,7 @@ class ChallengesController extends \BaseController {
 							}
 							
 							if($challenge_done == 1) {
-								$user->challenge_step = 3;
+								$user->achievements()->attach(35);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
