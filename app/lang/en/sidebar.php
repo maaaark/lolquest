@@ -18,6 +18,6 @@ return array(
 	'no_quest' => 'You have no active Quests<br/><a href="/dashboard">Get some Quests</a>',
 	'timeline_settings' => 'Timeline Settings',
 	'search' => 'Search',
-	'refresh_games' => 'Refresh my last games',
+	'refresh_games' => 'Refresh my last games and Summoner Profile + Avatar',
 	'new_note' => 'new Notification',
 );

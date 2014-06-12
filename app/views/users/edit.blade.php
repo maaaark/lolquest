@@ -9,7 +9,7 @@
 			<th>Settings</th>
 		</tr>
 		<tr>
-			<td><i class="fa fa-refresh"></i>&nbsp;&nbsp;<a href="/verify" class="">{{ trans("sidebar.refresh_games") }}</a></td>
+			<td><i class="fa fa-refresh"></i>&nbsp;&nbsp;<a href="/refresh_summoner" class="">{{ trans("sidebar.refresh_games") }}</a></td>
 		</tr>
 		<tr>
 			<td><i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="/edit_mail" class="">{{ trans("sidebar.edit_mail") }}</a></td>
@@ -38,7 +38,7 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 		<table class="table table-striped friends_list">
 			<tr>
-				<th colspan="4">Friends</th>
+				<th colspan="5">Friends</th>
 			</tr>
 			<tr>
 		@if($user->openFriends())

@@ -79,6 +79,7 @@ Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 Route::get('/settings', 'UsersController@edit');
 Route::get('/challenges', 'UsersController@challenges');
 Route::get('/delete_notifications', 'UsersController@delete_notifications');
+Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
 
 
 // Quests Controller

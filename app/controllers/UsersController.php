@@ -149,6 +149,32 @@ class UsersController extends \BaseController {
 		}
 	}
 	
+	public function refresh_summoner() {
+		if (Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$user->refresh_games();
+			
+			$api_key = Config::get('api.key');
+			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			
+			if($json === FALSE) {
+				Session::flash('message', 'No Summoner found');
+				return Redirect::to('/edit_summoner');
+			} else {
+				$summoner_name_clear = str_replace(' ', '',strtolower($user->summoner_name));
+				$obj = json_decode($json, true);
+				$user->summoner->profileIconId = $obj[$summoner_name_clear]["profileIconId"];
+				$user->summoner->summonerLevel = $obj[$summoner_name_clear]["summonerLevel"];
+				$user->summoner->save();
+			}
+			
+			return Redirect::to("/settings")->with('success', trans("users.refreshed"));
+		} else {
+			return Redirect::to("/login");
+		}
+	}
+	
 	public function refresh_level()
 	{
 		$users = User::all();

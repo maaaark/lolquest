@@ -34,4 +34,5 @@ return array(
 	'quests_done' => 'Recent Quests done',
 	'settings' => 'Settings',
 	'challenges' => 'Challenges',
+	'refreshed' => 'Your Summoner Profile has been refreshed',
 );
