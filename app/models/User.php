@@ -615,6 +615,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	
 	
+	public function ladder_rang($user_id)
+    {
+			$user = User::find($user_id);
+			$year = date("Y");
+			$month = date("m");
+			$ladder = Ladder::where("user_id", "=", $user->id)->where("month", "=", $month)->where("year", "=", $year)->first();
+			return $ladder;
+    }
+	
 	public function friends()
     {
         return $this->belongsToMany('User', 'friend_users', 'user_id', 'friend_id');

@@ -4,7 +4,7 @@
 @else
 @section('title', trans("users.profile")." ".$user->summoner_name." (".$user->region.")")
 @endif
-@section('content')
+@section('content')	
 	<br/>
 	@if($user->summoner)
 	<table width="100%" class="profile">
@@ -70,32 +70,16 @@
 							<td colspan="2"><strong>{{ trans("users.ranked_stats") }}</strong></td>
 						</tr>
 						<tr>
-							<td>Stat</td>
-							<td>Value</td>
+							<td>Current Rang</td>
+							<td>{{ $ladder->rang }}</td>
 						</tr>
 						<tr>
-							<td>Stat</td>
-							<td>Value</td>
+							<td>Quests</td>
+							<td>{{ $ladder->total_quests }}</td>
 						</tr>
 						<tr>
-							<td>Stat</td>
-							<td>Value</td>
-						</tr>
-						<tr>
-							<td>Stat</td>
-							<td>Value</td>
-						</tr>
-						<tr>
-							<td>Stat</td>
-							<td>Value</td>
-						</tr>
-						<tr>
-							<td>Stat</td>
-							<td>Value</td>
-						</tr>
-						<tr>
-							<td>Stat</td>
-							<td>Value</td>
+							<td>Total EXP</td>
+							<td>{{ $ladder->month_exp }}</td>
 						</tr>
 					</table>
 				</div>

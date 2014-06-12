@@ -113,6 +113,7 @@ class UsersController extends \BaseController {
 			if($user->summoner) {
 				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
 				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->take(5)->get();
+				$ladder = $user->ladder_rang($user->id);
 				
 				$champion_quests = DB::select(DB::raw('
 				SELECT * , (
@@ -126,7 +127,7 @@ class UsersController extends \BaseController {
 				ORDER BY name ASC
 				'));
 			
-				return View::make('users.show', compact('user', 'games', 'quests_done', 'champion_quests'));
+				return View::make('users.show', compact('user', 'games', 'quests_done', 'champion_quests', 'ladder'));
 			} else {
 				return View::make('users.show', compact('user'));
 			}
