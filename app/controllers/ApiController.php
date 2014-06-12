@@ -25,6 +25,54 @@ class ApiController extends \BaseController {
 
 	}
 	
+	
+	public function champions()
+	{
+
+		$champions = Champion::orderBy('name')->get();
+
+		return Response::json(array(
+			'error' => false,
+			'champions' => $champions->toArray()),
+			200
+		);
+
+	}
+	
+	public function playerroles()
+	{
+
+		$playerroles = Playerrole::all();
+
+		return Response::json(array(
+			'error' => false,
+			'playerroles' => $playerroles->toArray()),
+			200
+		);
+
+	}
+	
+	public function dashboard()
+	{
+		$user = User::find(Auth::user()->id);
+
+		$notifications = $user->notifications;
+		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
+		$time = date("U");
+		$time_waited = $time - $user->last_checked;
+	 
+		return Response::json(array(
+			'error' => false,
+			'user' => $user->toArray(),
+			'notifications' => $notifications->toArray(),
+			'myquests' => $myquests->toArray(),
+			'time' => $time,
+			'time_waited' => $time_waited),
+			200
+		);
+
+	}
+	
 	/**
 	 * Show the form for creating a new resource.
 	 *

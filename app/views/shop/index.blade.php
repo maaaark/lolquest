@@ -66,5 +66,5 @@
 			</td>
 		</tr>
 	</table>
-	
+	<br/><br/>
 @stop

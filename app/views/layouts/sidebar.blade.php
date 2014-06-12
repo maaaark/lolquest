@@ -4,6 +4,7 @@
 
 	<div class="sidebar_box">
 		<div class="sidebar_headline"><span class="new_notifications"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }}</span> &nbsp;&nbsp;{{ trans("sidebar.new_note") }}</div>
+		<div class="delete_all_notes"><a href="/delete_notifications"><span class="glyphicon glyphicon-trash"></span> Delete all Notifications</a></div>
 		<ul class="notifications_list">
 			@foreach(Session::get('notifications') as $note)
 			<li id="note_{{ $note->id }}">

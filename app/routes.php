@@ -78,6 +78,7 @@ Route::post('users/update_summoner', array('uses' => 'UsersController@update_sum
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
 Route::get('/settings', 'UsersController@edit');
 Route::get('/challenges', 'UsersController@challenges');
+Route::get('/delete_notifications', 'UsersController@delete_notifications');
 
 
 // Quests Controller
@@ -148,4 +149,7 @@ Route::get('/app_login', array('before' => 'api_login', function()
 Route::group(array('prefix' => 'api/v1', 'before' => 'api_login'), function()
 {
     Route::get('user', 'ApiController@user');
+	Route::get('champions', 'ApiController@champions');
+	Route::get('playerroles', 'ApiController@playerroles');
+	Route::get('dashboard', 'ApiController@dashboard');
 });

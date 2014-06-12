@@ -137,6 +137,18 @@ class UsersController extends \BaseController {
 	}
 	
 	
+	public function delete_notifications() {
+		if (Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			foreach($user->notifications as $note) {
+				$note->delete();
+			}
+			return Redirect::back();
+		} else {
+			return Redirect::to("/login");
+		}
+	}
+	
 	public function refresh_level()
 	{
 		$users = User::all();

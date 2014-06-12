@@ -115,6 +115,23 @@ h3 {
 	font-size: 14px;
 	margin-bottom: 15px;
 }
+.delete_all_notes a {
+	color: #999999 !important;
+	display: block;
+	text-decoration: none !important;
+	font-size: 10px !important;
+	text-align: right;
+	height: 16px;
+	line-height: 16px;
+	margin-top: -10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	padding-bottom: 5px !important;
+	border-bottom: 1px solid #414141;
+}
+.delete_all_notes a:hover {
+	color: red !important;
+}
 .forum_headline {
 	background: #333333;
 	color: #fff;

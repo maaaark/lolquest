@@ -22,8 +22,10 @@
 	<div id="wrapper">
 		
 		<div class="container title-wrapper">
+			@if(Config::get('settings.ads_enabled') == 1)
 			<div id="banner_1">728x90</div>
 			<div id="banner_2">160x600</div>
+			@endif
 			<div class="title"><h1>@yield('title')</h1></div>
 		</div>
 		
