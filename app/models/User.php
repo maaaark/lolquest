@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 	
 	public static $rules = array(
-		'summoner_name'=>'required|alpha|min:3',
+		'summoner_name'=>'required|min:3',
 		'region'=>'required|alpha|min:2',
 		'email'=>'required|email|unique:users',
 		'password'=>'required|between:6,12|confirmed',

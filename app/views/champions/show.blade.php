@@ -1,6 +1,7 @@
 @extends('templates.default')
 @section('title', $champion->name)
 @section('content')
+	<br/>
 	<script src="/js/chart.min.js"></script>
 	<script>
 		$( document ).ready(function() {
