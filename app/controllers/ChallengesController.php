@@ -150,13 +150,14 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
-								if($game->totalDamageDealt >= 100000 && $game->championsKilled >= 5 && $game->goldEarned >= 20000 && $game->wardPlaced >= 5 && $game->turretsKilled >= 1) {
+								if($game->totalDamageDealt >= 100000 && $game->championsKilled >= 5 && $game->goldEarned >= 17000 && $game->wardPlaced >= 5 && $game->turretsKilled >= 2) {
 									$challenge_done = 1;
 								}
 							}
 							
 							if($challenge_done == 1) {
 								$user->achievements()->attach(35);
+								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
