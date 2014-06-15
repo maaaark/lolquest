@@ -579,7 +579,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
 						Auth::user()->notify(1, trans("achievements.receive").'<a href="/achievements/{{$user_achievement->id}}"> '.$user_achievement->name.'</a>');
-						$user_friend->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
+						Auth::user()->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 
 		} else {
@@ -605,7 +605,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					if($user_achievement->factor <= $factor) {
 						$user->achievements()->attach($user_achievement->id);
 						Auth::user()->notify(1, trans("achievements.receive").'<a href="/achievements/{{$user_achievement->id}}"> '.$user_achievement->name.'</a>');
-						$user_friend->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
+						Auth::user()->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 
 		} else {
