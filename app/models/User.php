@@ -262,7 +262,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			if(Config::get('api.use_riot_api')  == 1) {
 				// USE RIOT API
 				$api_key = Config::get('api.key');
-				$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
+				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					return View::make('login');

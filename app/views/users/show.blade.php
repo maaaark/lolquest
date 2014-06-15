@@ -65,9 +65,27 @@
 			</td>
 			<td valign="top">
 				<div class="profile_season_stats">
-					<table class="table table-striped">
+					<table class="table table-striped" style="margin-bottom: 0;">
 						<tr>
 							<td colspan="2"><strong>{{ trans("users.ranked_stats") }}</strong></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;">
+								@if($ladder->total_quests <= 4)
+									<img src="/img/leagues/0_5.png" height="55" />
+								@elseif($ladder->total_quests <= 14)
+									<img src="/img/leagues/bronze_5.png" height="55" />
+								@elseif($ladder->total_quests <= 29)
+									<img src="/img/leagues/silver_5.png" height="55" />
+								@elseif($ladder->total_quests <= 49)
+									<img src="/img/leagues/gold_5.png" height="55" />
+								@elseif($ladder->total_quests <= 74)
+									<img src="/img/leagues/challenger_5.png" height="55" />
+								@elseif($ladder->total_quests <= 100)
+									<img src="/img/leagues/challenger_5.png" height="55" />
+								@endif
+								
+							</td>
 						</tr>
 						<tr>
 							<td>Current Rang</td>
@@ -120,7 +138,7 @@
 						</table>
 					</td>
 					<td width="50%" valign="top">
-						<h2>{{ trans("achievements.achievements") }}</h2>
+						<h3>{{ trans("achievements.achievements") }}</h3>
 						
 						@if($user->trophy_top == 0) 
 							<div class="challenge_tropy_open"><img class="img-circle trophy" alt="" src="/img/trophy/top.jpg" title="Top Lane Trophy" width="70"></div>
@@ -162,7 +180,8 @@
 								<div class="achievement"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></div>
 							@endforeach
 						@endif
-						<div class="clear"></div>
+						<div class="clear"></div><br/>
+						<a href="/achievements">{{ trans("achievements.all_achievements") }}</a>
 					</td>
 				</tr>
 			</table>

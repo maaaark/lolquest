@@ -1,7 +1,10 @@
 @extends('templates.full')
+@section('title', 'Login')
 @section('content')
-	<div class="bs-callout bs-callout-danger">
-	<h4>404</h4>
-	{{ trans("warnings.404") }}
+<div class="login_form">
+	<div class="inner_login">
+		<h4>404</h4>
+		{{ trans("warnings.404") }}
+	</div>
 </div>
 @stop

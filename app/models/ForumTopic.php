@@ -5,7 +5,7 @@ class ForumTopic extends \Eloquent {
 	// Add your validation rules here
 	public static $rules = [
 		'title' => 'required',
-		'TOPIC' => 'required'
+		'content' => 'required'
 	];
 
 	// Don't forget to fill this array

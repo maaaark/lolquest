@@ -1,4 +1,4 @@
-@extends('templates.blog')
+@extends('templates.default')
 @section('title', trans("blog.blog"))
 @section('content')
 	@foreach($blogs as $blog)

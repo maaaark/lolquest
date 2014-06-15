@@ -57,7 +57,7 @@ class UsersController extends \BaseController {
 			
 			// Save the Summoner
 			$api_key = Config::get('api.key');
-			$summoner_data = "https://prod.api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
 			$json = @file_get_contents($summoner_data);
 			if($json === FALSE) {
 				return Redirect::route('users.create')
@@ -112,7 +112,7 @@ class UsersController extends \BaseController {
 		if($user) {
 			if($user->summoner) {
 				$games = Game::where('summoner_id', '=', $user->summoner->summonerid)->orderBy('createDate', 'desc')->take(10)->get();
-				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->take(5)->get();
+				$quests_done = Quest::where('user_id', '=', $user->id)->where('finished', '=', 1)->orderBy('createDate', 'desc')->take(5)->get();
 				$ladder = $user->ladder_rang($user->id);
 				
 				$champion_quests = DB::select(DB::raw('
@@ -156,12 +156,11 @@ class UsersController extends \BaseController {
 			$user->refresh_games();
 			
 			$api_key = Config::get('api.key');
-			$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
+			$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
 			$json = @file_get_contents($summoner_data);
 			
 			if($json === FALSE) {
-				Session::flash('message', 'No Summoner found');
-				return Redirect::to('/edit_summoner');
+				return Redirect::to('/api_error');
 			} else {
 				$summoner_name_clear = str_replace(' ', '',strtolower($user->summoner_name));
 				$obj = json_decode($json, true);
@@ -198,6 +197,28 @@ class UsersController extends \BaseController {
 		}
 	}	
 
+	public function achievements()
+	{
+		if (Auth::check())
+		{
+			$achievements = Achievement::all();
+			return View::make('achievements.index', compact('achievements'));
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
+	public function achievements_show($id)
+	{
+		if (Auth::check())
+		{
+			$achievement = Achievement::find($id);
+			return View::make('achievements.show', compact('achievement'));
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
 	
 	public function verify()
 	{
@@ -207,7 +228,7 @@ class UsersController extends \BaseController {
 
 			if($user->summoner_status == 1) { 
 				$api_key = Config::get('api.key');
-				$summoner_data = "https://prod.api.pvp.net/api/lol/".$user->region."/v1.4/summoner/".$user->summoner->summonerid."/runes?api_key=".$api_key;
+				$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/".$user->summoner->summonerid."/runes?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					Session::flash('message', 'No Summoner found');
@@ -324,7 +345,7 @@ class UsersController extends \BaseController {
 		} else {
 			
 			$api_key = Config::get('api.key');
-			$summoner_data = "https://prod.api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
 			$json = @file_get_contents($summoner_data);
 			if($json === FALSE) {
 				Session::flash('message', 'No Summoner found');

@@ -45,6 +45,7 @@ Route::post('/forum/{url_name}/create_topic/save_topic', array('uses' => 'ForumC
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));
 Route::get('404', array('uses' => 'BaseController@notFound'));
+Route::get('api_error', array('uses' => 'BaseController@api_error'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
 Route::get('search', array('uses' => 'BaseController@search_summoner'));
 
@@ -80,6 +81,8 @@ Route::get('/settings', 'UsersController@edit');
 Route::get('/challenges', 'UsersController@challenges');
 Route::get('/delete_notifications', 'UsersController@delete_notifications');
 Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
+Route::get('/achievements', 'UsersController@achievements');
+Route::get('/achievements/{id}', 'UsersController@achievements_show');
 
 
 // Quests Controller

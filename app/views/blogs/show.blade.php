@@ -1,4 +1,4 @@
-@extends('templates.blog')
+@extends('templates.default')
 @section('title', trans("blog.blog").' - '.$blog->title)
 @section('content')
 	<h2>{{ $blog->title }}</h2>
