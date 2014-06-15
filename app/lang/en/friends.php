@@ -8,4 +8,8 @@ return array(
 	'request' => 'Friend request',
 	'unconfirmed' => 'Friendship unconfirmed',
 	'remove' => 'Remove Friend',
+	'add' => 'has added you as friend',
+	'accept_noti' => 'accept',
+	'reject' => 'reject',
+	'confirm' =>'confirmed your friendship'
 );
