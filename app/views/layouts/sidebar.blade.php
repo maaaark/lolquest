@@ -4,7 +4,7 @@
 
 	<div class="sidebar_box">
 		<div class="sidebar_headline"><span class="new_notifications"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;{{ Session::get('notifications_amount') }}</span> &nbsp;&nbsp;{{ trans("sidebar.new_note") }}</div>
-		<div class="delete_all_notes"><a href="/delete_notifications"><span class="glyphicon glyphicon-trash"></span> Delete all Notifications</a></div>
+		<div class="delete_all_notes"><a href="/delete_notifications"><span class="glyphicon glyphicon-trash"></span> {{ trans("sidebar.remove_notes") }}</a></div>
 		<ul class="notifications_list">
 			@foreach(Session::get('notifications') as $note)
 			<li id="note_{{ $note->id }}">
@@ -18,7 +18,13 @@
 					@endif
 				</div>
 				<div class="note_message">
-					<a href="#">{{ $note->message }}</a>
+					@if($note->type == 1)
+						<a href="/achievements/">{{ $note->message }}</a>
+					@elseif($note->type == 2)
+						<a href="#">{{ $note->message }}</a>
+					@elseif($note->type == 3)
+						<a href="/settings">{{ $note->message }}</a>
+					@endif
 				</div>
 				<div class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>
 				<div class="clear"></div>

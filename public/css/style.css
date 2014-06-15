@@ -195,7 +195,7 @@ a.comment_name {
 	border-bottom: 1px solid #bbbbbb;
 }
 .blog_content {
-	width: 670px;
+	width: 660px;
 	margin-left: 15px;
 	float: left;
 	line-height: 20px;
@@ -773,7 +773,7 @@ a.logout {
 	width: 290px;
 	margin-left: 10px;
 	overflow: auto;
-	height: 200px;
+	height: 210px;
 	border: 1px solid #dddddd;
 	border-top: 0;
 }

@@ -20,4 +20,5 @@ return array(
 	'search' => 'Search',
 	'refresh_games' => 'Refresh my last games and Summoner Profile + Avatar',
 	'new_note' => 'new Notification',
+	'remove_notes' => 'Remove all',
 );
