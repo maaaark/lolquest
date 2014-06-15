@@ -39,10 +39,10 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
+			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			// check if validated summoner available
-			//$verified_user = User::where('summoner_name', Input::get('summoner_name')->where('region', Input::get('region')))->first();
 			$verified_user = User::
-			  where('summoner_name', '=', Input::get('summoner_name'))
+			  where('summoner_name', '=', $clean_summoner_name)
 			->where('summoner_status', '=', 2)
 			->where('region', '=', Input::get('region'))
 			->first();
@@ -57,7 +57,9 @@ class UsersController extends \BaseController {
 			
 			// Save the Summoner
 			$api_key = Config::get('api.key');
-			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+			conor mc fire
+			
+			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
 			$json = @file_get_contents($summoner_data);
 			if($json === FALSE) {
 				return Redirect::route('users.create')
@@ -66,7 +68,7 @@ class UsersController extends \BaseController {
 			} else {
 				// Create the User
 				$user = new User;
-				$user->summoner_name = Input::get('summoner_name');
+				$user->summoner_name = $clean_summoner_name;
 				$user->region = Input::get('region');
 				$user->email = Input::get('email');
 				$user->password = Hash::make(Input::get('password'));
