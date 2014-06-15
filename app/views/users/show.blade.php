@@ -101,7 +101,7 @@
 						</tr>
 						@else
 						<tr>
-							<td colspan="2"><strong>not ranked yet</strong></td>
+							<td colspan="2"><strong>{{ trans("users.ranked_stats") }}</strong></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;">
@@ -109,16 +109,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
+							<td>{{ trans("users.not_ranked") }}</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
 						</tr>
 						@endif
 					</table>
