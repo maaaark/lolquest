@@ -35,4 +35,5 @@ return array(
 	'settings' => 'Settings',
 	'challenges' => 'Challenges',
 	'refreshed' => 'Your Summoner Profile has been refreshed',
+	'not_ranked' => 'not ranked this month',
 );
