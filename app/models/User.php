@@ -375,6 +375,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$wards = 0;
 						$totalHeal = 0;
 						$wardKilled = 0;
+						$turretsKilled = 0;
 						
 						foreach($game['statistics'] as $stats) {
 							foreach($stats as $stat) {

@@ -14,16 +14,16 @@
 					<option value="1">Top-Lane</option>
 					@endif
 					@if($user->trophy_jungle == 0)
-					<option value="2">Jungle</option>
+					<option value="2" disabled>Jungle</option>
 					@endif
 					@if($user->trophy_mid == 0)
-					<option value="3">Mid-Lane</option>
+					<option value="3" disabled>Mid-Lane</option>
 					@endif
 					@if($user->trophy_marksman == 0)
-					<option value="4">Marksman</option>
+					<option value="4" disabled>Marksman</option>
 					@endif
 					@if($user->trophy_support == 0)
-					<option value="5">Support</option>
+					<option value="5" disabled>Support</option>
 					@endif
 				</select>
 				<br/>
