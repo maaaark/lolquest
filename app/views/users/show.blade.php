@@ -66,25 +66,25 @@
 			<td valign="top">
 				<div class="profile_season_stats">
 					<table class="table table-striped" style="margin-bottom: 0;">
+					@if($ladder)
 						<tr>
 							<td colspan="2"><strong>{{ trans("users.ranked_stats") }}</strong></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;">
-								@if($ladder->total_quests <= 4)
-									<img src="/img/leagues/0_5.png" height="55" />
-								@elseif($ladder->total_quests <= 14)
-									<img src="/img/leagues/bronze_5.png" height="55" />
-								@elseif($ladder->total_quests <= 29)
-									<img src="/img/leagues/silver_5.png" height="55" />
-								@elseif($ladder->total_quests <= 49)
-									<img src="/img/leagues/gold_5.png" height="55" />
-								@elseif($ladder->total_quests <= 74)
-									<img src="/img/leagues/challenger_5.png" height="55" />
-								@elseif($ladder->total_quests <= 100)
-									<img src="/img/leagues/challenger_5.png" height="55" />
-								@endif
-								
+									@if($ladder->rang <= 3)
+										<img src="/img/leagues/challenger_5.png" height="55" />
+									@elseif($ladder->rang <= 10)
+										<img src="/img/leagues/diamond_5.png" height="55" />
+									@elseif($ladder->rang <= 25)
+										<img src="/img/leagues/platinum_5.png" height="55" />
+									@elseif($ladder->rang <= 50)
+										<img src="/img/leagues/gold_5.png" height="55" />	
+									@elseif($ladder->rang <= 100)
+										<img src="/img/leagues/silver_5.png" height="55" />
+									@elseif($ladder->rang >= 101)
+										<img src="/img/leagues/bronze_5.png" height="55" />
+									@endif
 							</td>
 						</tr>
 						<tr>
@@ -99,12 +99,35 @@
 							<td>Total EXP</td>
 							<td>{{ $ladder->month_exp }}</td>
 						</tr>
+						@else
+						<tr>
+							<td colspan="2"><strong>not ranked yet</strong></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;">
+								<img src="/img/leagues/0_5.png" height="55" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						@endif
 					</table>
 				</div>
 			</td>
 		</tr>
 	</table>
 	
+
 	
 	<ul id="myTab" class="nav nav-tabs">
       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
