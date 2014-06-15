@@ -230,7 +230,7 @@ class UsersController extends \BaseController {
 
 			if($user->summoner_status == 1) { 
 				$api_key = Config::get('api.key');
-				$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/".$user->summoner->summonerid."/runes?api_key=".$api_key;
+				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/".$user->summoner->summonerid."/runes?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					Session::flash('message', 'No Summoner found');
