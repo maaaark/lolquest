@@ -115,7 +115,7 @@
 				</table>
 			</td>
 			<td valign="top" width="50%">
-				<h3>{{ trans("champions.last_achievements") }}</h3>
+				<!--<h3>{{ trans("champions.last_achievements") }}</h3>-->
 				
 			</td>
 		</tr>

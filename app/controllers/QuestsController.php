@@ -116,9 +116,14 @@ class QuestsController extends \BaseController {
 		{
 			if ($validation->passes())
 			{
+				$user = User::find(Auth::user()->id);
+				$open_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", "0")->count();
+				$free_slots = $user->quest_slots - $open_quests;
+				if($free_slots>0) {
+				
 					$champion = Input::get('choose_quest_champion');
 					$role = Input::get('choose_playerrole');
-					$user = User::find(Auth::user()->id);
+					
 					if($role == 0) {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
 					} else {
@@ -151,7 +156,11 @@ class QuestsController extends \BaseController {
 					$user->timeline("quest_start", $quest->id, 0, 0, 0,0,0);
 					
 					return Redirect::to('dashboard')->with('success', trans("dashboard.accepted"));
-
+				
+				} else {
+					return Redirect::to('dashboard')->with('error', trans("dashboard.no_free_slot"));
+				}
+				
 			} else {
 				// Back
 				return Redirect::to('dashboard')

@@ -2,5 +2,5 @@
 @section('title', 'Contact')
 @section('content')
 	<br/>
-	Contact
+	<h3>E-Mail</h3> <a href="mailto: marktomicki@gmail">Mark Tomicki (marktomicki@gmail.com)</a>
 @stop

@@ -25,6 +25,18 @@ class UsersController extends \BaseController {
 	{
 		return View::make('users.create');
 	}
+	
+	public function edit_mail()
+	{
+		$user = User::find(Auth::user()->id);
+		return View::make('settings.email', compact('user'));
+	}
+	
+	public function timeline_settings()
+	{
+		$user = User::find(Auth::user()->id);
+		return View::make('settings.timeline', compact('user'));
+	}
 
 	/**
 	 * Store a newly created user in storage.

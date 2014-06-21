@@ -2,7 +2,7 @@
 @if($user->summoner)
 @section('title', trans("users.profile")." ".$user->summoner->name." (".$user->region.")")
 @else
-@section('title', trans("users.profile")." ".$user->summoner_name." (".$user->region.")")
+@section('title', trans("users.profile")." ".$user->summoner->name." (".$user->region.")")
 @endif
 @section('content')	
 	<br/>
@@ -99,6 +99,7 @@
 							<td>Total EXP</td>
 							<td>{{ $ladder->month_exp }}</td>
 						</tr>
+						</table>
 						@else
 						<tr>
 							<td colspan="2"><strong>{{ trans("users.ranked_stats") }}</strong></td>
@@ -108,12 +109,14 @@
 								<img src="/img/leagues/0_5.png" height="55" />
 							</td>
 						</tr>
-						<tr>
-							<td>{{ trans("users.not_ranked") }}</td>
-						</tr>
-						</tr>
+						</table>
+						<div style="text-align: center; font-style: italic;">
+							<br/>
+							{{ trans("users.not_ranked") }}
+						</div>
 						@endif
-					</table>
+					
+					
 				</div>
 			</td>
 		</tr>
