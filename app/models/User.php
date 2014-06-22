@@ -578,7 +578,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
-						Auth::user()->notify(1, trans("achievements.receive").'<a href="/achievements/{{$user_achievement->id}}"> '.$user_achievement->name.'</a>');
+						if($user_achievement->description == 1) {
+							$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor;
+						}
+						elseif($user_achievement->description == 2){
+							$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' Quests';
+						}
+						elseif($user_achievement->description == 3){
+							if($user_achievement->factor==1){
+								$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' friend';
+							}
+							else{
+								$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' friends';
+							}
+						}	
+						else{
+							$user_achievement->name;
+						}												
+						Auth::user()->notify(1, trans("achievements.receive").'<a href="/achievements/'.$user_achievement->id.'"> '.$achiv.'</a>');
 						Auth::user()->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 
@@ -604,7 +621,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						$user->achievements()->attach($user_achievement->id);
-						$user->notify(1, trans("achievements.receive").'<a href="/achievements/{{$user_achievement->id}}"> '.$user_achievement->name.'</a>');
+						if($user_achievement->description == 1) {
+							$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor;
+						}
+						elseif($user_achievement->description == 2){
+							$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' Quests';
+						}
+						elseif($user_achievement->description == 3){
+							if($user_achievement->factor==1){
+								$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' friend';
+							}
+							else{
+								$achiv = trans('achievements.'.$user_achievement->description).' '.$user_achievement->factor.' friends';
+							}
+						}	
+						else{
+							$user_achievement->name;
+						}												
+						$user->notify(1, trans("achievements.receive").'<a href="/achievements/'.$user_achievement->id.'"> '.$achiv.'</a>');
 						$user->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 

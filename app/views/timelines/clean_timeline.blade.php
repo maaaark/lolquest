@@ -23,13 +23,27 @@
 			@elseif($post->event_type == "challenge_step")
 			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> finished Step {{ $post->challenge_step }} of the <strong>{{ trans("dashboard.challenge_mode_".$post->challenge_mode) }} Challenge</strong></td>
 			@elseif($post->event_type == "new_friend")
-			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> is now friends with <a href="/summoner/{{ $post->friend->region }}/{{ $post->friend->summoner_name }}">{{ $post->friend->summoner_name }}</a></td>
+			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> is now friends with <a href="/summoner/{{ $post->friend->region }}/{{ $post->friend->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $post->friend->summoner->profileIconId }}.jpg" class="img-circle" width="30" /> {{ $post->friend->summoner_name }}</a></td>
 			@elseif($post->event_type == "new_comment")
 			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has written a comment to <a href="/blogs/{{ $post->comment->blog->id }}">{{ $post->comment->blog->title }}</a></td>
 			@elseif($post->event_type == "level_up")
 			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> is now <strong>Level {{ $post->user->level_id }}</strong></td>
 			@elseif($post->event_type == "new_achievement")
-			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has receive the Achievement <a href="/achievements/{{$post->achievement->id}}">{{ $post->achievement->name }}</a></td>
+			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner_name }}</a> has receive the Achievement <a href="/achievements/{{$post->achievement->id}}">
+			@if($post->achievement->description == 1)
+				{{ trans("achievements.".$post->achievement->description) }} {{ $post->achievement->factor}}
+			@elseif($post->achievement->description == 2)
+				{{ trans("achievements.".$post->achievement->description) }} {{ $post->achievement->factor}} Quests
+			@elseif($post->achievement->description == 3)
+				{{ trans("achievements.".$post->achievement->description) }} {{ $post->achievement->factor}} 
+				@if($post->achievement->factor==1)
+					friend
+				@else
+					friends
+				@endif
+			@else
+				{{ $post->achievement->name }}
+			@endif</a></td>
 			@endif
 		</tr>
 	@endforeach	

@@ -58,30 +58,39 @@ class RefreshLadder extends Command {
 			$user = User::find($row->user_id);
 			$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year)->where('month', '=', $month)->first();
 			if($participant) {
-				$participant->rang = $i;
-				if ($i = 1) {
-					$user->achievements()->attach(49);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 49)>name);
-				} elseif ($i = 2) {
-			    	$user->achievements()->attach(50);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 50)>name);
-				} elseif ($i = 3) {
-			    	$user->achievements()->attach(51);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 51)>name);
-				} elseif ($i = 10) {
-			    	$user->achievements()->attach(52);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 52)>name);
-				} elseif ($i = 50) {
-			    	$user->achievements()->attach(53);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 53)>name);
-				} elseif ($i = 100) {
-			    	$user->achievements()->attach(54);
-					$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 54)>name);
-				}
 				$participant->month_exp = $row->total_exp;
 				$participant->total_quests = $row->total_quests;
 				$participant->save();
 			} else {
+			    if($month = 1) {
+					$month = 12;
+					$year -= 1;
+				} else {
+					$month -= 1;
+				}
+				$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year)->where('month', '=', $month)->first();
+				if($participant) {
+					$i = $participant->rang;
+					if ($i = 1) {
+						$user->achievements()->attach(49);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 49)>name);
+					} elseif ($i = 2) {
+						$user->achievements()->attach(50);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 50)>name);
+					} elseif ($i = 3) {
+						$user->achievements()->attach(51);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 51)>name);
+					} elseif ($i <= 10) {
+						$user->achievements()->attach(52);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 52)>name);
+					} elseif ($i <= 50) {
+						$user->achievements()->attach(53);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 53)>name);
+					} elseif ($i <= 100) {
+						$user->achievements()->attach(54);
+						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 54)>name);
+					}
+				}			
 				$ladder = new Ladder;
 				$ladder->user_id = $row->user_id;
 				$ladder->month_exp = $row->total_exp;
