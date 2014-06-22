@@ -67,8 +67,8 @@
 					</a>
 				</td>
 			@if ( Auth::user()->isFriend($friend->id) == 'checked')
-				<td>
-				<a href="/remove_friend/{{$friend->id}}" class="remove">{{ trans("friends.remove") }}</a>
+				<td></td><td >
+				<a href="/remove_friend/{{$friend->id}}"  class="remove">{{ trans("friends.remove") }}</a>
 				</td>
 			@elseif ( Auth::user()->isFriend( $friend->id) == 'unchecked')
 				<td>
