@@ -39,13 +39,13 @@
 				<td width="50">
 					<a href="/summoner/{{$user->getFriendUser($openfriend->user_id)->region}}/{{$user->getFriendUser($openfriend->user_id)->summoner_name}}"><img src="/img/profileicons/profileIcon{{ $user->getFriendUser($openfriend->user_id)->summoner->profileIconId }}.jpg" width="30" class="img-circle" /></a>
 				</td>
-				<td width="210">
+				<td width="110">
 					<a href="/summoner/{{$user->getFriendUser($openfriend->user_id)->region}}/{{$user->getFriendUser($openfriend->user_id)->summoner_name}}">
 						{{$user->getFriendUser($openfriend->user_id)->summoner_name}}
 					</a>
 				</td>
 				<td>
-				<a href="/accept_friend/{{$user->getFriendUser($openfriend->user_id)->id}}" class="btn btn-success">{{ trans("friends.accept") }}</a>
+				<a href="/accept_friend/{{$user->getFriendUser($openfriend->user_id)->id}}"  class="remove">{{ trans("friends.accept") }}</a>
 				</td>
 				<td>
 				<a href="/remove_friend/{{$openfriend->id}}" class="remove">{{ trans("friends.remove") }}</a>
@@ -61,14 +61,14 @@
 					<img src="/img/profileicons/profileIcon{{ $friend->summoner->profileIconId }}.jpg" width="30" class="img-circle" />
 					</a>
 				</td>
-				<td colspan="2" width="210">
+				<td width="110">
 					<a href="/summoner/{{$friend->region}}/{{$friend->summoner_name}}">
 					{{$friend->summoner_name}}
 					</a>
 				</td>
 			@if ( Auth::user()->isFriend($friend->id) == 'checked')
-				<td>
-				<a href="/remove_friend/{{$friend->id}}" class="remove">{{ trans("friends.remove") }}</a>
+				<td></td><td >
+				<a href="/remove_friend/{{$friend->id}}"  class="remove">{{ trans("friends.remove") }}</a>
 				</td>
 			@elseif ( Auth::user()->isFriend( $friend->id) == 'unchecked')
 				<td>

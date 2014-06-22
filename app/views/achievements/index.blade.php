@@ -11,8 +11,20 @@
 				<tr>
 					<td width="50"><a href="/achievements/{{ $achievement->id }}"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></a></td>
 					<td>
-						<a href="/achievements/{{ $achievement->id }}">{{ $achievement->name }}<br/>
-						<small>{{ $achievement->description }}</small></a>
+						@if($achievement->description == 1)
+							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}}</a>
+						@elseif($achievement->description == 2)
+							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} Quests</a>
+						@elseif($achievement->description == 3)
+							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} 
+							@if($achievement->factor==1)
+								friend
+							@else
+								friends
+								@endif</a>
+						@else
+							<a href="/achievements/{{ $achievement->id }}">{{ $achievement->name }}</a>
+						@endif
 					</td>
 				</tr>
 			@endforeach

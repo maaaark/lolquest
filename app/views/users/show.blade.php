@@ -195,7 +195,23 @@
 							{{ trans("achievements.no_achievements") }}
 						@else
 							@foreach($user->achievements as $achievement)
-								<div class="achievement"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></div>
+								<div class="achievement"><img src="/img/trophy/{{$achievement->icon}}.png" title="
+								
+						@if($achievement->description == 1)
+							{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}}
+						@elseif($achievement->description == 2)
+							{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} Quests
+						@elseif($achievement->description == 3)
+							{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} 
+							@if($achievement->factor==1)
+								friend
+							@else
+								friends
+							@endif
+						@else
+							{{ $achievement->name }}
+						@endif								
+								" class="trophy"  /></div>
 							@endforeach
 						@endif
 						<div class="clear"></div><br/>

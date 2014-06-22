@@ -513,7 +513,7 @@ class UsersController extends \BaseController {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, ''.$user_friend->summoner_name.' '.trans("friends.add").'<a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'" >'.trans("friends.reject").'</a>');
+				$user->notify(3, ''.$user_friend->summoner_name.' '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'" >'.trans("friends.reject").'</a>');
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
@@ -548,10 +548,10 @@ class UsersController extends \BaseController {
 				$model = new FriendUser;
 				$model->setTable("friend_users");
 				$friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
-				$user_friend->timeline("new_friend",0, 0, 0, 0, 0, $user->id);
+				$user->timeline("new_friend",0, 0, 0, 0, 0, $user_friend->id);
 				$friend->validate = 1;
 				$user->notify(3, ''.$user_friend->summoner_name.' '.trans("friends.confirm"));
-				$user_friend->notify(3, 'you and '.$user->summoner_name.' are friends now.');
+				$user_friend->notify(3, 'You and '.$user->summoner_name.' are friends now.');
 				$friend->save();
 				$myfriend = $model->where("user_id","=", Auth::user()->id)->where('friend_id','=', $id)->first();
 				$myfriend->validate = 1;
