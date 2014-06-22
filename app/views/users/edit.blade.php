@@ -21,17 +21,9 @@
 			<td><i class="fa fa-check"></i>&nbsp;&nbsp;<a href="/verify" class="">{{ trans("verify.title") }}</a></td>
 		</tr>
 		<tr>
-			<td><i class="fa fa-dashboard"></i>&nbsp;&nbsp;<a href="/verify" class="">{{ trans("sidebar.timeline_settings") }}</a></td>
+			<td><i class="fa fa-dashboard"></i>&nbsp;&nbsp;<a href="/timeline_settings" class="">{{ trans("sidebar.timeline_settings") }}</a></td>
 		</tr>
 	</table>
-
-{{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
-	<div class="form-group">
-		{{ Form::label('email', 'Email') }}
-		{{ Form::email('email', null, array('class' => 'form-control')) }}
-	</div>
-	{{ Form::submit(trans("sidebar.save"), array('class' => 'btn btn-primary')) }}
-{{ Form::close() }}
 
 </div>
 

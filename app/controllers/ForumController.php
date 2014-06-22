@@ -19,7 +19,7 @@ class ForumController extends \BaseController {
 		
 		$category = ForumCategory::where('url_name', '=', $url_name)->first();
 		//$topics = $category->topics();
-		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->paginate(15);
+		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->orderBy('created_at', 'desc')->paginate(15);
 		
 		return View::make('forum.category', compact('category', 'topics'));
 	}
@@ -27,6 +27,7 @@ class ForumController extends \BaseController {
 	
 	public function topic($category_url_name, $url_name)
 	{
+		$url_name = urlencode($url_name);
 		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
 		$topic = ForumTopic::where('url_name', '=', $url_name)->first();
 		$replies = ForumReply::where('forum_topic_id', '=', $topic->id)->paginate(15);
@@ -37,6 +38,7 @@ class ForumController extends \BaseController {
 	
 	public function reply($category_url_name, $url_name)
 	{
+		$url_name = urlencode($url_name);
 		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
 		$topic = ForumTopic::where('url_name', '=', $url_name)->first();
 		
