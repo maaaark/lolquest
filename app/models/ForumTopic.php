@@ -20,6 +20,11 @@ class ForumTopic extends \Eloquent {
     {
         return $this->hasMany('ForumReply');
     }
+	
+	public function last_reads()
+    {
+        return $this->hasMany('ForumLastRead');
+    }
 
 	public function user()
     {

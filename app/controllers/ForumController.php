@@ -19,9 +19,17 @@ class ForumController extends \BaseController {
 		
 		$category = ForumCategory::where('url_name', '=', $url_name)->first();
 		//$topics = $category->topics();
-		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->orderBy('created_at', 'desc')->paginate(15);
+		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->orderBy('updated_at', 'desc')->paginate(15);
 		
-		return View::make('forum.category', compact('category', 'topics'));
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$last_reads = ForumLastRead::where("user_id", "=", $user->id)->get();
+		} else {
+			$last_reads = array();
+		}
+		
+		
+		return View::make('forum.category', compact('category', 'topics','last_reads'));
 	}
 
 	
@@ -31,6 +39,22 @@ class ForumController extends \BaseController {
 		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
 		$topic = ForumTopic::where('url_name', '=', $url_name)->first();
 		$replies = ForumReply::where('forum_topic_id', '=', $topic->id)->paginate(15);
+		
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$marker = ForumLastRead::where("user_id", "=", $user->id)->where("forum_topic_id", "=", $topic->id)->first();
+			if($marker) {
+				$marker->last_read = date("Y-m-d H:i:s");
+				$marker->save();
+			} else {
+				$new_marker = new ForumLastRead;
+				$new_marker->user_id = $user->id;
+				$new_marker->forum_topic_id = $topic->id;
+				$new_marker->last_read = date("Y-m-d H:i:s");
+				$new_marker->save();
+			}
+		}
+		
 		
 		return View::make('forum.topic', compact('category', 'topic', 'replies'));
 	}
@@ -61,7 +85,11 @@ class ForumController extends \BaseController {
 			if ($validation->passes())
 			{
 				$topic = ForumTopic::where('id', '=', Input::get('topic_id'))->first();
-			
+				$topic->updated_at = date('Y-m-d H:i:s');
+				$topic->category->updated_at = date('Y-m-d H:i:s');
+				$topic->category->save();
+				$topic->save();
+				
 				$content = Input::get('content');
 				$reply = new ForumReply;
 				$reply->content = $content;
@@ -69,7 +97,7 @@ class ForumController extends \BaseController {
 				$reply->user_id = Auth::user()->id;
 				$reply->save();
 				
-				return Redirect::to("/forum/".$topic->category->url_name."/".$topic->url_name."/")->with('success', 'Your post has been created.');
+				return Redirect::to("/forum/".$topic->category->url_name."/".$topic->url_name."/")->with('success', trans("forum.post_created"));
 				
 			} else {
 				return Redirect::to("/forum/".$category_url_name."/".$url_name."/reply")->withInput()
@@ -91,8 +119,6 @@ class ForumController extends \BaseController {
 			
 			if ($validation->passes())
 			{
-				
-			
 				$content = Input::get('content');
 				$title =  urlencode(strtolower(Input::get('title')));
 				$topic = new ForumTopic;
@@ -103,7 +129,7 @@ class ForumController extends \BaseController {
 				$topic->url_name = $title;
 				$topic->save();
 				
-				return Redirect::to("/forum/".$topic->category->url_name)->with('success', 'Your Topic has been created.');
+				return Redirect::to("/forum/".$topic->category->url_name)->with('success', trans("forum.topic_created"));
 				
 			} else {
 				return Redirect::to("/forum/".$category->url_name."/create_topic/new")->withInput()

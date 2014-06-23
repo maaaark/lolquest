@@ -2,7 +2,7 @@
 	<li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Quests</span></a></li>
 	<li><a href="/challenges"><span class="glyphicon glyphicon-certificate"></span> <span class="hidden-xs hidden-sm">Challenges</span></a></li>
 	<li><a href="/timeline"><span class="glyphicon glyphicon-dashboard"></span> <span class="hidden-xs hidden-sm">Timeline</span></a></li>
-	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Rewards</span></a></li>			
+	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>			
 	<li><a href="/ladders"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
 	<li><a href="/champions"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Champions</span></a></li>
 	<li><a href="/blogs"><i class="fa fa-file"></i> <span class="hidden-xs hidden-sm">Blog</span></a></li>
