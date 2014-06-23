@@ -129,6 +129,9 @@ class ForumController extends \BaseController {
 				$topic->url_name = $title;
 				$topic->save();
 				
+				$topic->category->updated_at = date('Y-m-d H:i:s');
+				$topic->category->save();
+				
 				return Redirect::to("/forum/".$topic->category->url_name)->with('success', trans("forum.topic_created"));
 				
 			} else {
