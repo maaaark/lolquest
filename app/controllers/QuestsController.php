@@ -226,7 +226,7 @@ class QuestsController extends \BaseController {
 				
 				//$quest = Quest::find($quest_id);
 				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
-				if($quest->count() > 0) {
+				if(isset($quest) && $quest->count() > 0) {
 					
 					$user->refresh_games();
 					// Refresh the Quests for this summoner
