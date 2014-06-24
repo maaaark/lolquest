@@ -61,6 +61,7 @@ class RefreshLadder extends Command {
 				$participant->month_exp = $row->total_exp;
 				$participant->total_quests = $row->total_quests;
 				$participant->save();
+				echo "\nUser Edit: ".$row->user_id." \n";
 			} else {
 			    if($month = 1) {
 					$month2 = 12;
@@ -104,6 +105,7 @@ class RefreshLadder extends Command {
 				$ladder->month = $month;
 				$ladder->year = $year;
 				$ladder->save();
+				echo "\nNew User: ".$row->user_id." \n";
 			}
 			$i++;
 		}
