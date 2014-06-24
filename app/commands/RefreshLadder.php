@@ -63,12 +63,12 @@ class RefreshLadder extends Command {
 				$participant->save();
 			} else {
 			    if($month = 1) {
-					$month = 12;
-					$year -= 1;
+					$month2 = 12;
+					$year2 = $year-1;
 				} else {
-					$month -= 1;
+					$month2 = $month-1;
 				}
-				$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year)->where('month', '=', $month)->first();
+				$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year2)->where('month', '=', $month2)->first();
 				if($participant) {
 					$i = $participant->rang;
 					if ($i = 1) {
