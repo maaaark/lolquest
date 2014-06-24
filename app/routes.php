@@ -85,6 +85,7 @@ Route::get('/delete_notifications', 'UsersController@delete_notifications');
 Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
 Route::get('/achievements', 'UsersController@achievements');
 Route::get('/achievements/{id}', 'UsersController@achievements_show');
+Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
 
 
 // Quests Controller

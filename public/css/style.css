@@ -132,6 +132,29 @@ h3 {
 .delete_all_notes a:hover {
 	color: red !important;
 }
+.q_done {
+	background: green;
+	color: #fff;
+	font-size: 60px;
+	font-weight: bold;
+	line-height: 92px;
+	text-align: center;
+	height: 92px;
+	width: 92px;
+}
+.quest_finish {
+	width: 650px;
+	background: rgba(255,255,255,0.8);
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
 .league_info {
 	margin-left: 15px;
 	font-style: italic;
@@ -919,6 +942,11 @@ a.remove {
 	background: url("../img/login_background.jpg") #fff;
 	height: 600px;
 	text-align: center;
+	padding-top: 100px;
+}
+.quest_done_background {
+	background: url("../img/login_background.jpg") #fff;
+	height: 600px;
 	padding-top: 100px;
 }
 .inner_login {

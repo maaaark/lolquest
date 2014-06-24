@@ -13,7 +13,6 @@
 	</head>
     <body>
 	
-	
 	@include('layouts.top')
 	
 	<img src="/img/blur.jpg" class="bg" />

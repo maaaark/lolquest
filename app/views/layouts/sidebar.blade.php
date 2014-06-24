@@ -1,5 +1,11 @@
 @if(Auth::check())
 	
+	<div class="sidebar_box">
+		<div class="sidebar_headline"><span class="fa fa-facebook"></span>&nbsp;&nbsp;Social Media</div>
+		<div class="fb-like" data-href="https://www.facebook.com/lolquest.net" data-width="297" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div class="clear"></div>
+	</div>
+	
 	@if(Session::get('notifications_amount') > 0)
 
 	<div class="sidebar_box">
@@ -34,7 +40,6 @@
 		<div class="clear"></div>
 	</div>
 	@endif
-			
 
 
 	@if(Session::has('daily_quest'))
@@ -108,6 +113,8 @@
 		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
+	
+
 @else
 
 	<div class="sidebar_box">

@@ -37,6 +37,19 @@ class UsersController extends \BaseController {
 		$user = User::find(Auth::user()->id);
 		return View::make('settings.timeline', compact('user'));
 	}
+	
+	public function quest_finished($quest_id) {
+		if(Auth::check()) {
+			$quest = Quest::where("user_id", "=", Auth::user()->id)->where("id","=",$quest_id)->where("finished","=",1)->first();
+			if($quest) {
+				return View::make('users.quest_finish', compact('quest'));
+			} else {
+				return Redirect::to('/404');
+			}
+		} else {
+			return Redirect::to('/login');
+		}
+	}
 
 	/**
 	 * Store a newly created user in storage.
