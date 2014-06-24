@@ -126,11 +126,24 @@ class QuestsController extends \BaseController {
 					$champion = Input::get('choose_quest_champion');
 					$role = Input::get('choose_playerrole');
 					
+					$api_type = Config::get('api.use_riot_api');
+					
 					if($role == 0) {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
 					} else {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
 					}
+					
+					if($api_type == 0) { // USE CUSTOM API
+						while($questtype->id == 12){
+							if($role == 0) {
+								$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+							} else {
+								$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
+							}
+						}
+					}
+					
 					$quest = new Quest;
 					if($champion == 0) {
 						$champion = Champion::orderBy(DB::raw('RAND()'))->first();
