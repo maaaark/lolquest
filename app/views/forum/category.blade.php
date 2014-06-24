@@ -46,8 +46,12 @@
 				{{ $topics->links(); }}
 			</td>
 			<td width="50%" align="right">
+				@if(Auth::check())
 				<a href="/forum/{{ $category->url_name }}/create_topic/new" class="btn btn-primary right">{{ trans("forum.create_topic") }}</a>
+				@endif
+				
 			</td>
 		</tr>
 	</table>
+	<br/>
 @stop

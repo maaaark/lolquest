@@ -18,7 +18,6 @@ class ForumController extends \BaseController {
 	{
 		
 		$category = ForumCategory::where('url_name', '=', $url_name)->first();
-		//$topics = $category->topics();
 		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->orderBy('updated_at', 'desc')->paginate(15);
 		
 		if(Auth::check()) {
@@ -27,7 +26,6 @@ class ForumController extends \BaseController {
 		} else {
 			$last_reads = array();
 		}
-		
 		
 		return View::make('forum.category', compact('category', 'topics','last_reads'));
 	}

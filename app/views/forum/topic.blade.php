@@ -16,7 +16,7 @@
 					{{ $topic->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
 				<td valign="top">
-					<div class="small">{{ $topic->created_at }}</div><br/>
+					<div class="small">{{ $topic->created_at->diffForHumans() }}</div><br/>
 					{{ $topic->content }}
 				</td>
 			</tr>
@@ -30,7 +30,7 @@
 					{{ $reply->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
 				<td valign="top">
-					<div class="small">{{ $reply->created_at }}</div><br/>
+					<div class="small">{{ $reply->created_at->diffForHumans() }}</div><br/>
 					{{ $reply->content }}
 				</td>
 			</tr>
@@ -43,7 +43,11 @@
 				{{ $replies->links(); }}
 			</td>
 			<td width="50%" align="right">
-				<a href="/forum/{{ $category->url_name }}/{{ $topic->topic }}/reply" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+				@if(Auth::check())
+					<a href="/forum/{{ $category->url_name }}/{{ $topic->topic }}/reply" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+				@else
+					<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
+				@endif
 			</td>
 		</tr>
 	</table>

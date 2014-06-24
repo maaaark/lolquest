@@ -46,6 +46,7 @@
 				{{ $post->achievement->name }}
 			@endif</a></td>
 			@endif
+			<td><small>{{ $post->created_at->diffForHumans() }}</small></td>
 		</tr>
 	@endforeach	
 </table>
