@@ -63,7 +63,7 @@ class RefreshLadder extends Command {
 				$participant->save();
 				echo "\nUser Edit: ".$row->user_id." \n";
 			} else {
-			    if($month = 1) {
+			    if($month2 = 1) {
 					$month2 = 12;
 					$year2 = $year-1;
 				} else {
