@@ -73,22 +73,28 @@ class RefreshLadder extends Command {
 					$i = $participant->rang;
 					if ($i = 1) {
 						$user->achievements()->attach(49);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 49)->name);
+						$achievement = Achievement::where('id', '=', 49)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					} elseif ($i = 2) {
 						$user->achievements()->attach(50);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 50)->name);
+						$achievement = Achievement::where('id', '=', 50)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					} elseif ($i = 3) {
 						$user->achievements()->attach(51);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 51)->name);
+						$achievement = Achievement::where('id', '=', 51)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					} elseif ($i <= 10) {
 						$user->achievements()->attach(52);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 52)->name);
+						$achievement = Achievement::where('id', '=', 52)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					} elseif ($i <= 50) {
 						$user->achievements()->attach(53);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 53)->name);
+						$achievement = Achievement::where('id', '=', 53)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					} elseif ($i <= 100) {
 						$user->achievements()->attach(54);
-						$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 54)->name);
+						$achievement = Achievement::where('id', '=', 54)->first();
+						$user->notify(1, trans("achievements.receive").$achievement->name);
 					}
 				}			
 				$ladder = new Ladder;
