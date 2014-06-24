@@ -40,6 +40,7 @@ class RefreshLadder extends Command {
 		$year = date("Y");
 		$month = date("m");
 		$i = 1;
+		$x = 1;
 			
 		$ladder = DB::select(DB::raw('
 			SELECT user_id, updated_at, 
@@ -60,6 +61,7 @@ class RefreshLadder extends Command {
 			if($participant) {
 				$participant->month_exp = $row->total_exp;
 				$participant->total_quests = $row->total_quests;
+				$participant->rang = $x;
 				$participant->save();
 				echo "\nUser Edit: ".$row->user_id." \n";
 			} else {
@@ -104,10 +106,12 @@ class RefreshLadder extends Command {
 				$ladder->total_quests = $row->total_quests;
 				$ladder->month = $month;
 				$ladder->year = $year;
+				$ladder->rang = $x;
 				$ladder->save();
 				echo "\nNew User: ".$row->user_id." \n";
 			}
 			$i++;
+			$x++;
 		}
 		
 		echo "\n\nLadder refreshed \n\n";
