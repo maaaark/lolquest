@@ -13,6 +13,24 @@ class Champion extends \Eloquent {
         return $this->hasMany('Daily');
     }
 	
+	public function pickrate($games_amount) {
+		$champion_games = Game::where("championId","=", $this->champion_id)->count();
+		$pickrate = (100/$games_amount) * $champion_games;
+		return round($pickrate,2);
+	}
+	
+	public function winrate() {
+		$champion_wins = Game::where("championId","=", $this->champion_id)->where("win","=", 1)->count();
+		$champion_games = Game::where("championId","=", $this->champion_id)->count();
+		if($champion_games <= 0) {
+			$winrate = 0;
+		} else {
+			$winrate = (100/$champion_games) * $champion_wins;
+		}
+		
+		return round($winrate,2);
+	}
+	
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
