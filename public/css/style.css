@@ -132,6 +132,11 @@ h3 {
 .delete_all_notes a:hover {
 	color: red !important;
 }
+.league_info {
+	margin-left: 15px;
+	font-style: italic;
+	right: 0;
+}
 .forum_headline {
 	background: #333333;
 	color: #fff;

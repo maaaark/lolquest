@@ -12,6 +12,8 @@
 		<option value="/ladders/2014/03">{{ trans("month.03") }} 2014</option>
 	</select> 
 	
+	<span class="league_info">{{ trans("ladders.update") }}</span>
+	
 	<br/>
 	<br/>
 	<table class="table table-striped">
