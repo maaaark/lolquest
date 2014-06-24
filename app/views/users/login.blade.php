@@ -14,7 +14,7 @@
 		
 		
 		<div class="input-group">
-		  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 		  {{ Form::text('email', Input::old('email'), array('placeholder' => 'example@lolquest.net', 'class' => 'form-control')) }}
 		</div>
 		<br/>

@@ -10,9 +10,25 @@
 		<table class="table table-striped" style="margin-bottom: 0;">
 			@foreach($topics as $topic)
 			<tr>
-				<td valign="center"><a href="/forum/{{ $category->url_name }}/{{ $topic->url_name }}">{{ $topic->topic }}</a></td>
+				<td width="50">
+					@foreach($last_reads as $read)
+					
+						@if($read->forum_topic_id == $topic->id)
+							@if($read->last_read > $topic->updated_at)
+								<img src="/img/forum/folder.png" height="35" style="opacity: 0.3" />
+							@else
+								<img src="/img/forum/folder.png" height="35" />
+							@endif
+						@endif
+						
+					@endforeach
+				</td>
+				<td valign="center">
+					<a href="/forum/{{ $category->url_name }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>
+					<small>{{ trans("forum.by") }} <strong>{{ $topic->user->summoner_name }}</strong></small>
+				</td>
 				<td>
-					{{ trans("forum.by") }} <strong>{{ $topic->user->summoner_name }}</strong><br/>
+					{{ $topic->updated_at->diffForHumans() }}<br/>
 					{{ $topic->replies->count() }} {{ trans("forum.replies") }}
 				</td>
 			</tr>
@@ -30,8 +46,12 @@
 				{{ $topics->links(); }}
 			</td>
 			<td width="50%" align="right">
+				@if(Auth::check())
 				<a href="/forum/{{ $category->url_name }}/create_topic/new" class="btn btn-primary right">{{ trans("forum.create_topic") }}</a>
+				@endif
+				
 			</td>
 		</tr>
 	</table>
+	<br/>
 @stop

@@ -19,7 +19,9 @@ class QuestsController extends \BaseController {
 				$quest = Quest::where("user_id", "=", $user->id)->where("id", "=", $quest_id)->first();
 				if($quest) {
 					$timeline = Timeline::where("user_id", "=", $user->id)->where('quest_id', '=', $quest_id)->first();
-					$timeline->delete();
+					if($timeline) {
+						$timeline->delete();
+					}
 					$quest->delete();
 					$time = date("U");
 					if(($quest->createDate + 86400000) > ($time*1000)) {
@@ -224,7 +226,7 @@ class QuestsController extends \BaseController {
 				
 				//$quest = Quest::find($quest_id);
 				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
-				if($quest->count() > 0) {
+				if(isset($quest) && $quest->count() > 0) {
 					
 					$user->refresh_games();
 					// Refresh the Quests for this summoner
