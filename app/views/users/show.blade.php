@@ -273,7 +273,7 @@
 								<td>{{ $game->goldEarned }}</td>
 								<td><strong>Wards placed</strong></td>
 								<td>{{ $game->wardPlaced }}</td>
-								<td><strong>Wards placed</strong></td>
+								<td><strong>Wards destroyed</strong></td>
 								<td>{{ $game->wardKilled }}</td>
 							</tr>
 							<tr>

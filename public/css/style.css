@@ -137,6 +137,12 @@ h3 {
 	border-top: 0;
 	margin-bottom: 10px;
 }
+.game-win {
+	border-left: 3px solid green;
+}
+.game-loss {
+	border-left: 3px solid red;
+}
 .game_detail_toggle {
 	display: none;
 }
