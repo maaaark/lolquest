@@ -41,13 +41,23 @@ $( document ).ready(function() {
 	
 	$('#myTab a[href="#profile"]').tab('show')
 	$('#myTab a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
+	  e.preventDefault();
+	  $(this).tab('show');
 	})
 	
 	$(function () {
-    $('#myTab a:first').tab('show')
-  })
+		$('#myTab a:first').tab('show');
+	})
+	
+	$(".toggle_game_details").click(function() {
+		event.preventDefault();
+		$(this).closest(".game_detail_toggle").toggle("fast");
+	});
+
+	$('.toggle_game_details').click( function() {
+        $('.game_details-' + $(this).attr('id')).toggle();
+    });
+
 	
 
 });

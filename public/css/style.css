@@ -132,6 +132,14 @@ h3 {
 .delete_all_notes a:hover {
 	color: red !important;
 }
+.game_details {
+	border: 1px solid #dddddd;
+	border-top: 0;
+	margin-bottom: 10px;
+}
+.game_detail_toggle {
+	display: none;
+}
 .q_done {
 	background: green;
 	color: #fff;

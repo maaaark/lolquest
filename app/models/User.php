@@ -325,6 +325,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->subType = $game["subType"];
 							$newGame->minionsKilled = $minionsKilled;
 							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
+							$newGame->mapId = $game["mapId"];
+							$newGame->teamId = $game["teamId"];
+							$newGame->level = $game["level"];
 							$mil = $game["createDate"];
 							$newGame->createDate = $mil;
 							$newGame->win = $game["stats"]["win"];
@@ -381,6 +384,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$totalHeal = 0;
 						$wardKilled = 0;
 						$turretsKilled = 0;
+						$neutralMinionsKilled = 0;
+						$teamId = 0;
+						$level = 1;
 						
 						foreach($game['statistics'] as $stats) {
 							foreach($stats as $stat) {
@@ -490,6 +496,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$game_date=date("Y-m-d H:i:s", strtotime($game['createDate']));
 						$summoner_1 =$game['spell1'];
 						$summoner_2 =$game['spell2'];
+						$gameMapId =$game['gameMapId'];
+						$teamId =$game['teamId'];
+						
 						$gametype =$game['gameType'];
 						$gamemode =$game['gameMode'];
 						$skin_id = $game['skinIndex'];
@@ -516,6 +525,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->item4 = $item_4;
 							$newGame->item5 = $item_5;
 							$newGame->item6 = $item_6;
+							$newGame->level = $level;
 							$newGame->spell1 = $summoner_1;
 							$newGame->spell2 = $summoner_2;
 							$newGame->gameMode = $gamemode;
@@ -527,6 +537,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->turretsKilled = $turretsKilled;
 							$newGame->subType = $game["subType"];
 							$newGame->minionsKilled = $cs;
+							$newGame->mapId = $gameMapId;
+							$newGame->teamId = $teamId;
 							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 							$newGame->totalDamageTaken = $totalDamageTaken;
 							$newGame->totalDamageDealt = $totalDamageDealt;

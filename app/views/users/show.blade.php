@@ -258,6 +258,56 @@
 							<a href="/items/{{ $item->id }}"><img src="/img/items/{{ $item->id }}_64.png" data-toggle="tooltip" data-placement="top" title="{{ $item->name }}" width="35" class="img-circle items" ></a>
 						@endforeach	
 					</td>
+					<td style="text-align: center;">
+						<a href="#" class="toggle_game_details" id="{{ $game->id }}">
+							<i class="fa fa-plus"></i>
+							Details
+						</a>
+					</td>
+				</tr>
+				<tr class="game_detail_toggle game_details-{{ $game->id }}" >
+					<td colspan="6" class="game_details">
+						<table class="table">
+							<tr>
+								<td><strong>Gold earned</strong></td>
+								<td>{{ $game->goldEarned }}</td>
+								<td><strong>Wards placed</strong></td>
+								<td>{{ $game->wardPlaced }}</td>
+								<td><strong>Wards placed</strong></td>
+								<td>{{ $game->wardKilled }}</td>
+							</tr>
+							<tr>
+								<td><strong>Total damage Taken</strong></td>
+								<td>{{ $game->totalDamageTaken }}</td>
+								<td><strong>Total damage Dealt</strong></td>
+								<td>{{ $game->totalDamageDealt }}</td>
+								<td><strong>Total Heal</strong></td>
+								<td>{{ $game->totalHeal }}</td>
+							</tr>
+							<tr>
+								<td><strong>Game lenght</strong></td>
+								<td>{{ $game->timePlayed }}</td>
+								<td><strong>Team</strong></td>
+								<td>
+									@if($game->teamId == 100)
+										Blue
+									@else
+										Purple
+									@endif
+								</td>
+								<td><strong>Turrets destroyed</strong></td>
+								<td>{{ $game->turretsKilled }}</td>
+							</tr>
+							<tr>
+								<td><strong>Largest Killingspree</strong></td>
+								<td>{{ $game->killingSprees }}</td>
+								<td><strong>Game Date</strong></td>
+								<td>{{ date("d.m.Y H:i", $game->createDate/1000) }}</td>
+								<td><strong>-</strong></td>
+								<td>-</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			@endforeach
 		</table>

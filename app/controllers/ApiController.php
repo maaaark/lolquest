@@ -39,18 +39,20 @@ class ApiController extends \BaseController {
 
 	}
 	
-	public function playerroles()
+	
+	public function questtypes()
 	{
 
-		$playerroles = Playerrole::all();
+		$champions = Champion::orderBy('name')->get();
 
 		return Response::json(array(
 			'error' => false,
-			'playerroles' => $playerroles->toArray()),
+			'champions' => $champions->toArray()),
 			200
 		);
 
 	}
+	
 	
 	public function dashboard()
 	{
@@ -60,6 +62,11 @@ class ApiController extends \BaseController {
 		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
 		$time = date("U");
 		$time_waited = $time - $user->last_checked;
+		$userquests = array();
+		
+		foreach($myquests as $quest) {
+			$userquests["name"] = $quest->questtype->name;
+		}
 	 
 		return Response::json(array(
 			'error' => false,
