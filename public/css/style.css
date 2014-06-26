@@ -128,7 +128,7 @@ h3 {
 	margin-right: 5px;
 	margin-bottom: 10px;
 	padding-bottom: 5px !important;
-	border-bottom: 1px solid #414141;
+	border-bottom: 1px solid #333333;
 }
 .delete_all_notes a:hover {
 	color: red !important;
@@ -660,7 +660,7 @@ a.logout {
 }
 .notifications_list li {
 	border: 0;
-	border-bottom: 1px solid #414141;
+	border-bottom: 1px solid #333333;
 	color: #999999;
 	height: auto;
 	text-align: left;

@@ -57,6 +57,10 @@ $( document ).ready(function() {
 	$('.toggle_game_details').click( function() {
         $('.game_details-' + $(this).attr('id')).toggle();
     });
+	
+	$('.delete_all_notes a').click(function(){
+		return confirm("Are you sure you want to delete?");
+	})
 
 	
 
