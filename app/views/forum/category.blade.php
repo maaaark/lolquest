@@ -25,7 +25,7 @@
 				</td>
 				<td valign="center">
 					<a href="/forum/{{ $category->url_name }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>
-					<small>{{ trans("forum.by") }} <strong>{{ $topic->user->summoner_name }}</strong></small>
+					<small>{{ trans("forum.by") }} <strong>{{ $topic->user->summoner->name }}</strong></small>
 				</td>
 				<td>
 					{{ $topic->updated_at->diffForHumans() }}<br/>

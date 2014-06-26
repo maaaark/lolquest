@@ -42,7 +42,7 @@
 				@endif
 			</td>
 			<td width="20"><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $row->user->summoner->profileIconId }}.jpg" class="img-circle" width="20" /></a></td>
-			<td><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}">{{ $row->user->summoner_name }}</a></td>
+			<td><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}">{{ $row->user->summoner->name }}</a></td>
 			<td>{{ $row->total_quests }}</td>
 			<td>{{ $row->month_exp }}</td>
 		</tr>
