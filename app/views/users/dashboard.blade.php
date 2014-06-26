@@ -2,7 +2,6 @@
 @section('title', trans("users.dashboard"))
 @section('content')
 	<br/>
-	<h3>My Quests</h3>
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of {{ $user->quest_slots }} {{ trans("dashboard.questlog") }}
 		@if($user->quest_slots<4)

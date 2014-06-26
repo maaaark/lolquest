@@ -15,7 +15,7 @@
 	
 	@include('layouts.top')
 	
-	<img src="/img/blur.jpg" class="bg" />
+	<!-- <img src="/img/blur.jpg" class="bg" /> -->
 
 	
 	<div id="wrapper">
@@ -25,7 +25,7 @@
 			<div id="banner_1">728x90</div>
 			<div id="banner_2">160x600</div>
 			@endif
-			<div class="title"><h1>@yield('title')</h1></div>
+			
 		</div>
 		
 		<div class="container content-wrapper">	
@@ -37,7 +37,7 @@
 				<table>
 					<tr>
 						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-							
+							<div class="title"><h1>@yield('title')</h1></div>
 							@include('layouts.errors')
 
 							@yield('content')
