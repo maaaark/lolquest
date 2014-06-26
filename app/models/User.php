@@ -387,6 +387,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						$neutralMinionsKilled = 0;
 						$teamId = 0;
 						$level = 1;
+						$wards_placed = 0;
 						
 						foreach($game['statistics'] as $stats) {
 							foreach($stats as $stat) {
@@ -438,6 +439,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								  }
 								  if ($stat['statType'] == "VISION_WARDS_BOUGHT_IN_GAME") {
 									$wards+=$stat['value'];
+								  }
+								  if ($stat['statType'] == "WARD_PLACED") {
+									$wards_placed=$stat['value'];
 								  }
 								  if ($stat['statType'] == "LARGEST_MULTI_KILL") {
 									$multikill=$stat['value'];
@@ -517,7 +521,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->numDeaths = $deaths;
 							$newGame->championsKilled = $kills;
 							$newGame->goldEarned = $gold;
-							$newGame->wardPlaced = $wards;
+							$newGame->wardPlaced = $wards_placed;
 							$newGame->item0 = $item_0;
 							$newGame->item1 = $item_1;
 							$newGame->item2 = $item_2;
