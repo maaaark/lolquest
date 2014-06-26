@@ -15,12 +15,11 @@
 	
 	@include('layouts.top')
 	
-	<img src="/img/blur.jpg" class="bg" />
 
 	
 	<div id="wrapper">
 		<div class="container title-wrapper">
-			<div class="title"><h1>@yield('title')</h1></div>
+			
 		</div>
 		
 		<div class="container content-wrapper">	
@@ -29,7 +28,7 @@
 				<div id="navigation">
 					@include('layouts.navigation')
 				</div>
-				
+				<div class="title"><h1>@yield('title')</h1></div>
 				@include('layouts.errors')
 
 				@yield('content')

@@ -1,5 +1,5 @@
 @extends('templates.full')
-@section('title', 'Login')
+@section('title', '')
 @section('content')
 <div class="login_form">
 	<div class="inner_login">
