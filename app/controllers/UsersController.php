@@ -32,11 +32,37 @@ class UsersController extends \BaseController {
 		return View::make('settings.email', compact('user'));
 	}
 	
+	
+	public function update_email()
+	{
+		// 	{{ Form::model($user, array('route' => array('users.update_email', $user->id), 'method' => 'PUT')) }}
+		$user = User::find(Auth::user()->id);
+		$user->email = Input::get('email');
+		$user->save();
+		return View::make('settings.email', compact('user'))->with('success', trans('users.settings_saved'));
+	}
+	 
+	
+	
 	public function timeline_settings()
 	{
 		$user = User::find(Auth::user()->id);
 		return View::make('settings.timeline', compact('user'));
 	}
+	
+	public function update_timeline_settings()
+	{
+		// 	{{ Form::model($user, array('route' => array('users.update_email', $user->id), 'method' => 'PUT')) }}
+		$user = User::find(Auth::user()->id);
+		if(Input::get('show_in_timeline') == 1) {
+			$user->show_in_timeline = 1;	
+		} else {
+			$user->show_in_timeline = 0;
+		}
+		$user->save();
+		return Redirect::to("/timeline_settings")->with('success', trans('users.settings_saved'));
+	}
+	
 	
 	public function quest_finished($quest_id) {
 		if(Auth::check()) {

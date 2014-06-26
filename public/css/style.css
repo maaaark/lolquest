@@ -60,17 +60,17 @@ h3 {
 }
 #banner_1 {
 	right: 0;
-	margin-top: -50px;
+	margin-top: 0px;
 	position: absolute;
-	width: 728px;
-	height: 90px;
+	width: 940px;
+	height: 210px;
 	background: #fff;
 }
 #banner_2 {
 	right: -160px;
-	margin-top: -50px;
+	margin-top: 0px;
 	position: absolute;
-	width: 160px;
+	width: 200px;
 	height: 600px;
 	background: #fff;
 }
@@ -400,6 +400,16 @@ img.bg {
   padding: 15px 30px 15px 15px;
   border-left: 5px solid #eee;
 }
+.daily_ribbon .clock {
+	background: #b9b9b9;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #333333;
+}
 .bs-callout h4 {
   margin-top: 0;
 }
@@ -500,8 +510,8 @@ img.bg {
 	padding-left: 10px;
 	margin-left: -10px;
 	margin-bottom: 15px;
-	border-bottom: 1px solid #414141;	
-	border-top: 1px solid #414141;
+	border-bottom: 1px solid #333333;	
+	border-top: 1px solid #333333;
 }
 .daily_headline {
 	color: #fff;
@@ -861,7 +871,6 @@ a.logout {
 	width: 100%;
 	text-align: center;
 	margin-top: 10px;
-	
 	font-size: 22px;
 	font-weight: bold;
 }

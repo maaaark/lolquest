@@ -33,6 +33,10 @@ Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'))
 Route::post('create_comment', array('uses' => 'BlogsController@create_comment'));
 
 
+// Setting
+Route::post('/settings/update_email', array('uses' => 'UsersController@update_email'));
+Route::post('/settings/update_timeline_settings', array('uses' => 'UsersController@update_timeline_settings'));
+
 // Forum Controller
 Route::get('/forum', array('uses' => 'ForumController@index'));
 Route::get('/forum/{url_name}', array('uses' => 'ForumController@category'));

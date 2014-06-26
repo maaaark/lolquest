@@ -59,7 +59,7 @@ $( document ).ready(function() {
     });
 	
 	$('.delete_all_notes a').click(function(){
-		return confirm("Are you sure you want to delete?");
+		return confirm("Delete all Notifications?");
 	})
 
 	

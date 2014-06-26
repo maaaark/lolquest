@@ -28,7 +28,6 @@
 				<div id="navigation">
 					@include('layouts.navigation')
 				</div>
-				<div class="title"><h1>@yield('title')</h1></div>
 				@include('layouts.errors')
 
 				@yield('content')

@@ -2,10 +2,10 @@
 @section('title', trans("users.settings")." ".$user->summoner->summoner_name)
 @section('content')
 	<br/>
-	{{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
+	{{ Form::open(array('action' => 'UsersController@update_email')) }}
 		<div class="form-group">
 			{{ Form::label('email', 'Email') }}
-			{{ Form::email('email', null, array('class' => 'form-control')) }}
+			{{ Form::email('email', $user->email, array('class' => 'form-control')) }}
 		</div>
 		{{ Form::submit(trans("sidebar.save"), array('class' => 'btn btn-primary')) }}
 	{{ Form::close() }}
