@@ -404,9 +404,11 @@ class UsersController extends \BaseController {
 				Session::flash('message', 'No Summoner found');
 				return Redirect::to('/edit_summoner');
 			} else {
+				$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
+				$clean_summoner_name = strtolower($clean_summoner_name);
 				$user = User::find(Auth::user()->id);
 				$user->region = Input::get('region');
-				$user->summoner_name = Input::get('summoner_name');
+				$user->summoner_name = $clean_summoner_name;
 				$user->summoner_status = 1;
 				$user->verify_string = str_random(8);
 				$user->save();
