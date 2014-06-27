@@ -254,7 +254,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$timeline->comment_id = $comment_id;
 			$timeline->friend_id = $friend_id;
 			$timeline->save();
+			return true;
 		}
+		return false;
 	}
 
 	
