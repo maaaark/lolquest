@@ -143,6 +143,16 @@ class UsersController extends \BaseController {
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
 				});
 			}
+			
+			// Beta Key
+			if(Session::get('beta_user') == 1) {
+				$beta_key = Session::get('beta_key');
+				$key = Betakey::where("key", "=", $beta_key)->first();
+				$key->user_id = $user->id;
+				$key->save();
+			}
+			
+			
 			$user->save();
 			return Redirect::to('/login')->with('message', trans('users.thank_you'));
 		}
@@ -345,6 +355,26 @@ class UsersController extends \BaseController {
 			return Redirect::to('login');
 		}
 	}
+	
+	
+	
+	public function check_betakey()
+	{
+		$key = Betakey::where("key", "=", Input::get('key'))->first();
+		if(isset($key)) {
+			if($key->used == 0){
+				Session::put('beta_user', 1);
+				Session::put('beta_key', $key->key);
+				return Redirect::to("/users/create");
+			} else {
+				return Redirect::to("/")->withErrors("Key already used!");
+			}
+		} else {
+			return Redirect::to("/")->withErrors("Beta Key not valid!");
+		}
+	}
+	
+	
 
 	/**
 	 * Update the specified resource in storage.
@@ -547,6 +577,29 @@ class UsersController extends \BaseController {
 		return Redirect::to('login');
 		}
 	}
+	
+	public function generate_keys()
+	{
+		if(Auth::user()) {
+			if(Auth::user()->hasRole('admin')) {
+				$i = 1;
+				while($i <= 10) {
+					$key = new Betakey;
+					$key->key = str_random(10);
+					$key->used = 0;
+					$key->user_id = 0;
+					$key->save();
+					echo $key->key."<br/>";
+					$i++;
+				}
+			} else {
+				return Redirect::to('403');
+			} 
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
 
 	public function makeFriend($id)
 	{

@@ -27,6 +27,7 @@ Route::resource('blogs', 'BlogsController');
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
+Route::get('admin/generate_keys', array('uses' => 'UsersController@generate_keys'));
 
 
 // Blog Controller
@@ -65,6 +66,7 @@ Route::get('/timeline', array('uses' => 'TimelinesController@index'));
 // Users Controller
 Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));
+Route::post('/check_betakey', 'UsersController@check_betakey');
 
 Route::get('edit_summoner', 'UsersController@edit_summoner');
 Route::get('dashboard', 'UsersController@dashboard');
@@ -90,6 +92,7 @@ Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
 Route::get('/achievements', 'UsersController@achievements');
 Route::get('/achievements/{id}', 'UsersController@achievements_show');
 Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
+
 
 
 // Quests Controller

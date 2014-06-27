@@ -591,7 +591,6 @@ a.logout {
 .register_form {
 	float: right;
 	width: 450px;
-	margin-top: -65px;
 	margin-bottom: 15px;
 	padding: 15px;
 	padding-top: 5px;
@@ -918,7 +917,7 @@ a.logout {
 }
 .title-wrapper {
 	position: relative;
-	padding-top: 70px;
+	padding-top: 50px;
 }
 .group_ribbon {
 	background: url("../img/quests/group.png");

@@ -18,4 +18,5 @@ return array(
 	'register_now' => 'Register now!',
 	'free' => 'The best thing is: <strong>It`s all FREE. Get RP or Rare Skins without spending any money!</strong>',
 	'teaser' => 'You need a little bit of extra challenge in your Leauge of Legends games or want to earn some EP-Boosts, RP-Cards or rare Skins?<br/><br/>Then lolquest might be the perfect plattform for you! Finish Quests, master Challenges, collect Quest Points and get awesome rewards!',
+	'join_beta' => 'Redeem your Beta Key'
 );

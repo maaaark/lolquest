@@ -28,6 +28,21 @@
 		
 			<div class="col-md-5  col-lg-5">
 				<div class="register_form">
+				
+						@if(Config::get('settings.register') == "key")
+						{{ Form::open(array('action' => 'UsersController@check_betakey')) }}
+							<h2>{{ trans("start.join_beta") }}</h2>
+							<ul>
+								@foreach($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+							{{ Form::text('key', null, array('class'=>'form-control', 'placeholder'=>'Your Beta Key', 'class' => 'form-control')) }}
+							{{ Form::submit('Register', array('class'=>'btn btn-large btn-success btn-block'))}}
+						{{ Form::close() }}
+						
+						@else
+						
 						<h2>{{ trans("start.register_now") }}</h2>
 						{{ Form::open(array('url'=>'users/store', 'class'=>'')) }}
 							<ul>
@@ -70,6 +85,8 @@
 						<hr/>
 						<a href="/login" class="btn btn-primary btn-large btn-block">{{ trans("start.login") }}</a><br/>
 						<br/>
+						
+						@endif
 				</div>
 			</div>
 		</div>
