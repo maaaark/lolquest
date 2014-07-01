@@ -269,7 +269,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			if(Config::get('api.use_riot_api')  == 1) {
 				// USE RIOT API
 				$api_key = Config::get('api.key');
-				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
+				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					return Redirect::to('/api_problems');
@@ -359,13 +359,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				$data = json_decode($test, true);
 				
 			if($data["success"] == false ) {
-				var_dump($data);
-				return Redirect::to("404");
+				return Redirect::to('/api_problems');
 				
 			} else {
-				
-				
-				
+			
 				foreach($data["data"]["gameStatistics"] as $games) {
 					foreach($games as $game) {
 						$kills = 0;
