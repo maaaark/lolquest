@@ -350,6 +350,9 @@ class ChallengesController extends \BaseController {
 						}
 					}
 					
+					// Not completed
+					return Redirect::to('challenges')->with('error', trans("dashboard.quest_not_done"));
+					
 				
 				} elseif($user->challenge_mode == 3) { // MID CHALLENGES
 					$mid_champions = array(103, 61, 79, 55, 63, 38, 157, 7, 127, 117, 4, 74, 90, 101, 115);
@@ -509,6 +512,9 @@ class ChallengesController extends \BaseController {
 						}
 					}
 					
+					// Not completed
+					return Redirect::to('challenges')->with('error', trans("dashboard.quest_not_done"));
+					
 				
 				} elseif($user->challenge_mode == 4) { // MARKSMAN CHALLENGES
 					$marksman_champions = array(222, 51, 236, 81, 15, 104, 67, 42, 29, 18, 21, 110, 96, 119, 22);
@@ -667,6 +673,9 @@ class ChallengesController extends \BaseController {
 							
 						}
 					}
+					
+					// Not completed
+					return Redirect::to('challenges')->with('error', trans("dashboard.quest_not_done"));
 					
 				
 				} elseif($user->challenge_mode == 5) { // SUPPORT CHALLENGES
@@ -832,7 +841,8 @@ class ChallengesController extends \BaseController {
 						}
 					}
 					
-					
+					// Not completed
+					return Redirect::to('challenges')->with('error', trans("dashboard.quest_not_done"));
 				
 				}
 		} else {

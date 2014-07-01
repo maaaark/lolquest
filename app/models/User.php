@@ -272,7 +272,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
-					return View::make('login');
+					return Redirect::to('/api_problems');
 				} else {
 					$obj = json_decode($json, true);
 					

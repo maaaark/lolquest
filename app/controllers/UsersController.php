@@ -466,7 +466,6 @@ class UsersController extends \BaseController {
 					$summoner->save();
 					
 					return Redirect::to('/summoner/'.$user->region.'/'.$user->summoner_name);
-					//return Redirect::to('/users');
 				}	
 			}			
 		}
