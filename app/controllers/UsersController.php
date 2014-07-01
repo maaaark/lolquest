@@ -427,39 +427,47 @@ class UsersController extends \BaseController {
 				->withErrors($validator);
 		} else {
 			
-			$api_key = Config::get('api.key');
-			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
-			$json = @file_get_contents($summoner_data);
-			if($json === FALSE) {
-				Session::flash('message', 'No Summoner found');
-				return Redirect::to('/edit_summoner');
-			} else {
-				$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
-				$clean_summoner_name = strtolower($clean_summoner_name);
-				$user = User::find(Auth::user()->id);
-				$user->region = Input::get('region');
-				$user->summoner_name = $clean_summoner_name;
-				$user->summoner_status = 1;
-				$user->verify_string = str_random(8);
-				$user->save();
+			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
+			$clean_summoner_name = strtolower($clean_summoner_name);
 				
-				if($user->summoner) {
-					$summoner = $user->summoner;
-				} else {
-					$summoner = new Summoner;
-				}
+			$check_user = User::where("summoner_name", "=", Input::get('summoner_name'))->where("region", "=", Input::get('region'))->first();
+			$check_summoner = Summoner::where("name", "=", $clean_summoner_name)->first();
 			
-				$obj = json_decode($json, true);
-				$summoner->user_id = $user->id;
-				$summoner->summonerid = $obj[$user->summoner_name]["id"];
-				$summoner->name = $obj[$user->summoner_name]["name"];
-				$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
-				$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
-				$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
-				$summoner->save();
+			if($check_user || $check_summoner) {
+				return Redirect::to('/edit_summoner')->with('error', trans('users.already_taken'));
+			} else {
+				$api_key = Config::get('api.key');
+				$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+				$json = @file_get_contents($summoner_data);
+				if($json === FALSE) {
+					Session::flash('message', 'No Summoner found');
+					return Redirect::to('/edit_summoner');
+				} else {
+					$user = User::find(Auth::user()->id);
+					$user->region = Input::get('region');
+					$user->summoner_name = $clean_summoner_name;
+					$user->summoner_status = 1;
+					$user->verify_string = str_random(8);
+					$user->save();
+					
+					if($user->summoner) {
+						$summoner = $user->summoner;
+					} else {
+						$summoner = new Summoner;
+					}
 				
-				return Redirect::route('users.show', array('region' => $user->region, 'name' => $user->summoner_name));
-				//return Redirect::to('/users');
+					$obj = json_decode($json, true);
+					$summoner->user_id = $user->id;
+					$summoner->summonerid = $obj[$user->summoner_name]["id"];
+					$summoner->name = $obj[$user->summoner_name]["name"];
+					$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
+					$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
+					$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
+					$summoner->save();
+					
+					return Redirect::to('/summoner/'.$user->region.'/'.$user->summoner_name);
+					//return Redirect::to('/users');
+				}	
 			}			
 		}
 	}
