@@ -16,4 +16,6 @@ return array(
 	'13' => 'Destroy at least 2 Turrets',
 	'14' => 'Get on a Killing Spree',
 	'15' => 'Heal at least for 5000 HP',
+	'16' => 'Deal at least 120.000 Damage',
+	'17' => 'Tank at least 30.000 Damage for your team',
 );

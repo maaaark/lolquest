@@ -594,6 +594,51 @@ class QuestsController extends \BaseController {
 					}
 					
 					
+
+					// Quest Type 16 - Deal at least 120000 Dmg
+					if($quest->questtype->id == 16) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->totalDamageDealt >= 120000) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+									$user->checkAchievement(2, $user->finishedQuestsCount());
+									$user->save();
+									return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 17 - Tank 30.000 Dmg
+					if($quest->questtype->id == 17) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->totalDamageTaken >= 30000) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
 					
 					
 				} else {

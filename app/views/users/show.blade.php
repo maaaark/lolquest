@@ -286,7 +286,7 @@
 							</tr>
 							<tr>
 								<td><strong>Game lenght</strong></td>
-								<td>{{ $game->timePlayed }}</td>
+								<td>{{ gmdate("i", $game->timePlayed) }} min</td>
 								<td><strong>Team</strong></td>
 								<td>
 									@if($game->teamId == 100)
