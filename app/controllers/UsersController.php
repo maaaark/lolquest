@@ -149,6 +149,7 @@ class UsersController extends \BaseController {
 				$beta_key = Session::get('beta_key');
 				$key = Betakey::where("key", "=", $beta_key)->first();
 				$key->user_id = $user->id;
+				$key->used = 1;
 				$key->save();
 			}
 			
