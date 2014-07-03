@@ -360,214 +360,214 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				$test = @file_get_contents($url);
 				$data = json_decode($test, true);
 				
-			if($data["success"] == false ) {
-				return Redirect::to('/api_problems');
+				if($data["success"] == false ) {
+					return Redirect::to('/api_problems');
+					
+				} else {
 				
-			} else {
-			
-				foreach($data["data"]["gameStatistics"] as $games) {
-					foreach($games as $game) {
-						$kills = 0;
-						$item_1 = 0;
-						$item_2 = 0;
-						$item_3 = 0;
-						$item_4 = 0;
-						$item_5 = 0;
-						$item_6 = 0;
-						$item_7 = 0;
-						$multikill = 0;
-						$killingSprees = 0;
-						$crit = 0;
-						$dead = 0;
-						$deaths = 0;
-						$neutral_cs = 0;
-						$wards = 0;
-						$totalHeal = 0;
-						$wardKilled = 0;
-						$turretsKilled = 0;
-						$neutralMinionsKilled = 0;
-						$teamId = 0;
-						$level = 1;
-						$wards_placed = 0;
-						
-						foreach($game['statistics'] as $stats) {
-							foreach($stats as $stat) {
-							  
-								  if ($stat['statType'] == "WIN") {
-									$game_result=1;
-								  }
-								  if ($stat['statType'] == "LOSE") {
-									$game_result=0;
-								  }
-								  if ($stat['statType'] == "CHAMPIONS_KILLED") {
-									$kills=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ASSISTS") {
-									$assists=$stat['value'];
-								  }
-								  if ($stat['statType'] == "NUM_DEATHS") {
-									$deaths=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM0") {
-									$item_0=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM1") {
-									$item_1=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM2") {
-									$item_2=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM3") {
-									$item_3=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM4") {
-									$item_4=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM5") {
-									$item_5=$stat['value'];
-								  }
-								  if ($stat['statType'] == "ITEM6") {
-									$item_6=$stat['value'];
-								  }
-								  if ($stat['statType'] == "MINIONS_KILLED") {
-									$cs=$stat['value'];
-								  }
-								  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
-									$neutral_cs =$stat['value'];
-								  }
-								  if ($stat['statType'] == "SIGHT_WARDS_BOUGHT_IN_GAME") {
-									$wards+=$stat['value'];
-								  }
-								  if ($stat['statType'] == "VISION_WARDS_BOUGHT_IN_GAME") {
-									$wards+=$stat['value'];
-								  }
-								  if ($stat['statType'] == "WARD_PLACED") {
-									$wards_placed=$stat['value'];
-								  }
-								  if ($stat['statType'] == "LARGEST_MULTI_KILL") {
-									$multikill=$stat['value'];
-								  }
-								  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
-									$killingspree=$stat['value'];
-								  }
-								  if ($stat['statType'] == "GOLD_EARNED") {
-									$gold=$stat['value'];
-								  }
-								  if ($stat['statType'] == "LARGEST_CRITICAL_STRIKE") {
-									$crit=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
-									$total_dmg=$stat['value'];
-								  }
-								  if ($stat['statType'] == "LEVEL") {
-									$level=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_TIME_SPENT_DEAD") {
-									$dead=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
-									$total_dmg_taken=$stat['value'];
-								  }
-								  if ($stat['statType'] == "WARD_KILLED") {
-									$wardKilled=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_HEAL") {
-									$totalHeal=$stat['value'];
-								  }
-								  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
-									$killingSprees=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TURRETS_KILLED") {
-									$turretsKilled=$stat['value'];
-								  }
-								  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
-									$neutralMinionsKilled=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
-									$totalDamageTaken=$stat['value'];
-								  }
-								  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
-									$totalDamageDealt=$stat['value'];
-								  }
-								  
-								  
-								  
-								  
-							}
-						}
-						
-						$gameid=$game['gameId'];
-						$champion=$game['championId'];
-						$game_date=date("Y-m-d H:i:s", strtotime($game['createDate']));
-						$summoner_1 =$game['spell1'];
-						$summoner_2 =$game['spell2'];
-						$gameMapId =$game['gameMapId'];
-						$teamId =$game['teamId'];
-						
-						$gametype =$game['gameType'];
-						$gamemode =$game['gameMode'];
-						$skin_id = $game['skinIndex'];
-						$premade = $game['premadeSize'];
-						$kda = 0;
-						$account_id = 0;
-					
-					
-						$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
-						if(!isset($recent_game)) {
-							$newGame = new Game;
-							$newGame->summoner_id = $user->summoner->summonerid;
-							$newGame->championId = $champion;
-							$newGame->gameId = $gameid;
-							$newGame->assists = $assists;
-							$newGame->numDeaths = $deaths;
-							$newGame->championsKilled = $kills;
-							$newGame->goldEarned = $gold;
-							$newGame->wardPlaced = $wards_placed;
-							$newGame->item0 = $item_0;
-							$newGame->item1 = $item_1;
-							$newGame->item2 = $item_2;
-							$newGame->item3 = $item_3;
-							$newGame->item4 = $item_4;
-							$newGame->item5 = $item_5;
-							$newGame->item6 = $item_6;
-							$newGame->level = $level;
-							$newGame->spell1 = $summoner_1;
-							$newGame->spell2 = $summoner_2;
-							$newGame->gameMode = $gamemode;
-							$newGame->gameType = $gametype;
-							$newGame->wardKilled = $wardKilled;
-							$newGame->totalHeal = $totalHeal;
-							$newGame->killingSprees = $killingSprees;
-							$newGame->timePlayed = 0;
-							$newGame->turretsKilled = $turretsKilled;
-							$newGame->subType = $game["subType"];
-							$newGame->minionsKilled = $cs;
-							$newGame->mapId = $gameMapId;
-							$newGame->teamId = $teamId;
-							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
-							$newGame->totalDamageTaken = $totalDamageTaken;
-							$newGame->totalDamageDealt = $totalDamageDealt;
-							$mil = $game["createDate"];
-							$time = strtotime($mil);
-							$newformat = date('U',$time);
-							$newGame->createDate = $newformat*1000;
-							$newGame->win = $game_result;
-							$newGame->save();
+					foreach($data["data"]["gameStatistics"] as $games) {
+						foreach($games as $game) {
+							$kills = 0;
+							$item_1 = 0;
+							$item_2 = 0;
+							$item_3 = 0;
+							$item_4 = 0;
+							$item_5 = 0;
+							$item_6 = 0;
+							$item_7 = 0;
+							$multikill = 0;
+							$killingSprees = 0;
+							$crit = 0;
+							$dead = 0;
+							$deaths = 0;
+							$neutral_cs = 0;
+							$wards = 0;
+							$totalHeal = 0;
+							$wardKilled = 0;
+							$turretsKilled = 0;
+							$neutralMinionsKilled = 0;
+							$teamId = 0;
+							$level = 1;
+							$wards_placed = 0;
 							
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_0));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_1));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_2));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_3));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_4));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_5));
-							$newGame->items()->attach($newGame->id, array("item_id"=>$item_6));
-						}
-						unset($recent_game);
+							foreach($game['statistics'] as $stats) {
+								foreach($stats as $stat) {
+								  
+									  if ($stat['statType'] == "WIN") {
+										$game_result=1;
+									  }
+									  if ($stat['statType'] == "LOSE") {
+										$game_result=0;
+									  }
+									  if ($stat['statType'] == "CHAMPIONS_KILLED") {
+										$kills=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ASSISTS") {
+										$assists=$stat['value'];
+									  }
+									  if ($stat['statType'] == "NUM_DEATHS") {
+										$deaths=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM0") {
+										$item_0=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM1") {
+										$item_1=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM2") {
+										$item_2=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM3") {
+										$item_3=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM4") {
+										$item_4=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM5") {
+										$item_5=$stat['value'];
+									  }
+									  if ($stat['statType'] == "ITEM6") {
+										$item_6=$stat['value'];
+									  }
+									  if ($stat['statType'] == "MINIONS_KILLED") {
+										$cs=$stat['value'];
+									  }
+									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
+										$neutral_cs =$stat['value'];
+									  }
+									  if ($stat['statType'] == "SIGHT_WARDS_BOUGHT_IN_GAME") {
+										$wards+=$stat['value'];
+									  }
+									  if ($stat['statType'] == "VISION_WARDS_BOUGHT_IN_GAME") {
+										$wards+=$stat['value'];
+									  }
+									  if ($stat['statType'] == "WARD_PLACED") {
+										$wards_placed=$stat['value'];
+									  }
+									  if ($stat['statType'] == "LARGEST_MULTI_KILL") {
+										$multikill=$stat['value'];
+									  }
+									  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
+										$killingspree=$stat['value'];
+									  }
+									  if ($stat['statType'] == "GOLD_EARNED") {
+										$gold=$stat['value'];
+									  }
+									  if ($stat['statType'] == "LARGEST_CRITICAL_STRIKE") {
+										$crit=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
+										$total_dmg=$stat['value'];
+									  }
+									  if ($stat['statType'] == "LEVEL") {
+										$level=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_TIME_SPENT_DEAD") {
+										$dead=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
+										$total_dmg_taken=$stat['value'];
+									  }
+									  if ($stat['statType'] == "WARD_KILLED") {
+										$wardKilled=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_HEAL") {
+										$totalHeal=$stat['value'];
+									  }
+									  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
+										$killingSprees=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TURRETS_KILLED") {
+										$turretsKilled=$stat['value'];
+									  }
+									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
+										$neutralMinionsKilled=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
+										$totalDamageTaken=$stat['value'];
+									  }
+									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
+										$totalDamageDealt=$stat['value'];
+									  }
+									  
+									  
+									  
+									  
+								}
+							}
+							
+							$gameid=$game['gameId'];
+							$champion=$game['championId'];
+							$game_date=date("Y-m-d H:i:s", strtotime($game['createDate']));
+							$summoner_1 =$game['spell1'];
+							$summoner_2 =$game['spell2'];
+							$gameMapId =$game['gameMapId'];
+							$teamId =$game['teamId'];
+							
+							$gametype =$game['gameType'];
+							$gamemode =$game['gameMode'];
+							$skin_id = $game['skinIndex'];
+							$premade = $game['premadeSize'];
+							$kda = 0;
+							$account_id = 0;
 						
-					} // END FOR EACH GAME
-				} // END OF STATS	
-				
-			} // END API CHECK
+						
+							$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
+							if(!isset($recent_game)) {
+								$newGame = new Game;
+								$newGame->summoner_id = $user->summoner->summonerid;
+								$newGame->championId = $champion;
+								$newGame->gameId = $gameid;
+								$newGame->assists = $assists;
+								$newGame->numDeaths = $deaths;
+								$newGame->championsKilled = $kills;
+								$newGame->goldEarned = $gold;
+								$newGame->wardPlaced = $wards_placed;
+								$newGame->item0 = $item_0;
+								$newGame->item1 = $item_1;
+								$newGame->item2 = $item_2;
+								$newGame->item3 = $item_3;
+								$newGame->item4 = $item_4;
+								$newGame->item5 = $item_5;
+								$newGame->item6 = $item_6;
+								$newGame->level = $level;
+								$newGame->spell1 = $summoner_1;
+								$newGame->spell2 = $summoner_2;
+								$newGame->gameMode = $gamemode;
+								$newGame->gameType = $gametype;
+								$newGame->wardKilled = $wardKilled;
+								$newGame->totalHeal = $totalHeal;
+								$newGame->killingSprees = $killingSprees;
+								$newGame->timePlayed = 0;
+								$newGame->turretsKilled = $turretsKilled;
+								$newGame->subType = $game["subType"];
+								$newGame->minionsKilled = $cs;
+								$newGame->mapId = $gameMapId;
+								$newGame->teamId = $teamId;
+								$newGame->neutralMinionsKilled = $neutralMinionsKilled;
+								$newGame->totalDamageTaken = $totalDamageTaken;
+								$newGame->totalDamageDealt = $totalDamageDealt;
+								$mil = $game["createDate"];
+								$time = strtotime($mil);
+								$newformat = date('U',$time);
+								$newGame->createDate = $newformat*1000;
+								$newGame->win = $game_result;
+								$newGame->save();
+								
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_0));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_1));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_2));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_3));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_4));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_5));
+								$newGame->items()->attach($newGame->id, array("item_id"=>$item_6));
+							}
+							unset($recent_game);
+							
+						} // END FOR EACH GAME
+					} // END OF STATS	
+					
+				} // END API CHECK
 				
 				
 			}
