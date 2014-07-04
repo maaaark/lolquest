@@ -7,7 +7,7 @@
 			<div class="blog_content">
 				<h4><a href="/blogs/{{ $blog->id }}">{{ $blog->title }}</a></h4>
 				<span class="comment_time">{{ $blog->created_at->diffForHumans() }} - {{ $blog->comments->count() }} {{ trans("blog.comments") }}</span><br/>
-				{{ Str::limit($blog->body, 400) }} <a href="/blogs/{{ $blog->id }}">{{ trans("blog.more") }}</a>
+				{{ Str::limit($blog->body, 200) }} <a href="/blogs/{{ $blog->id }}">{{ trans("blog.more") }}</a>
 			</div>
 			<div class="clear"></div>
 		</div>

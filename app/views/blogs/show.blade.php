@@ -1,7 +1,6 @@
 @extends('templates.default')
-@section('title', trans("blog.blog").' - '.$blog->title)
+@section('title', $blog->title)
 @section('content')
-	<h2>{{ $blog->title }}</h2>
 	<div class="blog_date">
 		<a href="/users/{{ $blog->user->region }}/{{ $blog->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $blog->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" />
 		&nbsp;&nbsp;{{ $blog->user->summoner->name }}</a> - {{ $blog->created_at->diffForHumans() }} - {{ $blog->comments->count() }} {{ trans("blog.comments") }}
