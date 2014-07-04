@@ -1,6 +1,10 @@
 <html>
 	<head>
-		<title>lolquest.net - @yield('title')</title>
+		<title>lolquest.net - {{ trans('meta.title') }}</title>
+		<meta name="language" content="en">
+		<meta name="description" content="{{ trans('meta.description') }}" />
+		<meta name="keywords" content="lolquest, league of legends, quest, daily, skins, reward, lol, euw, na, rp, ep-boost, qp"/>
+		{{ HTML::style('css/style.css') }}
 	</head>
     <body>
 	
@@ -143,7 +147,6 @@
 			</div>
 		</div>
 	</div>
-	{{ HTML::style('css/style.css') }}
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -151,5 +154,15 @@
     <script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	{{ HTML::script('js/custom.js') }}
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-51337940-1', 'lolquest.net');
+	  ga('send', 'pageview');
+
+	</script>
     </body>
 </html>
