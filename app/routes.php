@@ -151,6 +151,10 @@ Route::get('team', function()
 {
 	return View::make('pages.team');
 });
+Route::get('rules', function()
+{
+	return View::make('pages.rules');
+});
 
 
 // App Login
