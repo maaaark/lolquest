@@ -12,6 +12,9 @@
 					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $topic->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $topic->user->summoner->name }}</strong><br/>
+					@if($topic->user->hasRole('admin'))
+						<div class="admin_user">Administrator</div>
+					@endif
 					{{ trans("forum.level") }} {{ $topic->user->level_id }}<br/>
 					{{ $topic->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
@@ -26,6 +29,9 @@
 					<a href="/summoner/{{ $reply->user->region }}/{{ $reply->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $reply->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $reply->user->summoner->name }}</strong><br/>
+					@if($reply->user->hasRole('admin'))
+						<div class="admin_user">Administrator</div>
+					@endif
 					{{ trans("forum.level") }} {{ $reply->user->level_id }}<br/>
 					{{ $reply->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
