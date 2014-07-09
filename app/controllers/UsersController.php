@@ -131,9 +131,7 @@ class UsersController extends \BaseController {
 						Session::forget('beta_user');
 						return Redirect::to("/")->withErrors("Key already used!");
 					} else {
-						$key->user_id = $user->id;
 						$key->used = 1;
-						$key->save();
 						Session::forget('beta_user');
 					}
 				}
@@ -149,6 +147,9 @@ class UsersController extends \BaseController {
 				$user->summoner_status = 1;
 				$user->save();
 				$user->roles()->attach($roleMember->id, array("user_id"=>$user->id));
+				
+				$key->user_id = $user->id;
+				$key->save();
 				
 				$obj = json_decode($json, true);
 				$summoner = new Summoner;
