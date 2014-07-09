@@ -98,7 +98,7 @@ class QuestsController extends \BaseController {
 			$user->challenge_step = 0;
 			$user->save();
 			
-			return Redirect::to('dashboard');
+			return Redirect::to('/challenges');
 			
 		} else {
 			return Redirect::to('login');
