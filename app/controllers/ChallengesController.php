@@ -667,7 +667,7 @@ class ChallengesController extends \BaseController {
 							}
 							
 							if($challenge_done == 1) {
-								$user->achievements()->attach(35);3
+								$user->achievements()->attach(35);
 								$a = Achievement::where('id', '=', 35)->first();
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
