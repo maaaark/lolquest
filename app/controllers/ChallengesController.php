@@ -8,10 +8,12 @@ class ChallengesController extends \BaseController {
 				$user = User::find(Auth::user()->id);
 				$user->refresh_games();
 				
+				$challenge_done = 0;
+				$item_count = 0;
+				
 				if($user->challenge_mode == 1) { // TOP CHALLENGES
 					
-					$challenge_done = 0;
-					$item_count = 0;
+					
 					$top_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
 					
 					// STEP 1
@@ -248,7 +250,6 @@ class ChallengesController extends \BaseController {
 						->where('createDate', '>', $user->challenge_time)
 						->get();
 						if($games_since_queststart->count() > 0) {
-							
 							foreach($games_since_queststart as $game) {
 								if($game->item0 == 2049 || $game->item1 == 2049 || $game->item2 == 2049 || $game->item3 == 2049 || $game->item4 == 2049 || $game->item5 == 2049) {
 									$item_count = $item_count +1;
