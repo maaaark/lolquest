@@ -148,9 +148,13 @@ class UsersController extends \BaseController {
 			if(Session::get('beta_user') == 1) {
 				$beta_key = Session::get('beta_key');
 				$key = Betakey::where("key", "=", $beta_key)->first();
-				$key->user_id = $user->id;
-				$key->used = 1;
-				$key->save();
+				if($key->used == 1) {
+					return Redirect::to("/")->withErrors("Key already used!");
+				} else {
+					$key->user_id = $user->id;
+					$key->used = 1;
+					$key->save();
+				}
 			}
 			
 			
