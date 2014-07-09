@@ -23,7 +23,11 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		if(Auth::check()) {
+			return Redirect::to("/dashboard")
+		} else {
+			return View::make('users.create');
+		}
 	}
 	
 	public function edit_mail()
@@ -107,6 +111,13 @@ class UsersController extends \BaseController {
 				->with('message', trans("users.already_one"));
 			}
 			
+			
+			
+			
+			
+			
+			
+			
 			// Save the Summoner
 			$api_key = Config::get('api.key');
 			
@@ -117,6 +128,22 @@ class UsersController extends \BaseController {
 				->withInput()
 				->with('message', trans("users.not_found"));
 			} else {
+				
+				// Beta Key
+				if(Session::get('beta_user') == 1) {
+					$beta_key = Session::get('beta_key');
+					$key = Betakey::where("key", "=", $beta_key)->first();
+					if($key->used == 1) {
+						Session::forget('beta_user');
+						return Redirect::to("/")->withErrors("Key already used!");
+					} else {
+						$key->user_id = $user->id;
+						$key->used = 1;
+						$key->save();
+						Session::forget('beta_user');
+					}
+				}
+			
 				// Create the User
 				$user = new User;
 				$user->summoner_name = $clean_summoner_name;
@@ -142,19 +169,6 @@ class UsersController extends \BaseController {
 				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
 				});
-			}
-			
-			// Beta Key
-			if(Session::get('beta_user') == 1) {
-				$beta_key = Session::get('beta_key');
-				$key = Betakey::where("key", "=", $beta_key)->first();
-				if($key->used == 1) {
-					return Redirect::to("/")->withErrors("Key already used!");
-				} else {
-					$key->user_id = $user->id;
-					$key->used = 1;
-					$key->save();
-				}
 			}
 			
 			
