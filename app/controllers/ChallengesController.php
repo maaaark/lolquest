@@ -160,7 +160,8 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->achievements()->attach(35);
-								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
+								$a = Achievement::where('id', '=', 35)->first();
+								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
@@ -339,7 +340,8 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->achievements()->attach(35);
-								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
+								$a = Achievement::where('id', '=', 35)->first();
+								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
@@ -502,7 +504,8 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->achievements()->attach(35);
-								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
+								$a = Achievement::where('id', '=', 35)->first();
+								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
@@ -664,8 +667,9 @@ class ChallengesController extends \BaseController {
 							}
 							
 							if($challenge_done == 1) {
-								$user->achievements()->attach(35);
-								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
+								$user->achievements()->attach(35);3
+								$a = Achievement::where('id', '=', 35)->first();
+								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
@@ -833,7 +837,8 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->achievements()->attach(35);
-								$user->notify(1, trans("achievements.receive").Achievement::where('id', '=', 35)>name);
+								$a = Achievement::where('id', '=', 35)->first();
+								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;

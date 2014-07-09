@@ -298,8 +298,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
 							if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
 							if(!isset($game["stats"]["championsKilled"])) { $championsKilled = 0; }	else { $championsKilled = $game["stats"]["championsKilled"]; }
-							if(!isset($game["stats"]["totalDamageTaken"])) { $totalDamageTaken = 0; }	else { $totalDamageTaken = $game["stats"]["totalDamageTaken"]; }
-							if(!isset($game["stats"]["totalDamageDealt"])) { $totalDamageDealt = 0; }	else { $totalDamageDealt = $game["stats"]["totalDamageDealt"]; }
+							if(!isset($game["stats"]["totalDamageTaken"])) { $totalDamageTaken = 0; } else { $totalDamageTaken = $game["stats"]["totalDamageTaken"]; }
+							if(!isset($game["stats"]["totalDamageDealt"])) { $totalDamageDealt = 0; } else { $totalDamageDealt = $game["stats"]["totalDamageDealt"]; }
 						
 							$newGame = new Game;
 							$newGame->summoner_id = $user->summoner->summonerid;
