@@ -24,7 +24,7 @@ class UsersController extends \BaseController {
 	public function create()
 	{
 		if(Auth::check()) {
-			return Redirect::to("/dashboard")
+			return Redirect::to("/dashboard");
 		} else {
 			return View::make('users.create');
 		}
@@ -110,12 +110,6 @@ class UsersController extends \BaseController {
 				->withInput()
 				->with('message', trans("users.already_one"));
 			}
-			
-			
-			
-			
-			
-			
 			
 			
 			// Save the Summoner
