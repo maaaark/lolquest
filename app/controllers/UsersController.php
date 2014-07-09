@@ -632,7 +632,7 @@ class UsersController extends \BaseController {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, ''.$user_friend->summoner_name.' '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'" >'.trans("friends.reject").'</a>');
+				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'" >'.trans("friends.reject").'</a>');
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
