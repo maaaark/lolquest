@@ -478,12 +478,14 @@ class UsersController extends \BaseController {
 	
 	public function admin_update_games($user_id)
 	{
-		if(Auth::user()->hasRole('admin')) {
+		if(Auth::check()) {
+			if(Auth::user()->hasRole('admin')) {
 				
 			$user = User::where("id", "=", $user_id)->first();
 			$user->refresh_games();	
 				
 			return Redirect::to('/summoner/'.$user->region.'/'.$user->summoner_name)->with("message", "Admin Updated last games");
+			}
 		}
 	}
 
