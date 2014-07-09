@@ -88,6 +88,7 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
+								$item_count = 0;
 								if($game->item0 == 3068 || $game->item1 == 3068 || $game->item2 == 3068 || $game->item3 == 3068 || $game->item4 == 3068 || $game->item5 == 3068) {
 									$item_count = $item_count +1;
 								}
@@ -251,6 +252,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							foreach($games_since_queststart as $game) {
+								$item_count = 0;
 								if($game->item0 == 2049 || $game->item1 == 2049 || $game->item2 == 2049 || $game->item3 == 2049 || $game->item4 == 2049 || $game->item5 == 2049) {
 									$item_count = $item_count +1;
 								}
@@ -429,6 +431,7 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
+								$item_count = 0;
 								if($game->item0 == 3089 || $game->item1 == 3089 || $game->item2 == 3089 || $game->item3 == 3089 || $game->item4 == 3089 || $game->item5 == 3089) {
 									$item_count = $item_count +1;
 								}
@@ -590,6 +593,7 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
+								$item_count = 0;
 								if($game->item0 == 3072 || $game->item1 == 3072 || $game->item2 == 3072 || $game->item3 == 3072 || $game->item4 == 3072 || $game->item5 == 3072) {
 									$item_count = $item_count +1;
 								}
@@ -754,6 +758,7 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
+								$item_count = 0;
 								if($game->item0 == 3301 || $game->item1 == 3301 || $game->item2 == 3301 || $game->item3 == 3301 || $game->item4 == 3301 || $game->item5 == 3301) {
 									$item_count = $item_count +1;
 								}

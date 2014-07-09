@@ -153,7 +153,7 @@ class QuestsController extends \BaseController {
 					}
 					$quest->user_id = $user->id;
 					$quest->type_id = $questtype->id;
-					$quest->exp = 100;
+					$quest->exp = $questtype->exp;
 					$quest->quest_slot = "choose";
 					$quest->createDate = date("U")*1000;
 					$quest->save();
