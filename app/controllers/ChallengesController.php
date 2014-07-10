@@ -181,7 +181,7 @@ class ChallengesController extends \BaseController {
 					
 					
 				} elseif($user->challenge_mode == 2) { // JUNGLE CHALLENGES
-					$jungle_champions = array(64, 77, 5, 80, 121, 32, 120, 11, 111, 56, 33, 107, 35, 19, 254);
+					$jungle_champions = array(64, 77, 5, 80, 121, 32, 120, 11, 111, 56, 33, 107, 35, 19, 254, 60, 28);
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -344,7 +344,7 @@ class ChallengesController extends \BaseController {
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
-								$user->trophy_top = 1;
+								$user->trophy_jungle = 1;
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
@@ -508,7 +508,7 @@ class ChallengesController extends \BaseController {
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
-								$user->trophy_top = 1;
+								$user->trophy_mid = 1;
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
@@ -672,7 +672,7 @@ class ChallengesController extends \BaseController {
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
-								$user->trophy_top = 1;
+								$user->trophy_marksman = 1;
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
@@ -688,7 +688,7 @@ class ChallengesController extends \BaseController {
 					
 				
 				} elseif($user->challenge_mode == 5) { // SUPPORT CHALLENGES
-					$support_champions = array(89, 412, 37, 25, 43, 20, 44, 201, 12, 16, 40, 267, 143, 53);
+					$support_champions = array(1, 89, 412, 37, 25, 43, 20, 44, 201, 12, 16, 40, 267, 143, 53, 117);
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -763,7 +763,7 @@ class ChallengesController extends \BaseController {
 							
 							foreach($games_since_queststart as $game) {
 								$item_count = 0;
-								if($game->item0 == 3301 || $game->item1 == 3301 || $game->item2 == 3301 || $game->item3 == 3301 || $game->item4 == 3301 || $game->item5 == 3301) {
+								if($game->item0 == 3069 || $game->item1 == 3069 || $game->item2 == 3069 || $game->item3 == 3069 || $game->item4 == 3069 || $game->item5 == 3069) {
 									$item_count = $item_count +1;
 								}
 								if($game->item0 == 2049 || $game->item1 == 2049 || $game->item2 == 2049 || $game->item3 == 2049 || $game->item4 == 2049 || $game->item5 == 2049) {
@@ -841,7 +841,7 @@ class ChallengesController extends \BaseController {
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
-								$user->trophy_top = 1;
+								$user->trophy_support = 1;
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();

@@ -3,10 +3,10 @@
 return array(
 	'available_champions' => 'Valid Champions for this Challenge are:', 
 	'1_champions' => 'Renekton, Trundle, Jax, Irrelia, Jayce, Wukong, Pantheon, Lee Sin, Riven, Rumble, Shen, Vladimir, Yorick, Darius, Kayle, Gangplank',
-	'2_champions' => 'Lee Sin, Udyr, Xin Zhao, Pantheon, Kha Zix, Amummu, Hecarim, Master Yi, Nautilus, Nocturn, Rammus, Rengar, Shaco, Warwick, Vi',
+	'2_champions' => 'Lee Sin, Udyr, Xin Zhao, Pantheon, Kha Zix, Amummu, Hecarim, Master Yi, Nautilus, Nocturn, Rammus, Rengar, Shaco, Warwick, Vi, Elise, Evelyn',
 	'3_champions' => 'Ahri, Orianna, Gragas, Katarina, Brand, Kassadin, Yasuo, LeBlanc, Lissandra, Lulu, Twisted Fate, Heimerdinger, Malzahar, Xerath, Ziggs',
 	'4_champions' => 'Jinx, Caitlyn, Lucian, Ezreal, Sivir, Graves, Vayne, Corki, Twitch, Tristana, Miss Fortune, Varus, Kog Maw, Draven, Ashe',
-	'5_champions' => 'Leona, Thresh, Sona, Morgana, Karma, Nunu, Taric, Braum, Alistar, Soraka, Janna, Nami, Zyra, Blitzcrank',
+	'5_champions' => 'Annie, Leona, Thresh, Sona, Morgana, Karma, Nunu, Taric, Braum, Alistar, Soraka, Janna, Nami, Zyra, Blitzcrank, Lulu',
     '1_1' => '<strong>Win a game with one of the defined champions.</strong>',
 	'1_2' => '<strong>Win a game with Teleport as one of your Summoner Spells.</strong>',
 	'1_3' => '<strong>Buy the following items in a single game and win: "Sunfire Cape", "Randuins Omen" and "Spirit Visage"</strong>',
@@ -29,7 +29,7 @@ return array(
 	'4_5' => '<strong>Carry your Team and win a game with the following conditions:<br/> Get 5 Kills, earn at least 16.000 Gold, place at least 1 wards destroy at least 1 tower and deal at least 120.000 damage</strong>',
 	'5_1' => '<strong>Win a game with one of the defined champions.</strong>',
 	'5_2' => '<strong>Win a game with Exhaust as one of your Summoner Spells.</strong>',
-	'5_3' => 'Buy the following items in a single game and win: "Ancient Coin", "Sightstone" and "Mikaels Crucible"',
+	'5_3' => 'Buy the following items in a single game and win: "Talisman of Ascension", "Sightstone" and "Mikaels Crucible"',
 	'5_4' => '<strong>Heal at least 10.000 health for your Team and win this game.</strong>',
 	'5_5' => '<strong>Carry your Team and win a game with the following conditions:<br/> Get 15 Assists, earn at least 14.000 Gold, place at least 15 wards and heal for at least 20.000 health</strong>',
 );
