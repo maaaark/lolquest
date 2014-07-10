@@ -50,7 +50,7 @@
 			</td>
 			<td width="50%" align="right">
 				@if(Auth::check())
-					<a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->topic }}/reply" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+					<a href="/forum/reply/{{ $category->id }}/{{ $topic->id }}" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
 				@else
 					<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
 				@endif

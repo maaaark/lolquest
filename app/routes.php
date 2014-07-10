@@ -43,10 +43,11 @@ Route::post('/settings/update_timeline_settings', array('uses' => 'UsersControll
 
 // Forum Controller
 Route::get('/forum/create_topic/{category_id}/new', array('uses' => 'ForumController@create_topic'));
+Route::get('/forum/reply/{category_id}/{topic_id}', array('uses' => 'ForumController@reply'));
 Route::get('/forum', array('uses' => 'ForumController@index'));
 Route::get('/forum/{category_id}/{url_name}', array('uses' => 'ForumController@category'));
 Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}', array('uses' => 'ForumController@topic'));
-Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}/reply', array('uses' => 'ForumController@reply'));
+
 Route::post('/forum/{category_id}/{url_name}/{topic_id}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
 Route::post('/forum/{url_name}/create_topic/save_topic', array('uses' => 'ForumController@save_topic'));
 
