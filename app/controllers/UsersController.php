@@ -658,7 +658,7 @@ class UsersController extends \BaseController {
 			$user_friend = Auth::user();
 			$user_friend->friends()->detach($id);
 			if($not_id != 0) {
-				$friend_user->delete_note($not_id);
+				$user_friend->delete_note($not_id);
 			}
 			return Redirect::back();
 		} else {
@@ -692,7 +692,7 @@ class UsersController extends \BaseController {
 				$user->checkAchievement_friend($user->id, 3, $count_user);
 				$user_friend-> checkAchievement(3, $count_friend);
 				if($not_id != 0) {
-					$friend_user->delete_note($not_id);
+					$user_friend->delete_note($not_id);
 				}
 				return Redirect::back();
 			}
