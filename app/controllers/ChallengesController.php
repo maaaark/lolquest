@@ -165,10 +165,10 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_top = 1;
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
@@ -345,10 +345,10 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_jungle = 1;
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
@@ -508,11 +508,11 @@ class ChallengesController extends \BaseController {
 								$user->notify(1, trans("achievements.receive").$a->name);
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 								$user->trophy_mid = 1;
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
@@ -673,10 +673,10 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_marksman = 1;
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							
@@ -842,10 +842,10 @@ class ChallengesController extends \BaseController {
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
 								$user->challenge_time = date("U")*1000;
 								$user->trophy_support = 1;
+								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 								$user->challenge_mode = 0;
 								$user->challenge_step = 0;
 								$user->save();
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
 							

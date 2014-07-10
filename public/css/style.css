@@ -119,6 +119,20 @@ h3 {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+.api_lag {
+	margin-top: 20px;
+	border: 1px solid #b9b9b9;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	background: #ffffff;
+	color: #333333;
+}
+.api_lag h4 {
+	margin-top: 5px;
+	font-weight: bold;
+}
 .forum_title {
 	width: 100%;
 	height: 40px;
