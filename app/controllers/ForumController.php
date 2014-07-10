@@ -58,9 +58,8 @@ class ForumController extends \BaseController {
 	}
 	
 	
-	public function reply($category_id, $topic_id, $url_name)
+	public function reply($category_id, $topic_id)
 	{
-		$url_name = urlencode($url_name);
 		$category = ForumCategory::where('id', '=', $category_id)->first();
 		$topic = ForumTopic::where('id', '=', $topic_id)->first();
 		
