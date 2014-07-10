@@ -21,6 +21,7 @@ Route::resource('quests', 'QuestsController');
 Route::resource('items', 'ItemsController');
 Route::resource('products', 'ProductsController');
 Route::resource('blogs', 'BlogsController');
+Route::controller('password', 'RemindersController');
 
 
 // Admin Functions
@@ -41,12 +42,12 @@ Route::post('/settings/update_email', array('uses' => 'UsersController@update_em
 Route::post('/settings/update_timeline_settings', array('uses' => 'UsersController@update_timeline_settings'));
 
 // Forum Controller
+Route::get('/forum/create_topic/{category_id}/new', array('uses' => 'ForumController@create_topic'));
 Route::get('/forum', array('uses' => 'ForumController@index'));
-Route::get('/forum/{url_name}', array('uses' => 'ForumController@category'));
-Route::get('/forum/{url_name}/{topic_url_name}', array('uses' => 'ForumController@topic'));
-Route::get('/forum/{url_name}/{topic_url_name}/reply', array('uses' => 'ForumController@reply'));
-Route::get('/forum/{url_name}/create_topic/new', array('uses' => 'ForumController@create_topic'));
-Route::post('/forum/{url_name}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
+Route::get('/forum/{category_id}/{url_name}', array('uses' => 'ForumController@category'));
+Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}', array('uses' => 'ForumController@topic'));
+Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}/reply', array('uses' => 'ForumController@reply'));
+Route::post('/forum/{category_id}/{url_name}/{topic_id}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
 Route::post('/forum/{url_name}/create_topic/save_topic', array('uses' => 'ForumController@save_topic'));
 
 // Base Controller
@@ -69,7 +70,9 @@ Route::get('/timeline', array('uses' => 'TimelinesController@index'));
 Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));
 Route::post('/check_betakey', 'UsersController@check_betakey');
+Route::post('password_remind', 'RemindersController@postRemind');
 
+Route::get('forgot_password', 'RemindersController@getRemind');
 Route::get('edit_summoner', 'UsersController@edit_summoner');
 Route::get('dashboard', 'UsersController@dashboard');
 Route::get('login', array('uses' => 'UsersController@showLogin'));

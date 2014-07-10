@@ -14,10 +14,10 @@ class ForumController extends \BaseController {
 		return View::make('forum.index', compact('groups'));
 	}
 	
-	public function category($url_name)
+	public function category($category_id, $url_name)
 	{
 		
-		$category = ForumCategory::where('url_name', '=', $url_name)->first();
+		$category = ForumCategory::where('id', '=', $category_id)->first();
 		$topics = ForumTopic::where('forum_category_id', '=', $category->id)->orderBy('updated_at', 'desc')->paginate(15);
 		
 		if(Auth::check()) {
@@ -31,11 +31,11 @@ class ForumController extends \BaseController {
 	}
 
 	
-	public function topic($category_url_name, $url_name)
+	public function topic($category_id, $topic_id, $url_name)
 	{
 		$url_name = urlencode($url_name);
-		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
-		$topic = ForumTopic::where('url_name', '=', $url_name)->first();
+		$category = ForumCategory::where('id', '=', $category_id)->first();
+		$topic = ForumTopic::where('id', '=', $topic_id)->first();
 		$replies = ForumReply::where('forum_topic_id', '=', $topic->id)->paginate(15);
 		
 		if(Auth::check()) {
@@ -58,18 +58,18 @@ class ForumController extends \BaseController {
 	}
 	
 	
-	public function reply($category_url_name, $url_name)
+	public function reply($category_id, $topic_id, $url_name)
 	{
 		$url_name = urlencode($url_name);
-		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
-		$topic = ForumTopic::where('url_name', '=', $url_name)->first();
+		$category = ForumCategory::where('id', '=', $category_id)->first();
+		$topic = ForumTopic::where('id', '=', $topic_id)->first();
 		
 		return View::make('forum.reply', compact('category', 'topic'));
 	}
 	
-	public function create_topic($category_url_name)
+	public function create_topic($category_id)
 	{
-		$category = ForumCategory::where('url_name', '=', $category_url_name)->first();
+		$category = ForumCategory::where('id', '=', $category_id)->first();
 		
 		return View::make('forum.create_topic', compact('category'));
 	}
@@ -95,10 +95,10 @@ class ForumController extends \BaseController {
 				$reply->user_id = Auth::user()->id;
 				$reply->save();
 				
-				return Redirect::to("/forum/".$topic->category->url_name."/".$topic->url_name."/")->with('success', trans("forum.post_created"));
+				return Redirect::to("/forum/".$topic->category->id."/".$topic->id."/".$topic->url_name."/")->with('success', trans("forum.post_created"));
 				
 			} else {
-				return Redirect::to("/forum/".$category_url_name."/".$url_name."/reply")->withInput()
+				return Redirect::to("/forum/".$category_id."/".$category_url_name."/".Input::get('topic_id')."/".$url_name."/reply")->withInput()
 				->withErrors($validation)
 				->with('message', 'There were validation errors.');
 			}
@@ -130,10 +130,10 @@ class ForumController extends \BaseController {
 				$topic->category->updated_at = date('Y-m-d H:i:s');
 				$topic->category->save();
 				
-				return Redirect::to("/forum/".$topic->category->url_name)->with('success', trans("forum.topic_created"));
+				return Redirect::to("/forum/".$category->id."/".$topic->category->url_name)->with('success', trans("forum.topic_created"));
 				
 			} else {
-				return Redirect::to("/forum/".$category->url_name."/create_topic/new")->withInput()
+				return Redirect::to("/forum/".$category->id."/".$category->url_name."/create_topic/new")->withInput()
 				->withErrors($validation)
 				->with('error', 'There were validation errors.');
 			}

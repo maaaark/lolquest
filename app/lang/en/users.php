@@ -37,5 +37,6 @@ return array(
 	'refreshed' => 'Your Summoner Profile has been refreshed',
 	'not_ranked' => 'not ranked this month',
 	'settings_saved' => 'Settings have been saved.',
-	'already_taken' => 'This Summoner is already binded to another account!'
+	'already_taken' => 'This Summoner is already binded to another account!',
+	'password_reset' => 'Password reset',
 );

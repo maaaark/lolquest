@@ -20,6 +20,11 @@
 		{{ Session::get('error') }}
 	</div>
 @endif
+@if(Session::has('status'))
+	<div class="bs-callout bs-callout-success">
+		{{ Session::get('status') }}
+	</div>
+@endif
 
 @if(Auth::check())
 	@if(Auth::user()->summoner_status == 0)

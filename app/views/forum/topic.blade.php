@@ -2,7 +2,7 @@
 @section('title', trans("forum.forum"))
 @section('content')
 <br/>
-	<a href="/forum">{{ trans("forum.forum") }}</a> > <a href="/forum/{{ $category->url_name }}">{{ $category->name }}</a> > <a href="/forum/{{ $category->url_name }}/{{ $topic->topic }}">{{ $topic->topic }}</a><br/>
+	<a href="/forum">{{ trans("forum.forum") }}</a> > <a href="/forum/{{ $category->id }}/{{ $category->url_name }}">{{ $category->name }}</a> > <a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->topic }}">{{ $topic->topic }}</a><br/>
 	<br/>
 	<div class="forum_category">
 		<div class="forum_headline">{{ $topic->topic }}</div>
@@ -50,7 +50,7 @@
 			</td>
 			<td width="50%" align="right">
 				@if(Auth::check())
-					<a href="/forum/{{ $category->url_name }}/{{ $topic->topic }}/reply" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+					<a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->topic }}/reply" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
 				@else
 					<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
 				@endif

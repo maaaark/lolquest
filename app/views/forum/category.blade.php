@@ -2,7 +2,7 @@
 @section('title', trans("forum.forum"))
 @section('content')
 <br/>
-	<a href="/forum">{{ trans("forum.forum") }}</a> > <a href="/forum/{{ $category->url_name }}">{{ $category->name }}</a><br/>
+	<a href="/forum">{{ trans("forum.forum") }}</a> > <a href="/forum/{{ $category->id }}/{{ $category->url_name }}">{{ $category->name }}</a><br/>
 	<br/>
 	<div class="forum_category">
 		<div class="forum_headline">{{ $category->name }}</div>
@@ -24,7 +24,7 @@
 					@endforeach
 				</td>
 				<td valign="center">
-					<a href="/forum/{{ $category->url_name }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>
+					<a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>
 					<small>{{ trans("forum.by") }} <strong>{{ $topic->user->summoner->name }}</strong></small>
 				</td>
 				<td>
@@ -47,7 +47,7 @@
 			</td>
 			<td width="50%" align="right">
 				@if(Auth::check())
-				<a href="/forum/{{ $category->url_name }}/create_topic/new" class="btn btn-primary right">{{ trans("forum.create_topic") }}</a>
+				<a href="/forum/create_topic/{{ $category->id }}/new" class="btn btn-primary right">{{ trans("forum.create_topic") }}</a>
 				@endif
 				
 			</td>

@@ -15,7 +15,7 @@
 				<tr>
 					<td width="50"><a href="/forum/{{ $category->url_name }}"><img src="/img/forum/{{ $category->icon }}" class="img-circle" height="35" /></a></td>
 					<td width="500">
-						<a href="/forum/{{ $category->url_name }}">{{ $category->name }}</a><br/>
+						<a href="/forum/{{ $category->id }}/{{ $category->url_name }}">{{ $category->name }}</a><br/>
 						<small>{{ $category->description }}</small>
 					</td>
 					<td>

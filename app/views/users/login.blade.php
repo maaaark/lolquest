@@ -25,7 +25,7 @@
 		<br/>
 		<p>{{ Form::submit('Submit!', array('class' => 'btn btn-primary btn-block')) }}</p>
 		<p>
-			No Account yet? <a href="/register">Register now!</a>
+			No Account yet? <a href="/register">Register now!</a> | <a href="/forgot_password">Reset password</a>
 		</p>
 	{{ Form::close() }}
 	</div>
