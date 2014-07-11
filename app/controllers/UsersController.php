@@ -656,7 +656,7 @@ class UsersController extends \BaseController {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'" >'.trans("friends.reject").'</a>');
+				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'/0" >'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'/0" >'.trans("friends.reject").'</a>');
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
@@ -700,12 +700,12 @@ class UsersController extends \BaseController {
 				$myfriend = $model->where("user_id","=", Auth::user()->id)->where('friend_id','=', $id)->first();
 				$myfriend->validate = 1;
 				$myfriend->save();
-				
+				$model->setTable("friend_users");
 				$count_user = $model->where("user_id","=", Auth::user()->id)->where('validate','=', 1)->count();
 				$count_friend = $model->where("user_id","=", $id)->where('validate','=', 1)->count();
 				
-				$user->checkAchievement_friend($user->id, 3, $count_user);
-				$user_friend-> checkAchievement(3, $count_friend);
+				$user->checkAchievement_friend($user->id, 3, $count_friend);
+				$user_friend-> checkAchievement(3, $count_user);
 				if($not_id != 0) {
 					$user_friend->delete_note($not_id);
 				}
