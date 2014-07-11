@@ -689,6 +689,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return $ladder;
     }
 	
+	public function completed_quests() {
+		$user = User::find($this->id);
+		$completed_quests = Quest::where("user_id", "=", $user->id)->where("finished", "=", 1)->count();
+		return $completed_quests;
+	}
+	
 	public function friends()
     {
         return $this->belongsToMany('User', 'friend_users', 'user_id', 'friend_id');

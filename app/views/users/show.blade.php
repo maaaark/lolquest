@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("users.quests_completed") }}</td>
-						<td>{{ $user->quests->count() }}</td>
+						<td>{{ $user->completed_quests() }}</td>
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("users.registered") }}</td>
