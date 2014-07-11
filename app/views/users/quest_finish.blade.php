@@ -14,7 +14,12 @@
 				<td valign="top" width="530">
 					<h2 style="margin-top: 0;">Quest done!</h2>
 					<p style="font-size: 16px;">
-					You have completed the Quest <strong>"{{ $quest->questtype->name }}"</strong> and earned {{ $quest->questtype->qp }} QP + {{ $quest->questtype->exp }} EXP!</p>
+					@if($quest->daily == 1)
+						You have completed the Quest <strong>"{{ $quest->questtype->name }}"</strong> and earned {{ $quest->questtype->qp*2 }} QP + {{ $quest->questtype->exp*2 }} EXP!
+					@else
+						You have completed the Quest <strong>"{{ $quest->questtype->name }}"</strong> and earned {{ $quest->questtype->qp }} QP + {{ $quest->questtype->exp }} EXP!
+					@endif
+					</p>
 					<p>
 						<strong>Share this Achievement with your friends</strong><br/>
 						<div class="fb-share-button" data-href="https://lolquest.net" data-type="button_count"></div>
