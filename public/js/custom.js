@@ -41,8 +41,9 @@ $( document ).ready(function() {
 	
 	$('#myTab a[href="#profile"]').tab('show')
 	$('#myTab a').click(function (e) {
-	  e.preventDefault();
+	  //e.preventDefault();
 	  $(this).tab('show');
+	  return false;
 	})
 	
 	$(function () {
@@ -50,12 +51,14 @@ $( document ).ready(function() {
 	})
 	
 	$(".toggle_game_details").click(function() {
-		event.preventDefault();
+		//event.preventDefault();
 		$(this).closest(".game_detail_toggle").toggle("fast");
+		return false;
 	});
 
 	$('.toggle_game_details').click( function() {
         $('.game_details-' + $(this).attr('id')).toggle();
+		return false;
     });
 	
 	$('.delete_all_notes a').click(function(){
