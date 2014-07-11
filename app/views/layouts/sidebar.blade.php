@@ -107,7 +107,23 @@
 		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
-	
+	<br/>
+	<!-- BEGIN TAG - DO NOT MODIFY -->
+	<script type="text/javascript">
+	//<![CDATA[
+	epom_key = "d0faf5ffbdf172658eb210bef73ac63e";
+	epom_channel = "";
+	epom_code_format = "ads";
+	epom_ads_host = "//www.adshost2.com";
+	epom_click = "";
+	epom_custom_params = {};
+	epom_width = "300";
+	epom_height = "250";
+
+	document.write("<script type='text\/javascript' src='"+(location.protocol == 'https:' ? 'https:' : 'http:') + "//www.adshost2.com\/js/show_ads.js'><\/script>");
+	//]]>
+	</script>
+	<!-- END TAG -->
 
 @else
 
@@ -126,6 +142,24 @@
 		<br/>
 		
 	</div>
+	<br/>
+	<div stlye="margin-left: -5px;">
+		<!-- BEGIN TAG - DO NOT MODIFY -->
+		<script type="text/javascript">
+		//<![CDATA[
+		epom_key = "d0faf5ffbdf172658eb210bef73ac63e";
+		epom_channel = "";
+		epom_code_format = "ads";
+		epom_ads_host = "//www.adshost2.com";
+		epom_click = "";
+		epom_custom_params = {};
+		epom_width = "300";
+		epom_height = "250";
 
-
+		document.write("<script type='text\/javascript' src='"+(location.protocol == 'https:' ? 'https:' : 'http:') + "//www.adshost2.com\/js/show_ads.js'><\/script>");
+		//]]>
+		</script>
+		<!-- END TAG -->
+	</div>
+	<br/><br/>
 @endif
