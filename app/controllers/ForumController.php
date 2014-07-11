@@ -132,7 +132,7 @@ class ForumController extends \BaseController {
 				return Redirect::to("/forum/".$category->id."/".$topic->category->url_name)->with('success', trans("forum.topic_created"));
 				
 			} else {
-				return Redirect::to("/forum/".$category->id."/".$category->url_name."/create_topic/new")->withInput()
+				return Redirect::to("/forum/create_topic/".$category->id."/new")->withInput()
 				->withErrors($validation)
 				->with('error', 'There were validation errors.');
 			}
