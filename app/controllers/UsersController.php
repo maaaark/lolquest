@@ -39,11 +39,19 @@ class UsersController extends \BaseController {
 	
 	public function update_email()
 	{
-		// 	{{ Form::model($user, array('route' => array('users.update_email', $user->id), 'method' => 'PUT')) }}
 		$user = User::find(Auth::user()->id);
 		$user->email = Input::get('email');
 		$user->save();
 		return View::make('settings.email', compact('user'))->with('success', trans('users.settings_saved'));
+	}
+	 
+	public function save_skin()
+	{
+		$user = User::find(Auth::user()->id);
+		$user->skin_left = Input::get('left_skin');
+		$user->skin_right = Input::get('right_skin');
+		$user->save();
+		return Redirect::to("/settings/skins")->with('success', trans('users.settings_saved'));
 	}
 	 
 	
@@ -52,6 +60,13 @@ class UsersController extends \BaseController {
 	{
 		$user = User::find(Auth::user()->id);
 		return View::make('settings.timeline', compact('user'));
+	}
+	
+	public function skins()
+	{
+		$user = User::find(Auth::user()->id);
+		$skins = Skin::where("user_id", "=", $user->id)->get();
+		return View::make('settings.skins', compact('user', 'skins'));
 	}
 	
 	public function update_timeline_settings()

@@ -164,5 +164,20 @@
 	  ga('send', 'pageview');
 
 	</script>
+	
+	<!-- BEGIN TAG - DO NOT MODIFY -->
+	<script type="text/javascript">
+	//<![CDATA[
+	epom_key = "1c280e467114780e403ab1bec8767997";
+	epom_channel = "";
+	epom_code_format = "ads-sync.js";
+	epom_ads_host = "//www.adshost2.com";
+	epom_click = "";
+	epom_custom_params = {};
+
+	document.write("<script type='text\/javascript' src='"+(location.protocol == 'https:' ? 'https:' : 'http:') + "//www.adshost2.com\/js/show_ads.js'><\/script>");
+	//]]>
+	</script>
+	<!-- END TAG -->
     </body>
 </html>

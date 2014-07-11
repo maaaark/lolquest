@@ -21,5 +21,6 @@ return array(
 	'refresh_games' => 'Refresh my last games and Summoner Profile + Avatar',
 	'new_note' => 'new Notification',
 	'remove_notes' => 'Remove all',
+	'manage_skins' => 'Manage Skins',
 	'register_to_do' => 'Register or Login to Comment',
 );

@@ -39,6 +39,7 @@ Route::post('create_comment', array('uses' => 'BlogsController@create_comment'))
 
 // Setting
 Route::post('/settings/update_email', array('uses' => 'UsersController@update_email'));
+Route::get('/settings/skins', array('uses' => 'UsersController@skins'));
 Route::post('/settings/update_timeline_settings', array('uses' => 'UsersController@update_timeline_settings'));
 
 // Forum Controller
@@ -72,6 +73,7 @@ Route::post('/users/store', 'UsersController@store');
 Route::post('login', array('uses' => 'UsersController@doLogin'));
 Route::post('/check_betakey', 'UsersController@check_betakey');
 Route::post('password_remind', 'RemindersController@postRemind');
+Route::post('/settings/skins/save', 'UsersController@save_skin');
 
 Route::get('forgot_password', 'RemindersController@getRemind');
 Route::get('edit_summoner', 'UsersController@edit_summoner');
@@ -129,6 +131,7 @@ Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_n
 // Shop Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
+Route::get('shop/buy_skin/{id}', 'ProductsController@buy_skin');
 Route::get('shop/offers', 'ProductsController@offers');
 Route::get('shop/buy_qp', 'ProductsController@buy_qp');
 Route::get('shop/riot_points', 'ProductsController@riot_points');

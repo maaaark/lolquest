@@ -59,6 +59,43 @@ class ProductsController extends \BaseController {
 		}
 	}
 	
+	
+	public function buy_skin($id)
+	{
+		if (Auth::check()) { 
+			$champion = Champion::find($id);
+			$user = User::find(Auth::user()->id);
+			
+			if($user->qp >= 200) {
+				
+				$skin = new Skin;
+				$skin->user_id = $user->id;
+				$skin->champion_id = $id;
+				$skin->save();
+				
+				$user->qp = $user->qp - 200;
+				$user->save();
+				
+				$transaction = new Transaction;
+				$transaction->user_id = Auth::user()->id;
+				$transaction->product_id = 0;
+				$transaction->currency = "QP";
+				$transaction->price = 200;
+				$transaction->description = $user->summoner->summoner_name." bought a Skin for (".$transaction->currency.")";
+				$transaction->save();	
+
+				return View::make('shop.success')->with('message', trans("shop.new_skin"));				
+				
+			} else {
+				return Redirect::to('shop')->with('error', trans("shop.no_qp"));
+			}
+			
+			return View::make('shop.done', compact('products'));
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
 	public function buy_qp()
 	{
 		$products = Product::where("cat_id", "=", 2)->get();
@@ -83,7 +120,13 @@ class ProductsController extends \BaseController {
 	
 	public function skins()
 	{
-		return View::make('shop.skins');
+		$bought_skins = array();
+		$myskins = Skin::where("user_id","=",Auth::user()->id)->get();
+		foreach($myskins as $skin) {
+			$bought_skins[] = $skin->champion_id;
+		}
+		$champions = Champion::orderBy('name', 'asc')->get();
+		return View::make('shop.skins', compact('champions', 'bought_skins'));
 	}
 	
 	public function history()

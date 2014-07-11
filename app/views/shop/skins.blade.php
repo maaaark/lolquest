@@ -8,33 +8,64 @@
 				@include('shop.sidebar')
 			</td>
 			<td valign="top" width="80%">
-				<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
-					<div class="product_skin" style="background: url('/img/skins/pax_jax.jpg')">
-						<div class="skin_description">
-							<h3>Pax Jax</h3>
-							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-6">Buy for 25000 QP</a>
+				@foreach($champions as $champion)
+					<?php
+						if(!in_array($champion->champion_id, $bought_skins)) {
+					?>
+					
+						<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
+							<div class="product">
+								<img class="img-circle" alt="" src="/img/champions/{{ $champion->champion_id }}_92.png" width="100">
+								<h3>{{ $champion->name }}</h3>
+								Site Background for {{ $champion->name }}<br/>
+								<br/>
+								<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-skin-{{ $champion->champion_id }}">{{ trans("shop.buy_for") }} 200 QP</a><br/>
+							</div>
 						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
-					<div class="product_skin" style="background: url('/img/skins/championship_thresh.jpg')">
-						<div class="skin_description">
-							<h3>Championship Thresh</h3>
-							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-6">Buy for 25000 QP</a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
-					<div class="product_skin" style="background: url('/img/skins/pax_sivir.jpg')">
-						<div class="skin_description">
-							<h3>Pax Sivir</h3>
-							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-6">Buy for 25000 QP</a>
-						</div>
-					</div>
-				</div>
-				
+						
+						<!-- Modal for QP Warning / Buy -->
+						<div class="modal fade" id="myModal-skin-{{ $champion->champion_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">{{ trans("shop.details") }} "{{ $champion->name }}"</h4>
+								  </div>
+								  <div class="modal-body">
+									<h2>{{ $champion->name }} Siteskin</h2>
+									Left and right siteskin<br/>
+									<br/>
+									<table class="table table-striped">
+										<tr>
+											<td>{{ trans("dashboard.balance") }}</td>
+											<td>{{ Auth::user()->qp }}</td>
+										</tr>
+										<tr>
+											<td>{{ trans("shop.price") }}</td>
+											<td>-200</td>
+										</tr>
+										<tr>
+											<td><strong>{{ trans("dashboard.balance_after") }}</strong></td>
+											<td><strong>{{ Auth::user()->qp-200 }}</strong></td>
+										</tr>
+									</table>
+								  </div>
+								  <div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
+									@if(200 > Auth::user()->qp)
+										<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
+									@else
+										<a href="/shop/buy_skin/{{ $champion->champion_id }}" class="btn btn-success">{{ trans("shop.buy") }}</a>
+									@endif
+								  </div>
+								</div>
+							</div>
+						</div>	
+						
+					<?php
+						}
+					?>
+				@endforeach	
 			</td>
 		</tr>
 	</table>

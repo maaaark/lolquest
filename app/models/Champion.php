@@ -13,6 +13,11 @@ class Champion extends \Eloquent {
         return $this->hasMany('Daily');
     }
 	
+	public function skins()
+    {
+        return $this->hasMany('Skin');
+    }
+	
 	public function pickrate($games_amount) {
 		$champion_games = Game::where("championId","=", $this->champion_id)->count();
 		$pickrate = (100/$games_amount) * $champion_games;

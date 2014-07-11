@@ -752,6 +752,7 @@ a.logout {
 	text-align: center;
 	padding-top: 10px;
 	padding: 10px;
+	height: 260px;
 	margin-bottom: 10px;
 }
 .product_description {
@@ -930,14 +931,37 @@ a.logout {
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 5px;	
 }
 #wrapper {
 	position: relative;
-	background: url("../img/new_background.jpg");
+	background: url("../img/new_background.jpg") #232323;
 	background-position: center 30px;
 	background-repeat: no-repeat;
 	min-height: 700px;
+}
+.skin_left {
+	color: #fff;
+	width: 400px;
+	height: 700px;
+	background: url("http://images.lolquest.net/skins/left/default_left.png");
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 50%;
+	margin-top: 50px;
+	margin-left: -985px;
+}
+.skin_right {
+	position: absolute;
+	color: #fff;
+	width: 400px;
+	height: 700px;
+	background: green;
+	background: url("http://images.lolquest.net/skins/left/default_right.png");
+	background-repeat: no-repeat;
+	right: 50%;
+	margin-top: 50px;
+	margin-right: -985px;
 }
 .title-wrapper {
 	position: relative;

@@ -23,6 +23,11 @@
 		<tr>
 			<td><i class="fa fa-dashboard"></i>&nbsp;&nbsp;<a href="/timeline_settings" class="">{{ trans("sidebar.timeline_settings") }}</a></td>
 		</tr>
+		@if(Auth::user()->hasRole('admin'))
+		<tr>
+			<td><i class="fa fa-kog"></i>&nbsp;&nbsp;<a href="/settings/skins" class="">{{ trans("sidebar.manage_skins") }}</a></td>
+		</tr>
+		@endif
 	</table>
 
 </div>
