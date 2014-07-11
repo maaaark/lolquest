@@ -7,6 +7,7 @@
 	<div class="forum_category">
 		<div class="forum_headline">{{ $topic->topic }}</div>
 		<table class="table table-striped" style="margin-bottom: 0;">
+			@if(Input::get('page') <= 1)
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
 					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $topic->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
@@ -23,6 +24,7 @@
 					{{ $topic->content }}
 				</td>
 			</tr>
+			@endif
 			@foreach($replies as $reply)
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
