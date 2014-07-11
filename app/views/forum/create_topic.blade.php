@@ -2,7 +2,7 @@
 @section('title', trans("forum.forum"))
 @section('content')
 <br/>
-	<a href="/forum">Forum</a> > <a href="/forum/{{ $category->url_name }}">{{ $category->name }}</a><br/>
+	<a href="/forum">Forum</a> > <a href="/forum/{{ $category->id }}">{{ $category->name }}</a><br/>
 	<br/>
 	{{ Form::open(array('action' => 'ForumController@save_topic')) }}
 		{{ Form::text('title', null, array("placeholder" => "Forum Topic", "class" => "forum_title")) }}<br/>

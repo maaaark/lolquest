@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<title>lolquest.net - @yield('title')</title>
+		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+		<link type="image/x-icon" href="/img/favicon.ico">
 		<meta name="description" content="{{ trans('meta.description') }}" />
 		<meta name="keywords" content="league of legends, quest, daily, skins, reward, lol, euw, na, rp, ep-boost, qp"/>
 		{{ HTML::style('css/style.css') }}

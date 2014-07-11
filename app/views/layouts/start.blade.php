@@ -1,6 +1,9 @@
 <html>
 	<head>
 		<title>lolquest.net - {{ trans('meta.title') }}</title>
+		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+		<link type="image/x-icon" href="/img/favicon.ico">
 		<meta name="language" content="en">
 		<meta name="description" content="{{ trans('meta.description') }}" />
 		<meta name="keywords" content="lolquest, league of legends, quest, daily, skins, reward, lol, euw, na, rp, ep-boost, qp"/>
