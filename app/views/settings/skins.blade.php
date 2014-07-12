@@ -10,7 +10,7 @@
 				<select name="left_skin">
 						<option value="{{ Auth::user()->skin_left }}">{{ Auth::user()->skin_left }}</option>
 					@foreach($skins as $skin)
-						<option value="{{ $skin->champion_id }}.png">{{ $skin->champion->name }}</option>
+						<option value="{{ $skin->champion_id }}.jpg">{{ $skin->champion->name }}</option>
 					@endforeach
 				</select>
 			</td>
@@ -19,7 +19,7 @@
 				<select name="right_skin">
 						<option value="{{ Auth::user()->skin_right }}">{{ Auth::user()->skin_right }}</option>
 					@foreach($skins as $skin)
-						<option value="{{ $skin->champion_id }}.png">{{ $skin->champion->name }}</option>
+						<option value="{{ $skin->champion_id }}.jpg">{{ $skin->champion->name }}</option>
 					@endforeach
 				</select>
 			</td>

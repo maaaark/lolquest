@@ -208,6 +208,7 @@ class QuestsController extends \BaseController {
 						$quest->champion_id = $daily->champion_id;
 						$quest->user_id = $user->id;
 						$quest->type_id = $daily->type_id;
+						$quest->exp = $daily->questtype->exp * 2;
 						$quest->daily = 1;
 						$quest->quest_slot = "choose";
 						$quest->createDate = date("U")*1000;

@@ -299,7 +299,7 @@
 								<td>{{ $game->turretsKilled }}</td>
 							</tr>
 							<tr>
-								<td><strong>Largest Killingspree</strong></td>
+								<td><strong>Killingsprees</strong></td>
 								<td>{{ $game->killingSprees }}</td>
 								<td><strong>Game Date</strong></td>
 								<td>{{ date("d.m.Y H:i", $game->createDate/1000) }}</td>
