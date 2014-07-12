@@ -66,6 +66,13 @@ h3 {
 	height: 210px;
 	background: #fff;
 }
+.banner_1 {
+	margin: 0 auto;
+	width: 728px;
+}
+.rec_banner {
+	margin-left: -10px;
+}
 #banner_2 {
 	right: -160px;
 	margin-top: 0px;
