@@ -243,9 +243,6 @@ class QuestsController extends \BaseController {
 				if(isset($quest) && $quest->count() > 0) {
 					
 					$user->refresh_games();
-					// Refresh the Quests for this summoner
-					//$request = Request::create('/refresh_games', 'GET', array());
-					//Route::dispatch($request)->getContent();
 
 				
 				// START OF DIFFERENT QUESTS
@@ -345,7 +342,7 @@ class QuestsController extends \BaseController {
 					
 					
 					// Quest Type 5 - Min. 6 kills on Summoners Rift
-					if($quest->questtype->id == 5) {
+					if($quest->questtype->id == 5 || $quest->questtype->id == 18 || $quest->questtype->id == 19 || $quest->questtype->id == 20) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -367,7 +364,7 @@ class QuestsController extends \BaseController {
 					}
 					
 					// Quest Type 6 - Min. 200 CS on SR
-					if($quest->questtype->id == 6) {
+					if($quest->questtype->id == 6 || $quest->questtype->id == 21 || $quest->questtype->id == 22 || $quest->questtype->id == 23) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -530,7 +527,7 @@ class QuestsController extends \BaseController {
 					
 					
 					// Quest Type 13 - Mind 2 Turrets
-					if($quest->questtype->id == 13) {
+					if($quest->questtype->id == 13 || $quest->questtype->id == 24 || $quest->questtype->id == 25) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -553,7 +550,7 @@ class QuestsController extends \BaseController {
 					
 					
 					// Quest Type 14 - Get on a Killing Spree
-					if($quest->questtype->id == 14) {
+					if($quest->questtype->id == 14 || $quest->questtype->id == 26 || $quest->questtype->id == 27 || $quest->questtype->id == 28) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -601,7 +598,7 @@ class QuestsController extends \BaseController {
 					
 
 					// Quest Type 16 - Deal at least 120000 Dmg
-					if($quest->questtype->id == 16) {
+					if($quest->questtype->id == 16 || $quest->questtype->id == 29 || $quest->questtype->id == 30 || $quest->questtype->id == 31) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -624,7 +621,7 @@ class QuestsController extends \BaseController {
 					
 					
 					// Quest Type 17 - Tank 30.000 Dmg
-					if($quest->questtype->id == 17) {
+					if($quest->questtype->id == 17 || $quest->questtype->id == 33 || $quest->questtype->id == 34) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
@@ -663,61 +660,5 @@ class QuestsController extends \BaseController {
 		}
 	}
 
-	
-	
-	
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }
