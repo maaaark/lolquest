@@ -4,6 +4,7 @@
 		<li><a href="/team">Team</a></li>
 		<li><a href="/contact">Contact</a></li>
 		<li><a href="/impress">Impress</a></li>
+		<li><a href="/donate">Donate</a></li>
 	</ul>
 	<div class="clear"></div>
 </div>
@@ -20,3 +21,4 @@
 <script src="/js/summernote.min.js"></script>
 @include('layouts.countdown')
 {{ HTML::script('js/custom.js') }}
+<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>

@@ -9,7 +9,7 @@
 		If you really like this site, we would be very thankful for any donation.<br/>
 		<br/>
 		<h2>Your donator rewards</h2>
-		<i>Awesome Stuff</i>
+		<i>We will soon announce rewards for donators!</i>
 	</p>
 	<br/>
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
