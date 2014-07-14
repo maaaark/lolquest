@@ -78,6 +78,13 @@ class UsersController extends \BaseController {
 		} else {
 			$user->show_in_timeline = 0;
 		}
+		
+		if(Input::get('timeline_friends_only') == 1) {
+			$user->timeline_friends_only = 1;	
+		} else {
+			$user->timeline_friends_only = 0;
+		}
+		
 		$user->save();
 		return Redirect::to("/timeline_settings")->with('success', trans('users.settings_saved'));
 	}
