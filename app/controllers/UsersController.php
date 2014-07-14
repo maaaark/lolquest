@@ -58,8 +58,13 @@ class UsersController extends \BaseController {
 	
 	public function timeline_settings()
 	{
-		$user = User::find(Auth::user()->id);
-		return View::make('settings.timeline', compact('user'));
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			return View::make('settings.timeline', compact('user'));
+		} else {
+			return Redirect::to("/login");
+		}
+		
 	}
 	
 	public function skins()
