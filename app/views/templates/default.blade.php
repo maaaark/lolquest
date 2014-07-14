@@ -54,24 +54,6 @@
 
 							@yield('content')
 							
-							<div class="banner_1">
-								<!-- BEGIN TAG - DO NOT MODIFY -->
-								<script type="text/javascript">
-								//<![CDATA[
-								epom_key = "ccf9ddb303f3077ef436078fb8808819";
-								epom_channel = "";
-								epom_code_format = "ads";
-								epom_ads_host = "//www.adshost2.com";
-								epom_click = "";
-								epom_custom_params = {};
-								epom_width = "728";
-								epom_height = "90";
-
-								document.write("<script type='text\/javascript' src='"+(location.protocol == 'https:' ? 'https:' : 'http:') + "//www.adshost2.com\/js/show_ads.js'><\/script>");
-								//]]>
-								</script>
-								<!-- END TAG -->
-							</div>
 							<br/>
 						</td>
 						<td valign="top" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidebar">
@@ -96,5 +78,6 @@
 	  ga('send', 'pageview');
 
 	</script>
+	
     </body>
 </html>
