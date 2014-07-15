@@ -66,7 +66,23 @@ class UsersController extends \BaseController {
 	{
 		$user = User::find(Auth::user()->id);
 		$skins = Skin::where("user_id", "=", $user->id)->get();
-		return View::make('settings.skins', compact('user', 'skins'));
+		
+		if($user->skin_right != "default_right.png") {
+			$right_skin_id = explode(".",$user->skin_right);
+			$skin_right = Champion::where("champion_id", "=", $right_skin_id[0])->first();
+		} else {
+			$skin_right = array();
+			
+		}
+		
+		if($user->skin_left != "default_left.png") {
+			$left_skin_id = explode(".",$user->skin_left);
+			$skin_left = Champion::where("champion_id", "=", $left_skin_id[0])->first();
+		} else {
+			$skin_left = array();
+		}
+
+		return View::make('settings.skins', compact('user', 'skins', 'skin_left', 'skin_right', 'left_skin_id'));
 	}
 	
 	public function update_timeline_settings()

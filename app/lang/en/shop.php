@@ -18,6 +18,7 @@ return array(
 	'ep_boost' => 'EP Boosts',
 	'skins' => 'Skins',
 	'NA' => 'Not available yet',
+	'skin_info' => 'Dont have any Siteskins yet?<br/> <a href="/shop/skins">Go and buy you favorite Champion Siteskin!</a>',
 	'shop' => 'Shop',
 	'your_history' => 'This is your purchase history for this account.',
 	'back_to_shop' => 'Back to the shop',
