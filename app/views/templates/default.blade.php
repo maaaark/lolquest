@@ -12,11 +12,12 @@
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/css/summernote.css">
+		<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
+		<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>
 		<script src="/js/jquery.min.js"></script>
 	</head>
     <body>
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>
+	
 	@include('layouts.top')
 	
 	<!-- <img src="/img/blur.jpg" class="bg" /> -->
