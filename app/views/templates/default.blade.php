@@ -15,7 +15,8 @@
 		<script src="/js/jquery.min.js"></script>
 	</head>
     <body>
-	
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>
 	@include('layouts.top')
 	
 	<!-- <img src="/img/blur.jpg" class="bg" /> -->
@@ -68,8 +69,7 @@
 			@include('layouts.footer')
 		</div>
 	</div>
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>
+	
     <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

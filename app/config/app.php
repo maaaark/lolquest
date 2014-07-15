@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Efficiently\AuthorityController\AuthorityControllerServiceProvider',
+		'Roumen\Sitemap\SitemapServiceProvider',
 	),
 
 	/*
