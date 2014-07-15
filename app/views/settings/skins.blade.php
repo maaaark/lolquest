@@ -1,11 +1,11 @@
 @extends('templates.default')
-@section('title', trans("users.settings"))
+@section('title', trans("users.settings")." - Skins")
 @section('content')
 	<br/>
 	{{ Form::open(array('action' => 'UsersController@save_skin')) }}	
 	<table>
 		<tr>
-			<td>
+			<td width="250">
 				Left Skin
 				<select name="left_skin">
 						<option value="{{ Auth::user()->skin_left }}">{{ Auth::user()->skin_left }}</option>
@@ -25,6 +25,7 @@
 			</td>
 		</tr>
 	</table>
+	<br/>
 		{{ Form::submit(trans("sidebar.save"), array('class' => 'btn btn-primary')) }}
 	{{ Form::close() }}
 @stop

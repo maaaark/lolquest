@@ -2,5 +2,5 @@
 @section('title', 'Shop')
 @section('content')
 	<br/>
-	<h2>{{ trans("shop.new_slot") }}</h2>
+	<p>{{ trans("shop.new_slot") }}</p>
 @stop

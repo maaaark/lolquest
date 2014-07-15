@@ -84,7 +84,7 @@ class ProductsController extends \BaseController {
 				$transaction->description = $user->summoner->summoner_name." bought a Skin for (".$transaction->currency.")";
 				$transaction->save();	
 
-				return View::make('shop.success')->with('message', trans("shop.new_skin"));				
+				return View::make('shop.new_skin')->with('message', trans("shop.new_skin"));				
 				
 			} else {
 				return Redirect::to('shop')->with('error', trans("shop.no_qp"));

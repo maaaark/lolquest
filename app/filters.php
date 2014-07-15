@@ -108,7 +108,7 @@ Route::filter('friend_ladders', function()
 		$friend_ladder = array();
 		$month = date("n");
 		$year = date("Y");
-		$friends_ladder = DB::table('ladders')->join('friend_users', 'ladders.user_id', '=', 'friend_users.friend_id')->join('users', 'ladders.user_id', '=', 'users.id')->join('summoners', 'users.id', '=', 'summoners.user_id')->where('ladders.month', '=', $month)->where('ladders.year', '=', $year)->where('friend_users.user_id', '=', Auth::user()->id)->where('friend_users.validate', '=', 1)->get();
+		$friends_ladder = DB::table('ladders')->join('friend_users', 'ladders.user_id', '=', 'friend_users.friend_id')->join('users', 'ladders.user_id', '=', 'users.id')->join('summoners', 'users.id', '=', 'summoners.user_id')->where('ladders.month', '=', $month)->where('ladders.year', '=', $year)->where('friend_users.user_id', '=', Auth::user()->id)->where('friend_users.validate', '=', 1)->orderBy('ladders.rang', 'ASC')->get();
 		Session::put('friend_ladder', $friends_ladder);
 	}
 });

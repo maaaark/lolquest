@@ -9,6 +9,7 @@ return array(
 	'no_qp' => 'You don`t have enought QP',
 	'slots_full' => 'You already have all Quest Slots',
 	'new_slot' => 'You gained another Quest Slot!',
+	'new_skin' => 'You just bought a new Siteskin!<br/><a href="/settings/skins">Go to the "Skin Manager"</a> and select your skins.',
 	'history' => 'Purchase history',
 	'rp' => 'Riot Points',
 	'offers' => 'Special Offers',
@@ -19,4 +20,5 @@ return array(
 	'NA' => 'Not available yet',
 	'shop' => 'Shop',
 	'your_history' => 'This is your purchase history for this account.',
+	'back_to_shop' => 'Back to the shop',
 );
