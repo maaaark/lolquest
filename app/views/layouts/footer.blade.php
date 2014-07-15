@@ -21,4 +21,3 @@
 <script src="/js/summernote.min.js"></script>
 @include('layouts.countdown')
 {{ HTML::script('js/custom.js') }}
-<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>

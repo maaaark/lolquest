@@ -15,7 +15,8 @@
 		<script src="/js/jquery.min.js"></script>
 	</head>
     <body>
-	
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251949"></script>
 	@include('layouts.top')
 	
 	<!-- <img src="/img/blur.jpg" class="bg" /> -->
@@ -78,9 +79,6 @@
 	  ga('send', 'pageview');
 
 	</script>
-	
-	
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=251948"></script>
 	
     </body>
 </html>
