@@ -2,15 +2,14 @@
 @section('title', 'Donate')
 @section('content')
 	<br/>
-	<h2>Donate</h2>
 	<p>
 		We like to keep lolquest.net free for everyone and all time.<br/>
-		But sadly this website has to generate some income in order to pay the server bills which are currently about 70$ / 50€ each month.<br/>
+		But sadly this website has to generate some income in order to pay the server bills which are currently about 70$ / 50&euro; each month.<br/>
 		<br/>
 		If you really like this site, we would be very thankful for any donation.<br/>
 		<br/>
 		<h2>Your donator rewards</h2>
-		<i>Awesome Stuff</i>
+		<i>We will soon announce rewards for donators!</i>
 	</p>
 	<br/>
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

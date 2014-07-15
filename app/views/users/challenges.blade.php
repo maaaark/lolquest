@@ -37,7 +37,7 @@
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
 					<br/>
 					<a href="/finish_challenge" class="btn btn-success" style="width: 155px;">{{ trans("dashboard.finish_challenge") }}</a>
-					<a href="/cancel_challenge" class="btn btn-danger"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a>
+					<div class="cancel_challenge"><a href="/cancel_challenge" class="btn btn-danger"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a></div>
 				@endif
 			</div>
 		</div>

@@ -58,8 +58,13 @@ class UsersController extends \BaseController {
 	
 	public function timeline_settings()
 	{
-		$user = User::find(Auth::user()->id);
-		return View::make('settings.timeline', compact('user'));
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			return View::make('settings.timeline', compact('user'));
+		} else {
+			return Redirect::to("/login");
+		}
+		
 	}
 	
 	public function skins()
@@ -94,6 +99,13 @@ class UsersController extends \BaseController {
 		} else {
 			$user->show_in_timeline = 0;
 		}
+		
+		if(Input::get('timeline_friends_only') == 1) {
+			$user->timeline_friends_only = 1;	
+		} else {
+			$user->timeline_friends_only = 0;
+		}
+		
 		$user->save();
 		return Redirect::to("/timeline_settings")->with('success', trans('users.settings_saved'));
 	}
