@@ -684,24 +684,47 @@ class UsersController extends \BaseController {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'/0" >'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'/0" >'.trans("friends.reject").'</a>');
+				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'">'.trans("friends.reject").'</a>');
+				$model = new FriendUser;
+				$model->setTable("friend_users");
+				$notify = $model->where("friend_id","=", $id)->where('user_id','=', $user_friend->id)->first();;
+				$u_not = $user->notifications->last();
+				$notify->notify_id = $u_not->id;
+				$notify->save();
 				return Redirect::back();
 		} else {
 		return Redirect::to('login');
 		}
 	} 
 	
-	public function removeFriend($id, $not_id)
+	public function removeFriend($id)
 	{
 		if(Auth::user()) {
 			$friend_user = User::findOrFail($id);
 			if($friend_user){
-				$friend_user->friends()->detach(Auth::user()->id);
-			}
 			$user_friend = Auth::user();
+			$model = new FriendUser;
+			$model->setTable("friend_users");
+			$friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
+			$user = $model->where("friend_id","=", $id)->where('user_id','=', Auth::user()->id)->first();
+			if($friend) {			
+				if($friend->notify_id != 0) {
+					$note = Notification::where("id", "=", $friend->notify_id)->where("user_id", "=", $id)->get();
+					if($note) {
+						Notification::destroy($friend->notify_id);	
+					} 
+				}
+			} 
+			if($user) {	
+				if($user->notify_id != 0) {
+					$note = Notification::where("id", "=", $user->notify_id)->where("user_id", "=", Auth::user()->id)->get();
+					if($note) {
+						Notification::destroy($user->notify_id);	
+					} 
+				}
+			}
+			$friend_user->friends()->detach(Auth::user()->id);
 			$user_friend->friends()->detach($id);
-			if($not_id != 0) {
-				$user_friend->delete_note($not_id);
 			}
 			return Redirect::back();
 		} else {
@@ -710,7 +733,7 @@ class UsersController extends \BaseController {
 	} 
 	
 	
-	public function acceptFriend($id, $not_id)
+	public function acceptFriend($id)
 	{
 		if(Auth::user()) {
 			if(Auth::user()->id != $id){
@@ -732,11 +755,30 @@ class UsersController extends \BaseController {
 				$count_user = $model->where("user_id","=", Auth::user()->id)->where('validate','=', 1)->count();
 				$count_friend = $model->where("user_id","=", $id)->where('validate','=', 1)->count();
 				
+				$model2 = new FriendUser;
+				$model2->setTable("friend_users");
+				$friend = $model2->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
+				$user2 = $model2->where("friend_id","=", $id)->where('user_id','=', Auth::user()->id)->first();
+				if($friend) {			
+					if($friend->notify_id != 0) {
+						$note = Notification::where("id", "=", $friend->notify_id)->where("user_id", "=", $id)->get();
+						if($note) {
+							Notification::destroy($friend->notify_id);	
+						} 
+					}
+				} 
+				if($user2) {	
+					if($user2->notify_id != 0) {
+						$note = Notification::where("id", "=", $user2->notify_id)->where("user_id", "=", Auth::user()->id)->get();
+						if($note) {
+							Notification::destroy($user2->notify_id);	
+						} 
+					}
+				}
+				
+				
 				$user->checkAchievement_friend($user->id, 3, $count_friend);
 				$user_friend-> checkAchievement(3, $count_user);
-				if($not_id != 0) {
-					$user_friend->delete_note($not_id);
-				}
 				return Redirect::back();
 			}
 			return Redirect::back();
