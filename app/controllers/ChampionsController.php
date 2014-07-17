@@ -12,7 +12,6 @@ class ChampionsController extends \BaseController {
 		DB::disableQueryLog();
 		$champions = Champion::orderBy('name', 'ASC')->get();
 		$games_amount = Game::all()->count();
-		DB::enableQueryLog();
 		return View::make('champions.index', compact('champions', 'games_amount'));
 	}
 

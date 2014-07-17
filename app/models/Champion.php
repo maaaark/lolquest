@@ -22,7 +22,6 @@ class Champion extends \Eloquent {
 		DB::disableQueryLog();
 		$champion_games = Game::where("championId","=", $this->champion_id)->count();
 		$pickrate = (100/$games_amount) * $champion_games;
-		DB::enableQueryLog();
 		return round($pickrate,2);
 	}
 	
@@ -35,7 +34,6 @@ class Champion extends \Eloquent {
 		} else {
 			$winrate = (100/$champion_games) * $champion_wins;
 		}
-		DB::enableQueryLog();
 		return round($winrate,2);
 	}
 	
