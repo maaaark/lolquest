@@ -6,8 +6,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"way/generators": "2.*",
-		"efficiently/authority-controller": "1.1.*",
-		"roumen/sitemap": "dev-master"
+		"efficiently/authority-controller": "1.1.*"
 	},
 	"autoload": {
 		"classmap": [
