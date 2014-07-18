@@ -2,8 +2,8 @@
 
 return array(
 	'available_champions' => 'Valid Champions for this Challenge are:', 
-	'1_champions' => 'Renekton, Trundle, Jax, Irrelia, Jayce, Wukong, Pantheon, Lee Sin, Riven, Rumble, Shen, Vladimir, Yorick, Darius, Kayle, Gangplank',
-	'2_champions' => 'Lee Sin, Udyr, Xin Zhao, Pantheon, Kha Zix, Amummu, Hecarim, Master Yi, Nautilus, Nocturn, Rammus, Rengar, Shaco, Warwick, Vi, Elise, Evelyn',
+	'1_champions' => 'Renekton, Trundle, Jax, Irelia, Jayce, Wukong, Pantheon, Lee Sin, Riven, Rumble, Shen, Vladimir, Yorick, Darius, Kayle, Gangplank',
+	'2_champions' => 'Lee Sin, Udyr, Xin Zhao, Pantheon, Kha Zix, Amumu, Hecarim, Master Yi, Nautilus, Nocturn, Rammus, Rengar, Shaco, Warwick, Vi, Elise, Evelyn',
 	'3_champions' => 'Ahri, Orianna, Gragas, Katarina, Brand, Kassadin, Yasuo, LeBlanc, Lissandra, Lulu, Twisted Fate, Heimerdinger, Malzahar, Xerath, Ziggs',
 	'4_champions' => 'Jinx, Caitlyn, Lucian, Ezreal, Sivir, Graves, Vayne, Corki, Twitch, Tristana, Miss Fortune, Varus, Kog Maw, Draven, Ashe',
 	'5_champions' => 'Annie, Leona, Thresh, Sona, Morgana, Karma, Nunu, Taric, Braum, Alistar, Soraka, Janna, Nami, Zyra, Blitzcrank, Lulu',
