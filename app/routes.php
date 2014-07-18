@@ -124,6 +124,13 @@ Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 
 
+// Arena Controller
+Route::get('/arena', 'ArenasController@index');
+Route::get('/arena/start_arena', 'ArenasController@start_arena');
+Route::get('/arena/start_quest', 'ArenasController@start_quest');
+Route::get('/arena/finish_quest', 'ArenasController@finish_quest');
+
+
 // Notification Controller
 Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_note');
 
