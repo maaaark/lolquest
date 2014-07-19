@@ -50,10 +50,10 @@
 					</a>
 				</td>
 				<td>
-				<a href="/accept_friend/{{$user->getFriendUser($openfriend->user_id)->id}}/0"  class="remove">{{ trans("friends.accept") }}</a>
+				<a href="/accept_friend/{{$user->getFriendUser($openfriend->user_id)->id}}"  class="remove">{{ trans("friends.accept") }}</a>
 				</td>
 				<td>
-				<a href="/remove_friend/{{$openfriend->id}}/0" class="remove">{{ trans("friends.remove") }}</a>
+				<a href="/remove_friend/{{$user->getFriendUser($openfriend->user_id)->id}}" class="remove">{{ trans("friends.remove") }}</a>
 				</td>
 			</tr>
 				@endif
@@ -73,14 +73,14 @@
 				</td>
 			@if ( Auth::user()->isFriend($friend->id) == 'checked')
 				<td></td><td >
-				<a href="/remove_friend/{{$friend->id}}/0"  class="remove">{{ trans("friends.remove") }}</a>
+				<a href="/remove_friend/{{$friend->id}}"  class="remove">{{ trans("friends.remove") }}</a>
 				</td>
 			@elseif ( Auth::user()->isFriend( $friend->id) == 'unchecked')
 				<td>
 					<div class="quest_description">{{ trans("friends.unconfirmed") }}</div>
 				</td>
 				<td>
-				<a href="/remove_friend/{{$friend->id}}/0" class="remove">{{ trans("friends.remove") }}</a>
+				<a href="/remove_friend/{{$friend->id}}" class="remove">{{ trans("friends.remove") }}</a>
 				</td>
 			@else
 				<td></td>

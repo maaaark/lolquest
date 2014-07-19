@@ -21,7 +21,7 @@ return array(
 	'pick' => 'Pick a champion',
 	'cancel' => 'Cancel this Quest',
 	'get' => 'Get a random Quest',
-	'wait' => 'Wait :time secounds ...',
+	'wait' => 'Wait :time seconds ...',
 	'no_free_slot' => 'You have no free quest slot. <a href="/shop">Take a look in the shop to unlock more quest slots.</a>',
 	'open_slot' => 'Open Slot',
 	'empty_slot' => 'This slot can be bought in the shop for 200 QP!',
