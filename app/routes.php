@@ -173,6 +173,10 @@ Route::get('donate', function()
 {
 	return View::make('pages.donate');
 });
+Route::get('test', function()
+{
+	return View::make('pages.test');
+});
 
 // App Login
 Route::get('/app_login', array('before' => 'api_login', function()

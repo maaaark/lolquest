@@ -32,10 +32,7 @@
 	
 		
 		<div class="container title-wrapper">
-			@if(Config::get('settings.ads_enabled') == 1)
-			<div id="banner_1">728x90</div>
-			<div id="banner_2">160x600</div>
-			@endif
+
 			
 		</div>
 		
@@ -49,6 +46,19 @@
 					<tr>
 						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 							<div class="title"><h1>@yield('title')</h1></div>
+							@if(Config::get('settings.ads_enabled') == 1)
+							<br/>
+							<script type="text/javascript">
+							  ( function() {
+								if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+								var unit = {"calltype":"async[2]","publisher":"marktomicki","width":728,"height":90,"sid":"Chitika Default"};
+								var placement_id = window.CHITIKA.units.length;
+								window.CHITIKA.units.push(unit);
+								document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+							}());
+							</script>
+							<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+							@endif
 							@include('layouts.errors')
 
 							@yield('content')
