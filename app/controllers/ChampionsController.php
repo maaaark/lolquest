@@ -9,7 +9,7 @@ class ChampionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		DB::disableQueryLog();
+		DB::connection()->disableQueryLog();
 		$champions = Champion::orderBy('name', 'ASC')->get();
 		$games_amount = Game::all()->count();
 		return View::make('champions.index', compact('champions', 'games_amount'));

@@ -19,14 +19,14 @@ class Champion extends \Eloquent {
     }
 	
 	public function pickrate($games_amount) {
-		DB::disableQueryLog();
+		DB::connection()->disableQueryLog();
 		$champion_games = Game::where("championId","=", $this->champion_id)->count();
 		$pickrate = (100/$games_amount) * $champion_games;
 		return round($pickrate,2);
 	}
 	
 	public function winrate() {
-		DB::disableQueryLog();
+		DB::connection()->disableQueryLog();
 		$champion_wins = Game::where("championId","=", $this->champion_id)->where("win","=", 1)->count();
 		$champion_games = Game::where("championId","=", $this->champion_id)->count();
 		if($champion_games <= 0) {
