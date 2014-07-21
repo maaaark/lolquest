@@ -16,3 +16,4 @@ Artisan::add(new RefreshLadder);
 Artisan::add(new RefreshItems);
 Artisan::add(new RefreshChampions);
 Artisan::add(new RefreshQuestamount);
+DB::disableQueryLog();
