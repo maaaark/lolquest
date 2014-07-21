@@ -1,8 +1,8 @@
 @extends('templates.default')
 @if($user->summoner)
-@section('title', trans("users.profile")." ".$user->summoner->name." (".$user->region.")")
+	@section('title', trans("users.profile")." ".$user->summoner->name." <i>".$user->title()."</i>")
 @else
-@section('title', trans("users.profile")." ".$user->summoner->name." (".$user->region.")")
+	@section('title', trans("users.profile")." ".$user->summoner->name." <i>".$user->title()."</i>")
 @endif
 @section('content')	
 	<br/>
@@ -14,19 +14,19 @@
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
 				@if(Auth::user())
-				@if($user->id != Auth::user()->id)
-					@if ( Auth::user()->isFriend($user->id) == 'checked')
-						{{ trans("friends.already") }}
-					@elseif ( Auth::user()->isFriend( $user->id) == 'unchecked')
-						{{ trans("friends.unconfirmed") }}
-					@elseif (Auth::user()->isFriend( $user->id) == 'nofriends') 
-						<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.request") }}</a>
-					@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
-						<a href="/accept_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
+					@if($user->id != Auth::user()->id)
+						@if ( Auth::user()->isFriend($user->id) == 'checked')
+							{{ trans("friends.already") }}
+						@elseif ( Auth::user()->isFriend( $user->id) == 'unchecked')
+							{{ trans("friends.unconfirmed") }}
+						@elseif (Auth::user()->isFriend( $user->id) == 'nofriends') 
+							<a href="/user_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.request") }}</a>
+						@elseif (Auth::user()->isFriend( $user->id) == 'invited') 
+							<a href="/accept_friend/{{$user->id}}" class="btn btn-primary">{{ trans("friends.accept") }}</a>
+						@endif
+					@else
+						<a href="/settings" class="btn btn-primary">{{ trans("users.settings") }}</a>
 					@endif
-				@else
-					<a href="/settings" class="btn btn-primary">{{ trans("users.settings") }}</a>
-				@endif
 				@endif
 			</td>
 			<td width="400" valign="top">

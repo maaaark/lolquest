@@ -30,6 +30,29 @@ class UsersController extends \BaseController {
 		}
 	}
 	
+	public function titles() {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$titles = array();
+			$titles = $user->titles;
+			if(Auth::user()->active_title > 0) {
+				$current_title = Title::find(Auth::user()->active_title);
+			} else {
+				$current_title = "No title";
+			}
+			return View::make('settings.title', compact('user', 'titles', 'current_title'));
+		} else {
+			return Redirect::to('/login');
+		}
+	}
+	
+	public function update_title() {
+		$user = User::find(Auth::user()->id);
+		$user->active_title = Input::get('title');
+		$user->save();
+		return Redirect::to('/settings/title');
+	}
+	
 	public function edit_mail()
 	{
 		$user = User::find(Auth::user()->id);

@@ -41,6 +41,8 @@ Route::post('create_comment', array('uses' => 'BlogsController@create_comment'))
 Route::post('/settings/update_email', array('uses' => 'UsersController@update_email'));
 Route::get('/settings/skins', array('uses' => 'UsersController@skins'));
 Route::post('/settings/update_timeline_settings', array('uses' => 'UsersController@update_timeline_settings'));
+Route::get('/settings/title', array('uses' => 'UsersController@titles'));
+Route::post('/settings/update_title', array('uses' => 'UsersController@update_title'));
 
 // Forum Controller
 Route::get('/forum/create_topic/{category_id}/new', array('uses' => 'ForumController@create_topic'));

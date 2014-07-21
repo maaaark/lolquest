@@ -62,6 +62,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Skin');
     }
 	
+	public function titles()
+    {
+        return $this->hasMany('UserTitle');
+    }
+	
+	public function title()
+    {
+		if($this->active_title > 0) {
+			$title = Title::find($this->active_title);
+			return $title->title;
+		} else {
+			return false;
+		}
+    }
+	
 	public function timelines()
     {
         return $this->hasMany('Timeline');
