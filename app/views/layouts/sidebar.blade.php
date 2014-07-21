@@ -108,20 +108,6 @@
 	</div>
 	@endif
 	<br/>
-	@if(Config::get('settings.ads_enabled') == 1)
-	<div style="margin-left: -12px;">
-	<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"marktomicki","width":300,"height":250,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-	}());
-	</script>
-	<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
-	</div>
-	@endif
 @else
 
 	<div class="sidebar_box">
@@ -137,30 +123,6 @@
 		<a href="/register" style="text-transform: normal !important;"><div style="text-transform: normal !important;"class="btn btn-success">Register now</div></a>
 		{{ Form::close() }}
 		<br/>
-		
-		<div style="margin-left: -5px;">
-		<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"marktomicki","width":300,"height":250,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-}());
-</script>
-<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
-<br/>
-<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"marktomicki","width":300,"height":250,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-}());
-</script>
-<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
-</div>
 	</div>
 	<br/>
 
