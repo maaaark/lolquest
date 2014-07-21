@@ -7,7 +7,7 @@
 	@endif
 	<br/>
 	{{ Form::open(array('action' => 'UsersController@update_title')) }}	
-		<select name="title">
+		<select name="title" style="width: 200px;">
 			@if(Auth::user()->active_title > 0)
 				<option value="{{ $current_title->id }}">{{ $current_title->title }}</option>
 			@else
