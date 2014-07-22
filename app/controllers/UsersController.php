@@ -226,15 +226,14 @@ class UsersController extends \BaseController {
 				$summoner->profileIconId = $obj[$summoner_name_clear]["profileIconId"];
 				$summoner->summonerLevel = $obj[$summoner_name_clear]["summonerLevel"];
 				$summoner->revisionDate = $obj[$summoner_name_clear]["revisionDate"];
+				$summoner->region = $user->region;
 				$summoner->save();
 				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
 				});
+				
+				return Redirect::to('/login')->with('message', trans('users.thank_you'));
 			}
-			
-			
-			$user->save();
-			return Redirect::to('/login')->with('message', trans('users.thank_you'));
 		}
 
 		return Redirect::route('users.create')

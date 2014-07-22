@@ -155,3 +155,17 @@ Route::filter('user_exp_percent', function()
 		Session::put('user_exp', $user_exp_level);
 	}
 });
+
+Route::filter('has_summoner', function()
+{
+	if (Auth::check()) {
+		$user = User::find(Auth::user()->id);
+		if($user->summoner) {
+
+		} else {
+			return Redirect::to("/register_summoner");
+		}
+	}
+});
+
+

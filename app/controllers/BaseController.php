@@ -7,7 +7,8 @@ class BaseController extends Controller {
 	
 	
 	public function __construct()
-    {
+    {	
+		$this->beforeFilter('has_summoner', array('except' => array('register_summoner', 'save_summoner')));
         $this->beforeFilter('notifications');
 		$this->beforeFilter('my_open_quests');
 		$this->beforeFilter('friend_ladders');
@@ -63,12 +64,67 @@ class BaseController extends Controller {
 	}
 	
 	public function search_summoner() {
-		
 		$summoner_name = Input::get('summoner_name');
-		$region = Input::get('region');
 		$users = User::where('summoner_name', 'LIKE', '%'.$summoner_name.'%')->get();
-		
 		return View::make('search.results', compact('users'));
+	}
+	
+	public function register_summoner() {
+		if(Auth::check()) {
+			if(Auth::user()->summoner) {
+				return Redirect::to("/dashboard");
+			} else {
+				return View::make('users.register_summoner', compact('users'));
+			}
+		}
+	}
+	
+	public function save_summoner() {
+		if(Auth::check()) {
+		
+			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
+			$clean_summoner_name = strtolower($clean_summoner_name);
+			// check if validated summoner available
+			$verified_user = User::
+			  where('summoner_name', '=', $clean_summoner_name)
+			->where('summoner_status', '=', 2)
+			->where('region', '=', Input::get('region'))
+			->first();
+	
+			if($verified_user) {
+				return Redirect::to('/register_summoner')
+				->withInput()
+				->with('message', trans("users.already_one"));
+			}
+			
+			$api_key = Config::get('api.key');
+			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			
+			if($json === FALSE) {
+				return Redirect::to("/register_summoner")
+				->withInput()
+				->with('error', trans("users.not_found"));
+			} else {
+				$user = User::find(Auth::user()->id);
+				$obj = json_decode($json, true);
+				$summoner = new Summoner;
+				$summoner->user_id = $user->id;
+				$summoner_name_clear = str_replace(' ', '',strtolower($clean_summoner_name));
+				$summoner->summonerid = $obj[$summoner_name_clear]["id"];
+				$summoner->name = $obj[$summoner_name_clear]["name"];
+				$summoner->profileIconId = $obj[$summoner_name_clear]["profileIconId"];
+				$summoner->summonerLevel = $obj[$summoner_name_clear]["summonerLevel"];
+				$summoner->revisionDate = $obj[$summoner_name_clear]["revisionDate"];
+				$summoner->region = Input::get('region');
+				$user->region = Input::get('region');
+				$user->save();
+				$summoner->save();
+				return Redirect::to("/dashboard");
+			}
+		} else {
+			return Redirect::to("/login");
+		}
 	}
 	
 	public function refresh_items()

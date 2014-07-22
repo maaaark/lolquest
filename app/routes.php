@@ -59,7 +59,9 @@ Route::get('403', array('uses' => 'BaseController@noAccess'));
 Route::get('404', array('uses' => 'BaseController@notFound'));
 Route::get('api_error', array('uses' => 'BaseController@api_error'));
 Route::post('search', array('uses' => 'BaseController@search_summoner'));
+Route::post('save_summoner', array('uses' => 'BaseController@save_summoner'));
 Route::get('search', array('uses' => 'BaseController@search_summoner'));
+Route::get('register_summoner', array('uses' => 'BaseController@register_summoner'));
 
 
 // Champions Controller
