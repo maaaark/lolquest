@@ -13,7 +13,7 @@
 				<img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" width="100" class="img-circle" /><br/>
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
-				@if(Auth::user())
+				@if(Auth::check)
 					@if($user->id != Auth::user()->id)
 						@if ( Auth::user()->isFriend($user->id) == 'checked')
 							{{ trans("friends.already") }}
@@ -27,9 +27,10 @@
 					@else
 						<a href="/settings" class="btn btn-primary">{{ trans("users.settings") }}</a>
 					@endif
-				@endif
-				@if(Auth::user()->hasRole('admin'))
-					<br/><a href="/admin/login_as/{{ $user->id }}">Login as {{ $user->summoner->name }}</a>
+
+					@if(Auth::user()->hasRole('admin'))
+						<br/><a href="/admin/login_as/{{ $user->id }}">Login as {{ $user->summoner->name }}</a>
+					@endif
 				@endif
 			</td>
 			<td width="400" valign="top">
