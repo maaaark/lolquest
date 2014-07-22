@@ -28,6 +28,9 @@
 						<a href="/settings" class="btn btn-primary">{{ trans("users.settings") }}</a>
 					@endif
 				@endif
+				@if(Auth::user()->hasRole('admin'))
+					<br/><a href="/admin/login_as/{{ $user->id }}">Login as {{ $user->summoner->name }}</a>
+				@endif
 			</td>
 			<td width="400" valign="top">
 				<table class="table table-striped" stlye="width: 100%;">

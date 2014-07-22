@@ -542,11 +542,22 @@ class UsersController extends \BaseController {
 					$summoner->profileIconId = $obj[$user->summoner_name]["profileIconId"];
 					$summoner->summonerLevel = $obj[$user->summoner_name]["summonerLevel"];
 					$summoner->revisionDate = $obj[$user->summoner_name]["revisionDate"];
+					$summoner->region = Input::get('region');
 					$summoner->save();
 					
 					return Redirect::to('/summoner/'.$user->region.'/'.$user->summoner_name);
 				}	
 			}			
+		}
+	}
+	
+	public function admin_login_as($user_id) {
+		if(Auth::check()) {
+			if(Auth::user()->hasRole('admin')) {
+				Auth::logout();
+				Auth::loginUsingId($user_id, true);
+				return Redirect::to('/summoner/'.Auth::user()->region.'/'.Auth::user()->summoner_name)->with("success", "Admin Login");
+			}
 		}
 	}
 	
