@@ -9,21 +9,32 @@ class LaddersController extends \BaseController {
 	 */
 	public function index($year = NULL, $month = NULL)
 	{
-		/*
-		SELECT user_id, SUM(exp) AS total_exp
-		FROM quests
-		GROUP BY user_id
-		ORDER BY exp
-		*/
+		
 		if($year == NULL)
 			$year = date("Y");
 		
 		if($month == NULL)
 			$month = date("m");
+			
+		$validator = Validator::make(
+			array(
+				'year' => $year,
+				'month' => $month
+			),
+			array(
+				'year' => 'numeric',
+				'month' => 'numeric'
+			)
+		);
 		
-		$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(25);
-
-		return View::make('ladders.index', compact('ladder', 'month', 'year'));
+		if ($validator->passes())
+		{
+			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(25);
+			return View::make('ladders.index', compact('ladder', 'month', 'year'));
+		} else {
+			return Redirect::to('/ladders')->with('error', "Date not valid");
+		} 
+		
 	}
 
 	
