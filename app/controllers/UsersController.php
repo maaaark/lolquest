@@ -459,6 +459,8 @@ class UsersController extends \BaseController {
 			if($key->used == 0){
 				Session::put('beta_user', 1);
 				Session::put('beta_key', $key->key);
+				$key->used = 1;
+				$key->save();
 				return Redirect::to("/users/create");
 			} else {
 				return Redirect::to("/")->withErrors("Key already used!");
