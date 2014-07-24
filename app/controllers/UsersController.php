@@ -46,6 +46,15 @@ class UsersController extends \BaseController {
 		}
 	}
 	
+	public function streamer() {
+		if(Auth::check()) {
+			$myquests = Quest::where('user_id', '=', Auth::user()->id)->where('finished', '=', 0)->get();
+			return View::make('users.streamer', compact('myquests'));
+		} else {
+			return Redirect::to('/login');
+		}
+	}
+	
 	public function update_title() {
 		$user = User::find(Auth::user()->id);
 		$user->active_title = Input::get('title');

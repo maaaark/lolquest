@@ -83,6 +83,7 @@ Route::post('/settings/skins/save', 'UsersController@save_skin');
 Route::get('forgot_password', 'RemindersController@getRemind');
 Route::get('edit_summoner', 'UsersController@edit_summoner');
 Route::get('dashboard', 'UsersController@dashboard');
+Route::get('dashboard/streamer', 'UsersController@streamer');
 Route::get('login', array('uses' => 'UsersController@showLogin'));
 Route::get('verify', array('uses' => 'UsersController@verify'));
 Route::get('refresh_games', array('uses' => 'UsersController@refresh_games'));
