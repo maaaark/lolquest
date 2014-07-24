@@ -58,7 +58,6 @@
 						</td>
 					</tr>
 				</table>
-
 			</div>
 		</div>
 		<div class="container">
@@ -77,6 +76,7 @@
 
 	</script>
 	
-
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252123"></script>
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252124"></script>
     </body>
 </html>
