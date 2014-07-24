@@ -294,7 +294,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if (Auth::check())
 		{
 			$user = User::find($this->id);
-			if(Config::get('api.use_riot_api')  == 1) {
+			if(Config::get('api.use_riot_api') == 1) {
 				// USE RIOT API
 				$api_key = Config::get('api.key');
 				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
@@ -379,6 +379,87 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					}
 					$user->last_checked = date("U");
 					$user->save();
+					
+				}
+			} elseif(Config::get('api.use_riot_api') == 2) {
+				// NEW RIOT API
+				$summoner_data = "https://acs.leagueoflegends.com/v1/stats/player_history/".$user->summoner->platformId."/".$user->summoner->accountId."?begIndex=0&endIndex=15";
+				$json = @file_get_contents($summoner_data);
+				if($json === FALSE) {
+					return Redirect::to('/api_problems');
+				} else {
+					$obj = json_decode($json, true);
+					
+					foreach($obj["games"]["games"] as $game) {
+						$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
+						if(!isset($recent_game)) {
+							$newGame = new Game;
+							$newGame->mapId = $game["mapId"];
+							$mil = $game["gameCreation"];
+							$newGame->createDate = $mil;
+							$newGame->timePlayed = $game["gameDuration"];				
+							$newGame->summoner_id = $user->summoner->summonerid;
+							$newGame->championId = $game["participants"][0]["championId"];
+							$newGame->gameId = $game["gameId"];
+							$newGame->assists = $game["participants"][0]["stats"]["assists"];
+							$newGame->numDeaths = $game["participants"][0]["stats"]["deaths"];
+							$newGame->championsKilled = $game["participants"][0]["stats"]["kills"];
+							$newGame->goldEarned = $game["participants"][0]["stats"]["goldEarned"];
+							$newGame->wardPlaced = $game["participants"][0]["stats"]["wardsPlaced"];
+							$newGame->item0 = $game["participants"][0]["stats"]["item0"];
+							$newGame->item1 = $game["participants"][0]["stats"]["item1"];
+							$newGame->item2 = $game["participants"][0]["stats"]["item2"];
+							$newGame->item3 = $game["participants"][0]["stats"]["item3"];
+							$newGame->item4 = $game["participants"][0]["stats"]["item4"];
+							$newGame->item5 = $game["participants"][0]["stats"]["item5"];
+							$newGame->item6 = $game["participants"][0]["stats"]["item6"];
+							$newGame->spell1 = $game["participants"][0]["stats"]["item0"];
+							$newGame->spell2 = $game["participants"][0]["stats"]["item0"];
+							$newGame->wardKilled = $game["participants"][0]["stats"]["wardsKilled"];
+							$newGame->totalHeal = $game["participants"][0]["stats"]["totalHeal"];
+							$newGame->totalDamageTaken = $game["participants"][0]["stats"]["totalDamageTaken"];
+							$newGame->totalDamageDealt = $game["participants"][0]["stats"]["totalDamageDealt"];
+							$newGame->killingSprees = $game["participants"][0]["stats"]["killingSprees"];
+							$newGame->turretsKilled =$game["participants"][0]["stats"]["turretKills"];
+							$newGame->minionsKilled = $game["participants"][0]["stats"]["totalMinionsKilled"];
+							$newGame->neutralMinionsKilled = $game["participants"][0]["stats"]["neutralMinionsKilled"];
+							$newGame->teamId = $game["participants"][0]["teamId"];
+							$newGame->level = $game["participants"][0]["stats"]["champLevel"];
+							$newGame->win = $game["participants"][0]["stats"]["win"];
+							
+							if($game["queueId"] == 42 || $game["queueId"] == 4) {
+								$newGame->subType = "MATCHED_GAME";
+							} else {
+								$newGame->subType = "INVALID";
+							}
+							
+							// NEW STATS
+							$newGame->queueId = $game["queueId"];
+							$newGame->gold_per_min = $newGame->goldEarned / ($game["gameDuration"] / 60);
+							$newGame->cs_per_min = ($game["participants"][0]["stats"]["neutralMinionsKilled"]+$game["participants"][0]["stats"]["totalMinionsKilled"]) / ($game["gameDuration"] / 60);
+							$newGame->exp_per_min = 0;
+							
+							
+							$newGame->firstBloodKill = $game["participants"][0]["stats"]["firstBloodKill"];
+							$newGame->firstBloodAssist = $game["participants"][0]["stats"]["firstBloodAssist"];
+							$newGame->doubleKills = $game["participants"][0]["stats"]["doubleKills"];
+							$newGame->tripleKills = $game["participants"][0]["stats"]["tripleKills"];
+							$newGame->quadraKills = $game["participants"][0]["stats"]["quadraKills"];
+							$newGame->pentaKills = $game["participants"][0]["stats"]["pentaKills"];
+							
+							$newGame->gameMode = "";
+							$newGame->gameType = "";
+							$newGame->save();
+							
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item0"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item1"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item2"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item3"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item4"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item5"]));
+							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item6"]));
+						}
+					}
 					
 				}
 			} else {
@@ -608,7 +689,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 	}
 	
-	
+	public function get_account_id() {
+		$region = strtoupper($this->region);
+		$summoner_data = "https://acs.leagueoflegends.com/v1/players?name=$this->summoner_name&region=$region";
+		$json = @file_get_contents($summoner_data);
+		if($json === FALSE) {
+			return false;
+		} else {
+			$obj = json_decode($json, true);
+			$this->summoner->accountId = $obj["accountId"];
+			$this->summoner->platformId = $obj["platformId"];
+			$this->summoner->save();
+			return true;
+		}
+	}
 	public function achievements()
     {
 		return $this->belongsToMany('Achievement');

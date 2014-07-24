@@ -212,6 +212,7 @@ class UsersController extends \BaseController {
 				$user->verify_string = str_random(8);
 				$user->summoner_status = 1;
 				$user->save();
+				
 				$user->roles()->attach($roleMember->id, array("user_id"=>$user->id));
 				
 				$key->user_id = $user->id;
@@ -228,6 +229,10 @@ class UsersController extends \BaseController {
 				$summoner->revisionDate = $obj[$summoner_name_clear]["revisionDate"];
 				$summoner->region = $user->region;
 				$summoner->save();
+				
+				$user->get_account_id();
+				
+				
 				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
 				});
@@ -295,7 +300,6 @@ class UsersController extends \BaseController {
 	public function refresh_summoner() {
 		if (Auth::check()) {
 			$user = User::find(Auth::user()->id);
-			$user->refresh_games();
 			
 			$api_key = Config::get('api.key');
 			$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
@@ -310,6 +314,8 @@ class UsersController extends \BaseController {
 				$user->summoner->summonerLevel = $obj[$summoner_name_clear]["summonerLevel"];
 				$user->summoner->save();
 			}
+			$user->get_account_id();
+			$user->refresh_games();
 			
 			return Redirect::to("/settings")->with('success', trans("users.refreshed"));
 		} else {

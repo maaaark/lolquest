@@ -62,6 +62,7 @@ Route::post('search', array('uses' => 'BaseController@search_summoner'));
 Route::post('save_summoner', array('uses' => 'BaseController@save_summoner'));
 Route::get('search', array('uses' => 'BaseController@search_summoner'));
 Route::get('register_summoner', array('uses' => 'BaseController@register_summoner'));
+Route::get('testcase', array('uses' => 'BaseController@test'));
 
 
 // Champions Controller

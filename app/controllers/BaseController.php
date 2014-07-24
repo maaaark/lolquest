@@ -58,6 +58,12 @@ class BaseController extends Controller {
 		return View::make('layouts.api_error');
 	}
 	
+	public function test()
+	{
+				
+		return View::make('layouts.test');
+	}
+	
 	public function notFound()
 	{
 		return View::make('layouts.404');
