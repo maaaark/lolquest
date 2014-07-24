@@ -199,17 +199,17 @@ class UsersController extends \BaseController {
 			} else {
 				
 				// Beta Key
-				if(Session::get('beta_user') == 1) {
-					$beta_key = Session::get('beta_key');
-					$key = Betakey::where("key", "=", $beta_key)->first();
-					if($key->used == 1) {
-						Session::forget('beta_user');
-						return Redirect::to("/")->withErrors("Key already used!");
-					} else {
-						$key->used = 1;
-						Session::forget('beta_user');
-					}
-				}
+				//if(Session::get('beta_user') == 1) {
+				//	$beta_key = Session::get('beta_key');
+				//	$key = Betakey::where("key", "=", $beta_key)->first();
+				//	if($key->used == 1) {
+				//		Session::forget('beta_user');
+				//		return Redirect::to("/")->withErrors("Key already used!");
+				//	} else {
+				//		$key->used = 1;
+				//		Session::forget('beta_user');
+				//	}
+				//}
 			
 				// Create the User
 				$user = new User;
