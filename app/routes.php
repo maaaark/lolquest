@@ -175,10 +175,12 @@ Route::get('rules', function()
 {
 	return View::make('pages.rules');
 });
-Route::get('donate', function()
-{
-	return View::make('pages.donate');
-});
+
+//Route::get('donate', function()
+//{
+//	return View::make('pages.donate');
+//});
+
 Route::get('test', function()
 {
 	return View::make('pages.test');
