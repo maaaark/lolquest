@@ -122,6 +122,9 @@
 	</div>
 	@endif
 	<br/>
+	<div style="margin-left: -10px;">
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252150"></script>
+	</div>
 @else
 
 	<div class="sidebar_box">
@@ -139,5 +142,8 @@
 		<br/>
 	</div>
 	<br/>
+	<div style="margin-left: -10px;">
+	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252150"></script>
+	</div>
 
 @endif
