@@ -71,12 +71,10 @@
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-51337940-1', 'lolquest.de');
+	  ga('create', 'UA-51337940-1', 'auto');
 	  ga('send', 'pageview');
 
 	</script>
-	
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252123"></script>
-	<script type="text/javascript" src="http://www.sponsorads.de/script.php?s=252124"></script>
+
     </body>
 </html>

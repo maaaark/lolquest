@@ -11,7 +11,7 @@
 				</td>
 				<td>
 					<h3>Mark Tomicki</h3>
-					<a href="mailto: marktomicki@gmail.com">marktomicki@gmail.com</a><br/>
+					<a href="mailto: mark@lolquest.net">mark@lolquest.net</a><br/>
 					Concept, Design, Coding<br/>
 					<br/>
 				</td>
@@ -24,7 +24,7 @@
 				<td>
 					<br/>
 					<h3>Klaus Brandt</h3>
-					<a href="mailto: dualdeath@gmail.com">dualdeath@gmail.com</a><br/>
+					<a href="mailto: kalus@lolquest.net">klaus@lolquest.net</a><br/>
 					Concept, Coding
 				</td>
 			</tr>
