@@ -49,8 +49,6 @@ $( document ).ready(function() {
 	
 	$('.cancel_challenge a').click(function(){
 		return confirm("Cancel this Challenge? You will loose your progress!");
-	})
-
-	
+	})	
 
 });

@@ -12,9 +12,11 @@
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/css/summernote.css">
+		
 		<script src="/js/jquery.min.js"></script>
 	</head>
     <body>
+	
 	@include('layouts.top')
 	
 	<!-- <img src="/img/blur.jpg" class="bg" /> -->
@@ -22,13 +24,7 @@
 	
 	<div id="wrapper">
 	
-		@if(Auth::check())
-			<div class="skin_left" style="background: url('http://images.lolquest.net/skins/{{ Auth::user()->skin_left }}')"></div>
-			<div class="skin_right" style="background: url('http://images.lolquest.net/skins/{{ Auth::user()->skin_right }}')"></div>
-		@else
-			<div class="skin_left"></div>
-			<div class="skin_right"></div>
-		@endif
+
 	
 		
 		<div class="container title-wrapper">
