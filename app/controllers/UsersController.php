@@ -169,8 +169,8 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
-			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
+			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			// check if validated summoner available
 			$verified_user = User::
 			  where('summoner_name', '=', $clean_summoner_name)
@@ -524,14 +524,14 @@ class UsersController extends \BaseController {
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
 				
-			$check_user = User::where("summoner_name", "=", Input::get('summoner_name'))->where("region", "=", Input::get('region'))->first();
+			$check_user = User::where("summoner_name", "=", $clean_summoner_name)->where("region", "=", Input::get('region'))->first();
 			$check_summoner = Summoner::where("name", "=", $clean_summoner_name)->first();
 			
 			if($check_user || $check_summoner) {
 				return Redirect::to('/edit_summoner')->with('error', trans('users.already_taken'));
 			} else {
 				$api_key = Config::get('api.key');
-				$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".Input::get('summoner_name')."?api_key=".$api_key;
+				$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					Session::flash('message', 'No Summoner found');
