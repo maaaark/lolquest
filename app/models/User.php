@@ -200,6 +200,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
+	public function hasAchievement($id)
+    {
+        foreach($this->achievements as $achievement){
+            if($achievement->id == $id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 	public function openFriends()
     {
         $isfriend_check = DB::table('friend_users')->where('friend_id', '=', Auth::user()->id)->where('validate', '=', 0)->get();
@@ -750,7 +761,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 	}
 	
-		public function checkAchievement_friend($friend, $type, $factor)
+	public function checkAchievement_friend($friend, $type, $factor)
 	{
 		if($friend) {
 				$achiv_id = 0;

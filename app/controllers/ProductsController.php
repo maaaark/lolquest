@@ -113,6 +113,11 @@ class ProductsController extends \BaseController {
 		return View::make('shop.rp');
 	}
 	
+	public function hardware()
+	{
+		return View::make('shop.hardware');
+	}
+	
 	public function ep_boosts()
 	{
 		return View::make('shop.boosts');

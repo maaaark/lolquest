@@ -3,7 +3,7 @@
 		<div class="sidebar_social">
 			<div class="fb-like" data-width="295" data-href="https://www.facebook.com/lolquest.net" data-layout="standard" data-colorscheme="dark" data-action="like" data-show-faces="true" data-share="true"></div>
 			<br/><br/>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lolquest.net" data-text="http://lolquest.net - A League of Legends Questing Platform" data-via="lolquest_net" data-hashtags="lolquest">Tweet</a>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lolquest.net" data-text="A League of Legends Questing Platform" data-via="lolquest_net" data-hashtags="lolquest">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 		
 		<a href="https://twitter.com/lolquest_net" class="twitter-follow-button" data-show-count="false">Follow @lolquest_net</a>

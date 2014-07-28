@@ -22,4 +22,5 @@ return array(
 	'shop' => 'Shop',
 	'your_history' => 'This is your purchase history for this account.',
 	'back_to_shop' => 'Back to the shop',
+	'hardware' => 'Hardware',
 );

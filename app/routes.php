@@ -151,6 +151,7 @@ Route::get('shop/riot_points', 'ProductsController@riot_points');
 Route::get('shop/ep_boosts', 'ProductsController@ep_boosts');
 Route::get('shop/backgrounds', 'ProductsController@backgrounds');
 Route::get('shop/skins', 'ProductsController@skins');
+Route::get('shop/hardware', 'ProductsController@hardware');
 Route::get('shop/history', 'ProductsController@history');
 
 
@@ -176,10 +177,10 @@ Route::get('rules', function()
 	return View::make('pages.rules');
 });
 
-//Route::get('donate', function()
-//{
-//	return View::make('pages.donate');
-//});
+Route::get('donate', function()
+{
+	return View::make('pages.donate');
+});
 
 Route::get('test', function()
 {

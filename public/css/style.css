@@ -442,10 +442,25 @@ img.bg {
 .skin_description {
 	position: absolute;
 	width: 100%;
+	color: #fff;
 	text-align: center;
 	padding: 10px;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.6);
 	bottom: 10px;
+	margin-left: -10px;
+}
+.skin_description_big {
+	position: absolute;
+	width: 200px;
+	right: 0;
+	top: 0;
+	height: 298px;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	background: rgba(0,0,0,0.6);
+	bottom: 10px;
+	padding-top: 50px;
 	margin-left: -10px;
 }
 .skin_description h3 {

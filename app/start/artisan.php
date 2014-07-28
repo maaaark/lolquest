@@ -17,3 +17,4 @@ Artisan::add(new RefreshItems);
 Artisan::add(new RefreshChampions);
 Artisan::add(new RefreshQuestamount);
 Artisan::add(new RefreshTimeline);
+Artisan::add(new RefreshDonators);

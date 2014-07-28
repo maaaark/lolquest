@@ -23,7 +23,7 @@
 					<p>
 						<strong>Share this Achievement with your friends</strong><br/>
 						<div class="fb-share-button" data-href="https://lolquest.net" data-type="button_count"></div>
-						<span style="padding-top: 5px; margin-left: 15px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lolquest.net" data-text="I have finished the Quest &quot;{{ $quest->questtype->name }}&quot; with {{ $quest->champion->name }} on http://lolquest.net!" data-via="lolquest" data-related="lolquest">Tweet</a>
+						<span style="padding-top: 5px; margin-left: 15px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lolquest.net" data-text="I have finished the Quest &quot;{{ $quest->questtype->name }}&quot; with {{ $quest->champion->name }} on http://lolquest.net!" data-via="lolquest_net" data-related="lolquest_net">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span>
 					</p>
 					<br/>
