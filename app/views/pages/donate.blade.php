@@ -30,7 +30,7 @@
 				<td>Level 1 Donation</td>
 				<td>5€ or more</td>
 				<td>
-					<strong>1 Beta Key<br/>
+					<strong>Beta Access / Beta Key<br/>
 					+ Special Donator Achievement<br/>
 					+ profile title "Donator"<br/></strong>
 				</td>
@@ -41,9 +41,6 @@
 				<td>
 					Everything from Level 1 +<br/>
 					<strong>profile title "the gracious"</strong><br/>
-					<strong>
-						+ 1 Beta Key (2 total keys)<br/>
-					</strong>
 				</td>
 			</tr>
 			<tr>
@@ -52,7 +49,6 @@
 				<td>
 					Everything from Level 2 +<br/>
 					<strong>
-						+ 1 Beta Key (3 total keys)<br/>
 						+ early test access to new features<br/>
 					</strong>
 				</td>
@@ -63,7 +59,6 @@
 				<td>
 					Everything from Level 3 +<br/>
 					<strong>
-						+ 2 Beta Keys (5 total keys)<br/>
 						+ create your own title*<br/>
 					</strong>
 				</td>
@@ -74,7 +69,6 @@
 				<td>
 					Everything from Level 4 +<br/>
 					<strong>
-						+ 2 Beta Keys (7 total)<br/>
 						+ create your own Quest/Challenge with us!<br/>
 					</strong>
 				</td>
@@ -85,7 +79,6 @@
 				<td>
 					Everything from Level 5 +<br/>
 					<strong>
-						+ 3 Beta Keys (10 total)<br/>
 						+ have a lunch with the developers!**<br/>
 					</strong>
 				</td>

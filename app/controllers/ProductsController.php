@@ -78,7 +78,7 @@ class ProductsController extends \BaseController {
 				
 				$transaction = new Transaction;
 				$transaction->user_id = Auth::user()->id;
-				$transaction->product_id = 0;
+				$transaction->product_id = 2;
 				$transaction->currency = "QP";
 				$transaction->price = 200;
 				$transaction->description = $user->summoner->summoner_name." bought a Skin for (".$transaction->currency.")";
@@ -93,6 +93,62 @@ class ProductsController extends \BaseController {
 			return View::make('shop.done', compact('products'));
 		} else {
 			return Redirect::to('login');
+		}
+	}
+	
+	public function buy_betakey()
+	{
+		if (Auth::check()) { 
+			$user = User::find(Auth::user()->id);
+			
+			if($user->qp >= 1000) {
+				
+				$user->qp = $user->qp - 1000;
+				$user->save();
+				
+				$key = new Betakey;
+				$key->key = str_random(15);
+				$key->used = 0;
+				$key->user_id = $user->id;
+				$key->save();
+				
+				$transaction = new Transaction;
+				$transaction->user_id = Auth::user()->id;
+				$transaction->product_id = 8;
+				$transaction->currency = "QP";
+				$transaction->price = 1000;
+				$transaction->description = $user->summoner->summoner_name." bought a Beta Key: ".$key->key;
+				$transaction->save();	
+
+				return Redirect::to("/shop/buy_betakey/success/".$key->id);			
+				
+			} else {
+				return Redirect::to('shop')->with('error', trans("shop.no_qp"));
+			}
+			
+			return View::make('shop.done', compact('products'));
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
+	public function betakey()
+	{
+		$product = Product::find(8);
+		return View::make('shop.betakey', compact('product'));
+	}
+	
+	public function show_betakey($id)
+	{
+		if(Auth::check()) {
+				$product = Betakey::where("id", "=", $id)->where("user_id", "=", Auth::user()->id)->first();
+				if($product) {
+					return View::make('shop.thank_you_betakey', compact('product'));
+				} else {
+					return Redirect::to('/shop/beta_key')->with('error', "No valid key");
+				}
+		} else {
+			return Redirect::to("/login");
 		}
 	}
 	

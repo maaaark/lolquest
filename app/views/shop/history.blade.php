@@ -11,9 +11,14 @@
 				<table class="table table-striped transactions">
 					@foreach($transactions as $transaction)
 						<tr>
-							<td><strong>{{ $transaction->product->name }}</strong></td>
-							<td>{{ $transaction->price }} {{ $transaction->currency }}</td>
-							<td>{{ date("d.m.Y - H:i:s",strtotime($transaction->created_at)) }}</td>
+							@if($transaction->product)
+								<td><strong>{{ $transaction->product->name }}</strong></td>
+								<td>{{ $transaction->price }} {{ $transaction->currency }}</td>
+								<td>{{ $transaction->description }}</td>
+								<td>{{ date("d.m.Y - H:i:s",strtotime($transaction->created_at)) }}</td>
+							@else
+								<td colspan="4">-</td>
+							@endif
 						</tr>
 					@endforeach	
 				</table>

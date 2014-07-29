@@ -23,4 +23,7 @@ return array(
 	'your_history' => 'This is your purchase history for this account.',
 	'back_to_shop' => 'Back to the shop',
 	'hardware' => 'Hardware',
+	'new_beta_key' => 'You bought a new beta key!',
+	'new_beta_key_description' => 'Thank you for your purchase!<br/>Your beta key was sent to your e-mail adress from lolquest.net',
+	'back_to_shop' => 'Back to the shop',
 );

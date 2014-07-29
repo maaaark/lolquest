@@ -145,6 +145,8 @@ Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_n
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
 Route::get('shop/buy_skin/{id}', 'ProductsController@buy_skin');
+Route::get('shop/buy_betakey', 'ProductsController@buy_betakey');
+Route::get('shop/buy_betakey/success/{id}', 'ProductsController@show_betakey');
 Route::get('shop/offers', 'ProductsController@offers');
 Route::get('shop/buy_qp', 'ProductsController@buy_qp');
 Route::get('shop/riot_points', 'ProductsController@riot_points');
@@ -152,7 +154,10 @@ Route::get('shop/ep_boosts', 'ProductsController@ep_boosts');
 Route::get('shop/backgrounds', 'ProductsController@backgrounds');
 Route::get('shop/skins', 'ProductsController@skins');
 Route::get('shop/hardware', 'ProductsController@hardware');
+Route::get('shop/beta_key', 'ProductsController@betakey');
 Route::get('shop/history', 'ProductsController@history');
+
+
 
 
 // Pages
