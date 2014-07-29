@@ -7,6 +7,12 @@ body, html {
 	font-size: 12px !important;
 	background: #232323 !important;
 }
+
+.table_ach { 
+margin-bottom: 20px;
+width: 50%;
+}
+
 h3 {
 	margin-top: 0 !important;
 }
