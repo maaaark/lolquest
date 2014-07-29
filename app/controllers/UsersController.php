@@ -522,7 +522,7 @@ class UsersController extends \BaseController {
 			return Redirect::to('/edit_summoner')
 				->withErrors($validator);
 		} else {
-			
+			$mysummoner = 0;
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
 			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
@@ -530,7 +530,11 @@ class UsersController extends \BaseController {
 			$check_user = User::where("summoner_name", "=", $clean_summoner_name)->where("region", "=", Input::get('region'))->where("summoner_status", "=", 2)->first();
 			$check_summoner = Summoner::where("name", "=", $clean_summoner_name)->first();
 			
-			if($check_user || $check_summoner) {
+			if($check_summoner->user_id == Auth::user()->id) {
+				$mysummoner = 1;
+			}
+			
+			if($check_user || $mysummoner == 0) {
 				return Redirect::to('/edit_summoner')->with('error', trans('users.already_taken'));
 			} else {
 				$api_key = Config::get('api.key');
