@@ -169,8 +169,10 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
-			$clean_summoner_name = strtolower($clean_summoner_name);
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
+			$clean_summoner_name = strtolower($clean_summoner_name);
+			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
+			
 			// check if validated summoner available
 			$verified_user = User::
 			  where('summoner_name', '=', $clean_summoner_name)
@@ -523,8 +525,9 @@ class UsersController extends \BaseController {
 			
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
+			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
 				
-			$check_user = User::where("summoner_name", "=", $clean_summoner_name)->where("region", "=", Input::get('region'))->first();
+			$check_user = User::where("summoner_name", "=", $clean_summoner_name)->where("region", "=", Input::get('region'))->where("summoner_status", "=", 2)->first();
 			$check_summoner = Summoner::where("name", "=", $clean_summoner_name)->first();
 			
 			if($check_user || $check_summoner) {
