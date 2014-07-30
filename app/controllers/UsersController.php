@@ -369,7 +369,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();
 		$user_achievements = $user->achievements();
-		$achievements = Achievement::orderBy("type", "asc")->get();
+		$achievements = Achievement::orderBy("type", "asc")->orderBy("factor", "asc")->get();
 		
 		return View::make('achievements.show', compact('user', 'user_achievements', 'achievements'));
 	}
@@ -739,7 +739,7 @@ class UsersController extends \BaseController {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").' <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a> <a href="/remove_friend/'.$user_friend->id.'">'.trans("friends.reject").'</a>');
+				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").'</br> <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a>   <a href="/remove_friend/'.$user_friend->id.'">'.trans("friends.reject").'</a>');
 				$model = new FriendUser;
 				$model->setTable("friend_users");
 				$notify = $model->where("friend_id","=", $id)->where('user_id','=', $user_friend->id)->first();;

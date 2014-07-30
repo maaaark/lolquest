@@ -17,25 +17,27 @@
 					<?php $style = 0.5; ?>
 				@endif
 
-				<tr width="25%" height="45px" style="opacity: {{ $style }}; -moz-opacity: {{ $style }}; -khtml-opacity: {{ $style }};">			
+				<tr width="25%" height="45px" style="opacity:{{ $style }}; -moz-opacity: {{ $style }}; -khtml-opacity: {{ $style }};">			
 					<td width="55px"><a href="/achievements/{{ $achievement->id }}"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></a></td>
 					<td width="">
+						<strong>{{$achievement->name}}</strong></br>
 						@if($achievement->description == 1)
-							<strong>{{$achievement->name}}</strong></br>
-							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}}</a>
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}}</a>
 						@elseif($achievement->description == 2)
-							<strong>{{$achievement->name}}</strong></br>
-							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} Quests</a>
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} Quests</a>
 						@elseif($achievement->description == 3)
-							<strong>{{$achievement->name}}</strong></br>
-							<a href="/achievements/{{ $achievement->id }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} 
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} 
 							@if($achievement->factor==1)
 								friend
 							@else
 								friends
 								@endif</a>
+						@elseif($achievement->description == 'Ctop' or $achievement->description == 'Cmid' or $achievement->description == 'Csup' or $achievement->description == 'Cadc' or $achievement->description == 'Cjug'or $achievement->description == 'Call')
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }}</a>
+						@elseif($achievement->description == 5)
+								<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description.$achievement->factor) }}</a>
 						@else
-							<a href="/achievements/{{ $achievement->id }}">{{ $achievement->name }}</a>
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $achievement->name }}</a>
 						@endif
 					</td>		
 			</tr>		
