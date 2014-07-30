@@ -15,6 +15,7 @@ return array(
 	'510' => 'Under the first 10 month Ladder: July 2014',
 	'550' => 'Under the first 50 in month Ladder: July 2014',
 	'5100' => 'Under the first 100 in month Ladder:July 2014',
+	'50' => 'This user supported this project by donating!',
 	'Ctop' => 'Complete the Top challenge',
 	'Cmid' => 'Complete the Mid challenge',
 	'Csup' => "Complete the Support challenge",
