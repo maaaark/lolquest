@@ -19,6 +19,6 @@ return array(
 	'Cmid' => 'Complete the Mid challenge',
 	'Csup' => "Complete the Support challenge",
 	'Cadc' => 'Complete the ADC challenge',
-	'Cjung' => 'Complete the Jungle challenge',
+	'Cjug' => 'Complete the Jungle challenge',
 	'Call' => 'Completed the ALL challenges',
 );
