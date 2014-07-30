@@ -220,7 +220,7 @@
 							@endforeach
 						@endif
 						<div class="clear"></div><br/>
-						<a href="/achievements">{{ trans("achievements.all_achievements") }}</a>
+						<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}/achievements">{{ trans("achievements.all_achievements") }}</a>
 					</td>
 				</tr>
 			</table>

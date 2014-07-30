@@ -97,14 +97,13 @@ Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));
 Route::get('summoner/{region?}/{name?}', 'UsersController@show');
+Route::get('summoner/{region?}/{name?}/achievements', 'UsersController@achievements_show');
 Route::get('/settings', 'UsersController@edit');
 Route::get('/edit_mail', 'UsersController@edit_mail');
 Route::get('/timeline_settings', 'UsersController@timeline_settings');
 Route::get('/challenges', 'UsersController@challenges');
 Route::get('/delete_notifications', 'UsersController@delete_notifications');
 Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
-Route::get('/achievements', 'UsersController@achievements');
-Route::get('/achievements/{id}', 'UsersController@achievements_show');
 Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
 
 

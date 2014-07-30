@@ -7,7 +7,6 @@
 				<tr>
 					<th colspan="2">All Achievements</th>
 				</tr>
-			@foreach($achievements as $achievement)		
 				<tr width="25%" height="45px">			
 					<td width="55px"><a href="/achievements/{{ $achievement->id }}"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></a></td>
 					<td width="">

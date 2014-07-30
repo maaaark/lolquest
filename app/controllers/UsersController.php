@@ -365,15 +365,13 @@ class UsersController extends \BaseController {
 		}
 	}
 	
-	public function achievements_show($id)
+	public function achievements_show($region, $name)
 	{
-		if (Auth::check())
-		{
-			$achievement = Achievement::find($id);
-			return View::make('achievements.show', compact('achievement'));
-		} else {
-			return Redirect::to('login');
-		}
+		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();
+		$user_achievements = $user->achievements();
+		$achievements = Achievement::orderBy("type", "asc")->get();
+		
+		return View::make('achievements.show', compact('user', 'user_achievements', 'achievements'));
 	}
 	
 	

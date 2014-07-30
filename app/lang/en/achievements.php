@@ -4,7 +4,7 @@ return array(
     'achievements' => 'Achievements',
 	'no_achievements' => 'No Achievements yet',
 	'receive' => 'Achievement unlocked: ',
-	'all_achievements' => 'Show all Achievements',
+	'all_achievements' => 'Show all Achievements of this Summoner',
 	'1' => 'You have reached level ',	
 	'2' => 'You have completed ',
 	'3' => 'You have ',
