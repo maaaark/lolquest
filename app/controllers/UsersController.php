@@ -369,7 +369,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();
 		$user_achievements = $user->achievements();
-		$achievements = Achievement::orderBy("type", "asc")->get();
+		$achievements = Achievement::orderBy("type", "asc")->orderBy("factor", "asc")->get();
 		
 		return View::make('achievements.show', compact('user', 'user_achievements', 'achievements'));
 	}
