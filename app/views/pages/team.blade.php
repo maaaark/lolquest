@@ -24,8 +24,20 @@
 				<td>
 					<br/>
 					<h3>Klaus Brandt</h3>
-					<a href="mailto: kalus@lolquest.net">klaus@lolquest.net</a><br/>
+					<a href="mailto: klaus@lolquest.net">klaus@lolquest.net</a><br/>
 					Concept, Coding
+				</td>
+			</tr>
+                        <tr>
+				<td valign="top" width="120">
+					<br/>
+					<img src="/img/team/matthias.jpg" class="img-circle" alt="Matthias MacKenzie" />
+				</td>
+				<td>
+					<br/>
+					<h3>Matthias MacKenzie</h3>
+					<a href="mailto: matthias@lolquest.net">matthias@lolquest.net</a><br/>
+					Coding
 				</td>
 			</tr>
 		</table>		
