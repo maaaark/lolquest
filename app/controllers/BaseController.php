@@ -90,6 +90,8 @@ class BaseController extends Controller {
 		
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
+			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
+			
 			// check if validated summoner available
 			$verified_user = User::
 			  where('summoner_name', '=', $clean_summoner_name)
