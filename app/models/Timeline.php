@@ -32,4 +32,9 @@ class Timeline extends \Eloquent {
     {
         return $this->belongsTo('Achievement');
     }
+	
+	public function title()
+    {
+        return $this->belongsTo('Title');
+    }
 }

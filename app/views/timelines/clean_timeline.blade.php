@@ -18,6 +18,8 @@
 			@elseif($post->event_type == "daily_start")
 			<td  style="width: 30px !important;"><a href="/champions/{{ $post->quest->champion->key }}"><img class="img-circle quest_avatar" alt="{{ $post->quest->champion->name }}" src="/img/champions_small/{{ $post->quest->champion->champion_id }}_92.png" width="30" title="{{ $post->quest->champion->name }}" /></a></td>
 			<td class="timeline_quest"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> has started the Daily Quest <a href="#" class="timeline_info" title="{{ trans('quests.'.$post->quest->type_id) }}">{{ $post->quest->questtype->name }}</a>  ({{ $post->quest->questtype->qp }} QP + {{ $post->quest->questtype->exp }} EXP)</td>
+			@elseif($post->event_type == "new_title")
+			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> has earned the Title <strong>{{ $post->title->title }}</strong></td>
 			@elseif($post->event_type == "challenge_start")
 			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> has started the <strong>{{ trans("dashboard.challenge_mode_".$post->challenge_mode) }} Challenge</strong></td>
 			@elseif($post->event_type == "challenge_step")

@@ -280,7 +280,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$user->save();
 	}
 	
-	public function timeline($event_type,$quest_id, $achievement_id, $challenge_mode, $challenge_step, $comment_id, $friend_id) {
+	public function timeline($event_type,$quest_id, $achievement_id, $challenge_mode, $challenge_step, $comment_id, $friend_id, $title_id = 0) {
 		$user = User::find($this->id);
 		if($user->show_in_timeline == 1) {
 			$timeline = new Timeline;
@@ -292,6 +292,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$timeline->challenge_step = $challenge_step;
 			$timeline->comment_id = $comment_id;
 			$timeline->friend_id = $friend_id;
+			$timeline->title_id = $title_id;
 			$timeline->save();
 			return true;
 		}
