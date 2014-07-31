@@ -242,6 +242,15 @@ class UsersController extends \BaseController {
 				$user->get_account_id();
 				
 				
+				// Register Key to User
+				if(Session::get('beta_key')) {
+					$betakey = Session::get('beta_key');
+					$key = Betakey::where("key", "=", $betakey)->first();
+					$key->user_id = $user->id;
+					$key->save();
+				}
+				
+				
 				Mail::send('mails.welcome', array('summoner_name'=>Input::get('summoner_name')), function($message){
 					$message->to(Input::get('email'), Input::get('summoner_name'))->subject('Welcome to Lolquest.net');
 				});
@@ -521,6 +530,7 @@ class UsersController extends \BaseController {
 				->withErrors($validator);
 		} else {
 			$mysummoner = 0;
+			$myuser = 0;
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
 			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
@@ -528,10 +538,12 @@ class UsersController extends \BaseController {
 			$check_user = User::where("summoner_name", "=", $clean_summoner_name)->where("region", "=", Input::get('region'))->where("summoner_status", "=", 2)->first();
 			if($check_user) {
 				if($check_user->id == Auth::user()->id) {
-					$mysummoner = 1;
+					$myuser = 1;
 				} else {
-					$mysummoner = 0;
+					$myuser = 0;
 				}
+			} else {
+				$myuser = 1;
 			}
 			
 			$check_summoner = Summoner::where("name", "=", Input::get('summoner_name'))->first();
@@ -541,9 +553,11 @@ class UsersController extends \BaseController {
 				} else {
 					$mysummoner = 0;
 				}
+			} else {
+				$mysummoner = 1;
 			}
 			
-			if($check_user || $mysummoner == 0) {
+			if($myuser == 0 && $mysummoner == 0) {
 				return Redirect::to('/edit_summoner')->with('error', trans('users.already_taken'));
 			} else {
 				$api_key = Config::get('api.key');
