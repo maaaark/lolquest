@@ -29,6 +29,7 @@ Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refre
 Route::get('admin/refresh_items', array('uses' => 'BaseController@refresh_items'));
 Route::get('admin/create_daily', array('uses' => 'BaseController@create_daily'));
 Route::get('admin/generate_keys', array('uses' => 'UsersController@generate_keys'));
+Route::get('admin/generate_supporter_keys', array('uses' => 'UsersController@generate_supporter_keys'));
 Route::get('admin/update_games/{user_id}', array('uses' => 'UsersController@admin_update_games'));
 Route::get('admin/login_as/{user_id}', array('uses' => 'UsersController@admin_login_as'));
 

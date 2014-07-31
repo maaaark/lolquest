@@ -557,7 +557,7 @@ class UsersController extends \BaseController {
 				$mysummoner = 1;
 			}
 			
-			if($myuser == 0 && $mysummoner == 0) {
+			if($myuser == 0 || $mysummoner == 0) {
 				return Redirect::to('/edit_summoner')->with('error', trans('users.already_taken'));
 			} else {
 				$api_key = Config::get('api.key');
@@ -741,6 +741,28 @@ class UsersController extends \BaseController {
 				while($i <= 10) {
 					$key = new Betakey;
 					$key->key = str_random(10);
+					$key->used = 0;
+					$key->user_id = 0;
+					$key->save();
+					echo $key->key."<br/>";
+					$i++;
+				}
+			} else {
+				return Redirect::to('403');
+			} 
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
+	public function generate_supporter_keys()
+	{
+		if(Auth::user()) {
+			if(Auth::user()->hasRole('admin')) {
+				$i = 1;
+				while($i <= 10) {
+					$key = new Betakey;
+					$key->key = "supporter_".str_random(10);
 					$key->used = 0;
 					$key->user_id = 0;
 					$key->save();
