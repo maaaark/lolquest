@@ -12,7 +12,7 @@ return array(
 	'51' => 'First place in month Ladder: July 2014',
 	'52' => 'Second place in month Ladder: July 2014',
 	'53' => 'Third place in month Ladder: July 2014',
-	'510' => 'Under the first 10 month Ladder: July 2014',
+	'510' => 'Under the first 10 in month Ladder: July 2014',
 	'550' => 'Under the first 50 in month Ladder: July 2014',
 	'5100' => 'Under the first 100 in month Ladder:July 2014',
 	'50' => 'This user supported this project by donating!',
