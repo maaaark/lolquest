@@ -113,6 +113,22 @@
 							<td>Anonymous</td>
 							<td>20&euro;</td>
 						</tr>
+						<tr>
+							<td>Anonymous</td>
+							<td>10&euro;</td>
+						</tr>
+						<tr>
+							<td>Aylin C.</td>
+							<td>6&euro;</td>
+						</tr>
+						<tr>
+							<td>Fernando D.</td>
+							<td>5&euro;</td>
+						</tr>
+						<tr>
+							<td>Julian K.</td>
+							<td>5&euro;</td>
+						</tr>
 					</table>
 				</td>
 				<td valign="top">
@@ -121,6 +137,22 @@
 						<tr>
 							<th>Name</th>
 							<th>Amount</th>
+						</tr>
+						<tr>
+							<td>Anonymous</td>
+							<td>10&euro;</td>
+						</tr>
+						<tr>
+							<td>Aylin C.</td>
+							<td>6&euro;</td>
+						</tr>
+						<tr>
+							<td>Fernando D.</td>
+							<td>5&euro;</td>
+						</tr>
+						<tr>
+							<td>Julian K.</td>
+							<td>5&euro;</td>
 						</tr>
 						<tr>
 							<td>Anonymous</td>
