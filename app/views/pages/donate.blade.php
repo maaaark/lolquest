@@ -1,18 +1,18 @@
 @extends('templates.default')
-@section('title', 'Donate')
+@section('title', 'Support us!')
 @section('content')
 	<br/>
 	<p>
 		We like to keep lolquest.net free for everyone at all time.<br/>
 		<br/>
-		If you really like this site, we would be very thankful for any donation to keep up the developing and bring you rewards for ladder and shop.<br/>
-		Depending on your donation amount, you can unlock special Donator Rewards!<br/>
+		If you really like this site, we would be very thankful for any support to keep up the developing and bring you rewards for ladder and shop.<br/>
+		Depending on your support amount, you can unlock special supporter rewards!<br/>
 		<br/>
 		<div class="bs-callout bs-callout-info">
 		<h3>READ THIS!</h3>
-		If you don't want to donate, we are totally fine with it. If you only donate because you want a beta key, please keep in mind, we will give out beta keys on our social media and special events!<br/>
+		If you don't want to support us, we are totally fine with it. If you only support us because you want a beta key, please keep in mind, we will give out beta keys on our social media and special events!<br/>
 		<br/>
-		We don't want to rip of money from our users! The beta key for a donation is only a little "thank you" we'd like to give you for your support while the beta.<br/>
+		We don't want to rip of money from our users! The beta key for your support is only a little "thank you" we'd like to give you for your support while the beta.<br/>
 		</div>
 		<br/>
 		<div style="width: 100%; text-align: center;">
@@ -24,19 +24,19 @@
 		</form>
 		</div>
 		<br/>
-		<h2>Your donator rewards</h2>
+		<h2>Your supporter rewards</h2>
 		<table class="table table-striped">
 			<tr>
-				<td>Level 1 Donation</td>
+				<td>Level 1 Supporter</td>
 				<td>5€ or more</td>
 				<td>
 					<strong>Beta Access / Beta Key<br/>
-					+ Special Donator Achievement<br/>
-					+ profile title "Donator"<br/></strong>
+					+ Special Supporter Achievement<br/>
+					+ profile title "Supporter"<br/></strong>
 				</td>
 			</tr>
 			<tr>
-				<td>Level 2 Donation</td>
+				<td>Level 2 Supporter</td>
 				<td>10€ or more</td>
 				<td>
 					Everything from Level 1 +<br/>
@@ -44,7 +44,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Level 3 Donation</td>
+				<td>Level 3 Supporter</td>
 				<td>25€ or more</td>
 				<td>
 					Everything from Level 2 +<br/>
@@ -54,7 +54,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Level 4 Donation</td>
+				<td>Level 4 Supporter</td>
 				<td>50€ or more</td>
 				<td>
 					Everything from Level 3 +<br/>
@@ -64,7 +64,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Level 5 Donation</td>
+				<td>Level 5 Supporter</td>
 				<td>100€ or more</td>
 				<td>
 					Everything from Level 4 +<br/>
@@ -74,7 +74,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Level 6 Donation</td>
+				<td>Level 6 Supporter</td>
 				<td>500€ or more</td>
 				<td>
 					Everything from Level 5 +<br/>
@@ -94,7 +94,7 @@
 		</form>
 		</div>
 		<br/><br/>
-		<i><strong>IMPORTANT</strong><br/>The Rewards will be unlocked by an Adminstrator after the donation. It may take up to a few days! If you don't want your name shown up in the "Top Donator" or "Recent Donator" list, please write this in your donation.</i><br/>
+		<i><strong>IMPORTANT</strong><br/>The Rewards will be unlocked by an Adminstrator. It may take up to a few days! If you don't want your name shown up in the "Top Supporter" or "Recent Supporter" list, please write this in your message.</i><br/>
 		<br/>
 		<i>* We will check the name of the title. You cannot use racist, commercial, bad words and so on as title. We may change it at any time!</i><br/>
 		<i>** You have to pay the journey to NRW (Germany/Essen) by yourself.</i>
@@ -103,7 +103,7 @@
 			<table style="width: 100%">
 			<tr>
 				<td valign="top" style="width: 50%;">
-					<h3>Top 10 Donations</h3>
+					<h3>Top 10 Supporter</h3>
 					<table class="table table-striped">
 						<tr>
 							<th>Name</th>
@@ -116,7 +116,7 @@
 					</table>
 				</td>
 				<td valign="top">
-					<h3>Recent Donations</h3>
+					<h3>Recent Supporter</h3>
 					<table class="table table-striped">
 						<tr>
 							<th>Name</th>

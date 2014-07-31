@@ -181,7 +181,7 @@ Route::get('rules', function()
 	return View::make('pages.rules');
 });
 
-Route::get('donate', function()
+Route::get('supporter', function()
 {
 	return View::make('pages.donate');
 });

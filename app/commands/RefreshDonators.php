@@ -18,7 +18,7 @@ class RefreshDonators extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Refreshing Donators';
+	protected $description = 'Refreshing Supporters';
 
 	/**
 	 * Create a new command instance.
