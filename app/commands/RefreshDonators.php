@@ -37,7 +37,7 @@ class RefreshDonators extends Command {
 	 */
 	public function fire()
 	{
-		echo "\nRefreshing donators ...\n";
+		//echo "\nRefreshing donators ...\n";
 		
 		$users = User::where("donator", ">", 0)->get();
 		foreach($users as $user) {
