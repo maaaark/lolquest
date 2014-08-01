@@ -38,7 +38,7 @@ class RefreshChampions extends Command {
 	public function fire()
 	{
 		$api_key = Config::get('api.key');
-		$summoner_data = "https://prod.api.pvp.net/api/lol/static-data/euw/v1.2/champion?dataById=true&champData=info,stats&api_key=".$api_key;
+		$summoner_data = "https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?dataById=true&champData=info,stats&api_key=".$api_key;
 		$json = @file_get_contents($summoner_data);
 		if($json === FALSE) {
 			return View::make('login');
