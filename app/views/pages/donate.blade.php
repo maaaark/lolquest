@@ -99,7 +99,9 @@
 		<i>* We will check the name of the title. You cannot use racist, commercial, bad words and so on as title. We may change it at any time!</i><br/>
 		<i>** You have to pay the journey to NRW (Germany/Essen) by yourself.</i>
 	</p>
-	<br/><br/>
+	<br/>
+	<!--
+	<br/>
 			<table style="width: 100%">
 			<tr>
 				<td valign="top" style="width: 50%;">
@@ -201,7 +203,7 @@
 					</table>
 				</td>
 			</tr>
-		</table>
+		</table>-->
 		<br/>
 
 @stop
