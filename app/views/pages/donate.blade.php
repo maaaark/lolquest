@@ -110,8 +110,24 @@
 							<th>Amount</th>
 						</tr>
 						<tr>
+							<td>Carsten K.</td>
+							<td>100&euro;</td>
+						</tr>
+						<tr>
+							<td>Vukasin V.</td>
+							<td>25&euro;</td>
+						</tr>
+						<tr>
+							<td>Anonymous</td>
+							<td>10&euro;</td>
+						</tr>						
+						<tr>
 							<td>Anonymous</td>
 							<td>20&euro;</td>
+						</tr>
+						<tr>
+							<td>Robert B.</td>
+							<td>15&euro;</td>
 						</tr>
 						<tr>
 							<td>Anonymous</td>
@@ -120,6 +136,10 @@
 						<tr>
 							<td>Aylin C.</td>
 							<td>6&euro;</td>
+						</tr>
+						<tr>
+							<td>Anno K.</td>
+							<td>5,01&euro;</td>
 						</tr>
 						<tr>
 							<td>Fernando D.</td>
@@ -139,6 +159,26 @@
 							<th>Amount</th>
 						</tr>
 						<tr>
+							<td>Carsten K.</td>
+							<td>100&euro;</td>
+						</tr>
+						<tr>
+							<td>Vukasin V.</td>
+							<td>25&euro;</td>
+						</tr>
+						<tr>
+							<td>Anonymous</td>
+							<td>10&euro;</td>
+						</tr>						
+						<tr>
+							<td>Anonymous</td>
+							<td>20&euro;</td>
+						</tr>
+						<tr>
+							<td>Robert B.</td>
+							<td>15&euro;</td>
+						</tr>
+						<tr>
 							<td>Anonymous</td>
 							<td>10&euro;</td>
 						</tr>
@@ -147,16 +187,16 @@
 							<td>6&euro;</td>
 						</tr>
 						<tr>
+							<td>Anno K.</td>
+							<td>5,01&euro;</td>
+						</tr>
+						<tr>
 							<td>Fernando D.</td>
 							<td>5&euro;</td>
 						</tr>
 						<tr>
 							<td>Julian K.</td>
 							<td>5&euro;</td>
-						</tr>
-						<tr>
-							<td>Anonymous</td>
-							<td>20&euro;</td>
 						</tr>
 					</table>
 				</td>
