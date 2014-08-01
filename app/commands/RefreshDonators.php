@@ -50,7 +50,7 @@ class RefreshDonators extends Command {
 				if($user->hasAchievement(55) == false) {
 					// Attach Erfolg
 					$user->achievements()->attach(55);
-					echo "\nAdding Achievement to User ".$user->summoner_name."\n";
+					//echo "\nAdding Achievement to User ".$user->summoner_name."\n";
 					
 					$user->timeline("new_achievement",0, 55, 0, 0, 0, 0);
 				}
@@ -62,7 +62,7 @@ class RefreshDonators extends Command {
 					$new_title->user_id = $user->id;
 					$new_title->title_id = 3;
 					$new_title->save();
-					echo "\nAdding Title 'Donator' to User ".$user->summoner_name."\n";
+					//echo "\nAdding Title 'Donator' to User ".$user->summoner_name."\n";
 					
 					$user->timeline("new_title",0, 0, 0, 0, 0, 0, $new_title->title_id);
 				}
@@ -81,7 +81,7 @@ class RefreshDonators extends Command {
 					$new_title->user_id = $user->id;
 					$new_title->title_id = 1;
 					$new_title->save();
-					echo "\nAdding Title 'the gracious' to User ".$user->summoner_name."\n";
+					//echo "\nAdding Title 'the gracious' to User ".$user->summoner_name."\n";
 					
 					$user->timeline("new_title",0, 0, 0, 0, 0, 0, $new_title->title_id);
 				}

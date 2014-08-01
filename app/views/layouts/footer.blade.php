@@ -7,6 +7,7 @@
 		<li><a href="/supporter">Support us!</a></li>
 	</ul>
 	<div class="clear"></div>
+	<div class="version">Beta Version 1.1.2</div>
 </div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

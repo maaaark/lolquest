@@ -108,6 +108,11 @@ h3 {
 .timeline_quest{
 	padding-top: 15px !important;
 }
+.version {
+	font-style: italic;
+	color: #545454;
+	margin-top: 10px;
+}
 .achievement {
 	border: 1px solid #eee;
 	-webkit-border-radius: 5px;

@@ -83,7 +83,7 @@ class RefreshChampions extends Command {
 			}
 		}
 		
-		echo "\n\nChampions refreshed\n\n";
+		//echo "\n\nChampions refreshed\n\n";
 	}
 
 

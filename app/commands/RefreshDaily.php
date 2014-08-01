@@ -37,7 +37,7 @@ class RefreshDaily extends Command {
 	 */
 	public function fire()
 	{
-		echo "\nRefreshing daily Quest ...\n";
+		//echo "\nRefreshing daily Quest ...\n";
 		
 		$undone_dailies = Quest::where("daily","=", 1)->get();
 		foreach($undone_dailies as $delete) {

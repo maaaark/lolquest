@@ -37,17 +37,17 @@ class RefreshTimeline extends Command {
 	 */
 	public function fire()
 	{
-		echo "\nRemoving broken Quests ...\n";
+		//echo "\nRemoving broken Quests ...\n";
 		
 		$timelines = Timeline::where("quest_id", ">", 0)->orderBy("id","desc")->take(125)->get();
 		foreach($timelines as $line) {
 			$quest = Quest::where('id', '=', $line->quest_id)->first();
 			if(!$quest) {
-				echo "Fixed Line $line->id \n";
+				//echo "Fixed Line $line->id \n";
 				$line->delete();
 			}
 		}
-		echo "Done";
+		//echo "Done";
 	}
 
 

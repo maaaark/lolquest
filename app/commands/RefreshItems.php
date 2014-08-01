@@ -87,7 +87,7 @@ class RefreshItems extends Command {
 			}
 		}
 		
-		echo "\n\nItems refreshed\n\n";
+		//echo "\n\nItems refreshed\n\n";
 	}
 
 }
