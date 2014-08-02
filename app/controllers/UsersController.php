@@ -343,6 +343,7 @@ class UsersController extends \BaseController {
 	
 	public function refresh_level()
 	{
+	if(Auth::user()->hasRole('admin')) {
 		$users = User::all();
 		foreach($users as $user) {
 				if($user->exp > ($user->level->exp_level)-1){
@@ -350,10 +351,12 @@ class UsersController extends \BaseController {
 					$user->save();
 				}
 		}
+	}
 	}	
 	
 	public function update_level_table()
 	{
+	if(Auth::user()->hasRole('admin')) {
 		$levels = Level::orderBy('id')->get();
 		foreach($levels as $level) {
 			if($level->id > 1){
@@ -361,6 +364,7 @@ class UsersController extends \BaseController {
 				$level->save();
 			}
 		}
+	}
 	}	
 
 	public function achievements()
