@@ -51,7 +51,7 @@ class RefreshDonators extends Command {
 					// Attach Erfolg
 					$user->achievements()->attach(55);
 					//echo "\nAdding Achievement to User ".$user->summoner_name."\n";
-					$achiv = Achievrment.find(55)->first();
+					$achiv = Achievement.find(55)->first();
 					$user->notify(1, trans("achievements.receive").'<a href="/summoner/'.$user->region.'/'.$user->summoner_name.'/achievements"> '.$achiv->name.'</a>');
 					$user->timeline("new_achievement",0, 55, 0, 0, 0, 0);
 				}
