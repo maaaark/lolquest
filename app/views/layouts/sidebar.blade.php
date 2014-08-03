@@ -33,7 +33,7 @@
 				</div>
 				<div class="note_message">
 					@if($note->type == 1)
-						<a href="/achievements/">{{ $note->message }}</a>
+						<a href="#">{{ $note->message }}</a>
 					@elseif($note->type == 2)
 						<a href="#">{{ $note->message }}</a>
 					@elseif($note->type == 3)
