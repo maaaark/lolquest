@@ -65,7 +65,7 @@ class RefreshLadder extends Command {
 				$participant->save();
 				//echo "\nUser Edit: ".$row->user_id." \n";
 			} else {
-			    if($month = 1) {
+			    if($month == 1) {
 					$month2 = 12;
 					$year2 = $year-1;
 				} else {
@@ -75,15 +75,15 @@ class RefreshLadder extends Command {
 				$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year2)->where('month', '=', $month2)->first();
 				if($participant) {
 					$i = $participant->rang;
-					if ($i = 1) {
+					if ($i == 1) {
 						$user->achievements()->attach(49);
 						$achievement = Achievement::where('id', '=', 49)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
-					} elseif ($i = 2) {
+					} elseif ($i == 2) {
 						$user->achievements()->attach(50);
 						$achievement = Achievement::where('id', '=', 50)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
-					} elseif ($i = 3) {
+					} elseif ($i ==3) {
 						$user->achievements()->attach(51);
 						$achievement = Achievement::where('id', '=', 51)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
