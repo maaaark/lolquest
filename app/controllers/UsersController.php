@@ -889,6 +889,23 @@ class UsersController extends \BaseController {
 		} else {
 		return Redirect::to('login');
 		}
-	} 
+	}
+
+	public function update_achievement_points(){
+	if(Auth::user()->hasRole('admin')) {
+		$users = User::all();
+		$points = 0;
+		if($users) {
+			foreach($users as $user) {
+				$points = 0;
+				foreach($user->achievements as $achiv) {
+					$points += $achiv->points;
+				}
+				$user->achievement_points = $points;
+				$user->save();
+			}
+		}
+	}
+	}
 	
 }

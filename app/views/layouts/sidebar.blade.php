@@ -33,7 +33,7 @@
 				</div>
 				<div class="note_message">
 					@if($note->type == 1)
-						<a href="#">{{ $note->message }}</a>
+						<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}/achievements">{{ $note->message }}</a>
 					@elseif($note->type == 2)
 						<a href="#">{{ $note->message }}</a>
 					@elseif($note->type == 3)

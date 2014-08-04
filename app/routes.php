@@ -95,6 +95,7 @@ Route::get('/accept_friend/{id}', array('uses' => 'UsersController@acceptFriend'
 Route::get('/remove_friend/{id}', array('uses' => 'UsersController@removeFriend'));
 Route::get('/update_level_table', array('uses' => 'UsersController@update_level_table'));
 Route::get('/update_ladder_achievements', array('uses' => 'LaddersController@update_ladder_achievements'));
+Route::get('/update_achievement_points', array('uses' => 'UsersController@update_achievement_points'));
 Route::get('/level_update', array('uses' => 'UsersController@refresh_level'));
 Route::get('/users/makeadmin/{id}', array('uses' => 'UsersController@makeAdmin'));
 Route::post('users/update_summoner', array('uses' => 'UsersController@update_summoner'));

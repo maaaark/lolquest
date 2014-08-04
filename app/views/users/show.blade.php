@@ -4,6 +4,7 @@
 @else
 	@section('title', trans("users.profile")." ".$user->summoner->name." <i>".$user->title()."</i>")
 @endif
+<div style="float:right">abc</div>
 @section('content')	
 	<br/>
 	@if($user->summoner)
@@ -195,13 +196,12 @@
 						
 						<div class="clear"></div>
 						<hr/>
-						
+						<div><p><img src="/img/ap.png" /> {{ $user->achievement_points}}</p></div>
 						@if($user->achievements->count() == 0)
 							{{ trans("achievements.no_achievements") }}
 						@else
 							@foreach($user->achievements as $achievement)
 								<div class="achievement"><img src="/img/trophy/{{$achievement->icon}}.png" title="
-								
 						@if($achievement->description == 1)
 							{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}}
 						@elseif($achievement->description == 2)

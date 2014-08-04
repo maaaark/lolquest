@@ -36,6 +36,8 @@
 							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }}</a>
 						@elseif($achievement->description == 5)
 								<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description.$achievement->factor) }}</a>
+						@elseif($achievement->description == 6)
+							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} QP</a>
 						@else
 							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $achievement->name }}</a>
 						@endif

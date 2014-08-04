@@ -753,7 +753,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						else{
 							$achiv  = $user_achievement->name;
 						}												
-						Auth::user()->notify(1, trans("achievements.receive").'<a href="/achievements/'.$user_achievement->id.'"> '.$achiv.'</a>');
+						Auth::user()->notify(1, trans("achievements.receive").'<a href="/summoner/'.Auth::user()->region.'/'.Auth::user()->summoner_name.'/achievements"> '.$achiv.'</a>');
 						Auth::user()->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 
@@ -796,7 +796,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						else{
 							$achiv  = $user_achievement->name;
 						}												
-						$user->notify(1, trans("achievements.receive").'<a href="/achievements/'.$user_achievement->id.'"> '.$achiv.'</a>');
+						$user->notify(1, trans("achievements.receive").'<a href="/summoner/'.$user->region.'/'.$user->summoner_name.'/achievements"> '.$achiv.'</a>');
 						$user->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
 					}
 				} 
