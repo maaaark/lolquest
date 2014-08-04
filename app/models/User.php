@@ -732,7 +732,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						}
 					}
 				}
-				$user_achievement = Achievement::where('type', $type)->where('id','>',$achiv_id)->firstOrFail(); 
+				$user_achievement = Achievement::where('type', "=", $type)->where('id','>',$achiv_id)->first(); 
 				if($user_achievement){
 					if($user_achievement->factor <= $factor) {
 						Auth::user()->achievements()->attach($user_achievement->id);
