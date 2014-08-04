@@ -39,4 +39,5 @@ return array(
 	'settings_saved' => 'Settings have been saved.',
 	'already_taken' => 'This Summoner is already binded to another account!',
 	'password_reset' => 'Password reset',
+	'achievement_points' => 'Achievement Points',
 );

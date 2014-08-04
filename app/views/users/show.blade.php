@@ -4,7 +4,7 @@
 @else
 	@section('title', trans("users.profile")." ".$user->summoner->name." <i>".$user->title()."</i>")
 @endif
-<div style="float:right">abc</div>
+
 @section('content')	
 	<br/>
 	@if($user->summoner)
@@ -64,8 +64,8 @@
 						<td>{{ $user->completed_quests() }}</td>
 					</tr>
 					<tr>
-						<td class="attribute">{{ trans("users.registered") }}</td>
-						<td>{{ date("d.m.Y",strtotime($user->created_at)) }}</td>
+						<td class="attribute">{{ trans("users.achievement_points") }}</td>
+						<td><img src="/img/ap.png" width="20" /> {{ $user->achievement_points}} <!--{{ date("d.m.Y",strtotime($user->created_at)) }} --></td>
 					</tr>
 				</table>
 			</td>
@@ -196,7 +196,6 @@
 						
 						<div class="clear"></div>
 						<hr/>
-						<div><p><img src="/img/ap.png" /> {{ $user->achievement_points}}</p></div>
 						@if($user->achievements->count() == 0)
 							{{ trans("achievements.no_achievements") }}
 						@else
