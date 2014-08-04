@@ -122,6 +122,15 @@
 	</div>
 	@endif
 	<br/>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- lolquest rectangle -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:300px;height:250px"
+		 data-ad-client="ca-pub-5331969279811198"
+		 data-ad-slot="3719233468"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
 @else
 
 	<div class="sidebar_box">
@@ -139,5 +148,13 @@
 		<br/>
 	</div>
 	<br/>
-
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- lolquest rectangle -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:300px;height:250px"
+		 data-ad-client="ca-pub-5331969279811198"
+		 data-ad-slot="3719233468"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
 @endif
