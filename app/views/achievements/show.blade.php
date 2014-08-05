@@ -7,7 +7,7 @@
 	<table style="float:left" class="table_ach table-striped">
 		<tbody>
 				<tr>
-					<th colspan="2">All Achievements</th>
+					<th colspan="3">All Achievements</th>
 				</tr>
 			@foreach($achievements as $achievement)
 
@@ -19,6 +19,7 @@
 
 				<tr width="25%" height="45px" style="opacity:{{ $style }}; -moz-opacity: {{ $style }}; -khtml-opacity: {{ $style }};">			
 					<td width="55px"><a href="/achievements/{{ $achievement->id }}"><img src="/img/trophy/{{$achievement->icon}}.png" title="{{ $achievement->name }}" class="trophy"  /></a></td>
+					<td  width="55px"><img src="/img/ap.png" width="20"/> {{ $achievement->points }}</td>
 					<td width="">
 						<strong>{{$achievement->name}}</strong></br>
 						@if($achievement->description == 1)
@@ -42,6 +43,7 @@
 							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $achievement->name }}</a>
 						@endif
 					</td>		
+					
 			</tr>		
 				@if($achievement->id == $achievements->count() /2)
 			</tbody>
@@ -50,7 +52,7 @@
 	<table style="float:left" class="table_ach table-striped">
 		<tbody>
 				<tr>
-					<th colspan="2">All Achievements</th>
+					<th colspan="3">&nbsp;</th>
 				</tr>
 				@endif
 					

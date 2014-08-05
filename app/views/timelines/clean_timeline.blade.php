@@ -32,7 +32,7 @@
 			@elseif($post->event_type == "level_up")
 			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> is now <strong>Level {{ $post->user->level_id }}</strong></td>
 			@elseif($post->event_type == "new_achievement")
-			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> has receive the Achievement <a href="/achievements/{{$post->achievement->id}}">
+			<td class="timeline_quest" colspan="2"><a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}">{{ $post->user->summoner->name }} <i>{{ $post->user->title() }}</i></a> has receive the Achievement <a href="/summoner/{{ $post->user->region }}/{{ $post->user->summoner_name }}/achievements">
 			@if($post->achievement->description == 1)
 				{{ trans("achievements.".$post->achievement->description) }} {{ $post->achievement->factor}}
 			@elseif($post->achievement->description == 2)
