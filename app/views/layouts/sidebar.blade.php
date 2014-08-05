@@ -122,6 +122,7 @@
 	</div>
 	@endif
 	<br/>
+	<div style="margin-left: -10px;">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- lolquest rectangle -->
 	<ins class="adsbygoogle"
@@ -131,6 +132,7 @@
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
+	</div>
 @else
 
 	<div class="sidebar_box">
@@ -148,6 +150,7 @@
 		<br/>
 	</div>
 	<br/>
+	<div style="margin-left: -10px;">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- lolquest rectangle -->
 	<ins class="adsbygoogle"
@@ -157,4 +160,5 @@
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
+	</div>
 @endif
