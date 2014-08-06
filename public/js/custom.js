@@ -47,6 +47,11 @@ $( document ).ready(function() {
 		return confirm("Delete all Notifications?");
 	})
 	
+	$('.btn-danger').click(function(){
+		return confirm("Are you sure?");
+	})
+
+	
 	$('.cancel_challenge a').click(function(){
 		return confirm("Cancel this Challenge? You will loose your progress!");
 	})	

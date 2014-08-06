@@ -135,8 +135,9 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 // Arena Controller
 Route::get('/arena', 'ArenasController@index');
 Route::get('/arena/start_arena', 'ArenasController@start_arena');
-Route::get('/arena/start_quest', 'ArenasController@start_quest');
+Route::post('/arena/start_quest', 'ArenasController@start_quest');
 Route::get('/arena/finish_quest', 'ArenasController@finish_quest');
+Route::get('/arena/stop_arena', 'ArenasController@stop_arena');
 
 
 // Notification Controller
