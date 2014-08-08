@@ -114,6 +114,16 @@ Route::filter('friend_ladders', function()
 });
 
 
+Route::filter('load_settings', function()
+{
+	Session::flush();
+	$settings = Setting::where("id", "=", 1)->first();
+	if($settings->livestream == 1) {
+		Session::put('livestream', 1);
+	}
+});
+
+
 Route::filter('get_daily', function()
 {
 	if (Auth::check()) {

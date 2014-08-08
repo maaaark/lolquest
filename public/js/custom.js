@@ -46,10 +46,6 @@ $( document ).ready(function() {
 	$('.delete_all_notes a').click(function(){
 		return confirm("Delete all Notifications?");
 	})
-	
-	$('.btn-danger').click(function(){
-		return confirm("Are you sure?");
-	})
 
 	
 	$('.cancel_challenge a').click(function(){

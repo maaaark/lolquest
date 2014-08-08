@@ -25,4 +25,5 @@ return array(
 	'manage_title' => 'Manage Title',
 	'register_to_do' => 'Register or Login to Comment',
 	'social_media' => 'Social Media',
+	'livestream' => 'Livestream',
 );

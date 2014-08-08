@@ -1,3 +1,12 @@
+@if(Session::get('livestream'))
+<div class="sidebar_box">
+		<div class="sidebar_headline"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{{ trans("sidebar.livestream") }}</div>
+		<div class="livestream">
+			<object type="application/x-shockwave-flash" height="180" width="290" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=lolquest_net" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel=lolquest_net&auto_play=true&start_volume=25" /></object>
+		</div>
+</div>
+@endif
+
 <div class="sidebar_box">
 		<div class="sidebar_headline"><i class="fa fa-facebook-square"></i>&nbsp;&nbsp;{{ trans("sidebar.social_media") }}</div>
 		<div class="sidebar_social">
@@ -10,7 +19,7 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 		</div>
-	</div>
+</div>
 	
 @if(Auth::check())
 	
