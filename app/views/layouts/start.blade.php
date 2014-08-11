@@ -49,6 +49,10 @@
 							<a href="/login" class="btn btn-large btn-primary btn-block">Login</a>
 						{{ Form::close() }}
 						
+						<hr/>
+						
+						<h3>No Beta Key yet?</h3>
+						<a href="/supporter" class="btn btn-large btn-primary btn-block">Support us and get a Beta Key</a><br/>
 						@else
 						
 						<h2>{{ trans("start.register_now") }}</h2>
