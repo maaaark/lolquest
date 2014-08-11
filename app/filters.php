@@ -116,6 +116,7 @@ Route::filter('friend_ladders', function()
 
 Route::filter('load_settings', function()
 {
+	Session::forget('livestream');
 	$settings = Setting::where("id", "=", 1)->first();
 	if($settings->livestream == 1) {
 		Session::put('livestream', 1);

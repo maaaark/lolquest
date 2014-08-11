@@ -478,9 +478,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				// NOT RIOT API
 				$summoner_name = urlencode($user->summoner_name);
 				$region = $user->region;
-				$url = "http://api.captainteemo.com/player/$region/$summoner_name/recent_games";
+				$url = "https://teemojson.p.mashape.com/player/$region/$user->summoner_name/recent_games";
+				
+				$opts = array(
+				  'http'=>array(
+					'method'=>"GET",
+					'header'=>"Content-Type: application/x-www-form-urlencoded\r\n" .
+							  "X-Mashape-Key: JvZWTvLe1GmshDzfXiEgz0dpLhjGp1O9gZRjsnDBF6Fltybb8f\r\n"
+				  )
+				);
+
+				$context = stream_context_create($opts);
+
+				// Öffnen der Datei mit den oben definierten HTTP-Headern
+				$test = @file_get_contents($url, false, $context);
+
+				
 				$summoner_name = urlencode($summoner_name);
-				$test = @file_get_contents($url);
+				//$test = @file_get_contents($url);
 				$data = json_decode($test, true);
 				
 				if($data["success"] == false ) {

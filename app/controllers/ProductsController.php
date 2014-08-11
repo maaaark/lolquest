@@ -4,7 +4,7 @@ class ProductsController extends \BaseController {
 
 	public function __construct()
     {
-		$this->beforeFilter('auth');
+		//$this->beforeFilter('auth');
     }
 
 	/**
@@ -14,8 +14,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::all();
-		return View::make('shop.index', compact('products'));
+		//$products = Product::all();
+		//return View::make('shop.index', compact('products'));
+		return Redirect::to("/shop/beta_key");
 	}
 	
 	public function buy($id)
@@ -107,7 +108,7 @@ class ProductsController extends \BaseController {
 				$user->save();
 				
 				$key = new Betakey;
-				$key->key = str_random(15);
+				$key->key = "shop_".str_random(15);
 				$key->used = 0;
 				$key->user_id = $user->id;
 				$key->save();
@@ -182,7 +183,11 @@ class ProductsController extends \BaseController {
 	public function skins()
 	{
 		$bought_skins = array();
-		$myskins = Skin::where("user_id","=",Auth::user()->id)->get();
+		if(Auth::check()) {
+			$myskins = Skin::where("user_id","=",Auth::user()->id)->get();
+		} else {
+			$myskins = Skin::where("user_id","=",0)->get();
+		}
 		foreach($myskins as $skin) {
 			$bought_skins[] = $skin->champion_id;
 		}
@@ -192,9 +197,13 @@ class ProductsController extends \BaseController {
 	
 	public function history()
 	{
-		$user = User::find(Auth::user()->id);
-		$transactions = $user->transactions;
-		return View::make('shop.history', compact('transactions'));
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$transactions = $user->transactions;
+			return View::make('shop.history', compact('transactions'));
+		} else {
+			return Redirect::to("/login");
+		}
 	}
 	
 	public function offers()

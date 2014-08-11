@@ -21,6 +21,16 @@
 
 	
 	<div id="wrapper">
+	
+		@if(Auth::check())
+			<div class="skin_left" style="background: url('http://images.lolquest.net/skins/{{ Auth::user()->skin_left }}')"></div>
+			<div class="skin_right" style="background: url('http://images.lolquest.net/skins/{{ Auth::user()->skin_right }}')"></div>
+		@else
+			<div class="skin_left"></div>
+			<div class="skin_right"></div>
+		@endif
+		
+		
 		<div class="container title-wrapper">
 			
 		</div>

@@ -94,6 +94,10 @@ class QuestsController extends \BaseController {
 		if (Auth::check())
 		{
 			$user = User::find(Auth::user()->id);
+			if($user->qp < 20) {
+				return Redirect::to('/challenges')->with('error', trans("dashboard.low_qp"));
+			}
+			$user->qp = $user->qp - 20;
 			$user->challenge_mode = 0;
 			$user->challenge_step = 0;
 			$user->save();
@@ -421,7 +425,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 8 - Dont die!
 					if($quest->questtype->id == 8) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('win', '=', 1)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->numDeaths == 0) {
@@ -636,12 +640,12 @@ class QuestsController extends \BaseController {
 					}
 					
 					
-					// Quest Type 17 - Tank 30.000 Dmg
+					// Quest Type 17 - Tank 20.000 Dmg
 					if($quest->questtype->id == 17 || $quest->questtype->id == 33 || $quest->questtype->id == 34) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->totalDamageTaken >= 30000) {
+							if($game->totalDamageTaken >= 20000) {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {

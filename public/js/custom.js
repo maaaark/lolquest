@@ -46,10 +46,9 @@ $( document ).ready(function() {
 	$('.delete_all_notes a').click(function(){
 		return confirm("Delete all Notifications?");
 	})
-
 	
 	$('.cancel_challenge a').click(function(){
-		return confirm("Cancel this Challenge? You will loose your progress!");
+		return confirm("Cancel this Challenge? You will loose 20 QP and your progress for this challenge!");
 	})	
 
 });

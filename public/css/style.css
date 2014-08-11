@@ -706,6 +706,7 @@ a.logout {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	margin-top: -20px;
 }
 .register_form input, .register_form select {
 	margin-bottom: 10px;

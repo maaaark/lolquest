@@ -13,5 +13,7 @@ return array(
 	'done' => "Your account is now verified. Have fun with lolquest.net!<br/><br/><a href='/dashboard'>Click here to get your first quest!</a>",
 	'no_name' => "No summoner name",
 	'no_name_disc' => "First set a summoner name to your profile.",
-	'current_runes' => "Your current runepages are"
+	'current_runes' => "Your current runepages are",
+	'double_headline' => "Your name already has an account. Is it yours?",
+	'double_text' => "We detected, that in our system is already an account with your summoner name.<br/>However, this account is not verified yet. You can now verify your account, and delete the other one.<br/><br/>Please follow the steps:",
 );

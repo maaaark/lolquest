@@ -73,7 +73,7 @@ class BaseController extends Controller {
 	public function search_summoner() {
 		$summoner_name = Input::get('summoner_name');
                 if("" !== $summoner_name && NULL !== $summoner_name) {
-                    $users = User::where('summoner_name', 'LIKE', '%'.$summoner_name.'%')->get();
+                    $users = User::where('summoner_name', 'LIKE', "%$summoner_name%")->get();
                 } else {
                     $users = [];
                 }

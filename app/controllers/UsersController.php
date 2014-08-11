@@ -155,7 +155,53 @@ class UsersController extends \BaseController {
 			return Redirect::to('/login');
 		}
 	}
-
+	
+	public function verify_double($region,$summoner_name) {
+		
+		$api_key = Config::get('api.key');
+				
+		$clean_summoner_name = str_replace(" ", "", $summoner_name);
+		$clean_summoner_name = strtolower($clean_summoner_name);
+		$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
+		$region = "euw";
+		
+		
+		$summoner_data = "https://".$region.".api.pvp.net/api/lol/".$region."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
+		$json = @file_get_contents($summoner_data);
+		if($json === FALSE) {
+			return Redirect::route('users.create')
+			->withInput()
+			->with('message', trans("users.not_found"));
+		} else {
+		
+			$obj = json_decode($json, true);
+			$summoner_id = $obj[$clean_summoner_name]["id"];
+		
+			$summoner_data = "https://".$region.".api.pvp.net/api/lol/".$region."/v1.4/summoner/".$summoner_id."/runes?api_key=".$api_key;
+			$json = @file_get_contents($summoner_data);
+			if($json === FALSE) {
+				Session::flash('message', 'No Summoner found');
+				return Redirect::to('/edit_summoner');
+			} else {
+				$obj = json_decode($json, true);
+				$runes = $obj[$summoner_id]["pages"];
+				
+				foreach($runes as $page) {
+					if($page["name"] == "@@!PaG3!@@30764684") {
+						
+						$old_user = User::where("summoner_name", "=", $clean_summoner_name)->first();
+						$old_user->delete();
+						
+						return Redirect::route('users.create')->withInput()->with('success', trans("users.old_user_deleted"));
+					}
+				}
+			}
+		
+		}
+		
+		return View::make('users.verify_double', compact('runes'));
+	}
+	
 	/**
 	 * Store a newly created user in storage.
 	 *
@@ -169,49 +215,35 @@ class UsersController extends \BaseController {
 
 		if ($validation->passes())
 		{
+			
 			$clean_summoner_name = str_replace(" ", "", Input::get('summoner_name'));
 			$clean_summoner_name = strtolower($clean_summoner_name);
 			$clean_summoner_name = mb_strtolower($clean_summoner_name, 'UTF-8');
+			$region = Input::get('region');
+			
 			
 			// check if validated summoner available
-			$verified_user = User::
-			  where('summoner_name', '=', $clean_summoner_name)
-			->where('summoner_status', '=', 2)
-			->where('region', '=', Input::get('region'))
-			->first();
-	
-	
-			
+			$verified_user = User::where('summoner_name', '=', $clean_summoner_name)->where('region', '=', Input::get('region'))->first();
 			if($verified_user) {
-				return Redirect::route('users.create')
-				->withInput()
-				->with('message', trans("users.already_one"));
+				if($verified_user->summoner_status == 2) {
+					return Redirect::route('users.create')->withInput()->with('message', trans("users.already_one"));
+				} elseif($verified_user->summoner_status == 1) {
+					return Redirect::to('/verify_double/'.$region.'/'.$clean_summoner_name)->with('message', trans("users.already_one"));
+				}
 			}
-			
 			
 			// Save the Summoner
 			$api_key = Config::get('api.key');
 			
 			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
-			$json = @file_get_contents($summoner_data);
+			$json = file_get_contents($summoner_data);
 			if($json === FALSE) {
-				return Redirect::route('users.create')
-				->withInput()
-				->with('message', trans("users.not_found"));
+				echo $clean_summoner_name;
+				var_dump($json);
+				//return Redirect::route('users.create')
+				//->withInput()
+				//->with('message', trans("users.not_found"));
 			} else {
-				
-				// Beta Key
-				//if(Session::get('beta_user') == 1) {
-				//	$beta_key = Session::get('beta_key');
-				//	$key = Betakey::where("key", "=", $beta_key)->first();
-				//	if($key->used == 1) {
-				//		Session::forget('beta_user');
-				//		return Redirect::to("/")->withErrors("Key already used!");
-				//	} else {
-				//		$key->used = 1;
-				//		Session::forget('beta_user');
-				//	}
-				//}
 			
 				// Create the User
 				$user = new User;

@@ -108,6 +108,7 @@ Route::get('/challenges', 'UsersController@challenges');
 Route::get('/delete_notifications', 'UsersController@delete_notifications');
 Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
 Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
+Route::get('/verify_double/{region}/{summoner_name}', 'UsersController@verify_double');
 
 
 
