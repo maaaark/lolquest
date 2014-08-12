@@ -34,4 +34,6 @@ return array(
 	'17' => 'Tank at least 20.000 Damage for your team',
 	'33' => 'Tank at least 20.000 Damage for your team',
 	'34' => 'Tank at least 20.000 Damage for your team',
+	'35' => 'Finish a game at level 18',
+	'36' => 'Finish a game at level 15 or lower',
 );

@@ -35,7 +35,9 @@
 						@if(Config::get('api.use_riot_api')  == 0 && $quest->questtype->id == 12)
 							<p><a class="btn btn-warning" href="" role="button">{{ trans("dashboard.inactive") }}</a></p>
 						@else
-							<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+							<form id="frm" action="/quests/check_quest/{{ $quest->id }}">
+								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.complete') }}">
+							</form><br/>
 						@endif
 					@endif
 					@if($quest->daily == 1)

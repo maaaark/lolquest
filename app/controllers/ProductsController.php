@@ -102,9 +102,9 @@ class ProductsController extends \BaseController {
 		if (Auth::check()) { 
 			$user = User::find(Auth::user()->id);
 			
-			if($user->qp >= 1000) {
+			if($user->qp >= 2000) {
 				
-				$user->qp = $user->qp - 1000;
+				$user->qp = $user->qp - 2000;
 				$user->save();
 				
 				$key = new Betakey;
@@ -117,7 +117,7 @@ class ProductsController extends \BaseController {
 				$transaction->user_id = Auth::user()->id;
 				$transaction->product_id = 8;
 				$transaction->currency = "QP";
-				$transaction->price = 1000;
+				$transaction->price = 2000;
 				$transaction->description = $user->summoner->summoner_name." bought a Beta Key: ".$key->key;
 				$transaction->save();	
 

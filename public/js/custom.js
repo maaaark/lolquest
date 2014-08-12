@@ -21,6 +21,11 @@ $( document ).ready(function() {
 	   $('#send').attr('disabled', 'disabled');
 	});
 	
+	$('#frm').bind('submit', function(e) {
+	   $('.inactive_at_click').attr('disabled', 'disabled');
+	});
+	
+	
 	$('#myTab a[href="#profile"]').tab('show')
 	$('#myTab a').click(function (e) {
 	  //e.preventDefault();

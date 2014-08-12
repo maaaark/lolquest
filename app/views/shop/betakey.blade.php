@@ -16,7 +16,7 @@
 								Buy another lolquest Beta Key and gift it to your friends!<br/>
 								<br/>
 								@if(Auth::check())
-									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} 1000 QP</a><br/>
+									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} 2000 QP</a><br/>
 								@else
 									<a href="/login" class="btn btn-primary">{{ trans("shop.login_to_buy") }}</a><br/>
 								@endif

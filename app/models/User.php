@@ -527,6 +527,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$teamId = 0;
 							$level = 1;
 							$wards_placed = 0;
+							$enemy_minions = 0;
+							$cc_dealt = 0;
 							
 							foreach($game['statistics'] as $stats) {
 								foreach($stats as $stat) {
@@ -627,7 +629,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
 										$totalDamageDealt=$stat['value'];
 									  }
-									  
+									  if ($stat['statType'] == "TOTAL_TIME_CROWD_CONTROL_DEALT") {
+										$cc_dealt=$stat['value'];
+									  }
+									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED_ENEMY_JUNGLE") {
+										$enemy_minions=$stat['value'];
+									  }
 									  
 									  
 									  
@@ -682,6 +689,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								$newGame->minionsKilled = $cs;
 								$newGame->mapId = $gameMapId;
 								$newGame->teamId = $teamId;
+								$newGame->neutralMinionsKilledEnemyJungle = $enemy_minions;
 								$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 								$newGame->totalDamageTaken = $totalDamageTaken;
 								$newGame->totalDamageDealt = $totalDamageDealt;
