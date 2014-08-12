@@ -127,7 +127,16 @@
 					</div>
 					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 						<div class="lolquest_video">
-							<img src="/img/lolquest_video.jpg" width="100%" alt="lolquest Video" />
+							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<!-- lolquest start_rectangle -->
+							<ins class="adsbygoogle"
+								 style="display:inline-block;width:336px;height:280px"
+								 data-ad-client="ca-pub-5331969279811198"
+								 data-ad-slot="1611228261"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+							<!--<img src="/img/lolquest_video.jpg" width="100%" alt="lolquest Video" />-->
 						</div>
 					</div>
 				</div>
