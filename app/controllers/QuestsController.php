@@ -243,7 +243,7 @@ class QuestsController extends \BaseController {
 				$user = User::find(Auth::user()->id);
 				
 				//$quest = Quest::find($quest_id);
-				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
+				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->where("finished", "=", 0)->first();
 				if(isset($quest) && $quest->count() > 0) {
 					
 					$user->refresh_games();
