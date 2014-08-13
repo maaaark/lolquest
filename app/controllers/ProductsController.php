@@ -45,7 +45,7 @@ class ProductsController extends \BaseController {
 						
 						return View::make('shop.success')->with('message', trans("shop.new_slot"));
 					} else {
-						return Redirect::to('shop')->with('error', trans("shop.slots_full"));
+						return Redirect::to('/shop/quest_slot')->with('error', trans("shop.slots_full"));
 					}
 				}
 				
@@ -169,6 +169,14 @@ class ProductsController extends \BaseController {
 	{
 		return View::make('shop.rp');
 	}
+	
+	
+	public function quest_slot()
+	{
+		$products = Product::where("cat_id", "=", 1)->get();
+		return View::make('shop.slot', compact('products'));
+	}
+	
 	
 	public function hardware()
 	{

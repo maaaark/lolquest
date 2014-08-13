@@ -28,5 +28,6 @@ return array(
 	'back_to_shop' => 'Back to the shop',
 	'beta_key' => 'Beta Key',
 	'login_to_buy' => 'Login to buy',
-	'betakey' => 'Beta Key'
+	'betakey' => 'Beta Key',
+	'quest_slot' => 'Quest Slots',
 );

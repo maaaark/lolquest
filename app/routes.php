@@ -160,7 +160,7 @@ Route::get('shop/skins', 'ProductsController@skins');
 Route::get('shop/hardware', 'ProductsController@hardware');
 Route::get('shop/beta_key', 'ProductsController@betakey');
 Route::get('shop/history', 'ProductsController@history');
-
+Route::get('shop/quest_slot', 'ProductsController@quest_slot');
 
 
 
