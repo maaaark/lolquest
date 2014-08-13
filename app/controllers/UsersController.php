@@ -101,6 +101,7 @@ class UsersController extends \BaseController {
 	
 	public function skins()
 	{
+		if(Auth::check()) {
 		$user = User::find(Auth::user()->id);
 		$skins = Skin::where("user_id", "=", $user->id)->get();
 		
@@ -120,6 +121,9 @@ class UsersController extends \BaseController {
 		}
 
 		return View::make('settings.skins', compact('user', 'skins', 'skin_left', 'skin_right', 'left_skin_id'));
+		} else {
+			return Redirect::to("/login");
+		}
 	}
 	
 	public function update_timeline_settings()
