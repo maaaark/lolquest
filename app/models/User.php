@@ -689,6 +689,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								$newGame->minionsKilled = $cs;
 								$newGame->mapId = $gameMapId;
 								$newGame->teamId = $teamId;
+								$newGame->time_dead = $dead;
 								$newGame->neutralMinionsKilledEnemyJungle = $enemy_minions;
 								$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 								$newGame->totalDamageTaken = $totalDamageTaken;

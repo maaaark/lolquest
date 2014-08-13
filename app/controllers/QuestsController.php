@@ -712,6 +712,54 @@ class QuestsController extends \BaseController {
 					}
 					
 					
+					// Quest Type 37 - Death timer
+					if($quest->questtype->id == 37) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->time_dead <= 180) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 38 - Kill at least 15 enemy jungle minions
+					if($quest->questtype->id == 37) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->neutralMinionsKilledEnemyJungle >= 15) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
 				} else {
 					return Redirect::to('dashboard')->with('error', trans("dashboard.no_active_quest"));
 				}

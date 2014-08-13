@@ -107,9 +107,9 @@
 							@else
 								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
 							@endif
-							@else
-								<!-- FREE TO DELETE -->
-								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
+						@else
+							<!-- FREE TO DELETE -->
+							<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
 						@endif
 						
 						
