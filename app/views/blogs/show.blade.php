@@ -3,7 +3,7 @@
 @section('content')
 	<br/>
 	<div class="blog_date">
-		<a href="/users/{{ $blog->user->region }}/{{ $blog->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $blog->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" />
+		<a href="/summoner/{{ $blog->user->region }}/{{ $blog->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $blog->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" />
 		&nbsp;&nbsp;{{ $blog->user->summoner->name }}</a> - {{ $blog->created_at->diffForHumans() }} - {{ $blog->comments->count() }} {{ trans("blog.comments") }}
 	</div>
 	<div class="blog_post">
@@ -27,12 +27,12 @@
 			<table>
 				<tr>
 					<td valign="top" style="width: 50px !important; text-align: center;">
-						<a href="/users/{{ $comment->user->region }}/{{ $comment->user->summoner_name }}">
+						<a href="/summoner/{{ $comment->user->region }}/{{ $comment->user->summoner_name }}">
 							<img src="/img/profileicons/profileIcon{{ $comment->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" />
 						</a>
 					</td>
 					<td valign="top" style="padding-left: 15px;">
-						<a href="/users/{{ $comment->user->region }}/{{ $comment->user->summoner_name }}" class="comment_name">{{ $comment->user->summoner->name }}</a>&nbsp;&nbsp;
+						<a href="/summoner/{{ $comment->user->region }}/{{ $comment->user->summoner_name }}" class="comment_name">{{ $comment->user->summoner->name }}</a>&nbsp;&nbsp;
 						<span class="comment_time">
 							{{ $comment->created_at->diffForHumans() }}
 						</span>
