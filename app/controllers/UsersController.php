@@ -240,13 +240,11 @@ class UsersController extends \BaseController {
 			$api_key = Config::get('api.key');
 			
 			$summoner_data = "https://".Input::get('region').".api.pvp.net/api/lol/".Input::get('region')."/v1.4/summoner/by-name/".$clean_summoner_name."?api_key=".$api_key;
-			$json = file_get_contents($summoner_data);
+			$json = @file_get_contents($summoner_data);
 			if($json === FALSE) {
-				echo $clean_summoner_name;
-				var_dump($json);
-				//return Redirect::route('users.create')
-				//->withInput()
-				//->with('message', trans("users.not_found"));
+				return Redirect::route('users.create')
+				->withInput()
+				->with('message', trans("users.not_found"));
 			} else {
 			
 				// Create the User
