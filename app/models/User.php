@@ -506,6 +506,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					foreach($data["data"]["gameStatistics"] as $games) {
 						foreach($games as $game) {
 							$kills = 0;
+							$item_0 = 0;
 							$item_1 = 0;
 							$item_2 = 0;
 							$item_3 = 0;
