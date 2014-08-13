@@ -299,12 +299,14 @@ class UsersController extends \BaseController {
 			->with('message', 'There were validation errors.');
 	}
 
-	/**
-	 * Display the specified user.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Display the specified user.
+     *
+     * @param $region
+     * @param $name
+     * @internal param int $id
+     * @return Response
+     */
 	public function show($region, $name)
 	{
 		$user = User::where('region', '=', $region)->where('summoner_name', '=', $name)->first();

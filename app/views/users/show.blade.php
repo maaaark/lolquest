@@ -307,8 +307,8 @@
 								<td>{{ $game->killingSprees }}</td>
 								<td><strong>Game Date</strong></td>
 								<td>{{ date("d.m.Y H:i", $game->createDate/1000) }}</td>
-								<td><strong>-</strong></td>
-								<td>-</td>
+								<td><strong>Enemy Jungle Minions</strong></td>
+								<td>{{ $game->neutralMinionsKilledEnemyJungle }}</td>
 							</tr>
 						</table>
 					</td>
