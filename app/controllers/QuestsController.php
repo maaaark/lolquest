@@ -737,7 +737,7 @@ class QuestsController extends \BaseController {
 					
 					
 					// Quest Type 38 - Kill at least 15 enemy jungle minions
-					if($quest->questtype->id == 37) {
+					if($quest->questtype->id == 38) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
