@@ -69,6 +69,9 @@ Route::get('testcase', array('uses' => 'BaseController@test'));
 // Champions Controller
 Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 
+// Teams Controller
+Route::get('/teams/{region}/{name}', array('uses' => 'TeamsController@show'));
+Route::get('/teams', array('uses' => 'TeamsController@index'));
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));

@@ -310,6 +310,14 @@
 								<td><strong>Enemy Jungle Minions</strong></td>
 								<td>{{ $game->neutralMinionsKilledEnemyJungle }}</td>
 							</tr>
+							<tr>
+								<td><strong>Time dead</strong></td>
+								<td>{{ $game->time_dead }}</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
 						</table>
 					</td>
 				</tr>
