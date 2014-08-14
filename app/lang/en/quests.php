@@ -38,4 +38,5 @@ return array(
 	'36' => 'Finish a game at level 15 or lower',
 	'37' => 'Spend 300 or less secounds dead on the ground',
 	'38' => 'Steal at least 15 minions from the enemy jungle',
+	'39' => 'Get at least 3 Kills and 5 Assists',
 );

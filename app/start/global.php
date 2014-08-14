@@ -79,7 +79,6 @@ App::missing(function($exception)
 });
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File
