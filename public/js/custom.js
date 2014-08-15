@@ -55,5 +55,14 @@ $( document ).ready(function() {
 	$('.cancel_challenge a').click(function(){
 		return confirm("Cancel this Challenge? You will loose 20 QP and your progress for this challenge!");
 	})	
+	
+	$('.create_team').click(function(){
+		return confirm("Creating a team will cost 500 QP. Are you sure?");
+	})
+	
+	$('.delete_team').click(function(){
+		return confirm("Are you sure you want to delete this Team?");
+	})
+	
 
 });

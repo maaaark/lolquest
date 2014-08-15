@@ -136,6 +136,9 @@ h3 {
 	border: 1px solid #333333;
 	margin-bottom: 30px;
 }
+a.red {
+	color: #ff0000;
+}
 .admin_user {
 	background: #428bca;
 	padding: 3px;

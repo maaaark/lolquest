@@ -2,6 +2,8 @@
 @section('title', "Teams")
 @section('content')	
 	<br/>
+	<a href="/teams/create" class="btn btn-primary">{{ trans("teams.create_new") }}</a><br/>
+	<br/>
 	<table class="table table-striped">
 		<tr>
 			<th>{{ trans("ladders.rang") }}</th>
@@ -28,7 +30,7 @@
 					<img src="/img/leagues/bronze_5.png" height="20" />
 				@endif
 			</td>
-			<td width="20"><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}"><img src="/img/teams/0.jpg" class="img-circle" width="20" /></a></td>
+			<td width="20"><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}"><img src="/img/teams/logo/{{ $row->logo }}" class="img-circle" width="20" /></a></td>
 			<td><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}">{{ $row->name }}</a></td>
 			<td>0</td>
 			<td>-</td>
@@ -36,4 +38,7 @@
 		</tr>
 	@endforeach
 	</table> 
+	<br/>
+	<a href="/teams/create" class="btn btn-primary">{{ trans("teams.create_new") }}</a><br/>
+	<br/>
 @stop

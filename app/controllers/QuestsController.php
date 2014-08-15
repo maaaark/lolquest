@@ -117,7 +117,7 @@ class QuestsController extends \BaseController {
 						}
 					}	
 					
-					if($api_type == 0) { // USE CUSTOM API
+					if($api_type == 0) { // IF USING CUSTOM API
 						while($questtype->id == 12){
 							if($role == 0) {
 								$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();

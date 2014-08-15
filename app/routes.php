@@ -72,6 +72,13 @@ Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 // Teams Controller
 Route::get('/teams/{region}/{name}', array('uses' => 'TeamsController@show'));
 Route::get('/teams', array('uses' => 'TeamsController@index'));
+Route::get('/teams/create', array('uses' => 'TeamsController@create'));
+Route::get('/teams/{region}/{name}/{invite}', array('uses' => 'TeamsController@invite'));
+Route::get('/teams/join/{id}/{secret}', array('uses' => 'TeamsController@join'));
+Route::post('/teams/store', array('uses' => 'TeamsController@store'));
+Route::post('/teams/send_invite', array('uses' => 'TeamsController@send_invite'));
+Route::get('/teams/{region}/{name}/remove/{id}', array('uses' => 'TeamsController@remove_member'));
+Route::get('/teams/delete_team', array('uses' => 'TeamsController@delete'));
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));

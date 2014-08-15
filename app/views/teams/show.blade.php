@@ -6,11 +6,17 @@
 	<table width="100%" class="profile">
 		<tr>
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
-				<img src="/img/teams/{{ $team->logo }}.jpg" width="100" class="img-circle" /><br/>
+				<img src="/img/teams/logo/{{ $team->logo }}" width="100" class="img-circle" /><br/>
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $team->level_id }}<br/><br/>
 				@if($team->public == 1)
 					<a href="#" class="btn btn-primary">{{ trans("teams.join") }}</a>
+				@endif
+				
+				@if(Auth::check())
+					@if($team->user_id == Auth::user()->id)
+						<a href="/teams/delete_team" class="delete_team btn btn-danger">{{ trans("teams.delete") }}</a>
+					@endif
 				@endif
 			</td>
 			<td width="400" valign="top">
@@ -71,11 +77,18 @@
 					@if($member->id != $team->user->id)
 					<tr>
 						<td width="20"><a href="/summoner/{{ $member->region }}/{{ $member->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $member->summoner->profileIconId }}.jpg" class="img-circle" width="20" /></a></td>
-						<td><a href="/summoner/{{ $member->region }}/{{ $member->summoner_name }}">{{ $member->summoner->name }}</a></td>
+						<td><a href="/summoner/{{ $member->region }}/{{ $member->summoner_name }}">{{ $member->summoner->name }}</a>
+						@if(Auth::check())
+							@if(Auth::user()->id == $team->user_id)
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="red" href="/teams/{{ $team->region }}/{{ $team->clean_name }}/remove/{{ $member->id }}"><i class="fa fa-ban"></i> Remove member</a>
+							@endif
+						@endif
+						</td>
 					</tr>
 					@endif
 				@endforeach
 				</table>
+				<a href="/teams/{{ $team->region }}/{{ $team->clean_name }}/invite" class="btn btn-primary">{{ trans("teams.invite_new") }}</a>
 			</td>
 			<td valign="top">
 				<h3>{{ trans("teams.last_quests") }}</h3>

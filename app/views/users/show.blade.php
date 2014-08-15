@@ -45,6 +45,12 @@
 						<td class="attribute">{{ trans("users.region") }}</td>
 						<td>{{ $user->region }}</td>
 					</tr>
+					@if($user->team_id != 0)
+					<tr>
+						<td class="attribute">{{ trans("users.team") }}</td>
+						<td><a href="/teams/{{ $user->team->region }}/{{ $user->team->clean_name }}"><img src="/img/teams/logo/{{ $user->team->logo }}" width="20" /> {{ $user->team->name }}</a></td>
+					</tr>
+					@endif
 					<tr>
 						<td class="attribute">{{ trans("users.level") }}</td>
 						<td>{{ $user->summoner->summonerLevel }}</td>
@@ -65,7 +71,7 @@
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("users.achievement_points") }}</td>
-						<td><img src="/img/ap.png" width="20" /> {{ $user->achievement_points}} <!--{{ date("d.m.Y",strtotime($user->created_at)) }} --></td>
+						<td><img src="/img/ap.png" width="20" /> {{ $user->achievement_points}} </td>
 					</tr>
 				</table>
 			</td>
@@ -127,7 +133,7 @@
 			</td>
 		</tr>
 	</table>
-	
+	<br/>
 
 	
 	<ul id="myTab" class="nav nav-tabs">
