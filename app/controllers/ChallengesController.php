@@ -155,21 +155,24 @@ class ChallengesController extends \BaseController {
 								if($game->totalDamageDealt >= 80000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 5 && $game->turretsKilled >= 2) {
 									$challenge_done = 1;
 								}
+								
+								if($challenge_done == 1) {
+									$user->achievements()->attach(35);
+									$a = Achievement::where('id', '=', 35)->first();
+									$user->notify(1, trans("achievements.receive").$a->name);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->challenge_time = date("U")*1000;
+									$user->trophy_top = 1;
+									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
+									$user->challenge_mode = 0;
+									$user->challenge_step = 0;
+									$user->save();
+									return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
+								}
+							
 							}
 							
-							if($challenge_done == 1) {
-								$user->achievements()->attach(35);
-								$a = Achievement::where('id', '=', 35)->first();
-								$user->notify(1, trans("achievements.receive").$a->name);
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
-								$user->challenge_time = date("U")*1000;
-								$user->trophy_top = 1;
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
-								$user->challenge_mode = 0;
-								$user->challenge_step = 0;
-								$user->save();
-								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
-							}
+							
 							
 						}
 					}
@@ -337,22 +340,22 @@ class ChallengesController extends \BaseController {
 								if($game->totalDamageDealt >= 75000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 5 && $game->neutralMinionsKilled >= 60) {
 									$challenge_done = 1;
 								}
-							}
+								
+								if($challenge_done == 1) {
+									$user->achievements()->attach(39);
+									$a = Achievement::where('id', '=', 39)->first();
+									$user->notify(1, trans("achievements.receive").$a->name);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->challenge_time = date("U")*1000;
+									$user->trophy_jungle = 1;
+									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
+									$user->challenge_mode = 0;
+									$user->challenge_step = 0;
+									$user->save();
+									return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
+								}
 							
-							if($challenge_done == 1) {
-								$user->achievements()->attach(39);
-								$a = Achievement::where('id', '=', 39)->first();
-								$user->notify(1, trans("achievements.receive").$a->name);
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
-								$user->challenge_time = date("U")*1000;
-								$user->trophy_jungle = 1;
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
-								$user->challenge_mode = 0;
-								$user->challenge_step = 0;
-								$user->save();
-								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
 							}
-							
 						}
 					}
 					
@@ -501,21 +504,24 @@ class ChallengesController extends \BaseController {
 								if($game->totalDamageDealt >= 120000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 1 && $game->turretsKilled >= 1) {
 									$challenge_done = 1;
 								}
+								
+								if($challenge_done == 1) {
+									$user->achievements()->attach(36);
+									$a = Achievement::where('id', '=', 36)->first();
+									$user->notify(1, trans("achievements.receive").$a->name);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->challenge_time = date("U")*1000;
+									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
+									$user->trophy_mid = 1;
+									$user->challenge_mode = 0;
+									$user->challenge_step = 0;
+									$user->save();
+									return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
+								}
+							
 							}
 							
-							if($challenge_done == 1) {
-								$user->achievements()->attach(36);
-								$a = Achievement::where('id', '=', 36)->first();
-								$user->notify(1, trans("achievements.receive").$a->name);
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
-								$user->challenge_time = date("U")*1000;
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
-								$user->trophy_mid = 1;
-								$user->challenge_mode = 0;
-								$user->challenge_step = 0;
-								$user->save();
-								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
-							}
+							
 							
 						}
 					}
@@ -665,22 +671,21 @@ class ChallengesController extends \BaseController {
 								if($game->totalDamageDealt >= 120000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 1 && $game->turretsKilled >= 1) {
 									$challenge_done = 1;
 								}
+								
+								if($challenge_done == 1) {
+									$user->achievements()->attach(38);
+									$a = Achievement::where('id', '=', 38)->first();
+									$user->notify(1, trans("achievements.receive").$a->name);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->challenge_time = date("U")*1000;
+									$user->trophy_marksman = 1;
+									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
+									$user->challenge_mode = 0;
+									$user->challenge_step = 0;
+									$user->save();
+									return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
+								}
 							}
-							
-							if($challenge_done == 1) {
-								$user->achievements()->attach(38);
-								$a = Achievement::where('id', '=', 38)->first();
-								$user->notify(1, trans("achievements.receive").$a->name);
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
-								$user->challenge_time = date("U")*1000;
-								$user->trophy_marksman = 1;
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
-								$user->challenge_mode = 0;
-								$user->challenge_step = 0;
-								$user->save();
-								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
-							}
-							
 						}
 					}
 					
@@ -835,22 +840,22 @@ class ChallengesController extends \BaseController {
 								if($game->totalHeal >= 20000 && $game->assists >= 15 && $game->goldEarned >= 14000 && $game->wardPlaced >= 15) {
 									$challenge_done = 1;
 								}
-							}
 							
-							if($challenge_done == 1) {
-								$user->achievements()->attach(37);
-								$a = Achievement::where('id', '=', 37)->first();
-								$user->notify(1, trans("achievements.receive").$a->name);
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
-								$user->challenge_time = date("U")*1000;
-								$user->trophy_support = 1;
-								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
-								$user->challenge_mode = 0;
-								$user->challenge_step = 0;
-								$user->save();
-								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
-							}
+								if($challenge_done == 1) {
+									$user->achievements()->attach(37);
+									$a = Achievement::where('id', '=', 37)->first();
+									$user->notify(1, trans("achievements.receive").$a->name);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->challenge_time = date("U")*1000;
+									$user->trophy_support = 1;
+									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
+									$user->challenge_mode = 0;
+									$user->challenge_step = 0;
+									$user->save();
+									return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
+								}
 							
+							}
 						}
 					}
 					
