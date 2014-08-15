@@ -205,6 +205,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
+	public function hasOpenQuestType($type_id) {
+		$quest_type_count = Quest::where("user_id","=",$this->id)->where("type_id", "=", $type_id)->where("finished", "=", 0)->count();
+		if($quest_type_count != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public function hasAchievement($id)
     {
         foreach($this->achievements as $achievement){

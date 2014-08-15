@@ -38,38 +38,6 @@ class QuestsController extends \BaseController {
 	}
 	
 	
-	/*
-	public function reroll_quest($quest_id) {
-		$input = Input::all();
-		$validation = Validator::make($input, Quest::$rules);
-		if (Auth::check()) { 
-			if ($validation->passes()) {
-				$user = User::find(Auth::user()->id);
-				$costs = Config::get('costs.reroll');
-				if($user->qp >= $costs) {
-					$quest = Quest::where('user_id', '=', $user->id)->where('id', '=', $quest_id)->first();
-					$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $quest->playerrole_id)->orWhere("playerrole_id", "=", 0)->first();
-					$quest->type_id = $questtype->id;
-					//$champion = Champion::orderBy(DB::raw('RAND()'))->first();
-					//$quest->champion_id = $champion->champion_id;
-					$user->qp = $user->qp - Config::get('costs.reroll');
-					$user->save();
-					$quest->save();
-					return Redirect::to('dashboard')->with('message', trans("dashboard.rerolled"));
-				}
-				
-			} else {
-				return Redirect::to('dashboard')
-				->withInput()
-				->withErrors($validation)
-				->with('error', trans("warnings.validation_errors"));
-			}
-		} else {
-			return Redirect::to('login');
-		}
-	}
-	*/
-	
 	public function create_challenge() {
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
@@ -132,11 +100,22 @@ class QuestsController extends \BaseController {
 					
 					$api_type = Config::get('api.use_riot_api');
 					
+					
+					// GENERATE QUESTTYPE
 					if($role == 0) {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
 					} else {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
 					}
+						
+					
+					while($user->hasOpenQuestType($questtype->id) == true) {
+						if($role == 0) {
+							$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+						} else {
+							$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
+						}
+					}	
 					
 					if($api_type == 0) { // USE CUSTOM API
 						while($questtype->id == 12){
