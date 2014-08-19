@@ -15,7 +15,11 @@ $( document ).ready(function() {
           return false;
       });
     });
-	
+
+	$('form').submit(function(){
+		// On submit disable its submit button
+		$('input[type=submit]', this).attr('disabled', 'disabled');
+	});
 	
 	$('#frm').bind('submit', function(e) {
 	   $('#send').attr('disabled', 'disabled');

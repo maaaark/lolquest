@@ -19,6 +19,12 @@ class ProductsController extends \BaseController {
 		return Redirect::to("/shop/beta_key");
 	}
 	
+	public function skin_purchased()
+	{
+		//$products = Product::all();
+		return View::make('shop.new_skin');
+	}
+	
 	public function buy($id)
 	{
 		if (Auth::check()) { 
@@ -85,7 +91,7 @@ class ProductsController extends \BaseController {
 				$transaction->description = $user->summoner->summoner_name." bought a Skin for (".$transaction->currency.")";
 				$transaction->save();	
 
-				return View::make('shop.new_skin')->with('message', trans("shop.new_skin"));				
+				return Redirect::to('/shop/skin_purchased')->with('success', trans("shop.new_skin"));				
 				
 			} else {
 				return Redirect::to('shop')->with('error', trans("shop.no_qp"));

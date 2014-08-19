@@ -2,15 +2,19 @@
 @section('title', "Teams")
 @section('content')	
 	<br/>
+	@if(Auth::check())
+	@if(Auth::user()->team_id == 0)
 	<a href="/teams/create" class="btn btn-primary">{{ trans("teams.create_new") }}</a><br/>
 	<br/>
+	@endif
+	@endif
 	<table class="table table-striped">
 		<tr>
 			<th>{{ trans("ladders.rang") }}</th>
 			<th colspan="3">{{ trans("ladders.summoner") }}</th>
 			<th>{{ trans("teams.member") }}</th>
+			<th>{{ trans("teams.average_exp") }}</th>
 			<th>{{ trans("ladders.quests") }}</th>
-			<th>{{ trans("ladders.total_exp") }}</th>
 		</tr>
 	@foreach($teams as $row)
 		<tr>
@@ -32,13 +36,18 @@
 			</td>
 			<td width="20"><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}"><img src="/img/teams/logo/{{ $row->logo }}" class="img-circle" width="20" /></a></td>
 			<td><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}">{{ $row->name }}</a></td>
-			<td>0</td>
-			<td>-</td>
-			<td>-</td>
+			<td>{{ $row->members->count() }}</td>
+			<td>{{ $row->average_exp }}</td>
+			<td>{{ $row->quests }}</td>
+			
 		</tr>
 	@endforeach
 	</table> 
 	<br/>
+	@if(Auth::check())
+	@if(Auth::user()->team_id == 0)
 	<a href="/teams/create" class="btn btn-primary">{{ trans("teams.create_new") }}</a><br/>
+	@endif
+	@endif
 	<br/>
 @stop

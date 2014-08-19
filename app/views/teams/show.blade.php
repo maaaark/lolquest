@@ -2,7 +2,11 @@
 @section('title', trans("users.profile")." ".$team->name)
 @section('content')	
 	<br/>
-
+	@if($team->members->count() < 3)
+	<div class="bs-callout bs-callout-danger">
+		{{ trans("teams.min_member") }}
+	</div>
+	@endif
 	<table width="100%" class="profile">
 		<tr>
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
@@ -18,6 +22,11 @@
 						<a href="/teams/delete_team" class="delete_team btn btn-danger">{{ trans("teams.delete") }}</a>
 					@endif
 				@endif
+				@if(Auth::check())
+					@if(Auth::user()->team_id == $team->id && Auth::user()->id != $team->user_id)
+						<a href="#" class="btn btn-danger">{{ trans("teams.leave") }}</a>
+					@endif
+				@endif
 			</td>
 			<td width="400" valign="top">
 				<table class="table table-striped" stlye="width: 100%;">
@@ -31,7 +40,7 @@
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("teams.website") }}</td>
-						<td>{{ $team->website }}</td>
+						<td><a href="{{ $team->website }}" target="blank">{{ $team->website }}</a></td>
 					</tr>
 					<tr>
 						<td class="attribute">{{ trans("teams.since") }}</td>
@@ -51,10 +60,10 @@
 						<td class="attribute">{{ trans("users.quests_completed") }}</td>
 						<td>0</td>
 					</tr>
-					<tr>
+					<!--<tr>
 						<td class="attribute">{{ trans("users.achievement_points") }}</td>
 						<td><img src="/img/ap.png" width="20" /> 0</td>
-					</tr>
+					</tr>-->
 				</table>
 			</td>
 			<td valign="top">
@@ -88,7 +97,9 @@
 					@endif
 				@endforeach
 				</table>
+				@if($team->user_id == Auth::user()->id)
 				<a href="/teams/{{ $team->region }}/{{ $team->clean_name }}/invite" class="btn btn-primary">{{ trans("teams.invite_new") }}</a>
+				@endif
 			</td>
 			<td valign="top">
 				<h3>{{ trans("teams.last_quests") }}</h3>

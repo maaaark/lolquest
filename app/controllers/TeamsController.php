@@ -10,7 +10,7 @@ class TeamsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$teams = Team::orderBy("rank", "ASC")->where("rank", ">", 0)->get();
+		$teams = Team::orderBy("rank", "ASC")->where("rank",">", 0)->get();
 		return View::make('teams.index', compact('teams'));
 	}
 
@@ -40,7 +40,15 @@ class TeamsController extends \BaseController {
 	
 	public function invite() {
 		if(Auth::check()) {
-			return View::make('teams.invite');
+			if(Auth::user()->team) {
+				if(Auth::user()->team->user_id == Auth::user()->id) {
+					return View::make('teams.invite');
+				} else {
+					return Redirect::to("/403");
+				}
+			} else {
+				return Redirect::to("/403");
+			}
 		} else {
 			return Redirect::to("/login");
 		}
@@ -65,8 +73,8 @@ class TeamsController extends \BaseController {
 						return Redirect::to("/teams/".$team->region."/".$team->clean_name."/invite")->with("error", "This summoner already has a team.");
 					} else {
 						// SEND INVITE TO USER
-						$message = "You has been invited to the team ".$team->name.".<br/><a href='/teams/join/".$team->id."/".$team->secret."'><strong>Join Team</strong></a>";
-						$invte_user->notify(4, $message);
+						$message2 = "You has been invited to the team ".$team->name.".<br/><a href='/join/".$team->id."/".$team->secret."'><strong>Join Team</strong></a>";
+						$invte_user->notify(4, $message2);
 						return Redirect::to("/teams/".$team->region."/".$team->clean_name."/invite")->with("success", "Your invite has been sent");
 					}
 				}

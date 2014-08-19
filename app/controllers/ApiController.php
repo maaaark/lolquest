@@ -11,17 +11,27 @@ class ApiController extends \BaseController {
 	{
 		return "test from API controller";
 	}
+	
+	public function users_test() {
+		$users = User::all()->take(2);
+	 
+		$api = Response::json($users)->setCallback(Input::get('callback'));
+		return $api;
+	}
 
 
 	public function user()
 	{
 		$user = Auth::user();
-	 
-		return Response::json(array(
-			'error' => false,
-			'user' => $user->toArray()),
-			200
-		);
+		
+		$api = Response::json($user)->setCallback(Input::get('callback'));
+		return $api;
+		
+		//return Response::json(array(
+		//	'error' => false,
+		//	'user' => $user->toArray()),
+		//	200
+		//);
 
 	}
 	

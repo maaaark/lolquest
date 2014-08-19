@@ -152,7 +152,7 @@ class ChallengesController extends \BaseController {
 						if($games_since_queststart->count() > 0) {
 							
 							foreach($games_since_queststart as $game) {
-								if($game->totalDamageDealt >= 80000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 5 && $game->turretsKilled >= 2) {
+								if($game->totalDamageDealt >= 80000 && $game->championsKilled >= 5 && $game->goldEarned >= 16000 && $game->wardPlaced >= 5 && $game->turretsKilled >= 1) {
 									$challenge_done = 1;
 								}
 								

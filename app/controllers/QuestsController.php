@@ -84,6 +84,7 @@ class QuestsController extends \BaseController {
 	 */
 	public function create_choose_quest()
 	{
+		Session::put('_token', sha1(microtime()));
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
 		if (Auth::check())

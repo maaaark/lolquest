@@ -286,6 +286,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			if($user->team_id != 0) {
 				$team = Team::find($user->team_id);
 				$team->exp = $team->exp + ($exp * 2);
+				$team->quests = $team->quests + 1;
+				$team->average_exp = $team->exp / $team->members->count();
 				$team->save();
 			}
 			
@@ -297,6 +299,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			if($user->team_id != 0) {
 				$team = Team::find($user->team_id);
 				$team->exp = $team->exp + $exp;
+				$team->quests = $team->quests + 1;
+				$team->average_exp = $team->exp / $team->members->count();
 				$team->save();
 			}
 			

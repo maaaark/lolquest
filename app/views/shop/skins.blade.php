@@ -61,7 +61,10 @@
 									@if(200 > Auth::user()->qp)
 										<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
 									@else
-										<a href="/shop/buy_skin/{{ $champion->champion_id }}" class="btn btn-success">{{ trans("shop.buy") }}</a>
+										<form id="frm" method="post" action="/shop/buy_skin/{{ $champion->champion_id }}">
+											<input type="submit" class="btn btn-success" value='{{ trans("shop.buy") }}'>
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										</form>
 									@endif
 								  </div>
 								</div>

@@ -35,8 +35,9 @@
 						@if(Config::get('api.use_riot_api')  == 0 && $quest->questtype->id == 12)
 							<p><a class="btn btn-warning" href="" role="button">{{ trans("dashboard.inactive") }}</a></p>
 						@else
-							<form id="frm" action="/quests/check_quest/{{ $quest->id }}">
+							<form id="frm" method="post" action="/quests/check_quest/{{ $quest->id }}">
 								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.complete') }}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							</form><br/>
 						@endif
 					@endif

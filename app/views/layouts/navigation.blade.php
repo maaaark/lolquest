@@ -5,7 +5,7 @@
 	<li class=""><a href="/shop"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="hidden-xs hidden-sm">Shop</span></a></li>			
 	<li><a href="/ladders"><i class="fa fa-trophy"></i> <span class="hidden-xs hidden-sm">Ladders</span></a></li>
 	<li><a href="/champions"><span class="glyphicon glyphicon-list"> </span> <span class="hidden-xs hidden-sm">Champions</span></a></li>
-	<li><a href="/blogs"><i class="fa fa-file"></i> <span class="hidden-xs hidden-sm">Blog</span></a></li>
+	<li><a href="/teams"><i class="fa fa-group"></i> <span class="hidden-xs hidden-sm">Teams</span></a></li>
 	<li><a href="/forum"><i class="fa fa-folder-open"></i> <span class="hidden-xs hidden-sm">Forum</span></a></li>
 </ul>
 <div class="search">
