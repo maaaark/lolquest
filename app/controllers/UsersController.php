@@ -706,11 +706,24 @@ class UsersController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 
 			$playerroles = Playerrole::all();
+                        
+                        // Top Champs
+                        $top_champions = Config::get('settings.top_champions');
+                        $jungle_champions = Config::get('settings.jungle_champions');
+                        $mid_champions = Config::get('settings.mid_champions');
+                        $marksman_champions = Config::get('settings.marksman_champions');
+                        $support_champions = Config::get('settings.support_champions');
 			
-			return View::make('users.challenges', compact('user','playerroles'));
-		} else {
-			return Redirect::to('login');
-		}
+                        $full_top_champions = Champion::whereIn('champion_id', $top_champions)->get();
+                        $full_jungle_champions = Champion::whereIn('champion_id', $jungle_champions)->get();
+                        $full_mid_champions = Champion::whereIn('champion_id', $mid_champions)->get();
+                        $full_marksman_champions = Champion::whereIn('champion_id', $marksman_champions)->get();
+                        $full_support_champions = Champion::whereIn('champion_id', $support_champions)->get();
+                        
+			return View::make('users.challenges', compact('user','playerroles','full_top_champions','full_jungle_champions','full_mid_champions','full_marksman_champions','full_support_champions'));
+                        } else {
+                                return Redirect::to('login');
+                        }
 		// show the form
 		
 	}
