@@ -102,7 +102,54 @@
 				<br/>
 				<i>
 				{{ trans("challenges.available_champions") }}<br/>
-				{{ trans("challenges.".$user->challenge_mode."_champions") }}
+                                @if($user->challenge_mode == 1)
+                                @foreach($full_top_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 2)
+                                @foreach($full_jungle_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 3)
+                                @foreach($full_mid_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 4)
+                                @foreach($full_marksman_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 5)
+                                @foreach($full_support_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                
+                                @endif
+				
 				</i>
 			@endif
 		</div>

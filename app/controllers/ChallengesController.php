@@ -14,7 +14,8 @@ class ChallengesController extends \BaseController {
 				if($user->challenge_mode == 1) { // TOP CHALLENGES
 					
 					
-					$top_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+//					$top_champions = array(58, 48, 24, 39, 126, 62, 80, 64, 92, 68, 98, 8, 83, 122, 10, 41);
+					$top_champions = Config::get('settings.top_champions');
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -183,7 +184,8 @@ class ChallengesController extends \BaseController {
 					
 					
 				} elseif($user->challenge_mode == 2) { // JUNGLE CHALLENGES
-					$jungle_champions = array(64, 77, 5, 80, 121, 32, 120, 11, 111, 56, 33, 107, 35, 19, 254, 60, 28);
+//					$jungle_champions = array(64, 77, 5, 80, 121, 32, 120, 11, 111, 56, 33, 107, 35, 19, 254, 60, 28);
+					$jungle_champions = Config::get('settings.jungle_champions');
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -364,7 +366,8 @@ class ChallengesController extends \BaseController {
 					
 				
 				} elseif($user->challenge_mode == 3) { // MID CHALLENGES
-					$mid_champions = array(103, 61, 79, 55, 63, 38, 157, 7, 127, 117, 4, 74, 90, 101, 115);
+//					$mid_champions = array(103, 61, 79, 55, 63, 38, 157, 7, 127, 117, 4, 74, 90, 101, 115);
+					$mid_champions = Config::get('settings.mid_champions');
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -531,7 +534,8 @@ class ChallengesController extends \BaseController {
 					
 				
 				} elseif($user->challenge_mode == 4) { // MARKSMAN CHALLENGES
-					$marksman_champions = array(222, 51, 236, 81, 15, 104, 67, 42, 29, 18, 21, 110, 96, 119, 22);
+//					$marksman_champions = array(222, 51, 236, 81, 15, 104, 67, 42, 29, 18, 21, 110, 96, 119, 22);
+					$marksman_champions = Config::get('settings.marksman_champions');
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
@@ -694,7 +698,8 @@ class ChallengesController extends \BaseController {
 					
 				
 				} elseif($user->challenge_mode == 5) { // SUPPORT CHALLENGES
-					$support_champions = array(1, 89, 412, 37, 25, 43, 20, 44, 201, 12, 16, 40, 267, 143, 53, 117);
+//					$support_champions = array(1, 89, 412, 37, 25, 43, 20, 44, 201, 12, 16, 40, 267, 143, 53, 117);
+					$support_champions = Config::get('settings.support_champions');
 					
 					// STEP 1
 					if($user->challenge_step == 1) {
