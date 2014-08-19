@@ -37,7 +37,7 @@
 			<td width="20"><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}"><img src="/img/teams/logo/{{ $row->logo }}" class="img-circle" width="20" /></a></td>
 			<td><a href="/teams/{{ $row->region }}/{{ $row->clean_name }}">{{ $row->name }}</a></td>
 			<td>{{ $row->members->count() }}</td>
-			<td>{{ $row->average_exp }}</td>
+			<td>{{ round($row->average_exp,2) }} EXP</td>
 			<td>{{ $row->quests }}</td>
 			
 		</tr>
