@@ -1,5 +1,0 @@
-AuthUserFile /www/htdocs/w010aeb0/lolquest-dev.ryanjermaine.de/usage/.htpasswd
-AuthGroupFile /dev/null
-AuthName 'ByPassword'
-AuthType Basic
-require valid-user
