@@ -17,7 +17,7 @@ return array(
 	'backgrounds' => 'Backgrounds',
 	'ep_boost' => 'EP Boosts',
 	'skins' => 'Skins',
-	'NA' => 'Not available yet',
+	'NA' => 'Not yet available',
 	'skin_info' => 'Dont have any Siteskins yet?<br/> <a href="/shop/skins">Go and buy you favorite Champion Siteskin!</a>',
 	'shop' => 'Shop',
 	'your_history' => 'This is your purchase history for this account.',
@@ -26,4 +26,8 @@ return array(
 	'new_beta_key' => 'You bought a new beta key!',
 	'new_beta_key_description' => 'Thank you for your purchase!<br/>Your beta key was sent to your e-mail adress from lolquest.net',
 	'back_to_shop' => 'Back to the shop',
+	'beta_key' => 'Beta Key',
+	'login_to_buy' => 'Login to buy',
+	'betakey' => 'Beta Key',
+	'quest_slot' => 'Quest Slots',
 );

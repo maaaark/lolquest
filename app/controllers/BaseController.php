@@ -8,6 +8,7 @@ class BaseController extends Controller {
 	
 	public function __construct()
     {	
+		$this->beforeFilter('load_settings');
 		$this->beforeFilter('has_summoner', array('except' => array('register_summoner', 'save_summoner')));
         $this->beforeFilter('notifications');
 		$this->beforeFilter('my_open_quests');
@@ -72,7 +73,7 @@ class BaseController extends Controller {
 	public function search_summoner() {
 		$summoner_name = Input::get('summoner_name');
                 if("" !== $summoner_name && NULL !== $summoner_name) {
-                    $users = User::where('summoner_name', 'LIKE', '%'.$summoner_name.'%')->get();
+                    $users = User::where('summoner_name', 'LIKE', "%$summoner_name%")->get();
                 } else {
                     $users = [];
                 }

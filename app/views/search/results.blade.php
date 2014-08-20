@@ -15,8 +15,14 @@
         @if (count($users) >= 1)
             @foreach($users as $user)
                 <tr>
+					@if($user->summoner)
                     <td style="width: 30px;"><img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" width="30" class="img-circle" /></td>
-                    <td><a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $user->summoner->name }}</a></td>
+					<td><a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $user->summoner->name }}</a></td>
+					@else
+					<td style="width: 30px;">-</td>
+					<td><a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ $user->summoner_name }}</a></td>
+					@endif
+                    
 			<td>{{ $user->region }}</td>
 			<td>{{ $user->level_id }}</td>
                         @if($user->ladder_rang($user->id))

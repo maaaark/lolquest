@@ -38,38 +38,6 @@ class QuestsController extends \BaseController {
 	}
 	
 	
-	/*
-	public function reroll_quest($quest_id) {
-		$input = Input::all();
-		$validation = Validator::make($input, Quest::$rules);
-		if (Auth::check()) { 
-			if ($validation->passes()) {
-				$user = User::find(Auth::user()->id);
-				$costs = Config::get('costs.reroll');
-				if($user->qp >= $costs) {
-					$quest = Quest::where('user_id', '=', $user->id)->where('id', '=', $quest_id)->first();
-					$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $quest->playerrole_id)->orWhere("playerrole_id", "=", 0)->first();
-					$quest->type_id = $questtype->id;
-					//$champion = Champion::orderBy(DB::raw('RAND()'))->first();
-					//$quest->champion_id = $champion->champion_id;
-					$user->qp = $user->qp - Config::get('costs.reroll');
-					$user->save();
-					$quest->save();
-					return Redirect::to('dashboard')->with('message', trans("dashboard.rerolled"));
-				}
-				
-			} else {
-				return Redirect::to('dashboard')
-				->withInput()
-				->withErrors($validation)
-				->with('error', trans("warnings.validation_errors"));
-			}
-		} else {
-			return Redirect::to('login');
-		}
-	}
-	*/
-	
 	public function create_challenge() {
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
@@ -94,6 +62,10 @@ class QuestsController extends \BaseController {
 		if (Auth::check())
 		{
 			$user = User::find(Auth::user()->id);
+			if($user->qp < 20) {
+				return Redirect::to('/challenges')->with('error', trans("dashboard.low_qp"));
+			}
+			$user->qp = $user->qp - 20;
 			$user->challenge_mode = 0;
 			$user->challenge_step = 0;
 			$user->save();
@@ -112,6 +84,7 @@ class QuestsController extends \BaseController {
 	 */
 	public function create_choose_quest()
 	{
+		Session::put('_token', sha1(microtime()));
 		$input = Input::all();
 		$validation = Validator::make($input, Quest::$rules);
 		if (Auth::check())
@@ -128,13 +101,24 @@ class QuestsController extends \BaseController {
 					
 					$api_type = Config::get('api.use_riot_api');
 					
+					
+					// GENERATE QUESTTYPE
 					if($role == 0) {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
 					} else {
 						$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
 					}
+						
 					
-					if($api_type == 0) { // USE CUSTOM API
+					while($user->hasOpenQuestType($questtype->id) == true) {
+						if($role == 0) {
+							$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
+						} else {
+							$questtype = Questtype::orderBy(DB::raw('RAND()'))->where("playerrole_id", "=", $role)->orWhere("playerrole_id", "=", 0)->first();
+						}
+					}	
+					
+					if($api_type == 0) { // IF USING CUSTOM API
 						while($questtype->id == 12){
 							if($role == 0) {
 								$questtype = Questtype::orderBy(DB::raw('RAND()'))->first();
@@ -239,7 +223,7 @@ class QuestsController extends \BaseController {
 				$user = User::find(Auth::user()->id);
 				
 				//$quest = Quest::find($quest_id);
-				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->first();
+				$quest = Quest::where('id', '=', $quest_id)->where('user_id', '=', Auth::user()->id)->where("finished", "=", 0)->first();
 				if(isset($quest) && $quest->count() > 0) {
 					
 					$user->refresh_games();
@@ -399,7 +383,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 8 - Dont die!
 					if($quest->questtype->id == 8) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('win', '=', 1)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->numDeaths == 0) {
@@ -587,12 +571,131 @@ class QuestsController extends \BaseController {
 					}
 					
 					
-					// Quest Type 17 - Tank 30.000 Dmg
+					// Quest Type 17 - Tank 20.000 Dmg
 					if($quest->questtype->id == 17 || $quest->questtype->id == 33 || $quest->questtype->id == 34) {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->totalDamageTaken >= 30000) {
+							if($game->totalDamageTaken >= 20000) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 35 - Late game
+					if($quest->questtype->id == 35) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->level == 18) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 36 - Early bird
+					if($quest->questtype->id == 36) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->level <= 15) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 37 - Death timer
+					if($quest->questtype->id == 37) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->time_dead <= 180) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 38 - Kill at least 15 enemy jungle minions
+					if($quest->questtype->id == 38) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->neutralMinionsKilledEnemyJungle >= 15) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->daily_done = 1;
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								$user->checkAchievement(6, $user->lifetime_qp);
+								$user->checkAchievement(2, $user->finishedQuestsCount());
+								$user->save();
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 39 - Get at least 3 Kills and 5 assists
+					if($quest->questtype->id == 39) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->assists >= 5 && $game->championsKilled >= 3) {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {

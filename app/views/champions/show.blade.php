@@ -105,7 +105,7 @@
 				@foreach($last_quests as $last)
 					<tr>
 						<td style="width: 30px !important;">
-						<a href="/users/{{ $last->user->region }}/{{ $last->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $last->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" /></a>
+						<a href="/summoner/{{ $last->user->region }}/{{ $last->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $last->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" /></a>
 						</td>
 						<td class="timeline_quest">
 							<a href="/summoner/{{ $last->user->region }}/{{ $last->user->summoner_name }}">{{ $last->user->summoner->name }}</a> - <a href="#" class="timeline_info" title="{{ trans('quests.'.$last->type_id) }}">{{ $last->questtype->name }}</a>

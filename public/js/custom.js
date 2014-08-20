@@ -15,11 +15,20 @@ $( document ).ready(function() {
           return false;
       });
     });
-	
+
+	$('form').submit(function(){
+		// On submit disable its submit button
+		$('input[type=submit]', this).attr('disabled', 'disabled');
+	});
 	
 	$('#frm').bind('submit', function(e) {
 	   $('#send').attr('disabled', 'disabled');
 	});
+	
+	$('#frm').bind('submit', function(e) {
+	   $('.inactive_at_click').attr('disabled', 'disabled');
+	});
+	
 	
 	$('#myTab a[href="#profile"]').tab('show')
 	$('#myTab a').click(function (e) {
@@ -48,7 +57,20 @@ $( document ).ready(function() {
 	})
 	
 	$('.cancel_challenge a').click(function(){
-		return confirm("Cancel this Challenge? You will loose your progress!");
+		return confirm("Cancel this Challenge? You will loose 20 QP and your progress for this challenge!");
 	})	
+	
+	$('.create_team').click(function(){
+		return confirm("Creating a team will cost 500 QP. Are you sure?");
+	})
+	
+	$('.delete_team').click(function(){
+		return confirm("Are you sure you want to delete this team?");
+	})
+	
+	$('.remove_member').click(function(){
+		return confirm("Are you sure you want to remove this member?");
+	})
+	
 
 });

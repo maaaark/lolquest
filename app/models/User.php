@@ -47,6 +47,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasOne('Ladder');
     }
 	
+	public function team()
+    {
+        return $this->belongsTo('Team');
+    }
+	
 	public function arena()
     {
         return $this->hasOne('Arena');
@@ -200,6 +205,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 	
+	public function hasOpenQuestType($type_id) {
+		$quest_type_count = Quest::where("user_id","=",$this->id)->where("type_id", "=", $type_id)->where("finished", "=", 0)->count();
+		if($quest_type_count != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public function hasAchievement($id)
     {
         foreach($this->achievements as $achievement){
@@ -268,10 +282,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$user->qp = $user->qp + ($qp * 2);
 			$user->exp = $user->exp + ($exp * 2);
 			$user->lifetime_qp = $user->lifetime_qp + ($qp * 2);
+			
+			if($user->team_id != 0) {
+				$team = Team::find($user->team_id);
+				$team->exp = $team->exp + ($exp * 2);
+				$team->quests = $team->quests + 1;
+				$team->average_exp = $team->exp / $team->members->count();
+				$team->save();
+			}
+			
 		} else {
 			$user->qp = $user->qp + $qp;
 			$user->exp = $user->exp + $exp;
 			$user->lifetime_qp = $user->lifetime_qp + $qp;
+			
+			if($user->team_id != 0) {
+				$team = Team::find($user->team_id);
+				$team->exp = $team->exp + $exp;
+				$team->quests = $team->quests + 1;
+				$team->average_exp = $team->exp / $team->members->count();
+				$team->save();
+			}
+			
+			
 		}
 		if($user->exp > ($user->level->exp_level-1)) {
 			$user->level_id +=1;
@@ -505,9 +538,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				// NOT RIOT API
 				$summoner_name = urlencode($user->summoner_name);
 				$region = $user->region;
-				$url = "http://api.captainteemo.com/player/$region/$summoner_name/recent_games";
+				$url = "https://teemojson.p.mashape.com/player/$region/$user->summoner_name/recent_games";
+				
+				$opts = array(
+				  'http'=>array(
+					'method'=>"GET",
+					'header'=>"Content-Type: application/x-www-form-urlencoded\r\n" .
+							  "X-Mashape-Key: JvZWTvLe1GmshDzfXiEgz0dpLhjGp1O9gZRjsnDBF6Fltybb8f\r\n"
+				  )
+				);
+
+				$context = stream_context_create($opts);
+
+				// Öffnen der Datei mit den oben definierten HTTP-Headern
+				$test = @file_get_contents($url, false, $context);
+
+				
 				$summoner_name = urlencode($summoner_name);
-				$test = @file_get_contents($url);
+				//$test = @file_get_contents($url);
 				$data = json_decode($test, true);
 				
 				if($data["success"] == false ) {
@@ -518,6 +566,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					foreach($data["data"]["gameStatistics"] as $games) {
 						foreach($games as $game) {
 							$kills = 0;
+							$item_0 = 0;
 							$item_1 = 0;
 							$item_2 = 0;
 							$item_3 = 0;
@@ -538,7 +587,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$neutralMinionsKilled = 0;
 							$teamId = 0;
 							$level = 1;
+							$assists = 0;
 							$wards_placed = 0;
+							$enemy_minions = 0;
+							$cc_dealt = 0;
 							
 							foreach($game['statistics'] as $stats) {
 								foreach($stats as $stat) {
@@ -639,7 +691,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
 										$totalDamageDealt=$stat['value'];
 									  }
-									  
+									  if ($stat['statType'] == "TOTAL_TIME_CROWD_CONTROL_DEALT") {
+										$cc_dealt=$stat['value'];
+									  }
+									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED_ENEMY_JUNGLE") {
+										$enemy_minions=$stat['value'];
+									  }
 									  
 									  
 									  
@@ -694,6 +751,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								$newGame->minionsKilled = $cs;
 								$newGame->mapId = $gameMapId;
 								$newGame->teamId = $teamId;
+								$newGame->time_dead = $dead;
+								$newGame->neutralMinionsKilledEnemyJungle = $enemy_minions;
 								$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 								$newGame->totalDamageTaken = $totalDamageTaken;
 								$newGame->totalDamageDealt = $totalDamageDealt;

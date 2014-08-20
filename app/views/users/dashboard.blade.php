@@ -35,7 +35,10 @@
 						@if(Config::get('api.use_riot_api')  == 0 && $quest->questtype->id == 12)
 							<p><a class="btn btn-warning" href="" role="button">{{ trans("dashboard.inactive") }}</a></p>
 						@else
-							<p><a class="btn btn-success" href="/quests/check_quest/{{ $quest->id }}" role="button">{{ trans("dashboard.complete") }}</a></p>
+							<form id="frm" method="post" action="/quests/check_quest/{{ $quest->id }}">
+								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.complete') }}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							</form><br/>
 						@endif
 					@endif
 					@if($quest->daily == 1)
@@ -105,9 +108,9 @@
 							@else
 								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
 							@endif
-							@else
-								<!-- FREE TO DELETE -->
-								<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
+						@else
+							<!-- FREE TO DELETE -->
+							<a href="/quests/cancel_quest/{{ $quest->id }}" class="btn btn-danger">{{ trans("dashboard.cancel") }}</a>
 						@endif
 						
 						

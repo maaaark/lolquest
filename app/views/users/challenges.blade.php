@@ -36,8 +36,11 @@
 					<h4>{{ trans("dashboard.challenge_mode") }}:</h4>
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
 					<br/>
-					<a href="/finish_challenge" class="btn btn-success" style="width: 155px;">{{ trans("dashboard.finish_challenge") }}</a>
-					<div class="cancel_challenge"><a href="/cancel_challenge" class="btn btn-danger"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a></div>
+					<form id="frm" action="/finish_challenge">
+						<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.finish_challenge') }}">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					</form><br/>
+					<div class="cancel_challenge"><a href="/cancel_challenge" class="btn btn-danger" id="cancel_challenge"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a></div>
 				@endif
 			</div>
 		</div>
@@ -100,7 +103,54 @@
 				<br/>
 				<i>
 				{{ trans("challenges.available_champions") }}<br/>
-				{{ trans("challenges.".$user->challenge_mode."_champions") }}
+                                @if($user->challenge_mode == 1)
+                                @foreach($full_top_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 2)
+                                @foreach($full_jungle_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 3)
+                                @foreach($full_mid_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 4)
+                                @foreach($full_marksman_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                @elseif($user->challenge_mode == 5)
+                                @foreach($full_support_champions as $index => $row)
+                                    @if ($index == 0)
+                                        {{$row->name}}
+                                    @else
+                                        , {{$row->name}}
+                                    @endif
+                                 
+                                @endforeach
+                                
+                                @endif
+				
 				</i>
 			@endif
 		</div>

@@ -10,16 +10,20 @@
 			<td valign="top" width="80%">
 				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
-						<div class="product_skin" style="background: url('http://images.lolquest.net/products/razer_keyboard_big.jpg');">
+						<div class="product_skin" style="background: url('http://images.lolquest.net/products/beta_key.jpg');">
 							<div class="skin_description_big">
 								<h3>Beta Key</h3>
 								Buy another lolquest Beta Key and gift it to your friends!<br/>
 								<br/>
-								<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} 1000 QP</a><br/>
+								@if(Auth::check())
+									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $product->id }}">{{ trans("shop.buy_for") }} 2000 QP</a><br/>
+								@else
+									<a href="/login" class="btn btn-primary">{{ trans("shop.login_to_buy") }}</a><br/>
+								@endif
 							</div>
 						</div>
 					</div>
-					
+					@if(Auth::check())
 					<!-- Modal for QP Warning / Buy -->
 					<div class="modal fade" id="myModal-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -58,6 +62,7 @@
 							</div>
 						</div>
 					</div>
+					@endif
 			</td>
 		</tr>
 	</table>

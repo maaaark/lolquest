@@ -69,6 +69,16 @@ Route::get('testcase', array('uses' => 'BaseController@test'));
 // Champions Controller
 Route::get('/champions/{name}', array('uses' => 'ChampionsController@show'));
 
+// Teams Controller
+Route::get('/teams/{region}/{name}', array('uses' => 'TeamsController@show'));
+Route::get('/teams', array('uses' => 'TeamsController@index'));
+Route::get('/teams/create', array('uses' => 'TeamsController@create'));
+Route::get('/teams/{region}/{name}/{invite}', array('uses' => 'TeamsController@invite'));
+Route::get('/join/{id}/{secret}', array('uses' => 'TeamsController@join'));
+Route::post('/teams/store', array('uses' => 'TeamsController@store'));
+Route::post('/teams/send_invite', array('uses' => 'TeamsController@send_invite'));
+Route::get('/teams/{region}/{name}/remove/{id}', array('uses' => 'TeamsController@remove_member'));
+Route::get('/teams/delete_team', array('uses' => 'TeamsController@delete'));
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));
@@ -108,6 +118,7 @@ Route::get('/challenges', 'UsersController@challenges');
 Route::get('/delete_notifications', 'UsersController@delete_notifications');
 Route::get('/refresh_summoner', 'UsersController@refresh_summoner');
 Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
+Route::get('/verify_double/{region}/{summoner_name}', 'UsersController@verify_double');
 
 
 
@@ -115,7 +126,14 @@ Route::get('/quest_finished/{id}', 'UsersController@quest_finished');
 Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
 Route::post('/quests/create_challenge', 'QuestsController@create_challenge');
-Route::get('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
+
+Route::post('register', array('before' => 'csrf', function()
+{
+    return 'You gave a valid CSRF token!';
+}));
+
+//Route::post('/quests/check_quest/{quest_id?}', 'QuestsController@check_quest');
+Route::post('/quests/check_quest/{quest_id?}', ['before' => 'csrf', 'uses' => 'QuestsController@check_quest']);
 Route::get('/quests/reroll_quest/{quest_id?}', 'QuestsController@reroll_quest');
 Route::get('/quests/cancel_quest/{quest_id?}', 'QuestsController@cancel_quest');
 Route::get('/accept_daily', 'QuestsController@accept_daily');
@@ -123,8 +141,8 @@ Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
 // Challenges Controller
-Route::get('/finish_challenge', 'ChallengesController@finish_challenge');
-
+//Route::get('/finish_challenge', 'ChallengesController@finish_challenge');
+Route::post('/finish_challenge', ['before' => 'csrf', 'uses' => 'ChallengesController@finish_challenge']);
 
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
@@ -135,8 +153,9 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 // Arena Controller
 Route::get('/arena', 'ArenasController@index');
 Route::get('/arena/start_arena', 'ArenasController@start_arena');
-Route::get('/arena/start_quest', 'ArenasController@start_quest');
+Route::post('/arena/start_quest', 'ArenasController@start_quest');
 Route::get('/arena/finish_quest', 'ArenasController@finish_quest');
+Route::get('/arena/stop_arena', 'ArenasController@stop_arena');
 
 
 // Notification Controller
@@ -146,7 +165,10 @@ Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_n
 // Shop Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');
-Route::get('shop/buy_skin/{id}', 'ProductsController@buy_skin');
+
+//Route::get('', 'ProductsController@buy_skin');
+Route::post('/shop/buy_skin/{id}', ['before' => 'csrf', 'uses' => 'ProductsController@buy_skin']);
+
 Route::get('shop/buy_betakey', 'ProductsController@buy_betakey');
 Route::get('shop/buy_betakey/success/{id}', 'ProductsController@show_betakey');
 Route::get('shop/offers', 'ProductsController@offers');
@@ -158,7 +180,8 @@ Route::get('shop/skins', 'ProductsController@skins');
 Route::get('shop/hardware', 'ProductsController@hardware');
 Route::get('shop/beta_key', 'ProductsController@betakey');
 Route::get('shop/history', 'ProductsController@history');
-
+Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
+Route::get('shop/quest_slot', 'ProductsController@quest_slot');
 
 
 
@@ -206,7 +229,10 @@ Route::get('/app_login', array('before' => 'api_login', function()
 Route::group(array('prefix' => 'api/v1', 'before' => 'api_login'), function()
 {
     Route::get('user', 'ApiController@user');
+	Route::get('show/{id}', 'ApiController@show');
 	Route::get('champions', 'ApiController@champions');
 	Route::get('playerroles', 'ApiController@playerroles');
 	Route::get('dashboard', 'ApiController@dashboard');
 });
+
+Route::get('/api/users', 'ApiController@users_test');

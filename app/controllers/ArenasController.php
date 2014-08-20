@@ -4,7 +4,7 @@ class ArenasController extends \BaseController {
 
 	public function index($year = NULL, $month = NULL)
 	{
-		
+		$champions = Champion::orderBy("name", "ASC")->get();
 			if($year == NULL)
 				$year = date("Y");
 		
@@ -15,9 +15,17 @@ class ArenasController extends \BaseController {
 			
 		if(Auth::check()) {
 			$my_arena = Arena::where("user_id", "=", Auth::user()->id)->where('year', '=', $year)->where('month', '=', $month)->where("arena_finished", "=", 0)->first();
-			return View::make('arena.index', compact('my_arena', 'arena_ladder', 'month', 'year'));
+			
+			$my_arena_quest = ArenaQuest::where("user_id", "=", Auth::user()->id)->where("finished", "=", 0)->first();
+			if($my_arena_quest) {
+				return View::make('arena.index', compact('my_arena', 'arena_ladder', 'month', 'year', 'champions', 'my_arena_quest'));
+			} else {
+				return View::make('arena.index', compact('my_arena', 'arena_ladder', 'month', 'year', 'champions'));
+			}
+			
+			
 		} else {
-			return View::make('arena.index', compact('arena_ladder', 'month', 'year'));
+			return View::make('arena.index', compact('arena_ladder', 'month', 'year', 'champions'));
 		}
 	}
 
@@ -46,6 +54,29 @@ class ArenasController extends \BaseController {
 		}
 	}
 	
+	public function stop_arena() {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$user->active_arena = 0;
+			$user->save();
+			
+			$my_arena_quest = ArenaQuest::where("user_id", "=", Auth::user()->id)->where("finished", "=", 0)->first();
+			if($my_arena_quest) {
+				$my_arena_quest->delete();
+			}
+			
+			$my_arena = Arena::where("user_id", "=", Auth::user()->id)->where("arena_finished", "=", 0)->first();
+			if($my_arena) {
+				$my_arena->arena_quest_started  = 0;
+				$my_arena->save();
+			}
+			
+			return Redirect::to("/arena");
+		} else {
+			return Redirect::to("/login");
+		}
+	}
+	
 	public function start_quest()
 	{
 		if(Auth::check()) {
@@ -55,6 +86,20 @@ class ArenasController extends \BaseController {
 			$my_arena->arena_quest_start_time = date("U");
 			$my_arena->arena_quest_end_time = date("U") + 16200; // 3 Hours for a Quest
 			$my_arena->save();
+			
+			$arena_quest = new ArenaQuest;
+			$arena_quest->user_id =  Auth::user()->id;
+			if(Input::get('champion_arena_id') == 0) {			
+				$champion = Champion::orderBy(DB::raw('RAND()'))->first();
+				$arena_quest->champion_id = $champion->champion_id;
+			} else {
+				$arena_quest->champion_id = Input::get('champion_arena_id');
+			}
+			$arena_quest->arena_id =  1;
+			
+			$arena_quest_type = ArenaQuestType::orderBy(DB::raw('RAND()'))->first();	
+			$arena_quest->arena_quest_type_id = $arena_quest_type->id;
+			$arena_quest->save();
 			
 			return Redirect::to("/arena")->with('success', trans("arena.quest_started"));
 		} else {
@@ -72,6 +117,10 @@ class ArenasController extends \BaseController {
 			$my_arena->arena_quests = $my_arena->arena_quests + 1;
 			$my_arena->arena_quest_started = 0;
 			$my_arena->save();
+			
+			$my_arena_quest = ArenaQuest::where("user_id", "=", Auth::user()->id)->where("finished", "=", 0)->first();
+			$my_arena_quest->finished = 1;
+			$my_arena_quest->save();
 			
 			return Redirect::to("/arena")->with('success', trans("arena.quest_finished"));
 		} else {

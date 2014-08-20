@@ -19,10 +19,16 @@
 								<h3>{{ $champion->name }}</h3>
 								Site Background for {{ $champion->name }}<br/>
 								<br/>
-								<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-skin-{{ $champion->champion_id }}">{{ trans("shop.buy_for") }} 200 QP</a><br/>
+								@if(Auth::check())
+									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal-skin-{{ $champion->champion_id }}">{{ trans("shop.buy_for") }} 200 QP</a><br/>
+								@else
+									<a href="/login" class="btn btn-primary" data-toggle="modal" data-target="#myModal-skin-{{ $champion->champion_id }}">{{ trans("shop.login_to_buy") }}</a><br/>
+								@endif
+								
 							</div>
 						</div>
 						
+						@if(Auth::check())
 						<!-- Modal for QP Warning / Buy -->
 						<div class="modal fade" id="myModal-skin-{{ $champion->champion_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
@@ -55,13 +61,16 @@
 									@if(200 > Auth::user()->qp)
 										<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
 									@else
-										<a href="/shop/buy_skin/{{ $champion->champion_id }}" class="btn btn-success">{{ trans("shop.buy") }}</a>
+										<form id="frm" method="post" action="/shop/buy_skin/{{ $champion->champion_id }}">
+											<input type="submit" class="btn btn-success" value='{{ trans("shop.buy") }}'>
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										</form>
 									@endif
 								  </div>
 								</div>
 							</div>
 						</div>	
-						
+						@endif
 					<?php
 						}
 					?>

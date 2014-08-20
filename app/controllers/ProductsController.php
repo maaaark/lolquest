@@ -4,7 +4,7 @@ class ProductsController extends \BaseController {
 
 	public function __construct()
     {
-		$this->beforeFilter('auth');
+		//$this->beforeFilter('auth');
     }
 
 	/**
@@ -14,8 +14,15 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::all();
-		return View::make('shop.index', compact('products'));
+		//$products = Product::all();
+		//return View::make('shop.index', compact('products'));
+		return Redirect::to("/shop/beta_key");
+	}
+	
+	public function skin_purchased()
+	{
+		//$products = Product::all();
+		return View::make('shop.new_skin');
 	}
 	
 	public function buy($id)
@@ -44,7 +51,7 @@ class ProductsController extends \BaseController {
 						
 						return View::make('shop.success')->with('message', trans("shop.new_slot"));
 					} else {
-						return Redirect::to('shop')->with('error', trans("shop.slots_full"));
+						return Redirect::to('/shop/quest_slot')->with('error', trans("shop.slots_full"));
 					}
 				}
 				
@@ -84,7 +91,7 @@ class ProductsController extends \BaseController {
 				$transaction->description = $user->summoner->summoner_name." bought a Skin for (".$transaction->currency.")";
 				$transaction->save();	
 
-				return View::make('shop.new_skin')->with('message', trans("shop.new_skin"));				
+				return Redirect::to('/shop/skin_purchased')->with('success', trans("shop.new_skin"));				
 				
 			} else {
 				return Redirect::to('shop')->with('error', trans("shop.no_qp"));
@@ -101,13 +108,13 @@ class ProductsController extends \BaseController {
 		if (Auth::check()) { 
 			$user = User::find(Auth::user()->id);
 			
-			if($user->qp >= 1000) {
+			if($user->qp >= 2000) {
 				
-				$user->qp = $user->qp - 1000;
+				$user->qp = $user->qp - 2000;
 				$user->save();
 				
 				$key = new Betakey;
-				$key->key = str_random(15);
+				$key->key = "shop_".str_random(15);
 				$key->used = 0;
 				$key->user_id = $user->id;
 				$key->save();
@@ -116,7 +123,7 @@ class ProductsController extends \BaseController {
 				$transaction->user_id = Auth::user()->id;
 				$transaction->product_id = 8;
 				$transaction->currency = "QP";
-				$transaction->price = 1000;
+				$transaction->price = 2000;
 				$transaction->description = $user->summoner->summoner_name." bought a Beta Key: ".$key->key;
 				$transaction->save();	
 
@@ -169,6 +176,14 @@ class ProductsController extends \BaseController {
 		return View::make('shop.rp');
 	}
 	
+	
+	public function quest_slot()
+	{
+		$products = Product::where("cat_id", "=", 1)->get();
+		return View::make('shop.slot', compact('products'));
+	}
+	
+	
 	public function hardware()
 	{
 		return View::make('shop.hardware');
@@ -182,7 +197,11 @@ class ProductsController extends \BaseController {
 	public function skins()
 	{
 		$bought_skins = array();
-		$myskins = Skin::where("user_id","=",Auth::user()->id)->get();
+		if(Auth::check()) {
+			$myskins = Skin::where("user_id","=",Auth::user()->id)->get();
+		} else {
+			$myskins = Skin::where("user_id","=",0)->get();
+		}
 		foreach($myskins as $skin) {
 			$bought_skins[] = $skin->champion_id;
 		}
@@ -192,9 +211,13 @@ class ProductsController extends \BaseController {
 	
 	public function history()
 	{
-		$user = User::find(Auth::user()->id);
-		$transactions = $user->transactions;
-		return View::make('shop.history', compact('transactions'));
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$transactions = $user->transactions;
+			return View::make('shop.history', compact('transactions'));
+		} else {
+			return Redirect::to("/login");
+		}
 	}
 	
 	public function offers()
