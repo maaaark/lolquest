@@ -561,6 +561,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$neutralMinionsKilled = 0;
 							$teamId = 0;
 							$level = 1;
+							$assists = 0;
 							$wards_placed = 0;
 							$enemy_minions = 0;
 							$cc_dealt = 0;

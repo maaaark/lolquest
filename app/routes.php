@@ -229,6 +229,7 @@ Route::get('/app_login', array('before' => 'api_login', function()
 Route::group(array('prefix' => 'api/v1', 'before' => 'api_login'), function()
 {
     Route::get('user', 'ApiController@user');
+	Route::get('show/{id}', 'ApiController@show');
 	Route::get('champions', 'ApiController@champions');
 	Route::get('playerroles', 'ApiController@playerroles');
 	Route::get('dashboard', 'ApiController@dashboard');

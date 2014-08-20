@@ -48,7 +48,7 @@
 					@if($user->team_id != 0)
 					<tr>
 						<td class="attribute">{{ trans("users.team") }}</td>
-						<td><a href="/teams/{{ $user->team->region }}/{{ $user->team->clean_name }}"><img src="/img/teams/logo/{{ $user->team->logo }}" width="20" /> {{ $user->team->name }}</a></td>
+						<td><a href="/teams/{{ $user->team->region }}/{{ $user->team->clean_name }}"><img src="/img/teams/logo/{{ $user->team->logo }}" class="img-circle" width="20" /> {{ $user->team->name }}</a></td>
 					</tr>
 					@endif
 					<tr>
