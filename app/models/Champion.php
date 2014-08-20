@@ -1,10 +1,16 @@
 <?php
 
+/**
+ * Champion
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Quest[] $quests
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Daily[] $daylies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Skin[] $skins
+ */
 class Champion extends \Eloquent {
 	
 	public function quests()
     {
-        //return $this->hasMany('Quest');
 		return $this->hasMany('Quest', 'champion_id', 'champion_id');
     }
 	

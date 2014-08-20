@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Game
+ *
+ * @property-read \Summoner $summoner
+ * @property-read \Champion $champion
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Item[] $items
+ */
 class Game extends \Eloquent {
 	
 	public function summoner()

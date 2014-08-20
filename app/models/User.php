@@ -4,6 +4,30 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+/**
+ * User
+ *
+ * @property-read \Level $level
+ * @property-read \Summoner $summoner
+ * @property-read \Ladder $ladder
+ * @property-read \Team $team
+ * @property-read \Arena $arena
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Notification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Skin[] $skins
+ * @property-read \Illuminate\Database\Eloquent\Collection|\UserTitle[] $titles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Timeline[] $timelines
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumTopic[] $topics
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumLastRead[] $last_reads
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumReply[] $replies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Blog[] $blogs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Comment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Quest[] $quests
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Transaction[] $transactions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Achievement[] $achievements
+ * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $friends
+ */
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	//use RemindableTrait;

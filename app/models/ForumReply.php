@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ForumReply
+ *
+ * @property-read \ForumTopic $topic
+ * @property-read \User $user
+ */
 class ForumReply extends \Eloquent {
 
 	// Add your validation rules here

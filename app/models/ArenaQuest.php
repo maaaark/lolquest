@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * ArenaQuest
+ *
+ * @property-read \ArenaQuestType $questtype
+ */
 class ArenaQuest extends \Eloquent {
 	protected $fillable = [];
 	

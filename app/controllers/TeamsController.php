@@ -24,9 +24,11 @@ class TeamsController extends \BaseController {
 	{
 		if(Auth::check()) {
 			$user = User::find(Auth::user()->id);
+            $team = Team::where("user_id", "=", $user->id)->count();
+            if($team > 0) {
+                return Redirect::to("/teams/".$user->team->region."/".$user->team->clean_name)->with('error', 'Your already have a team');
+            }
 			if($user->team_id != 0) {
-				// Already have a team
-				//echo "DU HAST EIN TEAM";
 				return Redirect::to("/teams/".$user->team->region."/".$user->team->clean_name)->with('error', 'Your already have a team');
 			} else {
 				return View::make('teams.create');
@@ -96,61 +98,67 @@ class TeamsController extends \BaseController {
 	{
 		if(Auth::check()) {
 			$user = User::find(Auth::user()->id);
-			
-			if($user->qp < 500) {
-				return Redirect::to('/teams/create')
-				->withInput()
-				->with('error', 'You do not have enough QP!');
-			}
-			
-			$input = Input::all();
-			$validation = Validator::make($input, Team::$rules);
-			if ($validation->passes())
-			{
-				$clean_team_name = str_replace(" ", "", Input::get('teamname'));
-				$clean_team_name = strtolower($clean_team_name);
-				$clean_team_name = mb_strtolower($clean_team_name, 'UTF-8');
-				
-				// Is Team name taken?
-				$check_teams = Team::where("region", "=", Input::get('region'))->where("clean_name", "=", $clean_team_name)->count();
-				if($check_teams > 0) {
-					return Redirect::to("/teams/create")->with("error", "This Team name is already taken");
-				}
-				
-				$team = new Team;
-				$team->user_id = Auth::user()->id;
-				$team->team_level_id = 1;
-				$team->exp = 0;
-				$team->name = Input::get('teamname');
-				$team->clean_name = $clean_team_name;
-				$team->region = Input::get('region');
-				$team->website = Input::get('website');
-				if (Input::hasFile('logo'))
-				{
-					$extension = Input::file('logo')->getClientOriginalExtension();
-					Input::file('logo')->move(public_path()."/img/teams/logo/", Input::get('region')."_".$clean_team_name.".".$extension);
-					$team->logo = Input::get('region')."_".$clean_team_name.".".$extension;
-				}
+            if($user->team_id == 0) {
 
-				
-				if(Input::get('description') == "") {
-					$team->description = "";
-				} else {
-					$team->description = Input::get('description');	
-				}
-				$team->save();
-				$user->team_id = $team->id;
-				$user->qp = $user->qp - 500;
-				$user->save();
-				
-				return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with('success', 'Your Team has been created');
-				
-			} else {
-				return Redirect::to('/teams/create')
-				->withInput()
-				->withErrors($validation)
-				->with('error', 'There were validation errors.');
-			}
+                if($user->qp < 500) {
+                    return Redirect::to('/teams/create')
+                        ->withInput()
+                        ->with('error', 'You do not have enough QP!');
+                }
+
+                $input = Input::all();
+                $validation = Validator::make($input, Team::$rules);
+                if ($validation->passes())
+                {
+                    $clean_team_name = str_replace(" ", "", Input::get('teamname'));
+                    $clean_team_name = strtolower($clean_team_name);
+                    $clean_team_name = mb_strtolower($clean_team_name, 'UTF-8');
+
+                    // Is Team name taken?
+                    $check_teams = Team::where("region", "=", Input::get('region'))->where("clean_name", "=", $clean_team_name)->count();
+                    if($check_teams > 0) {
+                        return Redirect::to("/teams/create")->with("error", "This Team name is already taken");
+                    }
+
+                    $team = new Team;
+                    $team->user_id = Auth::user()->id;
+                    $team->team_level_id = 1;
+                    $team->exp = 0;
+                    $team->name = Input::get('teamname');
+                    $team->clean_name = $clean_team_name;
+                    $team->region = Input::get('region');
+                    $team->website = Input::get('website');
+                    if (Input::hasFile('logo'))
+                    {
+                        $extension = Input::file('logo')->getClientOriginalExtension();
+                        Input::file('logo')->move(public_path()."/img/teams/logo/", Input::get('region')."_".$clean_team_name.".".$extension);
+                        $team->logo = Input::get('region')."_".$clean_team_name.".".$extension;
+                    }
+
+
+                    if(Input::get('description') == "") {
+                        $team->description = "";
+                    } else {
+                        $team->description = Input::get('description');
+                    }
+                    $team->save();
+                    $user->team_id = $team->id;
+                    $user->qp = $user->qp - 500;
+                    $user->save();
+
+                    return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with('success', 'Your Team has been created');
+
+                } else {
+                    return Redirect::to('/teams/create')
+                        ->withInput()
+                        ->withErrors($validation)
+                        ->with('error', 'There were validation errors.');
+                }
+
+            } else {
+                return Redirect::to("/teams/".$user->team->region."/".$user->team->clean_name)->with('error', 'Your already have a team');
+            }
+
 		} else {
 			return Redirect::to("/login");
 		}

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Notification
+ *
+ * @property-read \User $user
+ */
 class Notification extends \Eloquent {
 
 	public function user()

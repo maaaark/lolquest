@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ForumCategory
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumTopic[] $topics
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumReply[] $replies
+ */
 class ForumCategory extends \Eloquent {
 
 	// Add your validation rules here

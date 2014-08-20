@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Arena
+ *
+ * @property-read \User $user
+ */
 class Arena extends \Eloquent {
 	protected $fillable = [];
 	

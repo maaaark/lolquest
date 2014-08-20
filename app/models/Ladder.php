@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Ladder
+ *
+ * @property-read \User $user
+ */
 class Ladder extends \Eloquent {
 	protected $fillable = [];
 	

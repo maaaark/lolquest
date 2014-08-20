@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ForumGroup
+ *
+ * @property-read \ForumGroup $group
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumCategory[] $categories
+ */
 class ForumGroup extends \Eloquent {
 
 	// Add your validation rules here

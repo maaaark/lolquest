@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ForumLastRead
+ *
+ * @property-read \User $user
+ * @property-read \ForumTopic $topic
+ */
 class ForumLastRead extends \Eloquent {
 	protected $fillable = [];
 	

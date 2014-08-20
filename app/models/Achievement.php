@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Achievement
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Timeline[] $timelines
+ */
 class Achievement extends \Eloquent {
 
 	public function users()

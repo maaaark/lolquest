@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Quest
+ *
+ * @property-read \User $user
+ * @property-read \Champion $champion
+ * @property-read \Questtype $questtype
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Timeline[] $timelines
+ */
 class Quest extends \Eloquent {
 	protected $fillable = [];	
 	

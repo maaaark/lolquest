@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Blog
+ *
+ * @property-read \User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Comment[] $comments
+ */
 class Blog extends \Eloquent {
 
 	// Add your validation rules here

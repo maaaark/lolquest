@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * UserTitle
+ *
+ * @property-read \User $user
+ * @property-read \Title $title
+ */
 class UserTitle extends \Eloquent {
 	protected $fillable = [];
 	

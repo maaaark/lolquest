@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * ForumTopic
+ *
+ * @property-read \ForumCategory $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumReply[] $replies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ForumLastRead[] $last_reads
+ * @property-read \User $user
+ */
 class ForumTopic extends \Eloquent {
 
 	// Add your validation rules here

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Item
+ *
+ */
 class Item extends \Eloquent {
 
 

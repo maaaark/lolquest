@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Transaction
+ *
+ * @property-read \User $user
+ * @property-read \Product $product
+ */
 class Transaction extends \Eloquent {
 	protected $fillable = [];
 	

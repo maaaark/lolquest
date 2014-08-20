@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Skin
+ *
+ * @property-read \User $user
+ * @property-read \Champion $champion
+ */
 class Skin extends \Eloquent {
 	protected $fillable = [];
 	

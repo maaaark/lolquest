@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Comment
+ *
+ * @property-read \Blog $blog
+ * @property-read \User $user
+ */
 class Comment extends \Eloquent {
 	protected $fillable = [];
 	

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * FriendUser
+ *
+ */
 class FriendUser extends \Eloquent {
 
 	// Add your validation rules here

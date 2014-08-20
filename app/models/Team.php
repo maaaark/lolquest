@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Team
+ *
+ * @property-read \User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $members
+ */
 class Team extends \Eloquent {
 	protected $fillable = [];
 	

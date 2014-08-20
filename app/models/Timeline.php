@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Timeline
+ *
+ * @property-read \User $user
+ * @property-read \User $friend
+ * @property-read \Comment $comment
+ * @property-read \Quest $quest
+ * @property-read \Challenge $challenge
+ * @property-read \Achievement $achievement
+ * @property-read \Title $title
+ */
 class Timeline extends \Eloquent {
 	protected $fillable = [];
 	

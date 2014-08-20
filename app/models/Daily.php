@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Daily
+ *
+ * @property-read \Champion $champion
+ * @property-read \Questtype $questtype
+ */
 class Daily extends \Eloquent {
 	protected $fillable = [];
 	

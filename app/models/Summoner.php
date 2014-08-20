@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Summoner
+ *
+ * @property-read \User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Game[] $games
+ */
 class Summoner extends \Eloquent {
 
 	public function user()
