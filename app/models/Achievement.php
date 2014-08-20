@@ -6,10 +6,12 @@ class Achievement extends \Eloquent {
     {
 		return $this->belongsToMany('User')
 			->order_by('id', 'asc');
-
-						
     }
 	
+	public function title()
+    {
+        return $this->belongsTo('Title');
+    }
 	
 	public function timelines()
     {
