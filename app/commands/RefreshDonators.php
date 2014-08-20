@@ -54,6 +54,8 @@ class RefreshDonators extends Command {
 					$achiv = Achievement::find(55);
 					$user->notify(1, trans("achievements.receive").'<a href="/summoner/'.$user->region.'/'.$user->summoner_name.'/achievements"> '.$achiv->name.'</a>');
 					$user->timeline("new_achievement",0, 55, 0, 0, 0, 0);
+					$user->achievement_points += $achiv->points;
+					$user->save();
 				}
 				
 				// check title

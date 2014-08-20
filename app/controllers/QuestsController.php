@@ -238,16 +238,12 @@ class QuestsController extends \BaseController {
 							$quest->finished = 1;
 							$quest->save();
 							if($quest->daily == 1) {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 								$user->daily_done = 1;
 							} else {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
-							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->checkAchievement(6, $user->lifetime_qp);
-							$user->checkAchievement(2, $user->finishedQuestsCount());
-							$user->save();
-							
+							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);							
 							return Redirect::to('/quest_finished/'.$quest->id);
 						}
 					}
@@ -259,15 +255,12 @@ class QuestsController extends \BaseController {
 							$quest->finished = 1;
 							$quest->save();
 							if($quest->daily == 1) {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 								$user->daily_done = 1;
 							} else {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->checkAchievement(6, $user->lifetime_qp);
-							$user->checkAchievement(2, $user->finishedQuestsCount());
-							$user->save();
 							return Redirect::to('/quest_finished/'.$quest->id);
 						}
 					}
@@ -288,15 +281,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->checkAchievement(6, $user->lifetime_qp);
-								$user->checkAchievement(2, $user->finishedQuestsCount());
-								$user->save();
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -313,16 +303,13 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 							if($quest->daily == 1) {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 								$user->daily_done = 1;
 							} else {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->checkAchievement(6, $user->lifetime_qp);
-							$user->checkAchievement(2, $user->finishedQuestsCount());
-								$user->save();
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -338,15 +325,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 							if($quest->daily == 1) {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 								$user->daily_done = 1;
 							} else {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->checkAchievement(6, $user->lifetime_qp);
-							$user->checkAchievement(2, $user->finishedQuestsCount());
-								$user->save();
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -362,15 +346,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();	
 							if($quest->daily == 1) {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 								$user->daily_done = 1;
 							} else {
-								$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->checkAchievement(6, $user->lifetime_qp);
-								$user->checkAchievement(2, $user->finishedQuestsCount());
-								$user->save();
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -387,15 +368,12 @@ class QuestsController extends \BaseController {
 									$quest->finished = 1;
 									$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->checkAchievement(6, $user->lifetime_qp);
-								$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 								}
 							}
@@ -412,15 +390,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -437,15 +412,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -461,15 +433,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -484,15 +453,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -507,15 +473,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -531,15 +494,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -555,15 +515,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -580,15 +537,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -605,15 +559,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->checkAchievement(6, $user->lifetime_qp);
-									$user->checkAchievement(2, $user->finishedQuestsCount());
-									$user->save();
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -748,15 +699,12 @@ class QuestsController extends \BaseController {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
 									$user->daily_done = 1;
 								} else {
-									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->checkAchievement(6, $user->lifetime_qp);
-								$user->checkAchievement(2, $user->finishedQuestsCount());
-								$user->save();
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}

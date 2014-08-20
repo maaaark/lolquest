@@ -299,7 +299,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
     }
 	
-	public function reward($qp, $exp, $daily) {
+	public function reward($qp, $exp, $daily, $chid) {
 		$user = User::find(Auth::user()->id);
 		
 		if($daily == true) {
@@ -333,8 +333,34 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if($user->exp > ($user->level->exp_level-1)) {
 			$user->level_id +=1;
 			$user->checkAchievement(1, $user->level_id);
-		}
+		}						
+		$user->checkAchievement(6, $user->lifetime_qp);		
+		$user->checkAchievement(2, $user->finishedQuestsCount());
+		$champions = 0;
 		
+		$champion_quest = Quest::where('user_id', '=', $user->id)->where('champion_id', '=', $chid)->count();
+		$user->checkAchievement(7, $champion_quest);	
+		
+		
+		$champion_quests = DB::select(DB::raw('
+			SELECT * , (
+				SELECT COUNT( * ) 
+				FROM quests
+				WHERE user_id = '.$user->id.'
+				AND finished = 1
+				AND champion_id = champions.champion_id
+				) AS quests
+			FROM champions
+			ORDER BY name ASC
+		'));
+		foreach($champion_quests as $champion_quest) {
+			if($champion_quest->quests == 1) {
+				$champions += 1;
+			}
+		}
+		if($champions == Champion::count() && $user->hasachievement(69) == false){
+			$user->checkAchievement(8, 0);
+		}
 		$user->save();
 	}
 	
@@ -585,6 +611,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$neutralMinionsKilled = 0;
 							$teamId = 0;
 							$level = 1;
+							$assists = 0;
 							$wards_placed = 0;
 							$enemy_minions = 0;
 							$cc_dealt = 0;
@@ -840,6 +867,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						}												
 						Auth::user()->notify(1, trans("achievements.receive").'</br><a href="/summoner/'.Auth::user()->region.'/'.Auth::user()->summoner_name.'/achievements"> '.$achiv.'</a>');
 						Auth::user()->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
+						if($user_achievement->title){
+							$new_title = new UserTitle;
+							$new_title->user_id = Auth::user()->id;
+							$new_title->title_id = $user_achievement->title->id;
+							$new_title->save();
+						}
 					}
 				} 
 		} else {

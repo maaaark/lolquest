@@ -12,7 +12,6 @@
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
 				<img src="/img/teams/logo/{{ $team->logo }}" width="100" class="img-circle" /><br/>
 				<br/>
-				{{ trans("users.level_profile") }}: {{ $team->level_id }}<br/><br/>
 				@if($team->public == 1)
 					<a href="#" class="btn btn-primary">{{ trans("teams.join") }}</a>
 				@endif
@@ -89,7 +88,7 @@
 						<td><a href="/summoner/{{ $member->region }}/{{ $member->summoner_name }}">{{ $member->summoner->name }}</a>
 						@if(Auth::check())
 							@if(Auth::user()->id == $team->user_id)
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="red" href="/teams/{{ $team->region }}/{{ $team->clean_name }}/remove/{{ $member->id }}"><i class="fa fa-ban"></i> Remove member</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="red remove_member" href="/teams/{{ $team->region }}/{{ $team->clean_name }}/remove/{{ $member->id }}"><i class="fa fa-ban"></i> Remove member</a>
 							@endif
 						@endif
 						</td>

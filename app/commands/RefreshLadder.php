@@ -79,26 +79,38 @@ class RefreshLadder extends Command {
 						$user->achievements()->attach(49);
 						$achievement = Achievement::where('id', '=', 49)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					} elseif ($i == 2) {
 						$user->achievements()->attach(50);
 						$achievement = Achievement::where('id', '=', 50)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					} elseif ($i ==3) {
 						$user->achievements()->attach(51);
 						$achievement = Achievement::where('id', '=', 51)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					} elseif ($i <= 10) {
 						$user->achievements()->attach(52);
 						$achievement = Achievement::where('id', '=', 52)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					} elseif ($i <= 50) {
 						$user->achievements()->attach(53);
 						$achievement = Achievement::where('id', '=', 53)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					} elseif ($i <= 100) {
 						$user->achievements()->attach(54);
 						$achievement = Achievement::where('id', '=', 54)->first();
 						$user->notify(1, trans("achievements.receive").$achievement->name);
+						$user->achievement_points += $achievement->points;
+						$user->save();
 					}
 				}			
 				$ladder = new Ladder;

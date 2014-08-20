@@ -65,7 +65,11 @@ $( document ).ready(function() {
 	})
 	
 	$('.delete_team').click(function(){
-		return confirm("Are you sure you want to delete this Team?");
+		return confirm("Are you sure you want to delete this team?");
+	})
+	
+	$('.remove_member').click(function(){
+		return confirm("Are you sure you want to remove this member?");
 	})
 	
 

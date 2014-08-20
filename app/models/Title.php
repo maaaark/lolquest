@@ -12,4 +12,9 @@ class Title extends \Eloquent {
     {
         return $this->belongsToMany('User');
     }
+	
+	public function achievements()
+    {
+		return $this->hasMany('Achievement');
+    }
 }
