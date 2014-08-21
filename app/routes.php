@@ -144,7 +144,6 @@ Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
 // Challenges Controller
-//Route::get('/finish_challenge', 'ChallengesController@finish_challenge');
 Route::post('/finish_challenge', ['before' => 'csrf', 'uses' => 'ChallengesController@finish_challenge']);
 
 // Ladders Controller
