@@ -417,10 +417,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$user->checkAchievement(6, $user->lifetime_qp);		
 		$user->checkAchievement(2, $user->finishedQuestsCount());
 		$champions = 0;
-		
-		$champion_quest = Quest::where('user_id', '=', $user->id)->where('champion_id', '=', $chid)->count();
-		$user->checkAchievement(7, $champion_quest);	
-		
+		if($chid && $chid != 0){
+			$champion_quest = Quest::where('user_id', '=', $user->id)->where('champion_id', '=', $chid)->count();
+			$user->checkAchievement(7, $champion_quest);	
+		}
 		
 		$champion_quests = DB::select(DB::raw('
 			SELECT * , (

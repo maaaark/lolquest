@@ -27,7 +27,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false,0);
 							$user->challenge_time = date("U")*1000;
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -63,7 +63,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false,0);
 								$user->challenge_time = date("U")*1000;
 								if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -93,7 +93,7 @@ class ChallengesController extends \BaseController {
 								if($game->item0 == 3068 || $game->item1 == 3068 || $game->item2 == 3068 || $game->item3 == 3068 || $game->item4 == 3068 || $game->item5 == 3068) {
 									$item_count = $item_count +1;
 								}
-								if($game->item0 == 3143 || $game->item1 == 3143 || $game->item2 == 3143 || 	$game->item3 == 3143 || $game->item4 == 3143 || $game->item5 == 3143) {
+								if($game->item0 == 3143 || $game->item1 == 3143 || $game->item2 == 3143 || $game->item3 == 3143 || $game->item4 == 3143 || $game->item5 == 3143) {
 									$item_count = $item_count +1;
 								}
 								if($game->item0 == 3065 || $game->item1 == 3065 || $game->item2 == 3065 || $game->item3 == 3065 || $game->item4 == 3065 || $game->item5 == 3065) {
@@ -102,7 +102,7 @@ class ChallengesController extends \BaseController {
 								
 								if($item_count >= 3) {
 									$user->challenge_step = 4;
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->save();
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -131,7 +131,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 5;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -161,7 +161,7 @@ class ChallengesController extends \BaseController {
 									$user->achievements()->attach(35);
 									$a = Achievement::where('id', '=', 35)->first();
 									$user->notify(1, trans("achievements.receive").$a->name);
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->trophy_top = 1;
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
@@ -197,7 +197,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -233,7 +233,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -264,10 +264,10 @@ class ChallengesController extends \BaseController {
 								if($game->item0 == 2045 || $game->item1 == 2045 || $game->item2 == 2045 || $game->item3 == 2045 || $game->item4 == 2045 || $game->item5 == 2045) {
 									$item_count = $item_count +1;
 								}
-								if($game->item0 == 3341 || $game->item1 == 3341 || $game->item2 == 3341 || 	$game->item3 == 3341 || $game->item4 == 3341 || $game->item5 == 3341 || $game->item6 == 3341) {
+								if($game->item0 == 3341 || $game->item1 == 3341 || $game->item2 == 3341 || $game->item3 == 3341 || $game->item4 == 3341 || $game->item5 == 3341 || $game->item6 == 3341) {
 									$item_count = $item_count +1;
 								}
-								if($game->item0 == 3364 || $game->item1 == 3364 || $game->item2 == 3364 || 	$game->item3 == 3364 || $game->item4 == 3364 || $game->item5 == 3364 || $game->item6 == 3364) {
+								if($game->item0 == 3364 || $game->item1 == 3364 || $game->item2 == 3364 || $game->item3 == 3364 || $game->item4 == 3364 || $game->item5 == 3364 || $game->item6 == 3364) {
 									$item_count = $item_count +1;
 								}
 								if($game->item0 == 3160 || $game->item1 == 3160 || $game->item2 == 3160 || $game->item3 == 3160 || $game->item4 == 3160 || $game->item5 == 3160) {
@@ -286,7 +286,7 @@ class ChallengesController extends \BaseController {
 								
 								if($item_count >= 3) {
 									$user->challenge_step = 4;
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->save();
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -317,7 +317,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 5;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -347,7 +347,7 @@ class ChallengesController extends \BaseController {
 									$user->achievements()->attach(39);
 									$a = Achievement::where('id', '=', 39)->first();
 									$user->notify(1, trans("achievements.receive").$a->name);
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->trophy_jungle = 1;
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
@@ -379,7 +379,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -415,7 +415,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -444,7 +444,7 @@ class ChallengesController extends \BaseController {
 								if($game->item0 == 3089 || $game->item1 == 3089 || $game->item2 == 3089 || $game->item3 == 3089 || $game->item4 == 3089 || $game->item5 == 3089) {
 									$item_count = $item_count +1;
 								}
-								if($game->item0 == 3157 || $game->item1 == 3157 || $game->item2 == 3157 || 	$game->item3 == 3157 || $game->item4 == 3157 || $game->item5 == 3157) {
+								if($game->item0 == 3157 || $game->item1 == 3157 || $game->item2 == 3157 || $game->item3 == 3157 || $game->item4 == 3157 || $game->item5 == 3157) {
 									$item_count = $item_count +1;
 								}
 								if($game->item0 == 3135 || $game->item1 == 3135 || $game->item2 == 3135 || $game->item3 == 3135 || $game->item4 == 3135 || $game->item5 == 3135) {
@@ -453,7 +453,7 @@ class ChallengesController extends \BaseController {
 								
 								if($item_count >= 3) {
 									$user->challenge_step = 4;
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->save();
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -483,7 +483,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 5;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -512,7 +512,7 @@ class ChallengesController extends \BaseController {
 									$user->achievements()->attach(36);
 									$a = Achievement::where('id', '=', 36)->first();
 									$user->notify(1, trans("achievements.receive").$a->name);
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
 									$user->trophy_mid = 1;
@@ -547,7 +547,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -582,7 +582,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -611,7 +611,7 @@ class ChallengesController extends \BaseController {
 								if($game->item0 == 3072 || $game->item1 == 3072 || $game->item2 == 3072 || $game->item3 == 3072 || $game->item4 == 3072 || $game->item5 == 3072) {
 									$item_count = $item_count +1;
 								}
-								if($game->item0 == 3031 || $game->item1 == 3031 || $game->item2 == 3031 || 	$game->item3 == 3031 || $game->item4 == 3031 || $game->item5 == 3031) {
+								if($game->item0 == 3031 || $game->item1 == 3031 || $game->item2 == 3031 || $game->item3 == 3031 || $game->item4 == 3031 || $game->item5 == 3031) {
 									$item_count = $item_count +1;
 								}
 								if($game->item0 == 3035 || $game->item1 == 3035 || $game->item2 == 3035 || $game->item3 == 3035 || $game->item4 == 3035 || $game->item5 == 3035) {
@@ -620,7 +620,7 @@ class ChallengesController extends \BaseController {
 								
 								if($item_count >= 3) {
 									$user->challenge_step = 4;
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->save();
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -650,7 +650,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 5;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -680,7 +680,7 @@ class ChallengesController extends \BaseController {
 									$user->achievements()->attach(38);
 									$a = Achievement::where('id', '=', 38)->first();
 									$user->notify(1, trans("achievements.receive").$a->name);
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->trophy_marksman = 1;
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
@@ -711,7 +711,7 @@ class ChallengesController extends \BaseController {
 						->get();
 						if($games_since_queststart->count() > 0) {
 							$user->challenge_step = 2;
-							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
 							if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -748,7 +748,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 3;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								if($user->exp > ($user->level->exp_level)-1) {
 								$user->level_id +=1;
@@ -789,7 +789,7 @@ class ChallengesController extends \BaseController {
 								
 								if($item_count >= 3) {
 									$user->challenge_step = 4;
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->save();
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -820,7 +820,7 @@ class ChallengesController extends \BaseController {
 							
 							if($challenge_done == 1) {
 								$user->challenge_step = 5;
-								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -850,7 +850,7 @@ class ChallengesController extends \BaseController {
 									$user->achievements()->attach(37);
 									$a = Achievement::where('id', '=', 37)->first();
 									$user->notify(1, trans("achievements.receive").$a->name);
-									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false);
+									$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 									$user->challenge_time = date("U")*1000;
 									$user->trophy_support = 1;
 									$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step,0,0);
