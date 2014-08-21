@@ -130,9 +130,17 @@ class TeamsController extends \BaseController {
                     $team->website = Input::get('website');
                     if (Input::hasFile('logo'))
                     {
+                        if(Input::file('logo')->getClientSize() > 1048576) {
+                            return Redirect::to('/teams/create')
+                                ->withInput()
+                                ->withErrors($validation)
+                                ->with('error', 'The maximum size for images is 1 MB!');
+                        }
                         $extension = Input::file('logo')->getClientOriginalExtension();
                         Input::file('logo')->move(public_path()."/img/teams/logo/", Input::get('region')."_".$clean_team_name.".".$extension);
                         $team->logo = Input::get('region')."_".$clean_team_name.".".$extension;
+                    } else {
+                        $team->logo = "default.jpg";
                     }
 
 

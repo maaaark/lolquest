@@ -71,7 +71,11 @@
 		</tr>
 	</table>
 	<br/><br/>
-	
+	<h3>{{ trans("teams.description") }}</h3>
+    <div class="team_description">
+        {{ $team->description }}
+    </div>
+    <br/><br/>
 	<table width="100%">
 		<tr>
 			<td width="50%" valign="top">
@@ -101,7 +105,8 @@
 				@endif
 			</td>
 			<td valign="top">
-				<h3>{{ trans("teams.last_quests") }}</h3>
+				<h3>{{ trans("teams.challenges") }}</h3>
+                <i>- comming soon -</i>
 			</td>
 		</tr>
 	</table>
