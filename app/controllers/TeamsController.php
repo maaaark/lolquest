@@ -324,16 +324,19 @@ class TeamsController extends \BaseController {
         }
     }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /teams/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+	public function leave()
 	{
-		//
+		if(Auth::check()) {
+            $user = User::find(Auth::user()->id);
+            $team = Team::find($user->team_id);
+            $team->average_exp = $team->exp / $team->members->count()-1;
+            $team->save();
+            $user->team_id = 0;
+            $user->save();
+            return Redirect::to("/teams")->with("success", "You have left the team");
+        } else {
+            return Redirect::to("/login");
+        }
 	}
 
 }
