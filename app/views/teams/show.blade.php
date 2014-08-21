@@ -18,6 +18,7 @@
 				
 				@if(Auth::check())
 					@if($team->user_id == Auth::user()->id)
+                        <a href="/teams/edit" class="btn btn-primary">{{ trans("teams.edit") }}</a><br/><br/>
 						<a href="/teams/delete_team" class="delete_team btn btn-danger">{{ trans("teams.delete") }}</a>
 					@endif
 				@endif
@@ -30,7 +31,7 @@
 			<td width="400" valign="top">
 				<table class="table table-striped" stlye="width: 100%;">
 					<tr>
-						<td width="130" class="attribute">{{ trans("users.summoner_name") }} </td>
+						<td width="130" class="attribute">{{ trans("teams.team_name") }} </td>
 						<td>{{ $team->name }}</td>
 					</tr>
 					<tr>
@@ -65,12 +66,68 @@
 					</tr>-->
 				</table>
 			</td>
-			<td valign="top">
-				
-			</td>
+            <td valign="top">
+                <div class="profile_season_stats">
+                    <table class="table table-striped" style="margin-bottom: 0;">
+                        @if($team->rank > 0)
+                        <tr>
+                            <td colspan="2"><strong>{{ trans("teams.ranked_stats") }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                @if($team->rang <= 3)
+                                <img src="/img/leagues/challenger_5.png" height="55" />
+                                @elseif($team->rank <= 10)
+                                <img src="/img/leagues/diamond_5.png" height="55" />
+                                @elseif($team->rank <= 25)
+                                <img src="/img/leagues/platinum_5.png" height="55" />
+                                @elseif($team->rank <= 50)
+                                <img src="/img/leagues/gold_5.png" height="55" />
+                                @elseif($team->rank <= 100)
+                                <img src="/img/leagues/silver_5.png" height="55" />
+                                @elseif($team->rank >= 101)
+                                <img src="/img/leagues/bronze_5.png" height="55" />
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Current Rang</td>
+                            <td>{{ $team->rank }}</td>
+                        </tr>
+                        <tr>
+                            <td>Quests</td>
+                            <td>{{ $team->quests }}</td>
+                        </tr>
+                        <tr>
+                            <td>Average EXP / Summoner</td>
+                            <td>{{ $team->average_exp }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total EXP</td>
+                            <td>{{ $team->exp }}</td>
+                        </tr>
+                    </table>
+                    @else
+                    <tr>
+                        <td colspan="2"><strong>{{ trans("teams.ranked_stats") }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <img src="/img/leagues/0_5.png" height="55" />
+                        </td>
+                    </tr>
+                    </table>
+                <div style="text-align: center; font-style: italic;">
+                    <br/>
+                    {{ trans("teams.not_ranked") }}
+                </div>
+                @endif
+
+
+                </div>
+                </td>
 		</tr>
 	</table>
-	<br/><br/>
 	<h3>{{ trans("teams.description") }}</h3>
     <div class="team_description">
         {{ $team->description }}

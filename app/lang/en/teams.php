@@ -19,4 +19,7 @@ return array(
 	'average_exp' => 'Average EXP',
     'description' => 'Team Description',
     'challenges' => 'Team Challenges',
+    'ranked_stats' => 'Team ranked ladder',
+    'edit' => 'Edit my team',
+    'not_ranked' => 'Not ranked yet',
 );

@@ -68,7 +68,7 @@ class TeamsController extends \BaseController {
 				
 				$invte_user = User::where("region", "=", Input::get('region'))->where("summoner_name", "=", $clean_summoner_name)->first();
 				if(!$invte_user) {
-					return Redirect::to("/teams/".$team->region."/".$team->clean_name."/invite")->with("error", "No summoner found!");
+					return Redirect::to("/teams/".$team->region."/".$team->clean_name."/invite")->with("error", "No summoner found with this name on lolquest!");
 				} else {
 					//var_dump($invte_user);
 					if($invte_user->team_id != 0) {
@@ -184,18 +184,6 @@ class TeamsController extends \BaseController {
 		$team = Team::where("region", "=", $region)->where("clean_name", "=", $clean_name)->first();
 		return View::make('teams.show', compact('team'));
 	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /teams/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 	
 	
 	public function join($id, $secret)
@@ -267,10 +255,72 @@ class TeamsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function edit()
 	{
-		//
+		if(Auth::check()) {
+            $team = Team::where("user_id", "=", Auth::user()->id)->first();
+            if($team) {
+                return View::make('teams.edit', compact('team'));
+            } else {
+                return Redirect::to("/teams")->with("error", "You don't have to permission to do that");
+            }
+        } else {
+            return Redirect::to("/login");
+        }
 	}
+
+    public function update() {
+        if(Auth::check()) {
+            $input = Input::all();
+            $validation = Validator::make($input, Team::$rules);
+            if ($validation->passes())
+            {
+                $clean_team_name = str_replace(" ", "", Input::get('teamname'));
+                $clean_team_name = strtolower($clean_team_name);
+                $clean_team_name = mb_strtolower($clean_team_name, 'UTF-8');
+
+                $old_team = Team::where("clean_name", "=", $clean_team_name)->count();
+                if($old_team > 0) {
+                    return Redirect::to("/teams/edit")->with("error","There is already a team with this name");
+                }
+
+                $team = Team::where("user_id", "=", Auth::user()->id)->first();
+                $team->name = Input::get('teamname');
+                $team->clean_name = $clean_team_name;
+                $team->region = Input::get('region');
+                $team->website = Input::get('website');
+                if (Input::hasFile('logo'))
+                {
+                    if(Input::file('logo')->getClientSize() > 1048576) {
+                        return Redirect::to('/teams/create')
+                            ->withInput()
+                            ->withErrors($validation)
+                            ->with('error', 'The maximum size for images is 1 MB!');
+                    }
+                    $extension = Input::file('logo')->getClientOriginalExtension();
+                    Input::file('logo')->move(public_path()."/img/teams/logo/", Input::get('region')."_".$clean_team_name.".".$extension);
+                    $team->logo = Input::get('region')."_".$clean_team_name.".".$extension;
+                }
+
+
+                if(Input::get('description') == "") {
+                    $team->description = "";
+                } else {
+                    $team->description = Input::get('description');
+                }
+                $team->save();
+                return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with("success", "Your changes have been saved");
+
+            } else {
+                return Redirect::to('/teams/edit')
+                    ->withInput()
+                    ->withErrors($validation)
+                    ->with('error', 'There were validation errors.');
+            }
+        } else {
+            return Redirect::to("/login");
+        }
+    }
 
 	/**
 	 * Remove the specified resource from storage.
