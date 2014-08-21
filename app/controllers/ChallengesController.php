@@ -29,10 +29,6 @@ class ChallengesController extends \BaseController {
 							$user->challenge_step = 2;
 							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false,0);
 							$user->challenge_time = date("U")*1000;
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->save();
 							
 							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -65,10 +61,6 @@ class ChallengesController extends \BaseController {
 								$user->challenge_step = 3;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false,0);
 								$user->challenge_time = date("U")*1000;
-								if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-								}
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
@@ -199,10 +191,6 @@ class ChallengesController extends \BaseController {
 							$user->challenge_step = 2;
 							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->save();
 							
 							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -235,10 +223,6 @@ class ChallengesController extends \BaseController {
 								$user->challenge_step = 3;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
-								if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-								}
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
@@ -381,10 +365,6 @@ class ChallengesController extends \BaseController {
 							$user->challenge_step = 2;
 							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->save();
 							
 							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -417,10 +397,6 @@ class ChallengesController extends \BaseController {
 								$user->challenge_step = 3;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
-								if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-								}
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
@@ -549,10 +525,6 @@ class ChallengesController extends \BaseController {
 							$user->challenge_step = 2;
 							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->save();
 							
 							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -584,10 +556,6 @@ class ChallengesController extends \BaseController {
 								$user->challenge_step = 3;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
-								if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-								}
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
@@ -713,10 +681,6 @@ class ChallengesController extends \BaseController {
 							$user->challenge_step = 2;
 							$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 							$user->challenge_time = date("U")*1000;
-							if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-							}
 							$user->save();
 							
 							$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
@@ -750,10 +714,6 @@ class ChallengesController extends \BaseController {
 								$user->challenge_step = 3;
 								$user->reward(Config::get('rewards.challenge_qp'),Config::get('rewards.challenge_exp'),false, 0);
 								$user->challenge_time = date("U")*1000;
-								if($user->exp > ($user->level->exp_level)-1) {
-								$user->level_id +=1;
-								$user->checkAchievement(1, $user->level_id);
-								}
 								$user->save();
 								$user->timeline("challenge_step", 0, 0, $user->challenge_mode, $user->challenge_step-1,0,0);
 								return Redirect::to("challenges")->with('success', trans("dashboard.quest_done", array('exp'=>Config::get('rewards.challenge_exp'), 'qp'=>Config::get('rewards.challenge_qp'))));
