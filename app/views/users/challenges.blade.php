@@ -36,8 +36,8 @@
 					<h4>{{ trans("dashboard.challenge_mode") }}:</h4>
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
 					<br/>
-					<form id="frm" action="/finish_challenge">
-						<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.finish_challenge') }}">
+					<form id="frm" action="/finish_challenge" method="post">
+						<input class="btn btn-success" type="submit" value="{{ trans('dashboard.finish_challenge') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</form><br/>
 					<div class="cancel_challenge"><a href="/cancel_challenge" class="btn btn-danger" id="cancel_challenge"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a></div>
