@@ -12,9 +12,6 @@
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
 				<img src="/img/teams/logo/{{ $team->logo }}" width="100" class="img-circle" /><br/>
 				<br/>
-				@if($team->public == 1)
-					<a href="#" class="btn btn-primary">{{ trans("teams.join") }}</a>
-				@endif
 				
 				@if(Auth::check())
 					@if($team->user_id == Auth::user()->id)
@@ -24,7 +21,7 @@
 				@endif
 				@if(Auth::check())
 					@if(Auth::user()->team_id == $team->id && Auth::user()->id != $team->user_id)
-						<a href="#" class="btn btn-danger">{{ trans("teams.leave") }}</a>
+						<a href="/leave_team" class="btn btn-danger">{{ trans("teams.leave") }}</a>
 					@endif
 				@endif
 			</td>
@@ -56,10 +53,6 @@
 						<td class="attribute">{{ trans("teams.quests") }}</td>
 						<td>{{ $team->quests }}</td>
 					</tr>
-					<!--<tr>
-						<td class="attribute">{{ trans("users.achievement_points") }}</td>
-						<td><img src="/img/ap.png" width="20" /> 0</td>
-					</tr>-->
 				</table>
 			</td>
             <td valign="top">
@@ -153,9 +146,11 @@
 					@endif
 				@endforeach
 				</table>
+                @if(Auth::check())
 				@if($team->user_id == Auth::user()->id)
 				<a href="/teams/{{ $team->region }}/{{ $team->clean_name }}/invite" class="btn btn-primary">{{ trans("teams.invite_new") }}</a>
 				@endif
+                @endif
 			</td>
 			<td valign="top">
 				<h3>{{ trans("teams.challenges") }}</h3>

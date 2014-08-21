@@ -81,6 +81,7 @@ Route::get('/teams/{region}/{name}/remove/{id}', array('uses' => 'TeamsControlle
 Route::get('/teams/delete_team', array('uses' => 'TeamsController@delete'));
 Route::get('/teams/edit', array('uses' => 'TeamsController@edit'));
 Route::post('/teams/update', array('uses' => 'TeamsController@update'));
+Route::get('/leave_team', array('uses' => 'TeamsController@leave'));
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));
@@ -143,7 +144,6 @@ Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 
 // Challenges Controller
-//Route::get('/finish_challenge', 'ChallengesController@finish_challenge');
 Route::post('/finish_challenge', ['before' => 'csrf', 'uses' => 'ChallengesController@finish_challenge']);
 
 // Ladders Controller
