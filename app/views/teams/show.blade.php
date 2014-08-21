@@ -12,9 +12,6 @@
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
 				<img src="/img/teams/logo/{{ $team->logo }}" width="100" class="img-circle" /><br/>
 				<br/>
-				@if($team->public == 1)
-					<a href="#" class="btn btn-primary">{{ trans("teams.join") }}</a>
-				@endif
 				
 				@if(Auth::check())
 					@if($team->user_id == Auth::user()->id)
@@ -24,7 +21,7 @@
 				@endif
 				@if(Auth::check())
 					@if(Auth::user()->team_id == $team->id && Auth::user()->id != $team->user_id)
-						<a href="#" class="btn btn-danger">{{ trans("teams.leave") }}</a>
+						<a href="/leave_team" class="btn btn-danger">{{ trans("teams.leave") }}</a>
 					@endif
 				@endif
 			</td>
