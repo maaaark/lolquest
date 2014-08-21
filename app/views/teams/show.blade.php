@@ -95,7 +95,7 @@
                             <td>{{ $team->rank }}</td>
                         </tr>
                         <tr>
-                            <td>Quests</td>
+                            <td>Quest</td>
                             <td>{{ $team->quests }}</td>
                         </tr>
                         <tr>
