@@ -871,6 +871,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$new_title = new UserTitle;
 							$new_title->user_id = Auth::user()->id;
 							$new_title->title_id = $user_achievement->title->id;
+							Auth::user()->notify(2, trans("achievements.receive_title").'</br><a href="/settings/title> '.$user_achievement->title->title.'</a>');
 							$new_title->save();
 						}
 					}
@@ -918,6 +919,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						}												
 						$user->notify(1, trans("achievements.receive").'</br><a href="/summoner/'.$user->region.'/'.$user->summoner_name.'/achievements"> '.$achiv.'</a>');
 						$user->timeline("new_achievement",0, $user_achievement->id, 0, 0, 0, 0);
+						if($user_achievement->title){
+							$new_title = new UserTitle;
+							$new_title->user_id = $user->id;
+							$new_title->title_id = $user_achievement->title->id;
+							$user->notify(2, trans("achievements.receive_title").'</br><a href="/settings/title> '.$user_achievement->title->title.'</a>');
+							$new_title->save();
+						}
 					}
 				} 
 		} else {

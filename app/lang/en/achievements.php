@@ -25,4 +25,5 @@ return array(
 	'Cjug' => 'Complete the Jungle challenge',
 	'Call' => 'Completed the ALL challenges',
 	'AP' => 'Achievement Points',
+	'receive_title' => 'Title unlocked: ',
 );
