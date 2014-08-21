@@ -10,7 +10,7 @@ body, html {
 
 .table_ach { 
 margin-bottom: 20px;
-margin-right:20p;
+margin-right:20px;
 width: 50%;
 }
 
@@ -532,7 +532,7 @@ img.bg {
 	float: left;
 	color: #fff;
 	height: 50px;
-	line-height: 50px;
+	line-height: 42px;
 }
 .list {
 	float: right;

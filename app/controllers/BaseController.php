@@ -77,7 +77,13 @@ class BaseController extends Controller {
                 } else {
                     $users = [];
                 }
-		return View::make('search.results', compact('users'));
+                
+                if("" !== $summoner_name && NULL !== $summoner_name) {
+                    $teams = Team::where('name', 'LIKE', "%$summoner_name%")->get();
+                } else {
+                    $teams = [];
+                }
+		return View::make('search.results', compact('users', 'teams'));
 	}
 	
 	public function register_summoner() {

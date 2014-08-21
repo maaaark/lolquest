@@ -39,6 +39,8 @@
 						<span class="glyphicon glyphicon-comment"></span>
 					@elseif($note->type == 3)
 						<span class="glyphicon glyphicon-user"></span>
+                    @elseif($note->type == 4)
+                    <span class="fa fa-group"></span>
 					@endif
 				</div>
 				<div class="note_message">
