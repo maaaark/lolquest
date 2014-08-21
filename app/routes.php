@@ -79,6 +79,8 @@ Route::post('/teams/store', array('uses' => 'TeamsController@store'));
 Route::post('/teams/send_invite', array('uses' => 'TeamsController@send_invite'));
 Route::get('/teams/{region}/{name}/remove/{id}', array('uses' => 'TeamsController@remove_member'));
 Route::get('/teams/delete_team', array('uses' => 'TeamsController@delete'));
+Route::get('/teams/edit', array('uses' => 'TeamsController@edit'));
+Route::post('/teams/update', array('uses' => 'TeamsController@update'));
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));

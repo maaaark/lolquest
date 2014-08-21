@@ -22,7 +22,7 @@
 		</tr>
 		<tr>
 			<td class="attribute">{{ trans("teams.description") }}</td>
-			<td>{{ Form::textarea('logo', null, array('class'=>'form-control', 'placeholder'=>'Team description', 'class' => 'form-control')) }}</td>
+			<td>{{ Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Team description', 'class' => 'form-control')) }}</td>
 		</tr>
 	</table> 
 	{{ Form::submit('Create team for 500 QP', array('class'=>'create_team btn btn-success'))}}<br/>

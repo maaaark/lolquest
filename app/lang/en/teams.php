@@ -17,4 +17,10 @@ return array(
 	'min_member' => 'You need at least 3 member in your team to be ranked in the ladder!',
 	'leave' => 'Leave team',
 	'average_exp' => 'Average EXP',
+    'description' => 'Team Description',
+    'challenges' => 'Team Challenges',
+    'ranked_stats' => 'Team ranked ladder',
+    'edit' => 'Edit my team',
+    'not_ranked' => 'Not ranked yet',
+    'quests' => 'Quests'
 );

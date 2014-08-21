@@ -10,6 +10,30 @@
  * @property-read \Challenge $challenge
  * @property-read \Achievement $achievement
  * @property-read \Title $title
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $event_type
+ * @property integer $quest_id
+ * @property integer $achievement_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property integer $challenge_mode
+ * @property integer $challenge_step
+ * @property integer $comment_id
+ * @property integer $friend_id
+ * @property integer $title_id
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereUserId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereEventType($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereQuestId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereAchievementId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereCreatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereChallengeMode($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereChallengeStep($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereCommentId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereFriendId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Timeline whereTitleId($value) 
  */
 class Timeline extends \Eloquent {
 	protected $fillable = [];
