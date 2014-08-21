@@ -279,9 +279,11 @@ class TeamsController extends \BaseController {
                 $clean_team_name = strtolower($clean_team_name);
                 $clean_team_name = mb_strtolower($clean_team_name, 'UTF-8');
 
-                $old_team = Team::where("clean_name", "=", $clean_team_name)->count();
-                if($old_team > 0) {
-                    return Redirect::to("/teams/edit")->with("error","There is already a team with this name");
+                $old_team = Team::where("clean_name", "=", $clean_team_name)->where("region", "=", Input::get('region'))->first();
+                if($old_team) {
+                    if($old_team->user_id != Auth::user()->id) {
+                        return Redirect::to("/teams/edit")->with("error","There is already a team with this name");
+                    }
                 }
 
                 $team = Team::where("user_id", "=", Auth::user()->id)->first();

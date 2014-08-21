@@ -22,4 +22,5 @@ return array(
     'ranked_stats' => 'Team ranked ladder',
     'edit' => 'Edit my team',
     'not_ranked' => 'Not ranked yet',
+    'quests' => 'Quests'
 );

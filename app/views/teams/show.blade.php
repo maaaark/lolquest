@@ -3,7 +3,7 @@
 @section('content')	
 	<br/>
 	@if($team->members->count() < 3)
-	<div class="bs-callout bs-callout-danger">
+	<div class="bs-callout bs-callout-danger" style="margin-top: 0;">
 		{{ trans("teams.min_member") }}
 	</div>
 	@endif
@@ -53,12 +53,8 @@
 						<td><a href="/summoner/{{ $team->user->region }}/{{ $team->user->summoner_name }}">{{ $team->user->summoner->name }}</a></td>
 					</tr>
 					<tr>
-						<td class="attribute">{{ trans("teams.member") }}</td>
-						<td>{{ $team->members->count() }}</td>
-					</tr>
-					<tr>
-						<td class="attribute">{{ trans("users.quests_completed") }}</td>
-						<td>0</td>
+						<td class="attribute">{{ trans("teams.quests") }}</td>
+						<td>{{ $team->quests }}</td>
 					</tr>
 					<!--<tr>
 						<td class="attribute">{{ trans("users.achievement_points") }}</td>
@@ -136,7 +132,7 @@
 	<table width="100%">
 		<tr>
 			<td width="50%" valign="top">
-				<h3>{{ trans("teams.member") }}</h3>
+				<h3>{{ trans("teams.member") }} ({{$team->members->count()}})</h3>
 				<table class="table table-striped">
 					<tr>
 						<td width="20"><a href="/summoner/{{ $team->user->region }}/{{ $team->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $team->user->summoner->profileIconId }}.jpg" class="img-circle" width="20" /></a></td>
