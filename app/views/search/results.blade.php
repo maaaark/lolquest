@@ -37,7 +37,8 @@
                         <td> - </td>
                         @endif
                         @if($user->team)
-                            <td>{{ $user->team->name }}</td>
+                            
+                            <td><a href="/teams/{{ $user->team->region }}/{{ $user->team->name }}">{{ $user->team->name }}</a></td>
                         @else
                             <td>-</td>
                         @endif
@@ -46,7 +47,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="7" style="text-align: center;"> {{ trans("search.no_result") }} </td>
+                <td colspan="8" style="text-align: center;"> {{ trans("search.no_result") }} </td>
             </tr>
         @endif
         
