@@ -193,7 +193,12 @@ class TeamsController extends \BaseController {
 			$team = Team::where("secret", "=", $secret)->where("id", "=", $id)->first();
 			$user->team_id = $team->id;
 			$user->save();
-			
+
+            $note = Notification::where("user_id", "=", $user->id)->where("type", "=", 4)->get();
+            foreach($note as $n) {
+                $n->delete();
+            }
+
 			return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with("success", "You joined the team ".$team->name);
 			
 		} else {
@@ -329,7 +334,7 @@ class TeamsController extends \BaseController {
 		if(Auth::check()) {
             $user = User::find(Auth::user()->id);
             $team = Team::find($user->team_id);
-            $team->average_exp = $team->exp / $team->members->count()-1;
+            $team->average_exp = $team->exp / ($team->members->count()-1);
             $team->save();
             $user->team_id = 0;
             $user->save();
