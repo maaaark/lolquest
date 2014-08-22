@@ -833,18 +833,20 @@ class UsersController extends \BaseController {
 
 	public function makeFriend($id)
 	{
-		if(Auth::user()) {
+		$model = new FriendUser;
+		$model->setTable("friend_users");
+		if(Auth::user()){
+		if($model->where("friend_id","=", $id)->where('user_id','=', Auth::user()->id)->first() == false) {
 				$user_friend = Auth::user();
 				$user_friend->friends()->attach($id);
 				$user = User::findOrFail($id);
-				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").'</br> <a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a>   <a href="/remove_friend/'.$user_friend->id.'">'.trans("friends.reject").'</a>');
-				$model = new FriendUser;
-				$model->setTable("friend_users");
-				$notify = $model->where("friend_id","=", $id)->where('user_id','=', $user_friend->id)->first();;
+				$user->notify(3, '<a href="/summoner/'.$user_friend->region.'/'.$user_friend->summoner_name.'">'.$user_friend->summoner_name.'</a> '.trans("friends.add").'</br> <strong><a href="/accept_friend/'.$user_friend->id.'">'.trans("friends.accept_noti").'</a>   <a href="/remove_friend/'.$user_friend->id.'">'.trans("friends.reject").'</a></strong>');				
+				$notify = $model->where("friend_id","=", $id)->where('user_id','=', $user_friend->id)->first();
 				$u_not = $user->notifications->last();
 				$notify->notify_id = $u_not->id;
 				$notify->save();
 				return Redirect::back();
+		} else{ return Redirect::back();}
 		} else {
 		return Redirect::to('login');
 		}
@@ -888,13 +890,13 @@ class UsersController extends \BaseController {
 	
 	public function acceptFriend($id)
 	{
+		$model = new FriendUser;
+		$model->setTable("friend_users");
 		if(Auth::user()) {
-			if(Auth::user()->id != $id){
+			if(Auth::user()->id != $id && $friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first() == true && $friend = $model->where("user_id","=", Auth::user()->id)->where('friend_id','=', $id)->first() == false){
 				$user = User::findOrFail($id);
 				$user_friend = User::findOrFail(Auth::user()->id);
 				$user_friend->friends()->attach($user->id);
-				$model = new FriendUser;
-				$model->setTable("friend_users");
 				$friend = $model->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
 				$user->timeline("new_friend",0, 0, 0, 0, 0, $user_friend->id);
 				$friend->validate = 1;
@@ -907,7 +909,6 @@ class UsersController extends \BaseController {
 				$model->setTable("friend_users");
 				$count_user = $model->where("user_id","=", Auth::user()->id)->where('validate','=', 1)->count();
 				$count_friend = $model->where("user_id","=", $id)->where('validate','=', 1)->count();
-				
 				$model2 = new FriendUser;
 				$model2->setTable("friend_users");
 				$friend = $model2->where("user_id","=", $id)->where('friend_id','=', Auth::user()->id)->first();
@@ -928,13 +929,11 @@ class UsersController extends \BaseController {
 						} 
 					}
 				}
-				
-				
 				$user->checkAchievement_friend($user->id, 3, $count_friend);
 				$user_friend-> checkAchievement(3, $count_user);
 				return Redirect::back();
 			}
-			return Redirect::back();
+			return Redirect::to('/');
 		} else {
 		return Redirect::to('login');
 		}
