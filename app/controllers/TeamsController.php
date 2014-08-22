@@ -100,7 +100,7 @@ class TeamsController extends \BaseController {
 			$user = User::find(Auth::user()->id);
             if($user->team_id == 0) {
 
-                if($user->qp < 500) {
+                if($user->qp < 100) {
                     return Redirect::to('/teams/create')
                         ->withInput()
                         ->with('error', 'You do not have enough QP!');
@@ -151,7 +151,7 @@ class TeamsController extends \BaseController {
                     }
                     $team->save();
                     $user->team_id = $team->id;
-                    $user->qp = $user->qp - 500;
+                    $user->qp = $user->qp - 100;
                     $user->save();
 
                     return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with('success', 'Your Team has been created');

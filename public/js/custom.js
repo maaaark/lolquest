@@ -61,7 +61,7 @@ $( document ).ready(function() {
 	})	
 	
 	$('.create_team').click(function(){
-		return confirm("Creating a team will cost 500 QP. Are you sure?");
+		return confirm("Creating a team will cost 100 QP. Are you sure?");
 	})
 	
 	$('.delete_team').click(function(){
