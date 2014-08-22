@@ -385,6 +385,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if($daily == true) {
 			$user->qp = $user->qp + ($qp * 2);
 			$user->exp = $user->exp + ($exp * 2);
+			$user->daily_done = 1;
 			$user->lifetime_qp = $user->lifetime_qp + ($qp * 2);
 			
 			if($user->team_id != 0) {
@@ -559,7 +560,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				}
 			} elseif(Config::get('api.use_riot_api') == 2) {
 				// NEW RIOT API
-				$summoner_data = "https://acs.leagueoflegends.com/v1/stats/player_history/".$user->summoner->platformId."/".$user->summoner->accountId."?begIndex=0&endIndex=15";
+				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v2.2/matchhistory/".$user->summoner->summonerid;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
 					return Redirect::to('/api_problems');

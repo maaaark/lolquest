@@ -239,7 +239,6 @@ class QuestsController extends \BaseController {
 							$quest->save();
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
@@ -256,7 +255,6 @@ class QuestsController extends \BaseController {
 							$quest->save();
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
@@ -282,7 +280,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -304,7 +301,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
@@ -326,7 +322,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
@@ -347,7 +342,6 @@ class QuestsController extends \BaseController {
 								$quest->save();	
 							if($quest->daily == 1) {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-								$user->daily_done = 1;
 							} else {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
@@ -369,7 +363,6 @@ class QuestsController extends \BaseController {
 									$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -391,7 +384,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -413,7 +405,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -434,7 +425,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -454,7 +444,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -474,7 +463,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -495,7 +483,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -516,7 +503,6 @@ class QuestsController extends \BaseController {
 								$quest->save();
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -538,7 +524,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -560,7 +545,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
@@ -581,7 +565,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
@@ -605,7 +588,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
@@ -629,7 +611,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
@@ -653,7 +634,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
@@ -677,7 +657,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false);
 								}
@@ -700,7 +679,6 @@ class QuestsController extends \BaseController {
 								$quest->save();					
 								if($quest->daily == 1) {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
-									$user->daily_done = 1;
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
