@@ -477,7 +477,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.3/game/by-summoner/".$user->summoner->summonerid."/recent?api_key=".$api_key;
 				$json = @file_get_contents($summoner_data);
 				if($json === FALSE) {
-					return Redirect::to('/api_problems');
+					return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
 				} else {
 					$obj = json_decode($json, true);
 					
@@ -490,7 +490,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							
 							$more_details = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v2.2/match/".$game["gameId"]."?api_key=".$api_key;
 							$json2 = @file_get_contents($more_details);
+							if($json === FALSE) {
+								return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
+							}
 							$details = json_decode($json2, true);
+							
+							if(!isset($details["teams"])) {
+								return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
+							}
 							
 							foreach($details["teams"] as $game_details) {
 								if($game["teamId"] == $game_details["teamId"]) {
@@ -507,12 +514,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							
 							foreach($details["participants"] as $my_game_details) {
 								if($my_game_details["championId"] == $game["championId"]) {
-									$newGame->firstBloodKill = $my_game_details["stats"]["firstBloodKill"];
-									$newGame->firstBloodAssist = $my_game_details["stats"]["firstBloodAssist"];
+									
 									$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
 									$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
 									$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
 									$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
+									
+									
+									if(isset($my_game_details["stats"]["firstBloodKill"])) {
+										$newGame->firstBloodKill = $my_game_details["stats"]["firstBloodKill"];
+									} else {
+										$newGame->firstBloodKill = 0;
+									}
+									if(isset($my_game_details["stats"]["firstBloodAssist"])) {
+										$newGame->firstBloodAssist = $my_game_details["stats"]["firstBloodAssist"];
+									} else {
+										$newGame->firstBloodAssist = 0;
+									}
+									
 									
 									$newGame->role = $my_game_details["timeline"]["role"];
 									$newGame->lane = $my_game_details["timeline"]["lane"];
