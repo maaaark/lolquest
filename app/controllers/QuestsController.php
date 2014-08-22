@@ -128,6 +128,7 @@ class QuestsController extends \BaseController {
 						}
 					}
 					
+					
 					$quest = new Quest;
 					if($champion == 0) {
 						$champion = Champion::orderBy(DB::raw('RAND()'))->first();
@@ -629,7 +630,7 @@ class QuestsController extends \BaseController {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->time_dead <= 180) {
+							if($game->numDeaths <= 3) {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {

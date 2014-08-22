@@ -499,6 +499,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							if(!isset($game["stats"]["turretsKilled"])) { $turretsKilled = 0; }	else { $turretsKilled = $game["stats"]["turretsKilled"]; }
 							if(!isset($game["stats"]["minionsKilled"])) { $minionsKilled = 0; }	else { $minionsKilled = $game["stats"]["minionsKilled"]; }
 							if(!isset($game["stats"]["neutralMinionsKilled"])) { $neutralMinionsKilled = 0; }	else { $neutralMinionsKilled = $game["stats"]["neutralMinionsKilled"]; }
+							if(!isset($game["stats"]["neutralMinionsKilledEnemyJungle"])) { $neutralMinionsKilledEnemyJungle = 0; }	else { $neutralMinionsKilledEnemyJungle = $game["stats"]["neutralMinionsKilledEnemyJungle"]; }
 							if(!isset($game["stats"]["wardPlaced"])) { $wardPlaced = 0; } else { $wardPlaced = $game["stats"]["wardPlaced"]; }
 							if(!isset($game["stats"]["assists"])) { $assists = 0; }	else { $assists = $game["stats"]["assists"]; }
 							if(!isset($game["stats"]["numDeaths"])) { $numDeaths = 0; }	else { $numDeaths = $game["stats"]["numDeaths"]; }
@@ -536,9 +537,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->subType = $game["subType"];
 							$newGame->minionsKilled = $minionsKilled;
 							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
+							$newGame->neutralMinionsKilledEnemyJungle = $neutralMinionsKilledEnemyJungle;
 							$newGame->mapId = $game["mapId"];
 							$newGame->teamId = $game["teamId"];
-							$newGame->level = $game["level"];
+							$newGame->level = $game["stats"]["level"];
 							$mil = $game["createDate"];
 							$newGame->createDate = $mil;
 							$newGame->win = $game["stats"]["win"];
@@ -600,20 +602,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->turretsKilled =$game["participants"][0]["stats"]["turretKills"];
 							$newGame->minionsKilled = $game["participants"][0]["stats"]["totalMinionsKilled"];
 							$newGame->neutralMinionsKilled = $game["participants"][0]["stats"]["neutralMinionsKilled"];
+							$newGame->neutralMinionsKilledEnemyJungle = $game["participants"][0]["stats"]["neutralMinionsKilledEnemyJungle"];
 							$newGame->teamId = $game["participants"][0]["teamId"];
 							$newGame->level = $game["participants"][0]["stats"]["champLevel"];
 							$newGame->win = $game["participants"][0]["stats"]["win"];
 							
-							if($game["queueId"] == 42 || $game["queueId"] == 4) {
-								$newGame->subType = "MATCHED_GAME";
+							if($game["queueType"] == "RANKED_SOLO_5x5") {
+								$newGame->gameType = "MATCHED_GAME";
 							} else {
-								$newGame->subType = "INVALID";
+								$newGame->gameType = "INVALID";
 							}
 							
 							// NEW STATS
 							$newGame->queueId = $game["queueId"];
-							$newGame->gold_per_min = $newGame->goldEarned / ($game["gameDuration"] / 60);
-							$newGame->cs_per_min = ($game["participants"][0]["stats"]["neutralMinionsKilled"]+$game["participants"][0]["stats"]["totalMinionsKilled"]) / ($game["gameDuration"] / 60);
+							$newGame->gold_per_min = $newGame->goldEarned / ($game["matchDuration"] / 60);
+							$newGame->cs_per_min = ($game["participants"][0]["stats"]["neutralMinionsKilled"]+$game["participants"][0]["stats"]["totalMinionsKilled"]) / ($game["matchDuration"] / 60);
 							$newGame->exp_per_min = 0;
 							
 							
@@ -624,8 +627,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->quadraKills = $game["participants"][0]["stats"]["quadraKills"];
 							$newGame->pentaKills = $game["participants"][0]["stats"]["pentaKills"];
 							
-							$newGame->gameMode = "";
-							$newGame->gameType = "";
+							$newGame->gameMode = $game["mapId"];
 							$newGame->save();
 							
 							$newGame->items()->attach($newGame->id, array("item_id"=>$game["participants"][0]["stats"]["item0"]));
