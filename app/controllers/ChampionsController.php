@@ -70,7 +70,7 @@ class ChampionsController extends \BaseController {
 			$champion_losses = 100 - $champion_wins;
 		}
 		
-		$last_quests = Quest::where('champion_id', '=', $champion->champion_id)->take(5)->get();
+		$last_quests = Quest::where('champion_id', '=', $champion->champion_id)->orderBy("updated_at", "DESC")->take(5)->get();
 		
 		return View::make('champions.show', compact('champion', 'champion_games', 'champion_wins', 'champion_losses', 'counts', 'dates', 'last_quests'));
 	}
