@@ -39,6 +39,22 @@ class TeamsController extends \BaseController {
 		
 	}
 	
+	public function join_request($team_id) {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$team = Team::where("id", "=", team_id)->get();
+			if($user->team_id == 0) {
+				$leader = User::find($team->user_id);
+				$leader->notify(5, $user->summoner_name." wants to join your team");
+				return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with('success', 'Your join request was sent.');
+			} else {
+				return Redirect::to("/teams/".$team->region."/".$team->clean_name)->with('error', 'Your already have a team');
+			}
+
+		} else {
+			return Redirect::to("/login");
+		}
+	}
 	
 	public function invite() {
 		if(Auth::check()) {

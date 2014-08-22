@@ -82,6 +82,8 @@ Route::get('/teams/delete_team', array('uses' => 'TeamsController@delete'));
 Route::get('/teams/edit', array('uses' => 'TeamsController@edit'));
 Route::post('/teams/update', array('uses' => 'TeamsController@update'));
 Route::get('/leave_team', array('uses' => 'TeamsController@leave'));
+Route::get('/join_request/{team_id}', array('uses' => 'TeamsController@join_request'));
+
 
 // Timelines Controller
 Route::get('/timeline', array('uses' => 'TimelinesController@index'));

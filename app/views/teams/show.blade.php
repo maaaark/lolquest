@@ -12,7 +12,12 @@
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
 				<img src="/img/teams/logo/{{ $team->logo }}" width="100" class="img-circle" /><br/>
 				<br/>
-				
+				@if(Auth::check())
+					@if($team->public == 1)
+                        <a href="/teams/join_request" class="btn btn-primary">{{ trans("teams.join") }}</a><br/>
+					@endif
+				@endif
+				<br/>
 				@if(Auth::check())
 					@if($team->user_id == Auth::user()->id)
                         <a href="/teams/edit" class="btn btn-primary">{{ trans("teams.edit") }}</a><br/><br/>
