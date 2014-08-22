@@ -22,4 +22,5 @@
 			@endforeach
 		</tbody>
 	 </table>
+	 <?php echo $champions->links(); ?>
 @stop
