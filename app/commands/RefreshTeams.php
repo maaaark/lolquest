@@ -39,8 +39,10 @@ class RefreshTeams extends Command {
 	{
 		$teams = Team::all();
 		foreach($teams as $team) {
-			$team->average_exp = $team->exp / $team->members->count();
-			$team->save();
+			if($team->members->count() > 0) {
+				$team->average_exp = $team->exp / $team->members->count();
+				$team->save();
+			}
 		}
 		
 		$teams = Team::orderBy("average_exp", "DESC")->get();
