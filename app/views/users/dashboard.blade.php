@@ -3,12 +3,14 @@
 @section('content')
 	<br/>
 	<div class="bs-callout bs-callout-danger">
-		<h4>The Riot API is highly instable right now after the platform reboot this night!</h4><br/>
-		Maybe you can't complete a quests, because the match history is not updating.<br/>
-		Check your last games in your lolquest profile to see if your game appears.<br/>
+		<h4>If you can't complete your quest, read this!</h4><br/>
+		If your game does not appear in your "Last Matches" history (and you cant finish the quest because of this), do the following:<br/>
 		<br/>
-		Riot is working on this issue and it might be fixed soon.<br/>
-		Sorry for the trouble, but we can't do anything about it.
+		Go to your League of Legends Client and change your Summoner Icon. Save it.<br/>
+		Go to lolquest and try to finish the quest again.<br/>
+		<br/>
+		Most of the time, the game will apear in your history and you can now finish the quest.<br/>
+		This is an Riot API "Bug", we cant do anything about this, sorry.
 	</div>
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of {{ $user->quest_slots }} {{ trans("dashboard.questlog") }}
