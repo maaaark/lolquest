@@ -50,11 +50,12 @@ class RefreshTeams extends Command {
 		foreach($teams as $team) {
 			if($team->members->count() >= 3) {
 				$team->rank = $i;
+				$i++;
 			} else {
 				$team->rank = 0;
 			}
 			$team->save();
-			$i++;
+			
 		}
 	}
 
