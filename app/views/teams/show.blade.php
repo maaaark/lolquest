@@ -163,4 +163,72 @@
 			</td>
 		</tr>
 	</table>
+	@if(Auth::check())
+		@if(Auth::user()->hasRole('admin'))
+		<br/>
+		<h3>{{ trans("teams.achievements") }}</h3>
+		<table class="table table-striped">
+			<tr>
+				<td width="50"><img src="/img/leagues/challenger_5.png" style="margin-top: 10px;" width="50" /></td>
+				<td width="50%">
+					<h4>Collect 500.000 Assists with your Team</h4>
+					<i>If you finish a quest, your Assists will be added to this achievement.</i><br/>
+				</td>
+				<td>
+					<br/>
+					<div class="progress">
+					  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						600.000 Gold
+					  </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50"><img src="/img/leagues/grey_challenger.png" style="margin-top: 10px;" width="50" /></td>
+				<td width="50%">
+					<h4>Collect 1.000.000 Gold with your Team</h4>
+					<i>If you finish a quest, your gold amount will be added to this achievement.</i><br/>
+				</td>
+				<td>
+					<br/>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+						600.000 Gold
+					  </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50"><img src="/img/leagues/grey_challenger.png" style="margin-top: 10px;" width="50" /></td>
+				<td width="50%">
+					<h4>Get 10.000 Kills with your Team</h4>
+					<i>If you finish a quest, your kill amount will be added to this achievement.</i><br/>
+				</td>
+				<td>
+					<br/>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 32%;">
+						3.273 Kills
+					  </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50"><img src="/img/leagues/grey_challenger.png" style="margin-top: 10px;" width="50" /></td>
+				<td width="50%">
+					<h4>Get 10.000 Kills with your Team</h4>
+					<i>If you finish a quest, your kill amount will be added to this achievement.</i><br/>
+				</td>
+				<td>
+					<br/>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
+						3.273 Kills
+					  </div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		@endif
+	@endif
 @stop

@@ -46,6 +46,27 @@ class UsersController extends \BaseController {
 		}
 	}
 	
+	public function livestream() {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			return View::make('settings.livestream', compact('user'));
+		} else {
+			return Redirect::to('/login');
+		}
+	}
+	
+	public function save_livestream() {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$user->livestream_platform = Input::get('livestream_platform');
+			$user->livestream_channel = Input::get('livestream_channel');
+			$user->save();
+			return Redirect::to("/settings/livestream")->with("success", "Livestream saved");
+		} else {
+			return Redirect::to('/login');
+		}
+	}
+	
 	public function streamer() {
 		if(Auth::check()) {
 			$myquests = Quest::where('user_id', '=', Auth::user()->id)->where('finished', '=', 0)->get();

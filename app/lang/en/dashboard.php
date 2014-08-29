@@ -55,4 +55,5 @@ return array(
 	'current_challenge' => 'Current Challenge',
 	'finish_challenge' => 'Finish Challenge',
 	'inactive' => 'Quest inactive',
+	'livestream' => 'Livestream',
 );

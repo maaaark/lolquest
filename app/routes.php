@@ -44,6 +44,8 @@ Route::get('/settings/skins', array('uses' => 'UsersController@skins'));
 Route::post('/settings/update_timeline_settings', array('uses' => 'UsersController@update_timeline_settings'));
 Route::get('/settings/title', array('uses' => 'UsersController@titles'));
 Route::post('/settings/update_title', array('uses' => 'UsersController@update_title'));
+Route::post('/settings/save_livestream', array('uses' => 'UsersController@save_livestream'));
+Route::get('/settings/livestream', array('uses' => 'UsersController@livestream'));
 
 // Forum Controller
 Route::get('/forum/create_topic/{category_id}/new', array('uses' => 'ForumController@create_topic'));

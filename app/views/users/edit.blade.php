@@ -29,6 +29,9 @@
 		<tr>
 			<td><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;<a href="/settings/title" class="">{{ trans("sidebar.manage_title") }}</a></td>
 		</tr>
+		<tr>
+			<td><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;<a href="/settings/livestream" class="">{{ trans("sidebar.livestream") }}</a></td>
+		</tr>
 	</table>
 
 </div>

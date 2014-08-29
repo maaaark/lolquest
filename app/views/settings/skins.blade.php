@@ -5,11 +5,14 @@
 	{{ trans("shop.skin_info") }}<br/>
 	<br/>
 	{{ Form::open(array('action' => 'UsersController@save_skin')) }}	
-	<table>
+	<table class="table table-striped">
+		<tr>
+			<th width="50%">Left Skin</th>
+			<th>Right Skin</th>
+		</tr>
 		<tr>
 			<td width="250">
-				Left Skin
-				<select name="left_skin">
+				<select name="left_skin" class="form-control">
 					@if(Auth::user()->skin_left == "default_left.png")
 						<option value="{{ Auth::user()->skin_left }}">Default</option>
 					@else
@@ -22,9 +25,7 @@
 				</select>
 			</td>
 			<td>
-				Right Skin
-				<select name="right_skin">
-					
+				<select name="right_skin" class="form-control">
 					@if(Auth::user()->skin_right == "default_right.png")
 						<option value="{{ Auth::user()->skin_right }}">Default</option>
 					@else
