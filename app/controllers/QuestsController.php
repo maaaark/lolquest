@@ -740,7 +740,7 @@ class QuestsController extends \BaseController {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->firstDragon == 1) {
+							if($game->firstBaron == 1) {
 								$quest->finished = 1;
 								$quest->save();					
 								if($quest->daily == 1) {
