@@ -23,7 +23,7 @@ class ApiController extends \BaseController {
 	{
 		$user = Auth::user();
 		
-		$api = Response::json($user)->setCallback(Input::get('callback'));
+		$api = Response::json($user);
 		return $api;
 		
 		//return Response::json(array(
@@ -37,7 +37,7 @@ class ApiController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::find($id);
-		$api = Response::json(User::with('blogs')->find($id))->setCallback(Input::get('callback'));
+		$api = Response::json($user);
 		return $api;
 	}
 	

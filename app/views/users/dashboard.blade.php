@@ -25,7 +25,11 @@
 				@if($quest->daily == 1)
 				<div class="quest daily_ribbon">
 				@else
-				<div class="quest">
+					@if($quest->questtype->id == 44 || $quest->questtype->id == 45 || $quest->questtype->id == 46 || $quest->questtype->id == 47 || $quest->questtype->id == 48 || $quest->questtype->id == 49 || $quest->questtype->id == 50 || $quest->questtype->id == 51 || $quest->questtype->id == 52)
+						<div class="quest team_ribbon">
+					@else
+						<div class="quest">
+					@endif
 				@endif
 					<a href="/champions/{{ $quest->champion->key }}"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100"></a>
 					<h3>{{ $quest->questtype->name }}</h3>

@@ -11,7 +11,7 @@
 	<h3>Kontakt:</h3>
 	<table>
 	<tr><td>E-Mail:</td>
-	<td>marktomicki@gmail.com</td>
+	<td>mark@lolquest.net</td>
 	</tr></table>
 	<br/>
 	<h3>Quellenangaben für die verwendeten Bilder und Grafiken:</h3>

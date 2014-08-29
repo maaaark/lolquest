@@ -19,14 +19,6 @@ class BaseController extends Controller {
     }
 	
 	
-	/*
-	View::composer('sidebar', function($view)
-	{
-		$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
-		$view->with('my_active_quests', $myquests);
-	});
-	*/
-	
 	/**
 	 * Setup the layout used by the controller.
 	 *
@@ -45,7 +37,8 @@ class BaseController extends Controller {
 			return Redirect::to('dashboard');
 		} else {
 			$timelines = Timeline::orderBy('id', 'desc')->take(5)->get();
-			return View::make('start', compact('timelines'));
+			$blogs = Blog::orderBy("created_at", "ASC")->get();
+			return View::make('layouts.new_start', compact('timelines', 'blogs'));
 		}
 	}
 	
@@ -207,6 +200,5 @@ class BaseController extends Controller {
 			return View::make('login');
 		}
 	}
-	
 
 }

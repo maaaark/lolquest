@@ -11,18 +11,15 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/css/summernote.css">
+		
 		<script src="/js/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/jquery.countdown.min.js"></script>
-		@include('layouts.countdown')
-		{{ HTML::script('js/custom.js') }}
 	</head>
     <body>
 	
-	
 	@include('layouts.top')
 	
-	<img src="/img/blur.jpg" class="bg" />
+	<!-- <img src="/img/blur.jpg" class="bg" /> -->
 
 	
 	<div id="wrapper">
@@ -35,9 +32,9 @@
 			<div class="skin_right"></div>
 		@endif
 		
-		
 		<div class="container title-wrapper">
-			<div class="title"><h1>@yield('title')</h1></div>
+
+			
 		</div>
 		
 		<div class="container content-wrapper">	
@@ -46,22 +43,40 @@
 				<div id="navigation">
 					@include('layouts.navigation')
 				</div>
-				
-				@include('layouts.errors')
-				
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-					@yield('content')
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-					@include('blogs.sidebar')
-				</div>
+				<table>
+					<tr>
+						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+							<div class="title"><h1>@yield('title')</h1></div>
 
+							@include('layouts.errors')
+
+							@yield('content')
+							
+							<br/><br/>
+							<div style="width: 100; text-align: center;">
+								<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+								<!-- lolquest leaderboard -->
+								<ins class="adsbygoogle"
+									 style="display:inline-block;width:728px;height:90px"
+									 data-ad-client="ca-pub-5331969279811198"
+									 data-ad-slot="7231103062"></ins>
+								<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+								</script>
+							</div>
+						</td>
+						<td valign="top" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidebar">
+							@include('layouts.blog_sidebar')
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div class="container">
 			@include('layouts.footer')
 		</div>
 	</div>
+	
     <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

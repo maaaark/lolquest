@@ -42,4 +42,5 @@ return array(
 	'achievement_points' => 'Achievement Points',
 	'old_user_deleted' => 'The "fake" user is now deleted and you can register your account.',
 	'team' => 'Team',
+	'livestream' => 'Livestream'
 );

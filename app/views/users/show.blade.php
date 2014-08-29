@@ -140,6 +140,9 @@
       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
 	  <li><a href="#last_games" data-toggle="tab">Last Games</a></li>
 	  <li><a href="#quest_progress" data-toggle="tab">Quest Progress</a></li>
+	  @if($user->livestream_channel != "")
+	  <li><a href="#livestream" data-toggle="tab">Livestream</a></li>
+	  @endif
     </ul>
 	
 	<div id="myTabContent" class="tab-content">
@@ -317,12 +320,44 @@
 								<td>{{ $game->neutralMinionsKilledEnemyJungle }}</td>
 							</tr>
 							<tr>
-								<td><strong>Time dead</strong></td>
-								<td>{{ $game->time_dead }}</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
+								<td><strong>Lane</strong></td>
+								<td>{{ $game->lane }}</td>
+								<td><strong>Doublekills</strong></td>
+								<td>{{ $game->doubleKills }}</td>
+								<td><strong>Tripplekills</strong></td>
+								<td>{{ $game->tripleKills }}</td>
+							</tr>
+							<tr>
+								<td><strong>Quadrakills</strong></td>
+								<td>{{ $game->quadraKills }}</td>
+								<td><strong>Pentakills</strong></td>
+								<td>{{ $game->pentaKills }}</td>
+								<td><strong>First blood kill</strong></td>
+								<td>{{ $game->firstBloodKill }}</td>
+							</tr>
+							<tr>
+								<td><strong>Tower kills (Team)</strong></td>
+								<td>{{ $game->towerKills }}</td>
+								<td><strong>Inhibitor kills (Team)</strong></td>
+								<td>{{ $game->inhibitorKills }}</td>
+								<td><strong>First tower (Team)</strong></td>
+								<td>{{ $game->firstTower }}</td>
+							</tr>
+							<tr>
+								<td><strong>First Dragon (Team)</strong></td>
+								<td>{{ $game->firstDragon }}</td>
+								<td><strong>First Baron (Team)</strong></td>
+								<td>{{ $game->firstBaron }}</td>
+								<td><strong>First blood (Team)</strong></td>
+								<td>{{ $game->firstBlood }}</td>
+							</tr>
+							<tr>
+								<td><strong>Dragons (Team)</strong></td>
+								<td>{{ $game->dragonKills }}</td>
+								<td><strong>Barons (Team)</strong></td>
+								<td>{{ $game->baronKills }}</td>
+								<td><strong></strong></td>
+								<td></td>
 							</tr>
 						</table>
 					</td>
@@ -349,6 +384,19 @@
 		<div class="clear"></div>
 		
       </div>
+	  @if($user->livestream_channel != "")
+	  <div class="tab-pane" id="livestream">
+		<!-- LIVESTREAM -->
+        
+		<h3>{{ trans("dashboard.livestream") }}</h3>
+		<object type="application/x-shockwave-flash" height="400" width="830" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{ $user->livestream_channel }}" bgcolor="#000000">
+			<param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" />
+			<param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+			<param name="flashvars" value="hostname=www.twitch.tv&channel={{ $user->livestream_channel	 }}&auto_play=false&start_volume=25" />
+		</object>
+		<iframe frameborder="0" scrolling="no" src="http://twitch.tv/vlesk/chat?popout=" height="400" width="830"></iframe>
+      </div>
+	  @endif
     </div>
 
 

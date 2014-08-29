@@ -37,4 +37,15 @@ class Arena extends \Eloquent {
         return $this->belongsTo('User');
     }
 	
+	public function refresh_ladder() {
+		$i = 1;
+		$arena_ladder = Arena::where('year', '=', date("Y"))->where('month', '=', date("m"))->where("arena_finished", "=", 1)->orderBy("arena_quests", "DESC")->get();
+		foreach($arena_ladder as $arena) {
+			$arena->rang = $i;
+			$arena->save();
+			$i++;
+		}
+		return true;
+	}
+	
 }

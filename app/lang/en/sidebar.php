@@ -27,4 +27,5 @@ return array(
 	'social_media' => 'Social Media',
 	'livestream' => 'Livestream',
 	'my_team' => 'My Team',
+	'redeem' => 'Redeem Beta Key',
 );

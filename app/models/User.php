@@ -658,7 +658,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->spell1 = $game["spell1"];
 							$newGame->spell2 = $game["spell2"];
 							$newGame->gameMode = $game["gameMode"];
-							$newGame->gameType = $game["gameType"];
 							$newGame->wardKilled = $wardKilled;
 							$newGame->totalHeal = $totalHeal;
 							$newGame->totalDamageTaken = $totalDamageTaken;
@@ -667,6 +666,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->timePlayed = $game["stats"]["timePlayed"];
 							$newGame->turretsKilled = $turretsKilled;
 							$newGame->subType = $game["subType"];
+							if($game["subType"] == "BOT") {
+								$newGame->gameType = "BOT";
+							} else {
+								$newGame->gameType = $game["gameType"];
+							}
 							$newGame->minionsKilled = $minionsKilled;
 							$newGame->neutralMinionsKilled = $neutralMinionsKilled;
 							$newGame->neutralMinionsKilledEnemyJungle = $neutralMinionsKilledEnemyJungle;

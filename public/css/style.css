@@ -92,6 +92,10 @@ h3 {
 	height: 600px;
 	background: #fff;
 }
+.read_more {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 .navigation_wrapper {
 	background: #333333;
 }
@@ -131,6 +135,35 @@ h3 {
 	width: 295px;
 }
 .moneymaker {
+}
+.excerpt {
+	font-size: 14px;
+	line-height: 20px;
+} 
+.excerpt img {
+	max-width: 810px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+.blog {
+	width: 830px;
+	border: 1px solid #dddddd;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+.blog h2 {
+	margin-top: 0;
+	font-size: 24px;
+}
+.blog a h2 {
+	color: #333333 !important;
+}
+.blog a:hover {
+	text-decoration: none !important;
 }
 .forum_category {
 	border: 1px solid #333333;
@@ -326,6 +359,9 @@ a.comment_name {
 	float: left;
 	width: 150px;
 }
+.blog_inner {
+	padding: 10px;
+}
 .blog_overview {
 	margin-top: 20px;
 	padding-bottom: 20px;
@@ -342,9 +378,6 @@ a.comment_name {
 	margin-bottom: 2px;
 }
 .blog_date {
-	border-top: 1px solid #bbbbbb;
-	padding: 5px;
-	border-bottom: 1px solid #bbbbbb;
 	margin-bottom: 15px;
 }
 .blog_post {
@@ -1058,6 +1091,11 @@ a.logout {
 }
 .daily_ribbon {
 	background: url("../img/quests/daily.png");
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+.team_ribbon {
+	background: url("../img/quests/team.png");
 	background-position: 0px 0px;
 	background-repeat: no-repeat;
 }

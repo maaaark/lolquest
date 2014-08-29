@@ -22,7 +22,7 @@ Route::resource('items', 'ItemsController');
 Route::resource('products', 'ProductsController');
 Route::resource('blogs', 'BlogsController');
 Route::controller('password', 'RemindersController');
-
+Route::resource('payment', 'PaypalPaymentController');
 
 // Admin Functions
 Route::get('admin/refresh_champions', array('uses' => 'ChampionsController@refresh_champions'));
@@ -64,6 +64,7 @@ Route::post('save_summoner', array('uses' => 'BaseController@save_summoner'));
 Route::get('search', array('uses' => 'BaseController@search_summoner'));
 Route::get('register_summoner', array('uses' => 'BaseController@register_summoner'));
 Route::get('testcase', array('uses' => 'BaseController@test'));
+Route::get('/ipn', array('uses' => 'BaseController@ipn'));
 
 
 // Champions Controller
@@ -156,9 +157,9 @@ Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 
 // Arena Controller
 Route::get('/arena', 'ArenasController@index');
-Route::get('/arena/start_arena', 'ArenasController@start_arena');
-Route::post('/arena/start_quest', 'ArenasController@start_quest');
-Route::get('/arena/finish_quest', 'ArenasController@finish_quest');
+Route::post('/arena/start_arena', ['before' => 'csrf', 'uses' => 'ArenasController@start_arena']);
+Route::post('/arena/start_quest', ['before' => 'csrf', 'uses' => 'ArenasController@start_quest']);
+Route::post('/arena/finish_quest', ['before' => 'csrf', 'uses' => 'ArenasController@finish_quest']);
 Route::get('/arena/stop_arena', 'ArenasController@stop_arena');
 
 
@@ -187,6 +188,11 @@ Route::get('shop/history', 'ProductsController@history');
 Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
 Route::get('shop/quest_slot', 'ProductsController@quest_slot');
 
+
+// PAYPAL
+Route::get('payment', 'PaypalPaymentController@Index');
+Route::get('payment/execute', 'PaypalPaymentController@ExecutePaymentSuccess');
+Route::get('payment/cancel', 'PaypalPaymentController@ExecutePaymentCancel');
 
 
 // Pages
@@ -230,13 +236,34 @@ Route::get('/app_login', array('before' => 'api_login', function()
 
 
 // Route group for API versioning
-Route::group(array('prefix' => 'api/v1', 'before' => 'api_login'), function()
+Route::group(array('prefix' => 'api/v1'), function()
 {
     Route::get('user', 'ApiController@user');
 	Route::get('show/{id}', 'ApiController@show');
 	Route::get('champions', 'ApiController@champions');
 	Route::get('playerroles', 'ApiController@playerroles');
 	Route::get('dashboard', 'ApiController@dashboard');
+	Route::post('remote_login', function()
+	{
+		$remember = Input::get('remember');
+		$credentials = array(
+			'email' => Input::get('username'), 
+			'password' => Input::get('password')
+		);
+
+		if (Auth::attempt( $credentials ))
+		{
+			$user = User::find(Auth::user()->id);
+			return Response::json($user);
+			//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+		}else{
+			return Response::json('Error logging in', 400);
+			/*return Redirect::to_action('home@login')
+			-> with_input('only', array('new_username')) 
+			-> with('login_errors', true);*/
+		}
+	});
 });
 
 Route::get('/api/users', 'ApiController@users_test');
+

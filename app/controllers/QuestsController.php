@@ -2,16 +2,6 @@
 
 class QuestsController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
 	
 	public function cancel_quest($quest_id) {
 		if (Auth::check()) { 
@@ -77,11 +67,7 @@ class QuestsController extends \BaseController {
 		}
 	}
 	
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
 	public function create_choose_quest()
 	{
 		Session::put('_token', sha1(microtime()));
@@ -380,7 +366,7 @@ class QuestsController extends \BaseController {
 						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('win', '=', 1)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
 						foreach($games_since_queststart as $game) {
 								
-							if($game->numDeaths == 0) {
+							if($game->numDeaths == 0 && $game->goldEarned >= 11000) {
 								$quest->finished = 1;
 								$quest->save();
 								if($quest->daily == 1) {
@@ -388,8 +374,8 @@ class QuestsController extends \BaseController {
 								} else {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
-									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									return Redirect::to('/quest_finished/'.$quest->id);
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
 					}
@@ -688,6 +674,221 @@ class QuestsController extends \BaseController {
 							}
 						}
 					}
+					
+					
+					// Quest Type 40 - Get first blood
+					if($quest->questtype->id == 40 || $quest->questtype->id == 41 || $quest->questtype->id == 42 || $quest->questtype->id == 43) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstBloodKill == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 44 - Team get first blood
+					if($quest->questtype->id == 44) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstBlood == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 45 - Get the first DRAGON
+					if($quest->questtype->id == 45) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstDragon == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 46 - Get the first BARON
+					if($quest->questtype->id == 46) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstDragon == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 47 - Destroy at least 8 towers
+					if($quest->questtype->id == 47) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->towerKills >= 8) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 48 - First inhib
+					if($quest->questtype->id == 48) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstInhibitor == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 49 - At least 2 Inhibs
+					if($quest->questtype->id == 49) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->inhibitorKills >= 2) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 50 - Get the first tower of the game
+					if($quest->questtype->id == 50) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->firstTower == 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 51 - At least 3 dragons
+					if($quest->questtype->id == 51) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->dragonKills >= 3) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					// Quest Type 52 - Get at least 2 baron buffs
+					if($quest->questtype->id == 52) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->baronKills >= 2) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+					
+					
+					// Quest Type 53 - 3 double, 2 triple or 1 quadra
+					if($quest->questtype->id == 55 || $quest->questtype->id == 56 || $quest->questtype->id == 57 || $quest->questtype->id == 58) {
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						foreach($games_since_queststart as $game) {
+								
+							if($game->doubleKills >= 3 || $game->tripleKills >= 2 || $game->quadraKills >= 1) {
+								$quest->finished = 1;
+								$quest->save();					
+								if($quest->daily == 1) {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,true,$quest->champion_id);
+								} else {
+									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
+								}
+								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
+								return Redirect::to('/quest_finished/'.$quest->id);
+							}
+						}
+					}
+
 					
 					
 				} else {

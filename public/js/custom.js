@@ -72,5 +72,10 @@ $( document ).ready(function() {
 		return confirm("Are you sure you want to remove this member?");
 	})
 	
+	$('.stop_arena').click(function(){
+		return confirm("Are you sure you want to stop this Arena run?");
+	})
+	
+	
 
 });

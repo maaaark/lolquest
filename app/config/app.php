@@ -79,7 +79,9 @@ return array(
 	*/
 
 	'key' => 'B7qGDIKLgjnan8ZPv01l1Qqdrnfk16pw',
-
+	
+	'cipher' => MCRYPT_RIJNDAEL_256,
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Autoloaded Service Providers
@@ -122,6 +124,8 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Efficiently\AuthorityController\AuthorityControllerServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
+		'Anouar\Paypalpayment\PaypalpaymentServiceProvider',
 	),
 
 	/*
@@ -189,7 +193,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Params'    => 'Efficiently\AuthorityController\Facades\Params',
 		'Authority' => 'Efficiently\AuthorityController\Facades\Authority',
-
+		'Paypalpayment'   => 'Anouar\Paypalpayment\Facades\PaypalPayment',
 	),
 
 );
