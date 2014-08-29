@@ -46,7 +46,7 @@ return array(
 	'44' => 'Get first blood with your team',
 	'45' => 'Get the first Dragon of the game with your team',
 	'46' => 'Get the first Baron of the game with your team',
-	'47' => 'Your team needs to destroy at least 8 turrets with your team',
+	'47' => 'Your team needs to destroy at least 8 turrets',
 	'48' => 'Get the first Inhibitor of the game with your team',
 	'49' => 'Destroy at least 2 Inhibitors with your team',
 	'50' => 'Destroy the first tower of the game with your team',
