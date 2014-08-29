@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>lolquest.net - {{ trans('meta.title') }}</title>
+    <title>lolquest.net - League of Legends questing</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link type="image/x-icon" href="/img/favicon.ico">

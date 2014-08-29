@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>lolquest.net - @yield('title')</title>
+		<title>lolquest.net - League of Legends questing</title>
 		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
 		<link type="image/x-icon" href="/img/favicon.ico">
@@ -51,22 +51,14 @@
 							@include('layouts.errors')
 
 							@yield('content')
-							
-							<br/><br/>
-							<div style="width: 100; text-align: center;">
-								<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-								<!-- lolquest leaderboard -->
-								<ins class="adsbygoogle"
-									 style="display:inline-block;width:728px;height:90px"
-									 data-ad-client="ca-pub-5331969279811198"
-									 data-ad-slot="7231103062"></ins>
-								<script>
-								(adsbygoogle = window.adsbygoogle || []).push({});
-								</script>
-							</div>
+		
 						</td>
 						<td valign="top" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidebar">
-							@include('layouts.blog_sidebar')
+							@if(Auth::check())
+								@include('layouts.sidebar')
+							@else
+								@include('layouts.blog_sidebar')
+							@endif
 						</td>
 					</tr>
 				</table>
@@ -77,15 +69,5 @@
 		</div>
 	</div>
 	
-    <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-51337940-1', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
     </body>
 </html>

@@ -33,13 +33,8 @@ class BaseController extends Controller {
 	}
 	
 	public function start() {
-		if (Auth::check()) {
-			return Redirect::to('dashboard');
-		} else {
-			$timelines = Timeline::orderBy('id', 'desc')->take(5)->get();
-			$blogs = Blog::orderBy("created_at", "ASC")->get();
-			return View::make('layouts.new_start', compact('timelines', 'blogs'));
-		}
+		$blogs = Blog::orderBy("created_at", "DESC")->get();
+		return View::make('layouts.new_start', compact('blogs'));
 	}
 	
 	public function noAccess()

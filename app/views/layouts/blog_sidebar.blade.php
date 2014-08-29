@@ -21,6 +21,7 @@
 	@endif
 	{{ Form::text('key', null, array('class'=>'form-control', 'placeholder'=>'Your Beta Key', 'class' => 'form-control')) }}<br/>
 	{{ Form::submit('Register', array('class'=>'btn btn-large btn-success btn-block'))}}
+	<a href="/login" class="btn btn-large btn-primary btn-block">Login</a>
 	{{ Form::close() }}
 	<br/><br/>
 

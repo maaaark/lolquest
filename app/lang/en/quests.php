@@ -51,7 +51,7 @@ return array(
 	'49' => 'Destroy at least 2 Inhibitors with your team',
 	'50' => 'Destroy the first tower of the game with your team',
 	'51' => 'Get at least 3 dragons with your team',
-	'52' => 'Get at least 2 time the baron buff with your team',
+	'52' => 'Get at least 2 times the baron buff with your team',
 	'55' => 'Get 3 double, 2 triple or 1 quadra kill',
 	'56' => 'Get 3 double, 2 triple or 1 quadra kill',
 	'57' => 'Get 3 double, 2 triple or 1 quadra kill',
