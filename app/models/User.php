@@ -509,6 +509,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 									$newGame->firstInhibitor = $game_details["firstInhibitor"];
 									$newGame->baronKills = $game_details["baronKills"];
 									$newGame->dragonKills = $game_details["dragonKills"];
+									$newGame->firstDragon = $game_details["firstDragon"];
 								}
 							}
 							
