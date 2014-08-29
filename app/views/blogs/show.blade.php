@@ -56,7 +56,7 @@ $( document ).ready(function() {
 							{{ $comment->created_at->diffForHumans() }}
 						</span>
 						<div class="comment_text">
-						{{{ $comment->comment }}}
+						{{ $comment->comment }}
 						</div>
 					</td>
 				</tr>
