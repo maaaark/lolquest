@@ -186,7 +186,7 @@
 				<div class="quest maxquests">
 					{{ trans("dashboard.maximum_quests") }}<br/>
 					<br/>
-					<a href="/shop" class="btn btn-primary">{{ trans("dashboard.buy_quest_slots") }}</a>
+					<a href="/quest_slot" class="btn btn-primary">{{ trans("dashboard.buy_quest_slots") }}</a>
 				</div>
 			</div>
 		@endfor
