@@ -44,22 +44,12 @@ class RefreshAchievements extends Command {
 		
 		
 	    foreach($ladder as $row) {
-		$i = 0;
-		$created_at = 0;
-		if($row->month == 8){
-			$created_at = '2014-08-31 12:00:00';
-			$i = $row->rang;
-		} elseif ($row->month == 7){
-			$created_at = '2014-07-31 12:00:00';
-			$i = $row->rang;
-		} else {
-			$i = 200;
-			$created_at= 0;
-		}
+		if( $row > 6 ) {
 			$user = User::find($row->user_id);
+			$i = $row->rang;
 			if ($i == 1) {
 				$user->achievements()->attach(49);
-				$user->achievements->find(49)->pivot->created_at = $created_at;
+				$user->achievements->find(49)->pivot->created_at = $row->created_at;
 				$user->achievements->find(49)->pivot->save();
 				$achievement = Achievement::where('id', '=', 49)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -67,7 +57,7 @@ class RefreshAchievements extends Command {
 				$user->save();
 			} elseif ($i == 2) {
 				$user->achievements()->attach(50);
-				$user->achievements->find(50)->pivot->created_at = $created_at;
+				$user->achievements->find(50)->pivot->created_at = $row->created_at;
 				$user->achievements->find(50)->pivot->save();
 				$achievement = Achievement::where('id', '=', 50)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -75,7 +65,7 @@ class RefreshAchievements extends Command {
 				$user->save();
 			} elseif ($i ==3) {
 				$user->achievements()->attach(51);
-				$user->achievements->find(51)->pivot->created_at = $created_at;
+				$user->achievements->find(51)->pivot->created_at = $row->created_at;
 				$user->achievements->find(51)->pivot->save();
 				$achievement = Achievement::where('id', '=', 51)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -83,7 +73,7 @@ class RefreshAchievements extends Command {
 				$user->save();
 			} elseif ($i <= 10) {
 				$user->achievements()->attach(52);
-				$user->achievements->find(52)->pivot->created_at = $created_at;
+				$user->achievements->find(52)->pivot->created_at = $row->created_at;
 				$user->achievements->find(52)->pivot->save();
 				$achievement = Achievement::where('id', '=', 52)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -91,7 +81,7 @@ class RefreshAchievements extends Command {
 				$user->save();
 			} elseif ($i <= 50) {
 				$user->achievements()->attach(53);
-				$user->achievements->find(53)->pivot->created_at = $created_at;
+				$user->achievements->find(53)->pivot->created_at = $row->created_at;
 				$user->achievements->find(53)->pivot->save();
 				$achievement = Achievement::where('id', '=', 53)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -99,7 +89,7 @@ class RefreshAchievements extends Command {
 				$user->save();
 			} elseif ($i <= 100) {
 				$user->achievements()->attach(54);
-				$user->achievements->find(54)->pivot->created_at = $created_at;
+				$user->achievements->find(54)->pivot->created_at = $row->created_at;
 				$user->achievements->find(54)->pivot->save();
 				$achievement = Achievement::where('id', '=', 54)->first();
 				$user->notify(1, trans("achievements.receive").$achievement->name);
@@ -107,5 +97,5 @@ class RefreshAchievements extends Command {
 				$user->save();
 			}
 		}			
+		}
 	}
-}
