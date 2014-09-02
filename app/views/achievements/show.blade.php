@@ -36,7 +36,7 @@
 						@elseif($achievement->description == 'Ctop' or $achievement->description == 'Cmid' or $achievement->description == 'Csup' or $achievement->description == 'Cadc' or $achievement->description == 'Cjug'or $achievement->description == 'Call' or $achievement->description == 8)
 							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }}</a>
 						@elseif($achievement->description == 5)
-								<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description.$achievement->factor) }}</a>
+								<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description.$achievement->factor) }} </a>
 						@elseif($achievement->description == 6)
 							<a href="/summoner/{{ $user->region }}/{{ $user->summoner_name }}">{{ trans("achievements.".$achievement->description) }} {{ $achievement->factor}} QP</a>
 						@elseif($achievement->description == 7)

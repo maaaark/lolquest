@@ -414,6 +414,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if($user->exp > ($user->level->exp_level-1)) {
 			$user->level_id +=1;
 			$user->checkAchievement(1, $user->level_id);
+			if($user->exp > ($user->level->exp_level-1)) {
+			  $user->level_id +=1;
+			  $user->checkAchievement(1, $user->level_id);
+	    	}		
 		}						
 		$user->checkAchievement(6, $user->lifetime_qp);		
 		$user->checkAchievement(2, $user->finishedQuestsCount());
@@ -966,7 +970,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	public function achievements()
     {
-		return $this->belongsToMany('Achievement');
+		return $this->belongsToMany('Achievement')->withTimestamps();
     }
 	
 	

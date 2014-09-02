@@ -221,6 +221,8 @@
 							@else
 								friends
 							@endif
+						@elseif($achievement->description == 5)
+							{{ trans("achievements.".$achievement->description.$achievement->factor) }}: {{ $achievement->pivot->created_at->format('m/Y')}}
 						@else
 							{{ $achievement->name }}
 						@endif								

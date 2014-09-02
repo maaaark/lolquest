@@ -32,7 +32,7 @@ class Achievement extends \Eloquent {
 	public function users()
     {
 		return $this->belongsToMany('User')
-			->order_by('id', 'asc');
+			->order_by('id', 'asc')->withTimestamps();;
     }
 	
 	public function title()
