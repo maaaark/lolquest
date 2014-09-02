@@ -45,6 +45,7 @@ class RefreshAchievements extends Command {
 		
 	    foreach($ladder as $row) {
 		$i=0;
+		$created_at= 0;
 		if($row->month == 8){
 			$created_at = '2014-08-31 12:00:00';
 			$i = $row->rang;
