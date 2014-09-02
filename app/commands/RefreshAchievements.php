@@ -44,7 +44,7 @@ class RefreshAchievements extends Command {
 		
 		
 	    foreach($ladder as $row) {
-		if( $row > 6 ) {
+		if( $row->month >= 7 ) {
 			$user = User::find($row->user_id);
 			$i = $row->rang;
 			if ($i == 1) {
