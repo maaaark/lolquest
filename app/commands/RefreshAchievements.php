@@ -44,8 +44,8 @@ class RefreshAchievements extends Command {
 		
 		
 	    foreach($ladder as $row) {
-		$i=0;
-		$created_at= 0;
+		$i = 0;
+		$created_at = 0;
 		if($row->month == 8){
 			$created_at = '2014-08-31 12:00:00';
 			$i = $row->rang;
@@ -54,6 +54,7 @@ class RefreshAchievements extends Command {
 			$i = $row->rang;
 		} else {
 			$i = 200;
+			$created_at= 0;
 		}
 			$user = User::find($row->user_id);
 			if ($i == 1) {
