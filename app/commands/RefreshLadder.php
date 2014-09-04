@@ -66,67 +66,7 @@ class RefreshLadder extends Command {
 				$participant->save();
 				//echo "\nUser Edit: ".$row->user_id." \n";
 			} else {
-			    if($month == 1) {
-					$month2 = 12;
-					$year2 = $year-1;
-				} else {
-					$month2 = $month-1;
-					$year2 = $year;
-				}
-
-				$participant = Ladder::where('user_id', '=', $row->user_id)->where('year', '=', $year2)->where('month', '=', $month2)->first();
-				if($participant) {
-					$i = $participant->rang;
-					if ($i == 1) {
-						$user->achievements()->attach(49);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 49)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					} elseif ($i == 2) {
-						$user->achievements()->attach(50);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 50)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();						
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					} elseif ($i ==3) {
-						$user->achievements()->attach(51);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 51)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();						
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					} elseif ($i <= 10) {
-						$user->achievements()->attach(52);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 52)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();						
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					} elseif ($i <= 50) {
-						$user->achievements()->attach(53);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 53)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();						
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					} elseif ($i <= 100) {
-						$user->achievements()->attach(54);
-						$user_achievement = $model->where("user_id", "=", $row->user_id)->where("achievement_id", "=", 54)->orderBy('id', 'DESC')->first();
-						$user_achievement->created_at = $row->created_at;
-						$user_achievement->save();						
-						$user->notify(1, trans("achievements.receive").$achievement->name);
-						$user->achievement_points += $achievement->points;
-						$user->save();
-					}
-				}			
+			   		
 				$ladder = new Ladder;
 				$ladder->user_id = $row->user_id;
 				$ladder->month_exp = $row->total_exp;
