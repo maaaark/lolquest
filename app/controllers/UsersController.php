@@ -407,6 +407,10 @@ class UsersController extends \BaseController {
 					$user->level_id += 1;
 					$user->save();
 				}
+				if($user->exp - $user->level->exp_level <= -1){
+					$user->level_id -= 1;
+					$user->save();
+				}
 		}
 	}
 	}	
