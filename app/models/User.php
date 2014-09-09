@@ -495,133 +495,166 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							
 							$more_details = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v2.2/match/".$game["gameId"]."?api_key=".$api_key;
 							$json2 = @file_get_contents($more_details);
-							if($json === FALSE) {
-								return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
-							}
-							$details = json_decode($json2, true);
+							if($json2 === FALSE) {
+								//return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
+								
+								$newGame->incomplete = true;
+								$newGame->towerKills = 0;
+								$newGame->firstTower = 0;
+								$newGame->inhibitorKills = 0;
+								$newGame->firstBaron = 0;
+								$newGame->firstBlood = 0;
+								$newGame->firstInhibitor = 0;
+								$newGame->baronKills = 0;
+								$newGame->dragonKills = 0;
+								$newGame->firstDragon = 0;
+								$newGame->doubleKills = 0;
+								$newGame->tripleKills = 0;
+								$newGame->quadraKills = 0;
+								$newGame->pentaKills = 0;
+								$newGame->firstBloodKill = 0;
+								$newGame->exp_pm_zeroToTen = 0;
+								$newGame->exp_pm_tenToTwenty = 0;
+								$newGame->exp_pm_twentyToThirty = 0;
+								$newGame->exp_pm_thirtyToEnd = 0;
+								$newGame->gold_pm_zeroToTen = 0;
+								$newGame->gold_pm_tenToTwenty = 0;
+								$newGame->gold_pm_twentyToThirty = 0;
+								$newGame->gold_pm_thirtyToEnd = 0;
+								$newGame->cs_pm_zeroToTen = 0;
+								$newGame->cs_pm_tenToTwenty = 0;
+								$newGame->cs_pm_twentyToThirty = 0;
+								$newGame->cs_pm_thirtyToEnd = 0;
+								
+							} else {
+								$details = json_decode($json2, true);
 							
-							if(!isset($details["teams"])) {
-								return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
-							}
-							
-							foreach($details["teams"] as $game_details) {
-								if($game["teamId"] == $game_details["teamId"]) {
-									$newGame->towerKills = $game_details["towerKills"];
-									$newGame->firstTower = $game_details["firstTower"];
-									$newGame->inhibitorKills = $game_details["inhibitorKills"];
-									$newGame->firstBaron = $game_details["firstBaron"];
-									$newGame->firstBlood = $game_details["firstBlood"];
-									$newGame->firstInhibitor = $game_details["firstInhibitor"];
-									$newGame->baronKills = $game_details["baronKills"];
-									$newGame->dragonKills = $game_details["dragonKills"];
-									$newGame->firstDragon = $game_details["firstDragon"];
+								if(!isset($details["teams"])) {
+									return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
 								}
+								
+								foreach($details["teams"] as $game_details) {
+									if($game["teamId"] == $game_details["teamId"]) {
+										$newGame->towerKills = $game_details["towerKills"];
+										$newGame->firstTower = $game_details["firstTower"];
+										$newGame->inhibitorKills = $game_details["inhibitorKills"];
+										$newGame->firstBaron = $game_details["firstBaron"];
+										$newGame->firstBlood = $game_details["firstBlood"];
+										$newGame->firstInhibitor = $game_details["firstInhibitor"];
+										$newGame->baronKills = $game_details["baronKills"];
+										$newGame->dragonKills = $game_details["dragonKills"];
+										$newGame->firstDragon = $game_details["firstDragon"];
+									}
+								}
+								
+								foreach($details["participants"] as $my_game_details) {
+									if($my_game_details["championId"] == $game["championId"]) {
+										
+										$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
+										$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
+										$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
+										$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
+										
+										
+										if(isset($my_game_details["stats"]["firstBloodKill"])) {
+											$newGame->firstBloodKill = $my_game_details["stats"]["firstBloodKill"];
+										} else {
+											$newGame->firstBloodKill = 0;
+										}
+										if(isset($my_game_details["stats"]["firstBloodAssist"])) {
+											$newGame->firstBloodAssist = $my_game_details["stats"]["firstBloodAssist"];
+										} else {
+											$newGame->firstBloodAssist = 0;
+										}
+										
+										
+										$newGame->role = $my_game_details["timeline"]["role"];
+										$newGame->lane = $my_game_details["timeline"]["lane"];
+										
+										
+										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
+											$newGame->exp_pm_zeroToTen = $my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"];
+										} else {
+											$newGame->exp_pm_zeroToTen = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"])) {
+											$newGame->exp_pm_tenToTwenty = $my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"];
+										} else {
+											$newGame->exp_pm_tenToTwenty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"])) {
+											$newGame->exp_pm_twentyToThirty = $my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"];
+										} else {
+											$newGame->exp_pm_twentyToThirty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"])) {
+											$newGame->exp_pm_thirtyToEnd = $my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"];
+										} else {
+											$newGame->exp_pm_thirtyToEnd = 0;
+										}
+										
+										
+										
+										if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"])) {
+											$newGame->gold_pm_zeroToTen = $my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"];
+										} else {
+											$newGame->gold_pm_zeroToTen = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"])) {
+											$newGame->gold_pm_tenToTwenty = $my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"];
+										} else {
+											$newGame->gold_pm_tenToTwenty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"])) {
+											$newGame->gold_pm_twentyToThirty = $my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"];
+										} else {
+											$newGame->gold_pm_twentyToThirty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"])) {
+											$newGame->gold_pm_thirtyToEnd = $my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"];
+										} else {
+											$newGame->gold_pm_thirtyToEnd = 0;
+										}
+										
+										
+										
+										if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"])) {
+											$newGame->cs_pm_zeroToTen = $my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"];
+										} else {
+											$newGame->cs_pm_zeroToTen = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"])) {
+											$newGame->cs_pm_tenToTwenty = $my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"];
+										} else {
+											$newGame->cs_pm_tenToTwenty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"])) {
+											$newGame->cs_pm_twentyToThirty = $my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"];
+										} else {
+											$newGame->cs_pm_twentyToThirty = 0;
+										}
+										
+										if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"])) {
+											$newGame->cs_pm_thirtyToEnd = $my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"];
+										} else {
+											$newGame->cs_pm_thirtyToEnd = 0;
+										}
+										
+										
+									}
+								}
+							
+							
 							}
 							
-							foreach($details["participants"] as $my_game_details) {
-								if($my_game_details["championId"] == $game["championId"]) {
-									
-									$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
-									$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
-									$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
-									$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
-									
-									
-									if(isset($my_game_details["stats"]["firstBloodKill"])) {
-										$newGame->firstBloodKill = $my_game_details["stats"]["firstBloodKill"];
-									} else {
-										$newGame->firstBloodKill = 0;
-									}
-									if(isset($my_game_details["stats"]["firstBloodAssist"])) {
-										$newGame->firstBloodAssist = $my_game_details["stats"]["firstBloodAssist"];
-									} else {
-										$newGame->firstBloodAssist = 0;
-									}
-									
-									
-									$newGame->role = $my_game_details["timeline"]["role"];
-									$newGame->lane = $my_game_details["timeline"]["lane"];
-									
-									
-									if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
-										$newGame->exp_pm_zeroToTen = $my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"];
-									} else {
-										$newGame->exp_pm_zeroToTen = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"])) {
-										$newGame->exp_pm_tenToTwenty = $my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"];
-									} else {
-										$newGame->exp_pm_tenToTwenty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"])) {
-										$newGame->exp_pm_twentyToThirty = $my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"];
-									} else {
-										$newGame->exp_pm_twentyToThirty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"])) {
-										$newGame->exp_pm_thirtyToEnd = $my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"];
-									} else {
-										$newGame->exp_pm_thirtyToEnd = 0;
-									}
-									
-									
-									
-									if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"])) {
-										$newGame->gold_pm_zeroToTen = $my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"];
-									} else {
-										$newGame->gold_pm_zeroToTen = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"])) {
-										$newGame->gold_pm_tenToTwenty = $my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"];
-									} else {
-										$newGame->gold_pm_tenToTwenty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"])) {
-										$newGame->gold_pm_twentyToThirty = $my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"];
-									} else {
-										$newGame->gold_pm_twentyToThirty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"])) {
-										$newGame->gold_pm_thirtyToEnd = $my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"];
-									} else {
-										$newGame->gold_pm_thirtyToEnd = 0;
-									}
-									
-									
-									
-									if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"])) {
-										$newGame->cs_pm_zeroToTen = $my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"];
-									} else {
-										$newGame->cs_pm_zeroToTen = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"])) {
-										$newGame->cs_pm_tenToTwenty = $my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"];
-									} else {
-										$newGame->cs_pm_tenToTwenty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"])) {
-										$newGame->cs_pm_twentyToThirty = $my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"];
-									} else {
-										$newGame->cs_pm_twentyToThirty = 0;
-									}
-									
-									if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"])) {
-										$newGame->cs_pm_thirtyToEnd = $my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"];
-									} else {
-										$newGame->cs_pm_thirtyToEnd = 0;
-									}
-									
-									
-								}
-							}
 							
 							
 							if(!isset($game["stats"]["item0"])) { $item0 = 0; }	else { $item0 = $game["stats"]["item0"]; }

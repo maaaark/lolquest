@@ -275,14 +275,21 @@
 					</td>
 					<td style="text-align: center;">
 						<a href="#" class="toggle_game_details" id="{{ $game->id }}">
-							<i class="fa fa-plus"></i>
-							Details
+							<i class="fa fa-plus"></i> Details<br/>
+							@if($game->incomplete == true)
+								<span class="incomplete">Incomplete!</span>
+							@endif
 						</a>
 					</td>
 				</tr>
 				<tr class="game_detail_toggle game_details-{{ $game->id }}" >
 					<td colspan="6" class="game_details">
 						<table class="table">
+							@if($game->incomplete == true)
+							<tr>
+								<td colspan="6"><span class="incomplete">This Match Data is incomplete! The Riot API doesn't provide all informations for this game.</span></td>
+							</tr>
+							@endif
 							<tr>
 								<td><strong>Gold earned</strong></td>
 								<td>{{ $game->goldEarned }}</td>

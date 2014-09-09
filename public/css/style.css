@@ -140,6 +140,9 @@ h3 {
 	font-size: 14px;
 	line-height: 20px;
 } 
+.incomplete {
+	color: red;
+}
 .excerpt img {
 	max-width: 810px;
 	-webkit-border-radius: 10px;

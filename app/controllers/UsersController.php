@@ -378,7 +378,7 @@ class UsersController extends \BaseController {
 			
 			$api_key = Config::get('api.key');
 			$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
-			$json = @file_get_contents($summoner_data);
+			$json = file_get_contents($summoner_data);
 			
 			if($json === FALSE) {
 				return Redirect::to('/api_error');
