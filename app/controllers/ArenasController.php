@@ -90,7 +90,7 @@ class ArenasController extends \BaseController {
 			$my_arena->save();
 			
 			$arena_quest = new ArenaQuest;
-			$arena_quest->user_id =  Auth::user()->id;
+			$arena_quest->user_id = Auth::user()->id;
 			if(Input::get('champion_arena_id') == 0) {			
 				$champion = Champion::orderBy(DB::raw('RAND()'))->first();
 				$arena_quest->champion_id = $champion->champion_id;
@@ -99,7 +99,7 @@ class ArenasController extends \BaseController {
 			}
 			$arena_quest->arena_id = $my_arena->id;
 			
-			$arena_quest_type = ArenaQuestType::orderBy(DB::raw('RAND()'))->first();	
+			$arena_quest_type = ArenaQuestType::orderBy(DB::raw('RAND()'))->where("stage", "=", $my_arena->arena_quests + 1)->first();	
 			$arena_quest->arena_quest_type_id = $arena_quest_type->id;
 			$arena_quest->save();
 			
