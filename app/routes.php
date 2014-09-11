@@ -153,6 +153,7 @@ Route::post('/finish_challenge', ['before' => 'csrf', 'uses' => 'ChallengesContr
 
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
+Route::get('/ladders/top100', 'LaddersController@alltime');
 Route::get('/ladders/refresh_ladder', 'LaddersController@refresh_ladder');
 Route::get('/ladders/{year?}/{month?}', 'LaddersController@index');
 

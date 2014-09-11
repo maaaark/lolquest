@@ -29,12 +29,18 @@ class LaddersController extends \BaseController {
 		
 		if ($validator->passes())
 		{
-			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(25);
+			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->limit(100);
 			return View::make('ladders.index', compact('ladder', 'month', 'year'));
 		} else {
 			return Redirect::to('/ladders')->with('error', "Date not valid");
 		} 
 		
+	}
+	
+	public function alltime()
+	{
+		$users = User::orderBy('exp', 'DESC')->paginate(100);
+		return View::make('ladders.alltime', compact('users'));
 	}
 	
 	public function update_ladder_achievements()
@@ -81,72 +87,6 @@ class LaddersController extends \BaseController {
 					}
 			}
 		}
-	}
-	
-
-	
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

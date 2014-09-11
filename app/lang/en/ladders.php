@@ -12,4 +12,7 @@ return array(
 	'price' => 'Price',
 	'ladder_prepare' => 'While we prepare the new ladder, there are no prices yet. As soon we can confirm the prices, they will be listed below.',
 	'ladder_test' => 'The current ladder is only for testing, the prices wont be paid this month!<br/>We will announce when the normal ladder will start.',
+	'registered' => 'Registered',
+	'top100' => 'Top 100 Ladder',
+	'lifetime_qp' => 'Lifetime QP',
 );
