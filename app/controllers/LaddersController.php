@@ -29,7 +29,7 @@ class LaddersController extends \BaseController {
 		
 		if ($validator->passes())
 		{
-			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->limit(100);
+			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->paginate(25);
 			return View::make('ladders.index', compact('ladder', 'month', 'year'));
 		} else {
 			return Redirect::to('/ladders')->with('error', "Date not valid");

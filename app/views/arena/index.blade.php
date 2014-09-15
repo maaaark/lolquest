@@ -2,27 +2,36 @@
 @section('title', "Arena - ".trans("month.".$month))
 @section('content')
 	
-	@if(Config::get('settings.active_ladder') == 0)
-		<div class="bs-callout bs-callout-warning">
-			{{ trans("ladders.ladder_prepare") }}
+	@if(Session::has('modal'))
+		<script type="text/javascript">
+			$(window).load(function(){
+				$('#myModal').modal('show');
+			});
+		</script>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Arena Rewards</h4>
+				  </div>
+				  <div class="modal-body">
+					<h3>Your Arena run has ended!</h3>
+					<div style="text-align: center">
+						<img src="/img/arena/trophy.png" />
+					</div>
+					{{ Session::get('end_msg') }}<br/>
+					<br/>
+					<h4>Based on your result, you will get the following rewards:</h4>
+					<h4>{{ Session::get('reward') }} QP</h4>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans("dashboard.close") }}</button>
+				  </div>
+				</div>
+			</div>
 		</div>
 	@endif
-	@if(Config::get('settings.active_ladder') == 3)
-		<div class="bs-callout bs-callout-warning">
-			{{ trans("ladders.ladder_test") }}
-		</div>
-	@endif
-	<br/>
-	<strong>Previous Arenas</strong>
-	<select id="dynamic_select" width="200">
-		<option value="/ladders/{{ $year }}/{{ $month }}" selected>{{ trans("month.".$month) }} {{ $year }}</option>
-		<option value="/ladders/2014/06">{{ trans("month.06") }} 2014</option>
-		<option value="/ladders/2014/05">{{ trans("month.05") }} 2014</option>
-		<option value="/ladders/2014/04">{{ trans("month.04") }} 2014</option>
-		<option value="/ladders/2014/03">{{ trans("month.03") }} 2014</option>
-	</select> 
-	
-	<br/>
 	
 	<br/>
 	<table width="100%"> 
@@ -39,8 +48,9 @@
 								<a href="/champions/"><img class="img-circle" alt="" src="/img/champions/{{ $my_arena_quest->champion_id }}_92.png" width="100"></a><br/>
 								<br/>
 								<h3>{{ $my_arena_quest->questtype->name }}</h3>
-								{{ $my_arena_quest->questtype->name }}<br/>
-					
+								<ul style="text-align: left;">
+									{{ $my_arena_quest->questtype->description }}
+								</ul>
 								<?php
 									 $enddate_arena_quest = date("Y/m/d H:i:s",$my_arena->arena_quest_end_time);
 								?>

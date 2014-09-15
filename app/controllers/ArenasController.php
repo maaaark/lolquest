@@ -11,7 +11,7 @@ class ArenasController extends \BaseController {
 			if($month == NULL)
 				$month = date("m");
 		
-			$arena_ladder = Arena::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->where("arena_finished", "=", 1)->paginate(25);
+			$arena_ladder = Arena::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->orderBy("id", "DESC")->where("arena_finished", "=", 1)->paginate(25);
 			
 		if(Auth::check()) {
 			$my_arena = Arena::where("user_id", "=", Auth::user()->id)->where('year', '=', $year)->where('month', '=', $month)->where("arena_finished", "=", 0)->first();
@@ -59,7 +59,7 @@ class ArenasController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 			$user->active_arena = 0;
 			$user->save();
-			
+
 			$my_arena_quest = ArenaQuest::where("user_id", "=", Auth::user()->id)->where("finished", "=", 0)->first();
 			if($my_arena_quest) {
 				$my_arena_quest->delete();
@@ -73,7 +73,30 @@ class ArenasController extends \BaseController {
 			}
 			$my_arena->refresh_ladder();
 			
-			return Redirect::to("/arena");
+			$my_old_arena = Arena::where("user_id", "=", Auth::user()->id)->where("arena_finished", "=", 1)->orderBy("id", "DESC")->first();
+			
+			$end_message = "<strong>You completed ".$my_old_arena->arena_quests." quests</strong> and are currently <strong>rang ".$my_old_arena->rang.".</strong><br/>You can play another Arena to beat your previous score and get a better rang. <br/>The previous Arena run will stay in the ladder.";
+			
+			if($my_old_arena->arena_quests == 1) {
+				$qp_rewards = rand(50,75);
+			} elseif($my_old_arena->arena_quests == 2) {
+				$qp_rewards = rand(76,100);
+			} elseif($my_old_arena->arena_quests == 3) {
+				$qp_rewards = rand(120,150);
+			} elseif($my_old_arena->arena_quests == 4) {
+				$qp_rewards = rand(200,250);
+			} elseif($my_old_arena->arena_quests == 5) {
+				$qp_rewards = rand(300,350);
+			} elseif($my_old_arena->arena_quests == 6) {
+				$qp_rewards = rand(400,450);
+			} elseif($my_old_arena->arena_quests >= 7) {
+				$qp_rewards = rand(500,550);
+			} else {
+				$qp_rewards = rand(10,40);
+			}
+			
+			return Redirect::to("/arena")->with('end_msg', $end_message)->with('modal', 1)->with('reward', $qp_rewards)->with("finished_quests", $my_old_arena->arena_quests);
+
 		} else {
 			return Redirect::to("/login");
 		}
@@ -137,10 +160,7 @@ class ArenasController extends \BaseController {
 				if($user->active_arena == 1) {
 					return Redirect::to("/arena")->with('success', trans("arena.quest_finished"));
 				} else {
-					$my_arena->refresh_ladder();
-					$my_old_arena = Arena::where("id", "=", $my_arena_quest->arena_id)->first();
-					$end_message = "<h3>Your Arena run has ended!</h3><strong>You completed ".$my_old_arena->arena_quests." quests</strong> and are currently <strong>rang ".$my_old_arena->rang.".</strong><br/>You can play another Arena to beat your previous score and get a better rang. The current Arena will stay in the ladder.";
-					return Redirect::to("/arena")->with('success', trans("arena.quest_finished"))->with('message', $end_message);
+					return Redirect::to("/arena/stop_arena");
 				}
 				
 				
