@@ -190,13 +190,12 @@ Route::get('shop/beta_key', 'ProductsController@betakey');
 Route::get('shop/history', 'ProductsController@history');
 Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
 Route::get('shop/quest_slot', 'ProductsController@quest_slot');
+Route::get('shop/lp', 'ProductsController@lp');
 
 
 // PAYPAL
-Route::get('payment', 'PaypalPaymentController@Index');
-Route::get('payment/execute', 'PaypalPaymentController@ExecutePaymentSuccess');
-Route::get('payment/cancel', 'PaypalPaymentController@ExecutePaymentCancel');
-
+Route::post('payments/success', 'ProductsController@payment_success');
+Route::get('payments/success', 'ProductsController@payment_success');
 
 // Pages
 Route::get('contact', function()
@@ -244,6 +243,8 @@ Route::group(array('prefix' => 'api/v1'), function()
     Route::get('user', 'ApiController@user');
 	Route::get('show/{id}', 'ApiController@show');
 	Route::get('champions', 'ApiController@champions');
+	Route::get('ladder', 'ApiController@ladder');
+	Route::get('top100', 'ApiController@top100');
 	Route::get('playerroles', 'ApiController@playerroles');
 	Route::get('dashboard', 'ApiController@dashboard');
 	Route::post('remote_login', function()

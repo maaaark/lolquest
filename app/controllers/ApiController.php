@@ -70,6 +70,44 @@ class ApiController extends \BaseController {
 	}
 	
 	
+	public function ladder()
+	{
+		$year = date("Y");
+		$month = date("m");
+		$validator = Validator::make(
+			array(
+				'year' => $year,
+				'month' => $month
+			),
+			array(
+				'year' => 'numeric',
+				'month' => 'numeric'
+			)
+		);
+		
+		if ($validator->passes())
+		{
+			$ladder = Ladder::where('year', '=', $year)->where('month', '=', $month)->orderBy('rang', 'asc')->get();
+			return Response::json(array(
+				'error' => false,
+				'ladder' => $ladder->toArray()),
+				200
+			);
+		}
+
+	}
+	
+	public function top100()
+	{
+		$users = User::orderBy('exp', 'DESC')->limit(100)->get();
+		return Response::json(array(
+				'error' => false,
+				'ladder' => $users->toArray()),
+				200
+		);
+	}
+	
+	
 	public function dashboard()
 	{
 		$user = User::find(Auth::user()->id);

@@ -25,6 +25,21 @@ class ProductsController extends \BaseController {
 		return View::make('shop.new_skin');
 	}
 	
+	public function lp()
+	{
+		if(Auth::check()) {
+			return View::make('shop.lp');
+		} else {
+			return Redirect::to("/login");
+		}
+	}
+	
+	public function payment_success()
+	{
+		return View::make('shop.payment_success');
+	}
+	
+	
 	public function buy($id)
 	{
 		if (Auth::check()) { 
