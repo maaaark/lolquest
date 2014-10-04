@@ -106,6 +106,7 @@ Route::get('dashboard/streamer', 'UsersController@streamer');
 Route::get('login', array('uses' => 'UsersController@showLogin'));
 Route::get('verify', array('uses' => 'UsersController@verify'));
 Route::get('refresh_games', array('uses' => 'UsersController@refresh_games'));
+Route::get('update_gamedata/{gameid}', array('uses' => 'UsersController@update_gamedata'));
 Route::get('logout', array('uses' => 'UsersController@doLogout'));
 Route::get('register', array('uses' => 'UsersController@create'));
 Route::get('/user_friend/{id}', array('uses' => 'UsersController@makeFriend'));

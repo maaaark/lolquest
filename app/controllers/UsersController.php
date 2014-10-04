@@ -398,6 +398,16 @@ class UsersController extends \BaseController {
 		}
 	}
 	
+	public function update_gamedata($gameid) {
+		if (Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$user->update_details($gameid);
+			return Redirect::to("/summoner/".$user->region."/".$user->summoner_name)->with("success", "The Details of this game has been updated");
+		} else {
+			return Redirect::to("/login");
+		}
+	}
+	
 	public function refresh_level()
 	{
 	if(Auth::user()->hasRole('admin')) {

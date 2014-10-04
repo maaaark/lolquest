@@ -732,249 +732,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				}
 			} else {
 				// NOT RIOT API
-				$summoner_name = urlencode($user->summoner_name);
-				$region = $user->region;
-				$url = "https://teemojson.p.mashape.com/player/$region/$user->summoner_name/recent_games";
-				
-				$opts = array(
-				  'http'=>array(
-					'method'=>"GET",
-					'header'=>"Content-Type: application/x-www-form-urlencoded\r\n" .
-							  "X-Mashape-Key: JvZWTvLe1GmshDzfXiEgz0dpLhjGp1O9gZRjsnDBF6Fltybb8f\r\n"
-				  )
-				);
-
-				$context = stream_context_create($opts);
-
-				// Öffnen der Datei mit den oben definierten HTTP-Headern
-				$test = @file_get_contents($url, false, $context);
-
-				
-				$summoner_name = urlencode($summoner_name);
-				//$test = @file_get_contents($url);
-				$data = json_decode($test, true);
-				
-				if($data["success"] == false ) {
-					return Redirect::to('/api_problems');
-					
-				} else {
-				
-					foreach($data["data"]["gameStatistics"] as $games) {
-						foreach($games as $game) {
-							$kills = 0;
-							$item_0 = 0;
-							$item_1 = 0;
-							$item_2 = 0;
-							$item_3 = 0;
-							$item_4 = 0;
-							$item_5 = 0;
-							$item_6 = 0;
-							$item_7 = 0;
-							$multikill = 0;
-							$killingSprees = 0;
-							$crit = 0;
-							$dead = 0;
-							$deaths = 0;
-							$neutral_cs = 0;
-							$wards = 0;
-							$totalHeal = 0;
-							$wardKilled = 0;
-							$turretsKilled = 0;
-							$neutralMinionsKilled = 0;
-							$teamId = 0;
-							$level = 1;
-							$assists = 0;
-							$wards_placed = 0;
-							$enemy_minions = 0;
-							$cc_dealt = 0;
-							
-							foreach($game['statistics'] as $stats) {
-								foreach($stats as $stat) {
-								  
-									  if ($stat['statType'] == "WIN") {
-										$game_result=1;
-									  }
-									  if ($stat['statType'] == "LOSE") {
-										$game_result=0;
-									  }
-									  if ($stat['statType'] == "CHAMPIONS_KILLED") {
-										$kills=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ASSISTS") {
-										$assists=$stat['value'];
-									  }
-									  if ($stat['statType'] == "NUM_DEATHS") {
-										$deaths=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM0") {
-										$item_0=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM1") {
-										$item_1=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM2") {
-										$item_2=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM3") {
-										$item_3=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM4") {
-										$item_4=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM5") {
-										$item_5=$stat['value'];
-									  }
-									  if ($stat['statType'] == "ITEM6") {
-										$item_6=$stat['value'];
-									  }
-									  if ($stat['statType'] == "MINIONS_KILLED") {
-										$cs=$stat['value'];
-									  }
-									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
-										$neutral_cs =$stat['value'];
-									  }
-									  if ($stat['statType'] == "SIGHT_WARDS_BOUGHT_IN_GAME") {
-										$wards+=$stat['value'];
-									  }
-									  if ($stat['statType'] == "VISION_WARDS_BOUGHT_IN_GAME") {
-										$wards+=$stat['value'];
-									  }
-									  if ($stat['statType'] == "WARD_PLACED") {
-										$wards_placed=$stat['value'];
-									  }
-									  if ($stat['statType'] == "LARGEST_MULTI_KILL") {
-										$multikill=$stat['value'];
-									  }
-									  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
-										$killingspree=$stat['value'];
-									  }
-									  if ($stat['statType'] == "GOLD_EARNED") {
-										$gold=$stat['value'];
-									  }
-									  if ($stat['statType'] == "LARGEST_CRITICAL_STRIKE") {
-										$crit=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
-										$total_dmg=$stat['value'];
-									  }
-									  if ($stat['statType'] == "LEVEL") {
-										$level=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_TIME_SPENT_DEAD") {
-										$dead=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
-										$total_dmg_taken=$stat['value'];
-									  }
-									  if ($stat['statType'] == "WARD_KILLED") {
-										$wardKilled=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_HEAL") {
-										$totalHeal=$stat['value'];
-									  }
-									  if ($stat['statType'] == "LARGEST_KILLING_SPREE") {
-										$killingSprees=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TURRETS_KILLED") {
-										$turretsKilled=$stat['value'];
-									  }
-									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED") {
-										$neutralMinionsKilled=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_DAMAGE_TAKEN") {
-										$totalDamageTaken=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_DAMAGE_DEALT") {
-										$totalDamageDealt=$stat['value'];
-									  }
-									  if ($stat['statType'] == "TOTAL_TIME_CROWD_CONTROL_DEALT") {
-										$cc_dealt=$stat['value'];
-									  }
-									  if ($stat['statType'] == "NEUTRAL_MINIONS_KILLED_ENEMY_JUNGLE") {
-										$enemy_minions=$stat['value'];
-									  }
-									  
-									  
-									  
-								}
-							}
-							
-							$gameid=$game['gameId'];
-							$champion=$game['championId'];
-							$game_date=date("Y-m-d H:i:s", strtotime($game['createDate']));
-							$summoner_1 =$game['spell1'];
-							$summoner_2 =$game['spell2'];
-							$gameMapId =$game['gameMapId'];
-							$teamId =$game['teamId'];
-							
-							$gametype =$game['gameType'];
-							$gamemode =$game['gameMode'];
-							$skin_id = $game['skinIndex'];
-							$premade = $game['premadeSize'];
-							$kda = 0;
-							$account_id = 0;
-						
-						
-							$recent_game = Game::where('gameId', '=', $game["gameId"])->where('summoner_id', '=', $user->summoner->summonerid)->first();
-							if(!isset($recent_game)) {
-								$newGame = new Game;
-								$newGame->summoner_id = $user->summoner->summonerid;
-								$newGame->championId = $champion;
-								$newGame->gameId = $gameid;
-								$newGame->assists = $assists;
-								$newGame->numDeaths = $deaths;
-								$newGame->championsKilled = $kills;
-								$newGame->goldEarned = $gold;
-								$newGame->wardPlaced = $wards_placed;
-								$newGame->item0 = $item_0;
-								$newGame->item1 = $item_1;
-								$newGame->item2 = $item_2;
-								$newGame->item3 = $item_3;
-								$newGame->item4 = $item_4;
-								$newGame->item5 = $item_5;
-								$newGame->item6 = $item_6;
-								$newGame->level = $level;
-								$newGame->spell1 = $summoner_1;
-								$newGame->spell2 = $summoner_2;
-								$newGame->gameMode = $gamemode;
-								$newGame->gameType = $gametype;
-								$newGame->wardKilled = $wardKilled;
-								$newGame->totalHeal = $totalHeal;
-								$newGame->killingSprees = $killingSprees;
-								$newGame->timePlayed = 0;
-								$newGame->turretsKilled = $turretsKilled;
-								$newGame->subType = $game["subType"];
-								$newGame->minionsKilled = $cs;
-								$newGame->mapId = $gameMapId;
-								$newGame->teamId = $teamId;
-								$newGame->time_dead = $dead;
-								$newGame->neutralMinionsKilledEnemyJungle = $enemy_minions;
-								$newGame->neutralMinionsKilled = $neutralMinionsKilled;
-								$newGame->totalDamageTaken = $totalDamageTaken;
-								$newGame->totalDamageDealt = $totalDamageDealt;
-								$mil = $game["createDate"];
-								$time = strtotime($mil);
-								$newformat = date('U',$time);
-								$newGame->createDate = $newformat*1000;
-								$newGame->win = $game_result;
-								$newGame->save();
-								
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_0));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_1));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_2));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_3));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_4));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_5));
-								$newGame->items()->attach($newGame->id, array("item_id"=>$item_6));
-							}
-							unset($recent_game);
-							
-						} // END FOR EACH GAME
-					} // END OF STATS	
-					
-				} // END API CHECK
-				
-				
+				return Redirect::to("/dashboard")->with("error", "No Valid API detected");	
 			}
 			
 			
@@ -982,6 +740,155 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return View::make('login');
 		}
 	}
+	
+	public function update_details($gameid) {
+	if (Auth::check())
+		{	
+			$api_key = Config::get('api.key');
+			$user = User::find($this->id);
+			$newGame = Game::where("gameId", "=", $gameid)->where("summoner_id", "=", $user->summoner->summonerid)->first();
+			if($newGame) {
+				$more_details = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v2.2/match/".$gameid."?api_key=".$api_key;
+				$json2 = @file_get_contents($more_details);
+				if($json2 === FALSE) {
+					return Redirect::to("/summoner/".$user->region."/".$user->summoner_name)->with("error", "No advanced data for this game available in the Riot API! Please try again later.");
+				} else {
+					$details = json_decode($json2, true);
+				
+					if(!isset($details["teams"])) {
+						return Redirect::to("/summoner/".$user->region."/".$user->summoner_name)->with("error", "There was an error with the Riot API, please try again later!");
+					}
+					
+					foreach($details["teams"] as $game_details) {
+						if($game_details["teamId"] == $newGame["teamId"]) {
+							$newGame->towerKills = $game_details["towerKills"];
+							$newGame->firstTower = $game_details["firstTower"];
+							$newGame->inhibitorKills = $game_details["inhibitorKills"];
+							$newGame->firstBaron = $game_details["firstBaron"];
+							$newGame->firstBlood = $game_details["firstBlood"];
+							$newGame->firstInhibitor = $game_details["firstInhibitor"];
+							$newGame->baronKills = $game_details["baronKills"];
+							$newGame->dragonKills = $game_details["dragonKills"];
+							$newGame->firstDragon = $game_details["firstDragon"];
+						}
+					}
+					
+					foreach($details["participants"] as $my_game_details) {
+						if($my_game_details["championId"] == $newGame["championId"]) {
+							
+							$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
+							$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
+							$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
+							$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
+							
+							
+							if(isset($my_game_details["stats"]["firstBloodKill"])) {
+								$newGame->firstBloodKill = $my_game_details["stats"]["firstBloodKill"];
+							} else {
+								$newGame->firstBloodKill = 0;
+							}
+							if(isset($my_game_details["stats"]["firstBloodAssist"])) {
+								$newGame->firstBloodAssist = $my_game_details["stats"]["firstBloodAssist"];
+							} else {
+								$newGame->firstBloodAssist = 0;
+							}
+							
+							
+							$newGame->role = $my_game_details["timeline"]["role"];
+							$newGame->lane = $my_game_details["timeline"]["lane"];
+							
+							
+							if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
+								$newGame->exp_pm_zeroToTen = $my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"];
+							} else {
+								$newGame->exp_pm_zeroToTen = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"])) {
+								$newGame->exp_pm_tenToTwenty = $my_game_details["timeline"]["xpPerMinDeltas"]["tenToTwenty"];
+							} else {
+								$newGame->exp_pm_tenToTwenty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"])) {
+								$newGame->exp_pm_twentyToThirty = $my_game_details["timeline"]["xpPerMinDeltas"]["twentyToThirty"];
+							} else {
+								$newGame->exp_pm_twentyToThirty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"])) {
+								$newGame->exp_pm_thirtyToEnd = $my_game_details["timeline"]["xpPerMinDeltas"]["thirtyToEnd"];
+							} else {
+								$newGame->exp_pm_thirtyToEnd = 0;
+							}
+							
+							
+							
+							if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"])) {
+								$newGame->gold_pm_zeroToTen = $my_game_details["timeline"]["goldPerMinDeltas"]["zeroToTen"];
+							} else {
+								$newGame->gold_pm_zeroToTen = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"])) {
+								$newGame->gold_pm_tenToTwenty = $my_game_details["timeline"]["goldPerMinDeltas"]["tenToTwenty"];
+							} else {
+								$newGame->gold_pm_tenToTwenty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"])) {
+								$newGame->gold_pm_twentyToThirty = $my_game_details["timeline"]["goldPerMinDeltas"]["twentyToThirty"];
+							} else {
+								$newGame->gold_pm_twentyToThirty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"])) {
+								$newGame->gold_pm_thirtyToEnd = $my_game_details["timeline"]["goldPerMinDeltas"]["thirtyToEnd"];
+							} else {
+								$newGame->gold_pm_thirtyToEnd = 0;
+							}
+							
+							
+							
+							if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"])) {
+								$newGame->cs_pm_zeroToTen = $my_game_details["timeline"]["creepsPerMinDeltas"]["zeroToTen"];
+							} else {
+								$newGame->cs_pm_zeroToTen = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"])) {
+								$newGame->cs_pm_tenToTwenty = $my_game_details["timeline"]["creepsPerMinDeltas"]["tenToTwenty"];
+							} else {
+								$newGame->cs_pm_tenToTwenty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"])) {
+								$newGame->cs_pm_twentyToThirty = $my_game_details["timeline"]["creepsPerMinDeltas"]["twentyToThirty"];
+							} else {
+								$newGame->cs_pm_twentyToThirty = 0;
+							}
+							
+							if(isset($my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"])) {
+								$newGame->cs_pm_thirtyToEnd = $my_game_details["timeline"]["creepsPerMinDeltas"]["thirtyToEnd"];
+							} else {
+								$newGame->cs_pm_thirtyToEnd = 0;
+							}
+							
+							$newGame->incomplete = 0;
+							$newGame->save();
+							
+						}
+					}
+				}
+			} else {
+				return Redirect::to("/summoner/".$user->region."/".$user->summoner_name)->with("error", "Cannot access game details!");
+			}
+
+		} else {
+			return Redirect::to('/login');
+		}				
+	}
+	
 	
 	public function get_account_id() {
 		$region = strtoupper($this->region);
