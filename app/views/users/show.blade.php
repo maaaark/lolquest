@@ -274,8 +274,12 @@
 						@endforeach	
 					</td>
 					<td>
-						@if($game->incomplete == true)
-							<a href="/update_gamedata/{{ $game->gameId }}" class="">Try to get details</a>
+						@if(Auth::check())
+							@if(@$user->id == Auth::user()->id)
+								@if($game->incomplete == true)
+									<a href="/update_gamedata/{{ $game->gameId }}" class="">Try to get details</a>
+								@endif
+							@endif
 						@endif
 					</td>
 					<td style="text-align: center;">
