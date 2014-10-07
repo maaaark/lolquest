@@ -26,6 +26,14 @@ class ForumController extends \BaseController {
 		} else {
 			$last_reads = array();
 		}
+		//var_dump($last_reads);
+		$last_reads_arr = [];
+		foreach($last_reads as $read) {
+		//var_dump($read->forum_topic_id);
+			$last_reads_arr[$read->forum_topic_id] = $read->updated_at;
+		}
+		//var_dump($last_reads_arr);
+		$last_reads = $last_reads_arr;
 		
 		return View::make('forum.category', compact('category', 'topics','last_reads'));
 	}
@@ -135,6 +143,64 @@ class ForumController extends \BaseController {
 				return Redirect::to("/forum/create_topic/".$category->id."/new")->withInput()
 				->withErrors($validation)
 				->with('error', 'There were validation errors.');
+			}
+		} else {
+			return Redirect::to("/login");
+		}
+		
+	}
+	
+	public function close_topic($topicID)
+	{
+		if(Auth::check()) {
+			if(Auth::user()->hasRole('admin')) {
+				//var_dump($topicID);
+				DB::table('forum_topics')
+					->where('id', $topicID)
+					->update(array('status' => 1));
+					
+				return Redirect::to("/forum/")->with('message', 'Topic has been closed!');
+			}
+		}
+		
+	}
+	
+	public function edit_reply($replayID, $userID)
+	{
+		if(Auth::check()) {
+			$replies = ForumReply::where('id', '=', $replayID)->first();
+			
+			if($userID === $replies->user_id) {
+				
+				return View::make('forum.edit_reply', compact('replies'));
+			}
+		}
+		
+	}
+	
+	public function editsave_reply()
+	{
+		if(Auth::check()) {
+			$input = Input::all();
+			//var_dump($input);
+			//die("qwe");
+			$validation = Validator::make($input, ForumReply::$rules);
+
+			if ($validation->passes())
+			{
+				$topic = ForumTopic::where('id', '=', Input::get('forum_topic_id'))->first();
+				$content = Input::get('content');
+				DB::table('forum_replies')
+					->where('id', $input["reply_id"])
+					->where('user_id', $input["user_id"])
+					->update(array('content' => $content));
+				
+				return Redirect::to("/forum/".$topic->category->id."/".$topic->id."/".$topic->url_name."/")->with('success', trans("forum.post_created"));
+				
+			} else {
+				return Redirect::to("/forum/".$category_id."/".$category_url_name."/".Input::get('topic_id')."/".$url_name."/reply")->withInput()
+				->withErrors($validation)
+				->with('message', 'There were validation errors.');
 			}
 		} else {
 			return Redirect::to("/login");

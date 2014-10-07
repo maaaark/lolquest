@@ -56,4 +56,13 @@ class ForumTopic extends \Eloquent {
     {
         return $this->belongsTo('User');
     }
+	
+	public function is_topic_read($last_reads, $topic_id) {
+	
+		if($last_reads === $topic_id) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

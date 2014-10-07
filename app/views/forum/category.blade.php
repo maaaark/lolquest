@@ -10,18 +10,18 @@
 		<table class="table table-striped" style="margin-bottom: 0;">
 			@foreach($topics as $topic)
 			<tr>
-				<td width="50">
-					@foreach($last_reads as $read)
-					
-						@if($read->forum_topic_id == $topic->id)
-							@if($read->last_read > $topic->updated_at)
-								<img src="/img/forum/folder.png" height="35" style="opacity: 0.3" />
-							@else
-								<img src="/img/forum/folder.png" height="35" />
+				<td width="50" style="position: relative;">
+						@if(array_key_exists($topic->id,$last_reads) && $last_reads[$topic->id]>= $topic->updated_at)
+						 <img src="/img/forum/folder.png" height="35" style="opacity: 0.3" />
+							@if($topic->status === "1")
+						 <img src="/img/forum/lock.png" class="lock" height="35" />
+							@endif
+						@else
+						 <img src="/img/forum/folder.png" height="35" />
+							@if($topic->status === "1")
+						 <img src="/img/forum/lock.png" class="lock" height="35" />
 							@endif
 						@endif
-						
-					@endforeach
 				</td>
 				<td valign="center">
 					<a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>

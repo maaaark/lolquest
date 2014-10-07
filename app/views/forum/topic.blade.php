@@ -45,10 +45,16 @@
 					{{ $reply->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
 				<td valign="top">
-					<div class="small">{{ $reply->created_at->diffForHumans() }}</div><br/>
-					{{ $reply->content }}
+					<div class="small">{{ $reply->created_at->diffForHumans() }}</div>
+					<div class="postContent">
+						{{ $reply->content }}
+					</div>
+					@if($reply->user_id === Auth::id())
+						<div class="userPostNav"><a href="/forum/edit/{{ $reply->id }}/{{ $reply->user_id }}" class="btn btn-primary right">Edit</a></div>
+					@endif
 				</td>
 			</tr>
+			
 			@endforeach
 		</table>
 	</div>
@@ -58,10 +64,17 @@
 				{{ $replies->links(); }}
 			</td>
 			<td width="50%" align="right">
-				@if(Auth::check())
-					<a href="/forum/reply/{{ $category->id }}/{{ $topic->id }}" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+				@if($topic->status === "0")
+					@if(Auth::check())
+						@if(Auth::user()->hasRole('admin'))
+						<a href="/forum/close_topic/{{ $topic->id }}" class="btn btn-danger right">Close</a>
+						@endif
+						<a href="/forum/reply/{{ $category->id }}/{{ $topic->id }}" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+					@else
+						<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
+					@endif
 				@else
-					<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
+					<div class="btn btn-default right">Closed</div>
 				@endif
 			</td>
 		</tr>
