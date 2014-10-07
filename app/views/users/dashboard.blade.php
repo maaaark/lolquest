@@ -2,7 +2,7 @@
 @section('title', trans("users.dashboard"))
 @section('content')
 	<br/>
-	<div class="bs-callout bs-callout-danger">
+	<!--<div class="bs-callout bs-callout-danger">
 		<h4>If you can't complete your quest, read this!</h4><br/>
 		If your game does not appear in your "Last Matches" history (and you cant finish the quest because of this), do the following:<br/>
 		<br/>
@@ -11,7 +11,7 @@
 		<br/>
 		Most of the time, the game will apear in your history and you can now finish the quest.<br/>
 		This is an Riot API "Bug", we cant do anything about this, sorry.
-	</div>
+	</div>-->
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of {{ $user->quest_slots }} {{ trans("dashboard.questlog") }}
 		@if($user->quest_slots<4)

@@ -273,6 +273,15 @@
 							<a href="/items/{{ $item->id }}"><img src="/img/items/{{ $item->id }}_64.png" data-toggle="tooltip" data-placement="top" title="{{ $item->name }}" width="35" class="img-circle items" ></a>
 						@endforeach	
 					</td>
+					<td>
+						@if(Auth::check())
+							@if(@$user->id == Auth::user()->id)
+								@if($game->incomplete == true)
+									<a href="/update_gamedata/{{ $game->gameId }}" class="">Try to get details</a>
+								@endif
+							@endif
+						@endif
+					</td>
 					<td style="text-align: center;">
 						<a href="#" class="toggle_game_details" id="{{ $game->id }}">
 							<i class="fa fa-plus"></i> Details<br/>
@@ -281,6 +290,7 @@
 							@endif
 						</a>
 					</td>
+					
 				</tr>
 				<tr class="game_detail_toggle game_details-{{ $game->id }}" >
 					<td colspan="6" class="game_details">
