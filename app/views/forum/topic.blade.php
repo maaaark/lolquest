@@ -8,6 +8,7 @@
 		<div class="forum_headline">{{ $topic->topic }}</div>
 		<table class="table table-striped" style="margin-bottom: 0;">
 			@if(Input::get('page') <= 1)
+			
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
 					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $topic->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
@@ -25,7 +26,12 @@
 				</td>
 				<td valign="top">
 					<div class="small">{{ $topic->created_at->diffForHumans() }}</div><br/>
-					{{ $topic->content }}
+					<div class="postContent">
+						{{ $topic->content }}
+					</div>
+					@if($topic->user_id === Auth::id() && $topic->status === "0" && $topic->deleted === "0")
+						<div class="userPostNav"><a href="/forum/edit_topic/{{ $topic->id }}/{{ $topic->user_id }}" class="btn btn-primary right">Edit</a></div>
+					@endif
 				</td>
 			</tr>
 			@endif
@@ -45,10 +51,16 @@
 					{{ $reply->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
 				<td valign="top">
-					<div class="small">{{ $reply->created_at->diffForHumans() }}</div><br/>
-					{{ $reply->content }}
+					<div class="small">{{ $reply->created_at->diffForHumans() }}</div>
+					<div class="postContent">
+						{{ $reply->content }}
+					</div>
+					@if($reply->user_id === Auth::id() && $topic->status === "0" && $topic->deleted === "0")
+						<div class="userPostNav"><a href="/forum/edit/{{ $reply->id }}/{{ $reply->user_id }}" class="btn btn-primary right">Edit</a></div>
+					@endif
 				</td>
 			</tr>
+			
 			@endforeach
 		</table>
 	</div>
@@ -58,11 +70,25 @@
 				{{ $replies->links(); }}
 			</td>
 			<td width="50%" align="right">
-				@if(Auth::check())
-					<a href="/forum/reply/{{ $category->id }}/{{ $topic->id }}" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
-				@else
-					<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
+			@if(Auth::check())
+				@if(Auth::user()->hasRole('admin') && $topic->deleted === "0")
+					<a href="/forum/delete_topic/{{ $topic->id }}" class="btn btn-danger right">Delete</a>
 				@endif
+				
+				@if(Auth::user()->hasRole('admin') && $topic->status === "0" && $topic->deleted === "0")
+						<a href="/forum/close_topic/{{ $topic->id }}" class="btn btn-danger right">Close</a>
+				@elseif(Auth::user()->hasRole('admin') && $topic->status === "1" && $topic->deleted === "0")
+					<a href="/forum/open_topic/{{ $topic->id }}" class="btn btn-primary right">Re-Open</a>
+				@elseif($topic->status === "1")
+					<div class="btn btn-default right">Closed</div>
+				@endif
+				
+				@if($topic->status === "0" && $topic->deleted === "0")
+					<a href="/forum/reply/{{ $category->id }}/{{ $topic->id }}" class="btn btn-primary right">{{ trans("forum.reply") }}</a>
+				@endif
+			@else
+				<a href="/login" class="btn btn-primary right">{{ trans("sidebar.register_to_do") }}</a>
+			@endif
 			</td>
 		</tr>
 	</table>

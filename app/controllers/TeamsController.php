@@ -198,7 +198,8 @@ class TeamsController extends \BaseController {
 	public function show($region, $clean_name)
 	{
 		$team = Team::where("region", "=", $region)->where("clean_name", "=", $clean_name)->first();
-		return View::make('teams.show', compact('team'));
+		$achievements = Achievement::where("icon", "=", "team")->get();
+		return View::make('teams.show', compact('team', 'achievements'));
 	}
 	
 	

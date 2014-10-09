@@ -38,13 +38,17 @@ class RefreshAchievements extends Command {
 	public function fire()
 	{
 		//
-		
-		$ladder = Ladder::where("month", "<", 9)->get();
+		$year = date("Y");
+		$month = date("m");
+		if ($month == 1) {
+			$month = 12;
+			$year -= 1;
+		}
+		$ladder = Ladder::where("month", "=", $month-1)->where('year', '=', $year)->get();
 		$model = new AchievementUser;
 		$model->setTable("achievement_user");
 		
 	    foreach($ladder as $row) {
-		if( $row->month >= 7 ) {
 			$user = User::find($row->user_id);
 			$i = $row->rang;
 			if ($i == 1) {				
@@ -103,6 +107,6 @@ class RefreshAchievements extends Command {
 				$user->save();
 			}
 		}			
-		}
+		
 	}
 }

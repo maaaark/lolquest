@@ -723,6 +723,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item4));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item5));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item6));
+							
+							
+							if($user->team_id != 0) {
+								$team = Team::find($user->team_id);
+								$team->assists += $newGame->assists;
+								$team->save();
+								$user->checkTeamAchievement(9, $team->assists);	
+							}
+							
+							
+							
 						}
 						unset($recent_game);
 					}
@@ -1012,6 +1023,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 	}
 	
+	public function checkTeamAchievement($type, $factor)
+	{
+		if(Auth::user()) {
+				$user = User::find(Auth::user()->id);
+				$team = Team::find($user->team_id);
+				$achiv_id = 0;
+				foreach($team->achievements as $achievement) {
+					if($achievement->type == $type){
+						if($achiv_id < $achievement->id){
+							$achiv_id = $achievement->id;
+						}
+					}
+				}
+				$team_achievement = Achievement::where('type', "=", $type)->where('id','>',$achiv_id)->first(); 
+				if($team_achievement){
+					if($team_achievement->factor <= $factor) {
+						$team->achievements()->attach($team_achievement->id);
+						$team->save();
+					}
+				} 
+		} else {
+		return Redirect::to('login');
+		}
+	}
 	
 	public function ladder_rang($user_id)
     {

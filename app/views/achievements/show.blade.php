@@ -10,7 +10,7 @@
 					<th colspan="3">All Achievements</th>
 				</tr>
 			@foreach($achievements as $achievement)
-
+			@if($achievement->icon != 'team')
 				@if($user->hasAchievement($achievement->id))
 					<?php $style = 1.0; ?>
 				@else
@@ -57,6 +57,7 @@
 				<tr>
 					<th colspan="3">&nbsp;</th>
 				</tr>
+				@endif
 				@endif
 					
 			@endforeach

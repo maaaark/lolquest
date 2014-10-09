@@ -20,3 +20,4 @@ Artisan::add(new RefreshTimeline);
 Artisan::add(new RefreshDonators);
 Artisan::add(new RefreshTeams);
 Artisan::add(new RefreshAchievements);
+Artisan::add(new RefreshUserSupporter);
