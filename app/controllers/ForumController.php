@@ -257,7 +257,6 @@ class ForumController extends \BaseController {
 	public function editsave_topic()
 	{
 		if(Auth::check()) {
-			if(Auth::user()->hasRole('admin')) {
 				$input = Input::all();
 				$topic = ForumTopic::where('id', '=', $input["topic_id"])->first();
 				//var_dump($topic);die("qwe");
@@ -266,7 +265,6 @@ class ForumController extends \BaseController {
 					->update(array('topic' => $input["title"], 'content' => $input["content"]));
 					
 				return Redirect::to("/forum/".$topic->forum_category_id."/".$topic->id."/".$topic->url_name."/")->with('message', 'Topic has been updated!');
-			}
 		}
 		
 	}
