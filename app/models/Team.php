@@ -54,6 +54,11 @@ class Team extends \Eloquent {
         return $this->belongsTo('User');
     }
 	
+	public function achievements()
+    {
+		return $this->belongsToMany('Achievement')->withTimestamps();
+    }
+	
 	public function members()
     {
         return $this->hasMany('User');
