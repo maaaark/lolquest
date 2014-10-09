@@ -1302,3 +1302,19 @@ body {
     margin-top: 120px;
   }
 }
+
+.lock {
+	position: absolute;
+	right: 8px;
+	bottom: 8px;
+	width: 16px;
+	height: 16px;
+}
+
+.postContent {
+	margin-top: 20px; min-height:50px;position: relative;
+}
+
+.userPostNav {
+	bottom: 0px;right: 0px;text-align: right;
+}

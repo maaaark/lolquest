@@ -49,13 +49,21 @@ Route::get('/settings/livestream', array('uses' => 'UsersController@livestream')
 
 // Forum Controller
 Route::get('/forum/create_topic/{category_id}/new', array('uses' => 'ForumController@create_topic'));
+Route::get('/forum/edit_topic/{topic_id}/{user_id}', array('uses' => 'ForumController@edit_topic'));
 Route::get('/forum/reply/{category_id}/{topic_id}', array('uses' => 'ForumController@reply'));
+Route::get('/forum/edit/{reply_id}/{user_id}', array('uses' => 'ForumController@edit_reply'));
+Route::get('/forum/close_topic/{topic_id}', array('uses' => 'ForumController@close_topic'));
+Route::get('/forum/open_topic/{topic_id}', array('uses' => 'ForumController@open_topic'));
+Route::get('/forum/delete_topic/{topic_id}', array('uses' => 'ForumController@delete_topic'));
 Route::get('/forum', array('uses' => 'ForumController@index'));
 Route::get('/forum/{category_id}/{url_name}', array('uses' => 'ForumController@category'));
 Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}', array('uses' => 'ForumController@topic'));
 
+
 Route::post('/forum/{category_id}/{url_name}/{topic_id}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
 Route::post('/forum/{url_name}/create_topic/save_topic', array('uses' => 'ForumController@save_topic'));
+Route::post('/forum/{url_name}/create_topic/editsave_topic', array('uses' => 'ForumController@editsave_topic'));
+Route::post('/forum/{url_name}/create_topic/editsave_reply', array('uses' => 'ForumController@editsave_reply'));
 
 // Base Controller
 Route::get('403', array('uses' => 'BaseController@noAccess'));
