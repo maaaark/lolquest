@@ -35,6 +35,13 @@ class Achievement extends \Eloquent {
 			->order_by('id', 'asc')->withTimestamps();
     }
 	
+	public function teams()
+    {
+		return $this->belongsToMany('Team')
+			->order_by('id', 'asc')->withTimestamps();
+    }
+	
+	
 	public function title()
     {
         return $this->belongsTo('Title');

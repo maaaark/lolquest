@@ -15,6 +15,7 @@
 	<strong>{{ trans("ladders.archive") }}</strong>
 	<select id="dynamic_select" width="200">
 		<option value="/ladders/{{ $year }}/{{ $month }}" selected>{{ trans("month.".$month) }} {{ $year }}</option>
+		<option value="/ladders/2014/09">{{ trans("month.09") }} 2014</option>
 		<option value="/ladders/2014/08">{{ trans("month.08") }} 2014</option>
 		<option value="/ladders/2014/07">{{ trans("month.07") }} 2014</option>
 		<option value="/ladders/2014/06">{{ trans("month.06") }} 2014</option>

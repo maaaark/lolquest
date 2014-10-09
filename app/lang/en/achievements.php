@@ -18,6 +18,7 @@ return array(
 	'6' => 'You have earned ',
 	'7' => ' Quests done with one Champion',
 	'8' => 'You have quests done with all Champions',
+	'9' => ' Assists with your team',
 	'Ctop' => 'Complete the Top challenge',
 	'Cmid' => 'Complete the Mid challenge',
 	'Csup' => "Complete the Support challenge",
