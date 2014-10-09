@@ -164,6 +164,7 @@
 		</tr>
 	</table>
 	@if(Auth::check())
+		@if(Auth::user()->hasRole('admin'))
 		<br/>
 		<h3>{{ trans("teams.achievements") }}</h3>
 		<table class="table table-striped">
@@ -197,5 +198,6 @@
 			</tr>
 			@endforeach
 		</table>
+		@endif
 	@endif
 @stop
