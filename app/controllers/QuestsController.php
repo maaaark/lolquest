@@ -220,7 +220,7 @@ class QuestsController extends \BaseController {
 				
 					// Quest Type 1 - Play a game
 					if($quest->questtype->id == 1) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
@@ -236,7 +236,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 2 - Win a game
 					if($quest->questtype->id == 2) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('win', '=', 1)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('win', '=', 1)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						if($games_since_queststart->count() > 0) {
 							$quest->finished = 1;
 							$quest->save();
@@ -253,7 +253,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 3 - KDA >= 3.0
 					if($quest->questtype->id == 3) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 							
 							if($game->numDeaths == 0) {
@@ -280,7 +280,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 4 - Place at least 15 wards
 					if($quest->questtype->id == 4) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->wardPlaced >= 15) {
@@ -301,7 +301,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 5 - Min. 6 kills on Summoners Rift
 					if($quest->questtype->id == 5 || $quest->questtype->id == 18 || $quest->questtype->id == 19 || $quest->questtype->id == 20) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->gameMode == "CLASSIC" && $game->championsKilled >= 6) {
@@ -320,7 +320,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 6 - Min. 200 CS on SR
 					if($quest->questtype->id == 6 || $quest->questtype->id == 21 || $quest->questtype->id == 22 || $quest->questtype->id == 23) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							$total_minions = $game->minionsKilled+$game->neutralMinionsKilled;
@@ -341,7 +341,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 7 - Take Smite + mind. 50 neutral Minons
 					if($quest->questtype->id == 7) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->spell1 == 11 || $game->spell2 == 11) {
@@ -363,7 +363,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 8 - Dont die!
 					if($quest->questtype->id == 8) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('win', '=', 1)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('win', '=', 1)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->numDeaths == 0 && $game->goldEarned >= 11000) {
@@ -383,7 +383,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 9 - At least 11k Gold
 					if($quest->questtype->id == 9) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						
 						foreach($games_since_queststart as $game) {
 								
@@ -404,7 +404,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 10 - 15 assists (Support only)
 					if($quest->questtype->id == 10) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->assists >= 15) {
@@ -423,7 +423,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 11 - Kill at least 5 Wards
 					if($quest->questtype->id == 11) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->wardKilled >= 5) {
@@ -442,7 +442,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 12 - Finish under 30 minutes
 					if($quest->questtype->id == 12) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->timePlayed <= 1800) {
@@ -462,7 +462,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 13 - Mind 2 Turrets
 					if($quest->questtype->id == 13 || $quest->questtype->id == 24 || $quest->questtype->id == 25) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->turretsKilled >= 2) {
@@ -482,7 +482,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 14 - Get on a Killing Spree
 					if($quest->questtype->id == 14 || $quest->questtype->id == 26 || $quest->questtype->id == 27 || $quest->questtype->id == 28) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->killingSprees >= 1) {
@@ -503,7 +503,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 15 - At least 5000 Heal (Support Only)
 					if($quest->questtype->id == 15) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->totalHeal >= 5000) {
@@ -524,7 +524,7 @@ class QuestsController extends \BaseController {
 
 					// Quest Type 16 - Deal at least 120000 Dmg
 					if($quest->questtype->id == 16 || $quest->questtype->id == 29 || $quest->questtype->id == 30 || $quest->questtype->id == 31) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->totalDamageDealt >= 120000) {
@@ -544,7 +544,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 17 - Tank 20.000 Dmg
 					if($quest->questtype->id == 17 || $quest->questtype->id == 33 || $quest->questtype->id == 34) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->totalDamageTaken >= 20000) {
@@ -567,7 +567,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 35 - Late game
 					if($quest->questtype->id == 35) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->level == 18) {
@@ -590,7 +590,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 36 - Early bird
 					if($quest->questtype->id == 36) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->level <= 15) {
@@ -613,7 +613,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 37 - Death timer
 					if($quest->questtype->id == 37) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->numDeaths <= 3) {
@@ -636,7 +636,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 38 - Kill at least 15 enemy jungle minions
 					if($quest->questtype->id == 38) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->neutralMinionsKilledEnemyJungle >= 15) {
@@ -658,7 +658,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 39 - Get at least 3 Kills and 5 assists
 					if($quest->questtype->id == 39) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->assists >= 5 && $game->championsKilled >= 3) {
@@ -678,7 +678,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 40 - Get first blood
 					if($quest->questtype->id == 40 || $quest->questtype->id == 41 || $quest->questtype->id == 42 || $quest->questtype->id == 43) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstBloodKill == 1) {
@@ -698,7 +698,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 44 - Team get first blood
 					if($quest->questtype->id == 44) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstBlood == 1) {
@@ -717,7 +717,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 45 - Get the first DRAGON
 					if($quest->questtype->id == 45) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstDragon == 1) {
@@ -737,7 +737,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 46 - Get the first BARON
 					if($quest->questtype->id == 46) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstBaron == 1) {
@@ -756,7 +756,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 47 - Destroy at least 8 towers
 					if($quest->questtype->id == 47) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->towerKills >= 8) {
@@ -775,7 +775,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 48 - First inhib
 					if($quest->questtype->id == 48) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstInhibitor == 1) {
@@ -794,7 +794,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 49 - At least 2 Inhibs
 					if($quest->questtype->id == 49) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->inhibitorKills >= 2) {
@@ -814,7 +814,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 50 - Get the first tower of the game
 					if($quest->questtype->id == 50) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->firstTower == 1) {
@@ -833,7 +833,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 51 - At least 3 dragons
 					if($quest->questtype->id == 51) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->dragonKills >= 3) {
@@ -852,7 +852,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 52 - Get at least 2 baron buffs
 					if($quest->questtype->id == 52) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->baronKills >= 2) {
@@ -872,7 +872,7 @@ class QuestsController extends \BaseController {
 					
 					// Quest Type 53 - 3 double, 2 triple or 1 quadra
 					if($quest->questtype->id == 55 || $quest->questtype->id == 56 || $quest->questtype->id == 57 || $quest->questtype->id == 58) {
-						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 1)->get();
+						$games_since_queststart = Game::where('summoner_id', '=', Auth::user()->summoner->summonerid)->where('createDate', '>', $quest->createDate)->where('championId', '=', $quest->champion_id)->where('gameType', '=', "MATCHED_GAME")->where('mapId', '=', 11)->get();
 						foreach($games_since_queststart as $game) {
 								
 							if($game->doubleKills >= 3 || $game->tripleKills >= 2 || $game->quadraKills >= 1) {
