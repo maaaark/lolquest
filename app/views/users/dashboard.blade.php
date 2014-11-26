@@ -2,16 +2,11 @@
 @section('title', trans("users.dashboard"))
 @section('content')
 	<br/>
-	<!--<div class="bs-callout bs-callout-danger">
-		<h4>If you can't complete your quest, read this!</h4><br/>
-		If your game does not appear in your "Last Matches" history (and you cant finish the quest because of this), do the following:<br/>
-		<br/>
-		Go to your League of Legends Client and change your Summoner Icon. Save it.<br/>
-		Go to lolquest and try to finish the quest again.<br/>
-		<br/>
-		Most of the time, the game will apear in your history and you can now finish the quest.<br/>
-		This is an Riot API "Bug", we cant do anything about this, sorry.
-	</div>-->
+	<div class="bs-callout bs-callout-danger">
+		<h4>Quests will not work on the Summoners Rift Update!</h4><br/>
+		Right now the Quests will NOT work on the new Summoners Rift Update!<br/>
+		We are working on a fix for that.
+	</div>
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of {{ $user->quest_slots }} {{ trans("dashboard.questlog") }}
 		@if($user->quest_slots<4)
