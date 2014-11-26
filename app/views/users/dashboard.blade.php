@@ -2,11 +2,6 @@
 @section('title', trans("users.dashboard"))
 @section('content')
 	<br/>
-	<div class="bs-callout bs-callout-danger">
-		<h4>Quests will not work on the Summoners Rift Update!</h4><br/>
-		Right now the Quests will NOT work on the new Summoners Rift Update!<br/>
-		We are working on a fix for that.
-	</div>
 	 <div class="quest_amount">
 		{{ $myquests->count() }} of {{ $user->quest_slots }} {{ trans("dashboard.questlog") }}
 		@if($user->quest_slots<4)
