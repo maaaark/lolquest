@@ -131,7 +131,7 @@
 				<tr style="background: #2d2d2d;">
 					<td width="30">{{ Session::get('my_ladder_rang')->rang }}.</td>
 					<td width="40" class="hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
-					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.png" class="img-circle" width="25" />
 					</a></strong></td>
 					<td width="140"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
 					<td class="hidden-sm hidden-xs"><strong>{{ Session::get('my_ladder_rang')->month_exp }} EXP</strong></td>			
