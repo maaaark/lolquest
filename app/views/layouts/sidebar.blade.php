@@ -110,7 +110,7 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="/img/champions/{{ $quest->champion_id }}_92.png" width="40"></a></td>
+				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $quest->champion->key }}.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard">{{ $quest->questtype->name }}</a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
