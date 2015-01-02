@@ -21,7 +21,7 @@
 						<div class="quest">
 					@endif
 				@endif
-					<a href="/champions/{{ $quest->champion->key }}"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100"></a>
+					<a href="/champions/{{ $quest->champion->key }}"><img class="img-circle" alt="{{ $quest->champion->name }}" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $quest->champion->key }}.png" width="100"></a>
 					<h3>{{ $quest->questtype->name }}</h3>
 					<p class="questtext">{{ trans("quests.".$quest->type_id) }}<br/> 
 					<br/> 
@@ -65,7 +65,7 @@
 					  <div class="modal-body">
 						<table>
 							<tr>
-								<td valign="top" width="120"><img class="img-circle" alt="{{ $quest->champion->name }}" src="/img/champions/{{ $quest->champion->champion_id }}_92.png" width="100" style="margin-right: 15px;"></td>
+								<td valign="top" width="120"><img class="img-circle" alt="{{ $quest->champion->name }}" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $quest->champion->key }}.png" width="100" style="margin-right: 15px;"></td>
 								<td valign="top" width="100%">
 									<h3>{{ $quest->questtype->name }}</h3>
 									{{ trans("quests.".$quest->type_id) }}<br/>

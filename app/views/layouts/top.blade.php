@@ -11,7 +11,7 @@
 			<li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> <span class="hidden-xs hidden-sm">Settings</span></a></li>
 			<li>
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
-					<div class="avatar"><img src="/img/profileicons/profileIcon{{ Auth::user()->summoner->profileIconId }}.jpg" class="img-circle" width="20" style="display: inline;" /></div>
+					<div class="avatar"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ Auth::user()->summoner->profileIconId }}.png" class="img-circle" width="20" style="display: inline;" /></div>
 					<div class="name hidden-xs hidden-sm">{{ Auth::user()->summoner->name }} </div>
 					<div class="clear"></div>
 				</a>

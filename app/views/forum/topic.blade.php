@@ -11,7 +11,7 @@
 			
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
-					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $topic->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
+					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $topic->user->summoner->name }}</strong><br/>
 					@if($topic->user->title() != false)
@@ -38,7 +38,7 @@
 			@foreach($replies as $reply)
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
-					<a href="/summoner/{{ $reply->user->region }}/{{ $reply->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $reply->user->summoner->profileIconId }}.jpg" class="img-circle" width="50" /></a>
+					<a href="/summoner/{{ $reply->user->region }}/{{ $reply->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $reply->user->summoner->name }}</strong><br/>
 					@if($reply->user->title() != false)

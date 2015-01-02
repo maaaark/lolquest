@@ -11,7 +11,7 @@
 	<table width="100%" class="profile">
 		<tr>
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
-				<img src="/img/profileicons/profileIcon{{ $user->summoner->profileIconId }}.jpg" width="100" class="img-circle" /><br/>
+				<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" width="100" class="img-circle" /><br/>
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
 				@if(Auth::user())
@@ -250,7 +250,7 @@
 				?>
 				<tr class="<?php echo $class; ?>">
 					<td>
-						<a href="/champions/{{ $game->champion->key }}"><img src="/img/champions/{{ $game->championId }}_92.png" class="img-circle" width="35" /></a>
+						<a href="/champions/{{ $game->champion->key }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $game->champion->key }}.png" class="img-circle" width="35" /></a>
 					</td>
 					<td class="game_kda">
 					{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}<br/>

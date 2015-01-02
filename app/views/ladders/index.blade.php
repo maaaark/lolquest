@@ -54,7 +54,7 @@
 					<img src="/img/leagues/bronze_5.png" height="20" />
 				@endif
 			</td>
-			<td width="20"><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $row->user->summoner->profileIconId }}.jpg" class="img-circle" width="20" /></a></td>
+			<td width="20"><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="20" /></a></td>
 			<td><a href="/summoner/{{ $row->user->region }}/{{ $row->user->summoner_name }}">{{ $row->user->summoner->name }}</a></td>
 			<td>{{ $row->total_quests }}</td>
 			<td>{{ $row->month_exp }}</td>

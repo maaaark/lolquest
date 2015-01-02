@@ -88,7 +88,7 @@
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="/img/champions/{{ Session::get('daily_quest')->champion_id }}_92.png" width="40"></a></td>
+					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ Session::get('daily_quest')->champion->key }}.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
@@ -131,7 +131,7 @@
 				<tr style="background: #2d2d2d;">
 					<td width="30">{{ Session::get('my_ladder_rang')->rang }}.</td>
 					<td width="40" class="hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
-					<img src="/img/profileicons/profileIcon{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.jpg" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="25" />
 					</a></strong></td>
 					<td width="140"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
 					<td class="hidden-sm hidden-xs"><strong>{{ Session::get('my_ladder_rang')->month_exp }} EXP</strong></td>			
@@ -143,7 +143,7 @@
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
 					<td width="40" class="hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
-					<img src="/img/profileicons/profileIcon{{ $friend_ladder->profileIconId }}.jpg" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" class="img-circle" width="25" />
 					</a></td>
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
 					<td class="hidden-sm hidden-xs">{{ $friend_ladder->month_exp }} EXP</td>			
