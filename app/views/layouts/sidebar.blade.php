@@ -143,7 +143,7 @@
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
 					<td width="40" class="hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
-					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $friend_ladder->user->summoner->profileIconId }}.png" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $friend_ladder->summoner->profileIconId }}.png" class="img-circle" width="25" />
 					</a></td>
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
 					<td class="hidden-sm hidden-xs">{{ $friend_ladder->month_exp }} EXP</td>			
