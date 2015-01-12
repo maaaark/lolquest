@@ -199,7 +199,7 @@ Route::get('shop/beta_key', 'ProductsController@betakey');
 Route::get('shop/history', 'ProductsController@history');
 Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
 Route::get('shop/quest_slot', 'ProductsController@quest_slot');
-Route::get('shop/lp', 'ProductsController@lp');
+Route::get('shop/gold', 'ProductsController@lp');
 
 
 // PAYPAL

@@ -7,8 +7,11 @@
 		
 		@if(Auth::check())
 			<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> <span class="hidden-xs hidden-sm">Logout</span></a></li>
-			<li class=""><strong><a href="/shop">{{ Auth::user()->qp }} QP</a></strong></li>
 			<li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> <span class="hidden-xs hidden-sm">Settings</span></a></li>
+			<li class=""><strong><a href="/shop">{{ Auth::user()->qp }} QP</a></strong></li>
+			@if(Auth::user()->hasRole('admin'))
+			<li class=""><strong><a href="/shop/gold">{{ Auth::user()->lp }} Gold</a></strong></li>
+			@endif
 			<li>
 				<a href="/summoner/{{ Auth::user()->region }}/{{ Auth::user()->summoner_name }}">
 					<div class="avatar"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ Auth::user()->summoner->profileIconId }}.png" class="img-circle" width="20" style="display: inline;" /></div>

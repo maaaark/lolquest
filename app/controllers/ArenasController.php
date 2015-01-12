@@ -73,6 +73,7 @@ class ArenasController extends \BaseController {
 			}
 			$my_arena->refresh_ladder();
 			
+			
 			$my_old_arena = Arena::where("user_id", "=", Auth::user()->id)->where("arena_finished", "=", 1)->orderBy("id", "DESC")->first();
 			
 			$end_message = "<strong>You completed ".$my_old_arena->arena_quests." quests</strong> and are currently <strong>rang ".$my_old_arena->rang.".</strong><br/>You can play another Arena to beat your previous score and get a better rang. <br/>The previous Arena run will stay in the ladder.";
@@ -94,6 +95,8 @@ class ArenasController extends \BaseController {
 			} else {
 				$qp_rewards = rand(10,40);
 			}
+			$user->qp = $user->qp + $qp_rewards;
+			$user->save();
 			
 			return Redirect::to("/arena")->with('end_msg', $end_message)->with('modal', 1)->with('reward', $qp_rewards)->with("finished_quests", $my_old_arena->arena_quests);
 
@@ -122,7 +125,14 @@ class ArenasController extends \BaseController {
 			}
 			$arena_quest->arena_id = $my_arena->id;
 			
-			$arena_quest_type = ArenaQuestType::orderBy(DB::raw('RAND()'))->where("stage", "=", $my_arena->arena_quests + 1)->first();	
+			$stage = $my_arena->arena_quests;
+			if($stage <= 1) {
+				$stage = 1;
+			} else {
+				$stage = 2;
+			}
+			
+			$arena_quest_type = ArenaQuestType::orderBy(DB::raw('RAND()'))->where("stage", "=", $stage)->first();	
 			$arena_quest->arena_quest_type_id = $arena_quest_type->id;
 			$arena_quest->save();
 			

@@ -30,4 +30,6 @@ return array(
 	'login_to_buy' => 'Login to buy',
 	'betakey' => 'Beta Key',
 	'quest_slot' => 'Quest Slots',
+	'buy_gold' => 'Step up to the next level of lolquest.net',
+	'gold_sidebar' => 'Buy lolquest Gold',
 );

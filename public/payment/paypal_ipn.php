@@ -117,8 +117,9 @@ if (strcmp ($res, "VERIFIED") == 0) {
 	$user_id = $link->real_escape_string($_POST['custom']);
 	$mc_gross = $link->real_escape_string($_POST['mc_gross']);
 	
+	// Check amount
 	if($mc_gross== 5.00) {
-		$lp_amount = 500;
+		$lp_amount = 510;
 	} elseif($mc_gross == 10.00) {
 		$lp_amount = 1150;
 	} elseif($mc_gross == 20.00) {
