@@ -7,4 +7,6 @@ return array(
 	'join_button' => 'Join the Arena (500 QP)',
 	'finish_quest' => 'Finish Arena Quest',
 	'no_quest' => 'Arena quest not found',
+	'join_button_lp' => 'Join the Arena (50 Gold)',
+	'not_verified' => 'Please verify your account first!',
 );

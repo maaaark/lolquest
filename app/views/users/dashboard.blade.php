@@ -183,11 +183,137 @@
 		
 	</div>
 	
-
-	<!-- END OF QUESTSLOTS -->
+	<!--
 	<div class="api_lag">
 		<h4>PLEASE NOTICE</h4>
 		Sometimes your recent games may not be up to date and you can't finish a quest, even if you completed the requirements. Try again a few minutes later. It is possible, that the Riot API is lagging and some games will take some minutes or hours to be shown in the history. There is nothing we can do about this.
+	</div>
+	<br/>-->
+	
+	<div class="daily_quests">
+		<h3>Daily Quests</h3>
+		<table width="100%" class="table table-striped daily_quests_table">
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Win 3 games today</strong><br/>
+					<div class="daily_description">Win 3 games to claim your daily reward.</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->wins }} / 3 Wins</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/3)*$dailyprogress->wins,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+				<br/>
+					20 Gold + 200 EXP<br/>
+					@if($dailyprogress->wins == 3)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/silver_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Complete 5 Quests today</strong><br/>
+					<div class="daily_description">Complete 5 quests to claim your daily reward.</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->quests_completed }} / 5 Quests</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/5)*$dailyprogress->quests_completed,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+					<br/>
+					10 Gold + 200 EXP<br/>
+					@if($dailyprogress->quests_completed == 5)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Daily Top Laner</strong><br/>
+					<div class="daily_description">Play 2 Games on the Top Lane</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->top_games }} / 2 Games</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->top_games,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+				<br/>
+					25 QP + 200 EXP<br/>
+					@if($dailyprogress->top_games == 2)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Daily Mid Laner</strong><br/>
+					<div class="daily_description">Play 2 Games on the Mid Lane</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->mid_games }} / 2 Games</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->mid_games,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+				<br/>
+					25 QP + 200 EXP<br/>
+					@if($dailyprogress->mid_games == 2)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Daily Jungler</strong><br/>
+					<div class="daily_description">Play 2 Games in the Jungle</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->jungle_games }} / 2 Games</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->jungle_games,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+				<br/>
+					25 QP + 200 EXP<br/>
+					@if($dailyprogress->jungle_games == 2)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
+				<td valign="top">
+					<strong>Daily Botlane</strong><br/>
+					<div class="daily_description">Play 2 Games on the Bottom lane</div>
+					<div class="progress">
+					  <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->bot_games }} / 2 Games</div>
+					  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->bot_games,0) }}% ;"></div>
+					</div>
+				</td>
+				<td valign="top" width="150" style="text-align: center;">
+				<br/>
+					25 QP + 200 EXP<br/>
+					@if($dailyprogress->bot_games == 2)
+						<a href="#" class="btn btn-success">Claim reward</a>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				</td>
+			</tr>
+		</table>
 	</div>
 	<br/><br/>
 @stop

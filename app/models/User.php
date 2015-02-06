@@ -4,110 +4,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-/**
- * User
- *
- * @property-read \Level $level
- * @property-read \Summoner $summoner
- * @property-read \Ladder $ladder
- * @property-read \Team $team
- * @property-read \Arena $arena
- * @property-read \Illuminate\Database\Eloquent\Collection|\Notification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\Skin[] $skins
- * @property-read \Illuminate\Database\Eloquent\Collection|\UserTitle[] $titles
- * @property-read \Illuminate\Database\Eloquent\Collection|\Timeline[] $timelines
- * @property-read \Illuminate\Database\Eloquent\Collection|\ForumTopic[] $topics
- * @property-read \Illuminate\Database\Eloquent\Collection|\ForumLastRead[] $last_reads
- * @property-read \Illuminate\Database\Eloquent\Collection|\ForumReply[] $replies
- * @property-read \Illuminate\Database\Eloquent\Collection|\Blog[] $blogs
- * @property-read \Illuminate\Database\Eloquent\Collection|\Comment[] $comments
- * @property-read \Illuminate\Database\Eloquent\Collection|\Quest[] $quests
- * @property-read \Illuminate\Database\Eloquent\Collection|\Transaction[] $transactions
- * @property-read \Illuminate\Database\Eloquent\Collection|\Role[] $roles
- * @property-read \Illuminate\Database\Eloquent\Collection|\Permission[] $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection|\Achievement[] $achievements
- * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $friends
- * @property integer $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $summoner_name
- * @property string $region
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property string $remember_token
- * @property integer $summoner_status
- * @property string $verify_string
- * @property integer $exp
- * @property integer $qp
- * @property integer $premium
- * @property integer $level_id
- * @property integer $quest_slots
- * @property integer $rerolls
- * @property integer $last_checked
- * @property integer $daily_done
- * @property integer $challenge_mode
- * @property integer $challenge_step
- * @property integer $trophy_top
- * @property integer $trophy_jungle
- * @property integer $trophy_mid
- * @property integer $trophy_marksman
- * @property integer $trophy_support
- * @property integer $challenge_time
- * @property integer $show_in_timeline
- * @property integer $lifetime_qp
- * @property string $skin_left
- * @property string $skin_right
- * @property integer $timeline_friends_only
- * @property integer $active_arena
- * @property integer $active_title
- * @property integer $donator
- * @property integer $achievement_points
- * @property integer $team_id
- * @property integer $team_founder
- * @property string $livestream_platform
- * @property string $livestream_channel
- * @method static \Illuminate\Database\Query\Builder|\User whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereEmail($value) 
- * @method static \Illuminate\Database\Query\Builder|\User wherePassword($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereSummonerName($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereRegion($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereRememberToken($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereSummonerStatus($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereVerifyString($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereExp($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereQp($value) 
- * @method static \Illuminate\Database\Query\Builder|\User wherePremium($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLevelId($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereQuestSlots($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereRerolls($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLastChecked($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereDailyDone($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereChallengeMode($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereChallengeStep($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTrophyTop($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTrophyJungle($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTrophyMid($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTrophyMarksman($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTrophySupport($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereChallengeTime($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereShowInTimeline($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLifetimeQp($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereSkinLeft($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereSkinRight($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTimelineFriendsOnly($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereActiveArena($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereActiveTitle($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereDonator($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereAchievementPoints($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTeamId($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereTeamFounder($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLivestreamPlatform($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereLivestreamChannel($value) 
- */
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	//use RemindableTrait;
@@ -159,6 +55,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function arena()
     {
         return $this->hasOne('Arena');
+    }
+	
+	public function dailyprogress()
+    {
+        return $this->hasOne('Dailyprogess');
     }
 	
 	public function notifications()
@@ -565,6 +466,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 										
 										$newGame->role = $my_game_details["timeline"]["role"];
 										$newGame->lane = $my_game_details["timeline"]["lane"];
+										if($newGame->lane == "TOP") {
+											$user->dailyprogress->addTopGame($user);
+										} elseif($newGame->lane == "JUNGLE") {
+											$user->dailyprogress->addJungleGame($user);
+										} elseif($newGame->lane == "MIDDLE") {
+											$user->dailyprogress->addMidGame($user);
+										} elseif($newGame->lane == "BOTTOM") {
+											$user->dailyprogress->addBotGame($user);
+										}
 										
 										
 										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
@@ -714,6 +624,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$mil = $game["createDate"];
 							$newGame->createDate = $mil;
 							$newGame->win = $game["stats"]["win"];
+							if($newGame->win == true) {
+								$user->dailyprogress->addWin($user);
+							}
 							$newGame->save();
 							
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item0));
@@ -807,6 +720,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							
 							$newGame->role = $my_game_details["timeline"]["role"];
 							$newGame->lane = $my_game_details["timeline"]["lane"];
+							
+							if($newGame->lane == "BOTTOM") {
+								$user->dailyprogress->addBotGame($user);
+							} elseif($newGame->lane == "JUNGLE") {
+								$user->dailyprogress->addJungleGame($user);
+							} elseif($newGame->lane == "TOP") {
+								$user->dailyprogress->addTopGame($user);
+							} elseif($newGame->lane == "MIDDLE") {
+								$user->dailyprogress->addMidGame($user);
+							}
 							
 							
 							if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
