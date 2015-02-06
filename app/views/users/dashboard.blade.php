@@ -123,8 +123,7 @@
 				</div>
 			</div>
 		@endforeach
-		
-		
+
 		@if($myquests->count() < $user->quest_slots)
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 				<div class="quest">
@@ -157,19 +156,29 @@
 					{{ Form::close() }}
 				</div>
 			</div>
+			
 		@else
 			
 		@endif
 		
+		
 		<?php $free_slots = $user->quest_slots - ($myquests->count()+1); ?>
 		@for ($i = 1; $i <= $free_slots; $i++)
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-				<div class="quest empty_quest">
-					{{ trans("dashboard.empty_quests") }}
-				</div>
+				@if($user->slot1_cooldown > 0)
+					<div class="quest">
+						COOLDOWN
+						{{ date("H:i:s",$user->slot1_cooldown/1000 - $time) }}
+					</div>
+				@else
+					<div class="quest empty_quest">
+						{{ trans("dashboard.empty_quests") }}
+					</div>
+				@endif
+				
 			</div>
 		@endfor
-		
+	
 		<?php $buyable_slots = 4 -$user->quest_slots; ?>
 		@for ($i = 1; $i <= $buyable_slots; $i++)
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
@@ -180,6 +189,8 @@
 				</div>
 			</div>
 		@endfor
+		
+		
 		
 	</div>
 	
