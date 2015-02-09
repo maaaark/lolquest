@@ -56,4 +56,5 @@ return array(
 	'finish_challenge' => 'Finish Challenge',
 	'inactive' => 'Quest inactive',
 	'livestream' => 'Livestream',
+	'claim_reward' => 'Claim reward',
 );

@@ -143,6 +143,8 @@ Route::get('/verify_double/{region}/{summoner_name}', 'UsersController@verify_do
 Route::post('/quests/create_choose_quest', 'QuestsController@create_choose_quest');
 Route::post('/quests/create_random_quest', 'QuestsController@create_random_quest');
 Route::post('/quests/create_challenge', 'QuestsController@create_challenge');
+Route::post('/quests/dailyprogress/{progress}', 'QuestsController@dailyprogress');
+
 
 Route::post('register', array('before' => 'csrf', function()
 {

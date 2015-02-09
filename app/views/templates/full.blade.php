@@ -42,11 +42,6 @@
 					@include('layouts.navigation')
 				</div>
 				@include('layouts.errors')
-				<div class="bs-callout bs-callout-warning">
-								<strong>lolquest.net Open Beta</strong><br/>
-								Hey guys! 2015 will be the year of lolquest! The open beta will start and a lot of other cool thing we hold back for a long time.<br/>
-								We will have a post about all the new features soon. Hope you are prepared :) 
-							</div>
 				@yield('content')
 
 			</div>

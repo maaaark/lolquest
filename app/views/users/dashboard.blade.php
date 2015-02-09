@@ -216,11 +216,19 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 				<br/>
-					20 Gold + 200 EXP<br/>
-					@if($dailyprogress->wins == 3)
-						<a href="#" class="btn btn-success">Claim reward</a>
+					@if($dailyprogress->claimed_wins == 1)
+						<br/>
+						Already claimed
 					@else
-						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+						20 Gold + 200 EXP<br/>
+						@if($dailyprogress->wins == 3)
+							<form id="frm" method="post" action="/quests/dailyprogress/wins">
+								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							</form>
+						@else
+							<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+						@endif
 					@endif
 				</td>
 			</tr>
@@ -236,11 +244,19 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 					<br/>
-					10 Gold + 200 EXP<br/>
-					@if($dailyprogress->quests_completed == 5)
-						<a href="#" class="btn btn-success">Claim reward</a>
-					@else
-						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@if($dailyprogress->claimed_quests == 1)
+						<br/>
+						Already claimed
+					@else 
+						10 Gold + 200 EXP<br/>
+						@if($dailyprogress->quests_completed == 5)
+							<form id="frm" method="post" action="/quests/dailyprogress/quests">
+								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							</form>
+						@else
+							<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+						@endif
 					@endif
 				</td>
 			</tr>
@@ -256,11 +272,19 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 				<br/>
-					25 QP + 200 EXP<br/>
-					@if($dailyprogress->top_games == 2)
-						<a href="#" class="btn btn-success">Claim reward</a>
+					@if($dailyprogress->claimed_top == 1)
+						<br/>
+						Already claimed
 					@else
-						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+						25 QP + 200 EXP<br/>
+						@if($dailyprogress->top_games == 2)
+							<form id="frm" method="post" action="/quests/dailyprogress/top">
+								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							</form>
+						@else
+							<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+						@endif
 					@endif
 				</td>
 			</tr>
@@ -276,12 +300,20 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 				<br/>
+				@if($dailyprogress->claimed_mid == 1)
+					<br/>
+					Already claimed
+				@else
 					25 QP + 200 EXP<br/>
 					@if($dailyprogress->mid_games == 2)
-						<a href="#" class="btn btn-success">Claim reward</a>
+						<form id="frm" method="post" action="/quests/dailyprogress/mid">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
 					@else
 						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
 					@endif
+				@endif
 				</td>
 			</tr>
 			<tr>
@@ -296,11 +328,19 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 				<br/>
+					@if($dailyprogress->claimed_jungle == 1)
+						<br/>
+						Already claimed
+					@else
 					25 QP + 200 EXP<br/>
 					@if($dailyprogress->jungle_games == 2)
-						<a href="#" class="btn btn-success">Claim reward</a>
+						<form id="frm" method="post" action="/quests/dailyprogress/jungle">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
 					@else
 						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
 					@endif
 				</td>
 			</tr>
@@ -316,12 +356,20 @@
 				</td>
 				<td valign="top" width="150" style="text-align: center;">
 				<br/>
-					25 QP + 200 EXP<br/>
+				@if($dailyprogress->claimed_bot == 1)
+					<br/>
+					Already claimed
+				@else
+					25 QP + 200 EXP<br/>					
 					@if($dailyprogress->bot_games == 2)
-						<a href="#" class="btn btn-success">Claim reward</a>
+						<form id="frm" method="post" action="/quests/dailyprogress/bot">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
 					@else
 						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
 					@endif
+				@endif
 				</td>
 			</tr>
 		</table>
