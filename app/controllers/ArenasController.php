@@ -34,21 +34,35 @@ class ArenasController extends \BaseController {
 	{
 		if(Auth::check()) {
 			$user = User::find(Auth::user()->id);
-			if($user->qp >= 500) {
-				$user->active_arena = 1;
-				$user->qp = $user->qp - 500;
-				$user->save();
-				
-				$arena = new Arena;
-				$arena->user_id = $user->id;
-				$arena->month = date("m");
-				$arena->year = date("Y");
-				$arena->save();
-				
-				return Redirect::to("/arena")->with('success', trans("arena.joined"));
+			
+			if(Input::get('lp')) {
+				if($user->lp >= 50) {
+					$user->active_arena = 1;
+					$user->lp = $user->lp - 50;
+					$user->save();	
+
+					$arena = new Arena;
+					$arena->user_id = $user->id;
+					$arena->month = date("m");
+					$arena->year = date("Y");
+					$arena->save();	
+					return Redirect::to("/arena")->with('success', trans("arena.joined"));					
+				}
 			} else {
-				return Redirect::to("/arena")->with('error', trans("users.no_qp"));
+				if($user->qp >= 500) {
+					$user->active_arena = 1;
+					$user->qp = $user->qp - 500;
+					$user->save();
+					
+					$arena = new Arena;
+					$arena->user_id = $user->id;
+					$arena->month = date("m");
+					$arena->year = date("Y");
+					$arena->save();
+					return Redirect::to("/arena")->with('success', trans("arena.joined"));
+				}
 			}
+			return Redirect::to("/arena")->with('error', trans("users.no_qp"));
 		} else {
 			return Redirect::to("/login");
 		}

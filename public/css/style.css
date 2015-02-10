@@ -168,6 +168,30 @@ h3 {
 .blog a:hover {
 	text-decoration: none !important;
 }
+.overlay_progress {
+	position: absolute;
+	font-weight: bold;
+	text-align: center;
+	width: 580px;
+	margin-top: 3px;
+}
+.daily_quests {
+	margin-top: 20px;
+}
+.daily_quests_table {
+	padding-bottom: 10px;
+}
+.daily_description {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.not_finished_daily {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
 .forum_category {
 	border: 1px solid #333333;
 	margin-bottom: 30px;
@@ -214,6 +238,18 @@ a.red {
 }
 .forum_badge {
 	background: #529551;
+	padding: 3px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.ladder_badge {
+	background: #333;
 	padding: 3px;
 	color: #fff;
 	font-size: 12px;

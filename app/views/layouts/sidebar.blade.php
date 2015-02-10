@@ -153,18 +153,6 @@
 		<div class="view_ladder"><a href="/ladders">{{ trans("sidebar.view_ladder") }}</a>&nbsp;&nbsp;&nbsp;</div><br/>
 	</div>
 	@endif
-	<br/>
-	<div style="margin-left: -10px;">
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- lolquest rectangle -->
-	<ins class="adsbygoogle"
-		 style="display:inline-block;width:300px;height:250px"
-		 data-ad-client="ca-pub-5331969279811198"
-		 data-ad-slot="3719233468"></ins>
-	<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
-	</div>
 @else
 	<div class="sidebar_box">
 		<div class="sidebar_headline" style="margin-bottom: 0;"><i class="fa fa-key"></i>&nbsp;&nbsp;{{ trans("start.join_beta") }}</div>
@@ -186,18 +174,5 @@
 		<h3>No Beta Key yet?</h3>
 		<a href="/supporter" class="btn btn-large btn-primary btn-block">Support us and get a Beta Key</a><br/>
 		</div>
-	</div>
-
-	
-	<div style="margin-left: -10px;">
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- lolquest rectangle -->
-	<ins class="adsbygoogle"
-		 style="display:inline-block;width:300px;height:250px"
-		 data-ad-client="ca-pub-5331969279811198"
-		 data-ad-slot="3719233468"></ins>
-	<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
 	</div>
 @endif

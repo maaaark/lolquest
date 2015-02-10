@@ -21,3 +21,5 @@ Artisan::add(new RefreshDonators);
 Artisan::add(new RefreshTeams);
 Artisan::add(new RefreshAchievements);
 Artisan::add(new RefreshUserSupporter);
+Artisan::add(new RefreshDailyProgress);
+Artisan::add(new Custom);

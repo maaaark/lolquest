@@ -1,7 +1,14 @@
 @extends('templates.default')
 @section('title', "Arena - ".trans("month.".$month))
 @section('content')
+	@if(Auth::user()->summoner_status == 1)
 	
+	<div class="bs-callout bs-callout-warning">
+		{{ trans("arena.not_verified") }}
+	</div>
+
+	@else
+		
 	@if(Session::has('modal'))
 		<script type="text/javascript">
 			$(window).load(function(){
@@ -41,7 +48,6 @@
 					<div class="challenge">
 						@if(Auth::user()->active_arena == 1) 
 							Currently Arena Quests done: {{ $my_arena->arena_quests }}<br/>
-							Currently Arena Rang: {{ $my_arena->rang }}<br/>
 							<br/>
 							<div style="text-align: center">
 							@if($my_arena->arena_quest_started == 1)
@@ -89,13 +95,23 @@
 							</div>
 						@else
 							<h3>Join the Arena</h3>
-							@if(Auth::user()->qp > 500)
+							@if(Auth::user()->qp >= 500)
 								<form id="frm" method="post" action="/arena/start_arena">
-									<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('arena.join_button') }}">
+									<input class="inactive_at_click btn btn-primary" type="submit" value="{{ trans('arena.join_button') }}">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>
 							@else 
 								<button class="btn btn-inactive">Not enough QP for Arena</button>
+							@endif
+							<br/>
+							@if(Auth::user()->lp >= 50)
+								<form id="frm" method="post" action="/arena/start_arena">
+									<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('arena.join_button_lp') }}">
+									<input type="hidden" name="lp" value="1">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								</form>
+							@else 
+								<button class="btn btn-inactive">Not enough Gold for Arena</button>
 							@endif
 						@endif
 					</div>
@@ -113,23 +129,23 @@
 						<th>Rank</th>
 						<th colspan="2">Summoner Name</th>
 						<th>Finished Quests</th>
-						<th>Reward</th>
+						<th>End of Season Reward</th>
 					</tr>
 					@foreach($arena_ladder as $arena)
 					<tr>
 						<td width="60">{{ $arena->rang }}.</td>
-						<td style="width: 30px;"><img src="/img/profileicons/profileIcon{{ $arena->user->summoner->profileIconId }}.jpg" width="30" class="img-circle" /></td>
+						<td style="width: 30px;"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $arena->user->summoner->profileIconId }}.png" width="30" class="img-circle" /></td>
 						<td><a href="/summoner/{{ $arena->user->region }}/{{ $arena->user->summoner_name }}">{{ $arena->user->summoner->name }}</a></td>
 						<td>{{ $arena->arena_quests }}</td>
 						<td>
 							@if($arena->rang == 1 )
-								<img src="/img/leagues/rp.png" alt="Riot Points" /> 1780 RP + 500 QP
+								<img src="/img/leagues/rp.png" alt="Riot Points" /> 500 Gold + 1000 QP
 							@elseif($arena->rang == 2)
-								<img src="/img/leagues/rp.png" alt="Riot Points" /> 840 RP + 250 QP
+								<img src="/img/leagues/rp.png" alt="Riot Points" /> 250 RP + 500 QP
 							@elseif($arena->rang == 3)
-								500 QP
-							@elseif($arena->rang <= 5)
 								250 QP
+							@elseif($arena->rang <= 5)
+								100 QP
 							@else
 								-
 							@endif
@@ -140,4 +156,6 @@
 			</td>
 		</tr>
 	</table>
+	
+	@endif
 @stop

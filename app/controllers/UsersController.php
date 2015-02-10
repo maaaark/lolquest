@@ -281,6 +281,11 @@ class UsersController extends \BaseController {
 				
 				$user->roles()->attach($roleMember->id, array("user_id"=>$user->id));
 				
+				// Generate Daily Progress
+				$daily = new Dailyprogess;
+				$daily->user_id = $user->id;
+				$daily->save();
+			
 			
 				$obj = json_decode($json, true);
 				$summoner = new Summoner;
@@ -378,11 +383,13 @@ class UsersController extends \BaseController {
 			
 			$api_key = Config::get('api.key');
 			$summoner_data = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v1.4/summoner/by-name/".$user->summoner_name."?api_key=".$api_key;
-			$json = file_get_contents($summoner_data);
-			
+			$json = @file_get_contents($summoner_data);
+			$obj = json_decode($json, true);
+		
 			if($json === FALSE) {
 				return Redirect::to('/api_error');
 			} else {
+					
 				$summoner_name_clear = str_replace(' ', '',strtolower($user->summoner_name));
 				$obj = json_decode($json, true);
 				$user->summoner->profileIconId = $obj[$summoner_name_clear]["profileIconId"];
@@ -724,8 +731,9 @@ class UsersController extends \BaseController {
 			$myquests = Quest::where('user_id', '=', $user->id)->where('finished', '=', 0)->get();
 			$time = date("U");
 			$time_waited = $time - $user->last_checked;
+			$dailyprogress = Dailyprogess::where('user_id', '=', $user->id)->first();
 			$playerroles = Playerrole::all();
-			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'playerroles', 'time'));
+			return View::make('users.dashboard', compact('user', 'notifications', 'champions', 'myquests', 'time_waited', 'my_ladder_rang', 'playerroles', 'time', 'dailyprogress'));
 		} else {
 			return Redirect::to('login');
 		}

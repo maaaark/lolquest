@@ -20,6 +20,9 @@
 					@if($topic->user->hasRole('admin'))
 						<div class="admin_user">Administrator</div>
 					@endif
+					@if(Session::get('my_ladder_rang'))
+						<div class="ladder_badge">Rang {{ Session::get('my_ladder_rang')->rang }}</div>
+					@endif
 					
 					{{ trans("forum.level") }} {{ $topic->user->level_id }}<br/>
 					{{ $topic->user->replies->count() }} {{ trans("forum.posts") }}
