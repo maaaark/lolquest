@@ -146,6 +146,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasOne('Summoner')->where("region", "=", $this->region);
     }
 	
+	public function summonerstats()
+    {
+		return $this->hasOne('Summonerstats');
+    }
+	
 	public function ladder()
     {
         return $this->hasOne('Ladder');
@@ -492,7 +497,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$json2 = @file_get_contents($more_details);
 							if($json2 === FALSE) {
 								//return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
-								
+								if(!$user->ingamegold){
+									$summoner_stats = new Summoner_stats;
+									$summoner_stats->save();
+								}
 								$newGame->incomplete = true;
 								$newGame->towerKills = 0;
 								$newGame->firstTower = 0;
