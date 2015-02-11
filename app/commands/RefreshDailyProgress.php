@@ -47,6 +47,12 @@ class RefreshDailyProgress extends Command {
 			$daily->jungle_games = 0;
 			$daily->mid_games = 0;
 			$daily->bot_games = 0;
+			$daily->claimed_wins = 0;
+			$daily->claimed_quests = 0;
+			$daily->claimed_top = 0;
+			$daily->claimed_jungle = 0;
+			$daily->claimed_mid = 0;
+			$daily->claimed_bot = 0;
 			$daily->save();
 		}
 	}

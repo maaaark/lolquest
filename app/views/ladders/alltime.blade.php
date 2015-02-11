@@ -30,8 +30,22 @@
 					<img src="/img/leagues/bronze_5.png" height="20" />
 				@endif
 			</td>
-			<td width="20"><a href="/summoner/{{ $row->region }}/{{ $row->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $row->summoner->profileIconId }}.png" class="img-circle" width="20" /></a></td>
-			<td><a href="/summoner/{{ $row->region }}/{{ $row->summoner_name }}">{{ $row->summoner->name }}</a></td>
+			<td width="20">
+				@if($row->summoner) 
+					<a href="/summoner/{{ $row->region }}/{{ $row->summoner_name }}">
+						<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $row->summoner->profileIconId }}.png" class="img-circle" width="20" />
+					</a>
+				@else
+					-
+				@endif
+				</td>
+			<td>
+				@if($row->summoner)
+				<a href="/summoner/{{ $row->region }}/{{ $row->summoner_name }}">{{ $row->summoner->name }}</a>
+				@else
+				-
+				@endif
+			</td>
 			<td>{{ $row->exp }}</td>
 			<td>{{ $row->quests->count() }}</td>
 			<td>

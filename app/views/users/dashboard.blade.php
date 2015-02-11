@@ -203,6 +203,8 @@
 	
 	<div class="daily_quests">
 		<h3>Daily Quests</h3>
+		<div class="daily_reset">Daily reset is at 2AM CET </div>
+		<br/>
 		<table width="100%" class="table table-striped daily_quests_table">
 			<tr>
 				<td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>

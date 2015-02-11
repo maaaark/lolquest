@@ -42,8 +42,20 @@
 					@include('layouts.navigation')
 				</div>
 				@include('layouts.errors')
-				@yield('content')
-
+				@include('layouts.errors')
+				
+				@if(Auth::check())
+					@if(Auth::user()->summoner_status == 4)
+						<br/>
+						Your account was shut down by an administrator.<br/>
+					@else 
+						<div class="title"><h1>@yield('title')</h1></div>
+						@yield('content')
+					@endif
+				@else
+					<div class="title"><h1>@yield('title')</h1></div>
+					@yield('content')
+				@endif
 			</div>
 		</div>
 		<div class="container">

@@ -46,24 +46,22 @@
 				<table>
 					<tr>
 						<td valign="top" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-							<div class="title"><h1>@yield('title')</h1></div>
 
 							@include('layouts.errors')
 							
-							@yield('content')
-							
-							<br/><br/>
-							<div style="width: 100; text-align: center;">
-								<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-								<!-- lolquest leaderboard -->
-								<ins class="adsbygoogle"
-									 style="display:inline-block;width:728px;height:90px"
-									 data-ad-client="ca-pub-5331969279811198"
-									 data-ad-slot="7231103062"></ins>
-								<script>
-								(adsbygoogle = window.adsbygoogle || []).push({});
-								</script>
-							</div>
+							@if(Auth::check())
+								@if(Auth::user()->summoner_status == 4)
+									<br/>
+									Your account was shut down by an administrator.<br/>
+								@else 
+									<div class="title"><h1>@yield('title')</h1></div>
+									@yield('content')
+								@endif
+							@else
+								<div class="title"><h1>@yield('title')</h1></div>
+								@yield('content')
+							@endif
+
 						</td>
 						<td valign="top" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidebar">
 							@include('layouts.sidebar')
