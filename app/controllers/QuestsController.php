@@ -27,6 +27,68 @@ class QuestsController extends \BaseController {
 		}
 	}
 	
+	public function dailyprogress($progress) {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			if($progress == "wins") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->wins >= 3) {
+					$daily->claimed_wins = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			} elseif($progress == "quests") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->quests_completed >= 5) {
+					$daily->claimed_quests = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			} elseif($progress == "top") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->top_games >= 5) {
+					$daily->claimed_top = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			} elseif($progress == "jungle") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->jungle_games >= 2) {
+					$daily->claimed_jungle = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			} elseif($progress == "mid") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->mid_games >= 2) {
+					$daily->claimed_mid = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			} elseif($progress == "bot") {
+				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+				if($daily->bot_games >= 2) {
+					$daily->claimed_bot = true;
+					$daily->save();
+					$user->reward(50, 250, false, 0);
+					$user->save();
+					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+				}
+			}
+		}
+		return Redirect::to('dashboard')->with('error', trans("dashboard.no_quest_found"));
+	}
+	
 	
 	public function create_challenge() {
 		$input = Input::all();

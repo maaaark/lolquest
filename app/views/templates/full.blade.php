@@ -42,13 +42,20 @@
 					@include('layouts.navigation')
 				</div>
 				@include('layouts.errors')
-				<div class="bs-callout bs-callout-warning">
-								<strong>lolquest.net Open Beta</strong><br/>
-								Hey guys! 2015 will be the year of lolquest! The open beta will start and a lot of other cool thing we hold back for a long time.<br/>
-								We will have a post about all the new features soon. Hope you are prepared :) 
-							</div>
-				@yield('content')
-
+				@include('layouts.errors')
+				
+				@if(Auth::check())
+					@if(Auth::user()->summoner_status == 4)
+						<br/>
+						Your account was shut down by an administrator.<br/>
+					@else 
+						<div class="title"><h1>@yield('title')</h1></div>
+						@yield('content')
+					@endif
+				@else
+					<div class="title"><h1>@yield('title')</h1></div>
+					@yield('content')
+				@endif
 			</div>
 		</div>
 		<div class="container">
