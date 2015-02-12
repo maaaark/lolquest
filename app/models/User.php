@@ -485,16 +485,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 										
 										$newGame->role = $my_game_details["timeline"]["role"];
 										$newGame->lane = $my_game_details["timeline"]["lane"];
-										if($newGame->lane == "TOP") {
-											$user->dailyprogress->addTopGame($user);
-										} elseif($newGame->lane == "JUNGLE") {
-											$user->dailyprogress->addJungleGame($user);
-										} elseif($newGame->lane == "MIDDLE") {
-											$user->dailyprogress->addMidGame($user);
-										} elseif($newGame->lane == "BOTTOM") {
-											$user->dailyprogress->addBotGame($user);
-										}
 										
+										if($game["createDate"] > 1423785600000) {
+											if($newGame->lane == "TOP") {
+												$user->dailyprogress->addTopGame($user);
+											} elseif($newGame->lane == "JUNGLE") {
+												$user->dailyprogress->addJungleGame($user);
+											} elseif($newGame->lane == "MIDDLE") {
+												$user->dailyprogress->addMidGame($user);
+											} elseif($newGame->lane == "BOTTOM") {
+												$user->dailyprogress->addBotGame($user);
+											}
+										}
 										
 										if(isset($my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"])) {
 											$newGame->exp_pm_zeroToTen = $my_game_details["timeline"]["xpPerMinDeltas"]["zeroToTen"];
@@ -652,8 +654,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->createDate = $mil;
 							$newGame->win = $game["stats"]["win"];
 							if($newGame->win == true) {
-								$user->dailyprogress->addWin($user);
 								$summoner_stats->wins +=1;
+								if($mil > 1423785600000) {
+									$user->dailyprogress->addWin($user);
+								}
 							} else{
 								$summoner_stats->losses +=1;
 							}
