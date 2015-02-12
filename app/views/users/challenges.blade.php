@@ -177,13 +177,149 @@
   			<table width="100%" class="table table-striped daily_quests_table">
 	@foreach($user->challenges as $challenge)
 		<tr>
-			<td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>
+			<td valign="top" width="100"><img width="75" src="/img/leagues/{{$challenge->icon}}"><br/><br/></td>
 			<td valign="top">
 				<strong>{{$challenge->name}}</strong><br/>
-				<div class="daily_description">c{{$challenge->description}}a</div>
+				<div class="daily_description">{{$challenge->description}}</div>
 				<div class="progress">
-				  <div class="overlay_progress uppercase small" style="text-align: center;"> / {{number_format($challenge->value,0,'','.')}}</div>
-				  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 50% ;"></div>
+				  <div class="overlay_progress uppercase small" style="text-align: center;">
+				  @if($challenge->type == 1)
+						{{number_format($userstats->ingamegold,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->ingamegold!=0)
+							{{round((($userstats->ingamegold/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 2)
+						{{number_format($userstats->dmg,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmg!=0)
+							{{round((($userstats->dmg/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 3)
+						{{number_format($userstats->heal,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->heal!=0)
+							{{round((($userstats->heal/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 4)
+						{{number_format($userstats->kills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->kills!=0)
+							{{round((($userstats->kills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 5)
+						{{number_format($userstats->assists,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->assists!=0)
+							{{round((($userstats->assists/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 6)
+						{{number_format($userstats->wins,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wins!=0)
+							{{round((($userstats->wins/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 7)
+						{{number_format($userstats->games,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->games!=0)
+							{{round((($userstats->games/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 8)
+						{{number_format($userstats->dmgtaken,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmgtaken!=0)
+							{{round((($userstats->dmgtaken/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 9)
+						{{number_format($userstats->wards,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wards!=0)
+							{{round((($userstats->wards/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 10)
+						{{number_format($userstats->wardkills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wardkills!=0)
+							{{round((($userstats->wardkills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 11)
+						{{number_format($userstats->towers,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->towers!=0)
+							{{round((($userstats->towers/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 12)
+						{{number_format($userstats->doublekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->doublekills!=0)
+							{{round((($userstats->doublekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 13)
+						{{number_format($userstats->tripplekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->tripplekills!=0)
+							{{round((($userstats->tripplekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 14)
+						{{number_format($userstats->quadrakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->quadrakills!=0)
+							{{round((($userstats->quadrakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 15)
+						{{number_format($userstats->pentakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->pentakills!=0)
+							{{round((($userstats->pentakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 16)
+						{{number_format($userstats->dragons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dragons!=0)
+							{{round((($userstats->dragons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 17)
+						{{number_format($userstats->barons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->barons!=0)
+							{{round((($userstats->barons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @endif
 				</div>
 			</td>
 			<td valign="top" width="150" style="text-align: center;">
@@ -193,7 +329,7 @@
 					Already claimed
 				@else
 					20 Gold + 200 EXP<br/>
-					@if(2 == 3)
+					@if(1==2)
 						<form id="frm" method="post" action="/quests/dailyprogress/wins">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -208,9 +344,518 @@
 	</table>
   			<!-- END CURRENT CHALLENGES-->
   		</div>
-  		<div role="tabpanel" class="tab-pane fade" id="stats">STATS</div>
-  		<div role="tabpanel" class="tab-pane fade" id="objectives">OBJECTIVES</div>
-  		<div role="tabpanel" class="tab-pane fade" id="others">OTHERS</div>
+  		<div role="tabpanel" class="tab-pane fade" id="stats">
+			<!-- STATS CHALLENGES-->
+  			<table width="100%" class="table table-striped daily_quests_table">
+	@foreach($statchallenges as $challenge)
+		<tr>
+			<td valign="top" width="100"><img width="75" src="/img/leagues/{{$challenge->icon}}"><br/><br/></td>
+			<td valign="top">
+				<strong>{{$challenge->name}}</strong><br/>
+				<div class="daily_description">{{$challenge->description}}</div>
+				<div class="progress">
+				  <div class="overlay_progress uppercase small" style="text-align: center;">
+				  @if($challenge->type == 1)
+						{{number_format($userstats->ingamegold,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->ingamegold!=0)
+							{{round((($userstats->ingamegold/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 2)
+						{{number_format($userstats->dmg,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmg!=0)
+							{{round((($userstats->dmg/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 3)
+						{{number_format($userstats->heal,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->heal!=0)
+							{{round((($userstats->heal/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 4)
+						{{number_format($userstats->kills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->kills!=0)
+							{{round((($userstats->kills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 5)
+						{{number_format($userstats->assists,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->assists!=0)
+							{{round((($userstats->assists/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 6)
+						{{number_format($userstats->wins,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wins!=0)
+							{{round((($userstats->wins/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 7)
+						{{number_format($userstats->games,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->games!=0)
+							{{round((($userstats->games/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 8)
+						{{number_format($userstats->dmgtaken,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmgtaken!=0)
+							{{round((($userstats->dmgtaken/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 9)
+						{{number_format($userstats->wards,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wards!=0)
+							{{round((($userstats->wards/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 10)
+						{{number_format($userstats->wardkills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wardkills!=0)
+							{{round((($userstats->wardkills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 11)
+						{{number_format($userstats->towers,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->towers!=0)
+							{{round((($userstats->towers/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 12)
+						{{number_format($userstats->doublekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->doublekills!=0)
+							{{round((($userstats->doublekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 13)
+						{{number_format($userstats->tripplekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->tripplekills!=0)
+							{{round((($userstats->tripplekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 14)
+						{{number_format($userstats->quadrakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->quadrakills!=0)
+							{{round((($userstats->quadrakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 15)
+						{{number_format($userstats->pentakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->pentakills!=0)
+							{{round((($userstats->pentakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 16)
+						{{number_format($userstats->dragons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dragons!=0)
+							{{round((($userstats->dragons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 17)
+						{{number_format($userstats->barons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->barons!=0)
+							{{round((($userstats->barons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @endif
+				</div>
+			</td>
+			<td valign="top" width="150" style="text-align: center;">
+			<br/>
+				@if(0 == 1)
+					<br/>
+					Already claimed
+				@else
+					20 Gold + 200 EXP<br/>
+					@if(1==2)
+						<form id="frm" method="post" action="/quests/dailyprogress/wins">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				@endif
+			</td>
+		</tr>
+	@endforeach
+	</table>
+  			<!-- END STATS CHALLENGES--></div>
+  		<div role="tabpanel" class="tab-pane fade" id="objectives">
+			<!-- Objekts CHALLENGES-->
+  			<table width="100%" class="table table-striped daily_quests_table">
+	@foreach($objectivechallenges as $challenge)
+		<tr>
+			<td valign="top" width="100"><img width="75" src="/img/leagues/{{$challenge->icon}}"><br/><br/></td>
+			<td valign="top">
+				<strong>{{$challenge->name}}</strong><br/>
+				<div class="daily_description">{{$challenge->description}}</div>
+				<div class="progress">
+				  <div class="overlay_progress uppercase small" style="text-align: center;">
+				  @if($challenge->type == 1)
+						{{number_format($userstats->ingamegold,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->ingamegold!=0)
+							{{round((($userstats->ingamegold/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 2)
+						{{number_format($userstats->dmg,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmg!=0)
+							{{round((($userstats->dmg/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 3)
+						{{number_format($userstats->heal,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->heal!=0)
+							{{round((($userstats->heal/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 4)
+						{{number_format($userstats->kills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->kills!=0)
+							{{round((($userstats->kills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 5)
+						{{number_format($userstats->assists,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->assists!=0)
+							{{round((($userstats->assists/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 6)
+						{{number_format($userstats->wins,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wins!=0)
+							{{round((($userstats->wins/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 7)
+						{{number_format($userstats->games,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->games!=0)
+							{{round((($userstats->games/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 8)
+						{{number_format($userstats->dmgtaken,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmgtaken!=0)
+							{{round((($userstats->dmgtaken/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 9)
+						{{number_format($userstats->wards,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wards!=0)
+							{{round((($userstats->wards/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 10)
+						{{number_format($userstats->wardkills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wardkills!=0)
+							{{round((($userstats->wardkills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 11)
+						{{number_format($userstats->towers,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->towers!=0)
+							{{round((($userstats->towers/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 12)
+						{{number_format($userstats->doublekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->doublekills!=0)
+							{{round((($userstats->doublekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 13)
+						{{number_format($userstats->tripplekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->tripplekills!=0)
+							{{round((($userstats->tripplekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 14)
+						{{number_format($userstats->quadrakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->quadrakills!=0)
+							{{round((($userstats->quadrakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 15)
+						{{number_format($userstats->pentakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->pentakills!=0)
+							{{round((($userstats->pentakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 16)
+						{{number_format($userstats->dragons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dragons!=0)
+							{{round((($userstats->dragons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 17)
+						{{number_format($userstats->barons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->barons!=0)
+							{{round((($userstats->barons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @endif
+				</div>
+			</td>
+			<td valign="top" width="150" style="text-align: center;">
+			<br/>
+				@if(0 == 1)
+					<br/>
+					Already claimed
+				@else
+					20 Gold + 200 EXP<br/>
+					@if(1==2)
+						<form id="frm" method="post" action="/quests/dailyprogress/wins">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				@endif
+			</td>
+		</tr>
+	@endforeach
+	</table>
+  			<!-- END Objekts CHALLENGES--></div>
+  		<div role="tabpanel" class="tab-pane fade" id="others"><!-- OTHER CHALLENGES-->
+  			<table width="100%" class="table table-striped daily_quests_table">
+	@foreach($otherchallenges as $challenge)
+		<tr>
+			<td valign="top" width="100"><img width="75" src="/img/leagues/{{$challenge->icon}}"><br/><br/></td>
+			<td valign="top">
+				<strong>{{$challenge->name}}</strong><br/>
+				<div class="daily_description">{{$challenge->description}}</div>
+				<div class="progress">
+				  <div class="overlay_progress uppercase small" style="text-align: center;">
+				  @if($challenge->type == 1)
+						{{number_format($userstats->ingamegold,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->ingamegold!=0)
+							{{round((($userstats->ingamegold/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 2)
+						{{number_format($userstats->dmg,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmg!=0)
+							{{round((($userstats->dmg/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 3)
+						{{number_format($userstats->heal,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->heal!=0)
+							{{round((($userstats->heal/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 4)
+						{{number_format($userstats->kills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->kills!=0)
+							{{round((($userstats->kills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 5)
+						{{number_format($userstats->assists,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->assists!=0)
+							{{round((($userstats->assists/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 6)
+						{{number_format($userstats->wins,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wins!=0)
+							{{round((($userstats->wins/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 7)
+						{{number_format($userstats->games,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->games!=0)
+							{{round((($userstats->games/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 8)
+						{{number_format($userstats->dmgtaken,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dmgtaken!=0)
+							{{round((($userstats->dmgtaken/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 9)
+						{{number_format($userstats->wards,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wards!=0)
+							{{round((($userstats->wards/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 10)
+						{{number_format($userstats->wardkills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->wardkills!=0)
+							{{round((($userstats->wardkills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 11)
+						{{number_format($userstats->towers,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->towers!=0)
+							{{round((($userstats->towers/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 12)
+						{{number_format($userstats->doublekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->doublekills!=0)
+							{{round((($userstats->doublekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 13)
+						{{number_format($userstats->tripplekills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->tripplekills!=0)
+							{{round((($userstats->tripplekills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 14)
+						{{number_format($userstats->quadrakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->quadrakills!=0)
+							{{round((($userstats->quadrakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 15)
+						{{number_format($userstats->pentakills,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->pentakills!=0)
+							{{round((($userstats->pentakills/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 16)
+						{{number_format($userstats->dragons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->dragons!=0)
+							{{round((($userstats->dragons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @elseif($challenge->type == 17)
+						{{number_format($userstats->barons,0,'','.') }} / {{number_format($challenge->value,0,'','.')}}</div>
+						<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 
+						@if($userstats->barons!=0)
+							{{round((($userstats->barons/$challenge->value)*100),2)}}%
+						@else 
+							0%
+						@endif ;"></div>
+				  @endif
+				</div>
+			</td>
+			<td valign="top" width="150" style="text-align: center;">
+			<br/>
+				@if(0 == 1)
+					<br/>
+					Already claimed
+				@else
+					20 Gold + 200 EXP<br/>
+					@if(1==2)
+						<form id="frm" method="post" action="/quests/dailyprogress/wins">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				@endif
+			</td>
+		</tr>
+	@endforeach
+	</table>
+  			<!-- END OTHER CHALLENGES--></div>
 	</div>
 
 
