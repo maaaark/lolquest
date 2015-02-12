@@ -747,7 +747,7 @@ class UsersController extends \BaseController {
 		if (Auth::check())
 		{
 			$user = User::find(Auth::user()->id);
-
+			$challenges = $user->challenges;
 			$playerroles = Playerrole::all();
                         
                         // Top Champs

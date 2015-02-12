@@ -41,6 +41,11 @@ class Summoner extends \Eloquent {
     {
         return $this->hasMany('Game');
     }
+	
+	public function summonerstats()
+    {
+		return $this->hasOne('SummonerStat');
+    }
 
 	// Add your validation rules here
 	public static $rules = [

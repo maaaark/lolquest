@@ -25,5 +25,19 @@ class Challenge extends \Eloquent {
         return $this->hasMany('Timeline');
     }
 	
+	public function users()
+    {
+        return $this->belongsToMany('User');
+    }
+	
+	public function first_challenges()
+    {
+		$users = User::get();
+		foreach($users as $user) {
+			$user->challenges()->attach(1);
+		}
+    }
+	
+	
 	
 }

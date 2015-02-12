@@ -156,5 +156,41 @@
 		</div>
 		<div class="clear"></div>
 	</div>
+	<div class="daily_quests"></br></br>
+	<h3>Lifetime Challenges</h3>
+	<br/>
+	<table width="100%" class="table table-striped daily_quests_table">
+	@foreach($user->challenges as $challenge)
+		<tr>
+			<td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>
+			<td valign="top">
+				<strong>{{$challenge->name}}</strong><br/>
+				<div class="daily_description">c{{$challenge->description}}a</div>
+				<div class="progress">
+				  <div class="overlay_progress uppercase small" style="text-align: center;"> / {{number_format($challenge->value,0,'','.')}}</div>
+				  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 50% ;"></div>
+				</div>
+			</td>
+			<td valign="top" width="150" style="text-align: center;">
+			<br/>
+				@if(0 == 1)
+					<br/>
+					Already claimed
+				@else
+					20 Gold + 200 EXP<br/>
+					@if(2 == 3)
+						<form id="frm" method="post" action="/quests/dailyprogress/wins">
+							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						</form>
+					@else
+						<a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+					@endif
+				@endif
+			</td>
+		</tr>
+	@endforeach
+	</table>
+	</div>
 	<br/><br/>
 @stop

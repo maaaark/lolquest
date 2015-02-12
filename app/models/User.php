@@ -42,11 +42,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasOne('Summoner')->where("region", "=", $this->region);
     }
 	
-	public function summonerstats()
-    {
-		return $this->hasOne('Summonerstats');
-    }
-	
 	public function ladder()
     {
         return $this->hasOne('Ladder');
@@ -80,6 +75,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function titles()
     {
         return $this->hasMany('UserTitle');
+    }
+	
+	public function challenges()
+    {
+        return $this->belongsToMany('Challenge');
     }
 	
 	public function title()
@@ -393,15 +393,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						if(!isset($recent_game)) {
 							
 							$newGame = new Game;
+							$summoner_stats = SummonerStat::where('summoner_id', '=',$user->summoner->summonerid)->first();
+							if(!isset($summoner_stats)){
+								$summoner_stats = new SummonerStat;
+								$summoner_stats->summoner_id = $user->summoner->summonerid;
+								$summoner_stats->save();
+								$summoner_stats = SummonerStat::where('summoner_id', '=',$user->summoner->summonerid)->first();
+							}
+							$summoner_stats->games += 1;
 							
 							$more_details = "https://".$user->region.".api.pvp.net/api/lol/".$user->region."/v2.2/match/".$game["gameId"]."?api_key=".$api_key;
 							$json2 = @file_get_contents($more_details);
 							if($json2 === FALSE) {
 								//return Redirect::to("/dashboard")->with("error", "There was an error with the Riot API, please try again later!");
-								if(!$user->ingamegold){
-									$summoner_stats = new Summoner_stats;
-									$summoner_stats->save();
-								}
 								$newGame->incomplete = true;
 								$newGame->towerKills = 0;
 								$newGame->firstTower = 0;
@@ -439,6 +443,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								
 								foreach($details["teams"] as $game_details) {
 									if($game["teamId"] == $game_details["teamId"]) {
+										$summoner_stats->towers += $game_details["towerKills"];
 										$newGame->towerKills = $game_details["towerKills"];
 										$newGame->firstTower = $game_details["firstTower"];
 										$newGame->inhibitorKills = $game_details["inhibitorKills"];
@@ -446,7 +451,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 										$newGame->firstBlood = $game_details["firstBlood"];
 										$newGame->firstInhibitor = $game_details["firstInhibitor"];
 										$newGame->baronKills = $game_details["baronKills"];
+										$summoner_stats->barons += $game_details["baronKills"];
 										$newGame->dragonKills = $game_details["dragonKills"];
+										$summoner_stats->dragons += $game_details["dragonKills"];
 										$newGame->firstDragon = $game_details["firstDragon"];
 									}
 								}
@@ -454,9 +461,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								foreach($details["participants"] as $my_game_details) {
 									if($my_game_details["championId"] == $game["championId"]) {
 										
+										$summoner_stats->doublekills += $my_game_details["stats"]["doubleKills"];
 										$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
+										$summoner_stats->tripplekills += $my_game_details["stats"]["tripleKills"];
 										$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
+										$summoner_stats->quadrakills += $my_game_details["stats"]["quadraKills"];
 										$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
+										$summoner_stats->pentakills += $my_game_details["stats"]["pentaKills"];
 										$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
 										
 										
@@ -596,10 +607,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->championId = $game["championId"];
 							$newGame->gameId = $game["gameId"];
 							$newGame->assists = $assists;
+							$summoner_stats->assists +=$assists;
 							$newGame->numDeaths = $numDeaths;
 							$newGame->championsKilled = $championsKilled;
+							$summoner_stats->kills +=$championsKilled;
 							$newGame->goldEarned = $game["stats"]["goldEarned"];
+							$summoner_stats->ingamegold +=$game["stats"]["goldEarned"];
 							$newGame->wardPlaced = $wardPlaced;
+							$summoner_stats->wards +=$wardPlaced;
 							$newGame->item0 = $item0;
 							$newGame->item1 = $item1;
 							$newGame->item2 = $item2;
@@ -611,9 +626,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->spell2 = $game["spell2"];
 							$newGame->gameMode = $game["gameMode"];
 							$newGame->wardKilled = $wardKilled;
+							$summoner_stats->wardkills +=$wardKilled;
 							$newGame->totalHeal = $totalHeal;
+							$summoner_stats->heal +=$totalHeal;
 							$newGame->totalDamageTaken = $totalDamageTaken;
+							$summoner_stats->dmgtaken +=$totalDamageTaken;
 							$newGame->totalDamageDealt = $totalDamageDealt;
+							$summoner_stats->dmg +=$totalDamageDealt;
 							$newGame->killingSprees = $killingSprees;
 							$newGame->timePlayed = $game["stats"]["timePlayed"];
 							$newGame->turretsKilled = $turretsKilled;
@@ -634,9 +653,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->win = $game["stats"]["win"];
 							if($newGame->win == true) {
 								$user->dailyprogress->addWin($user);
+								$summoner_stats->wins +=1;
+							} else{
+								$summoner_stats->losses +=1;
 							}
 							$newGame->save();
-							
+							$summoner_stats->save();
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item0));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item1));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item2));
@@ -690,9 +712,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					if(!isset($details["teams"])) {
 						return Redirect::to("/summoner/".$user->region."/".$user->summoner_name)->with("error", "There was an error with the Riot API, please try again later!");
 					}
+							$summoner_stats = SummonerStat::where('summoner_id', '=',$user->summoner->summonerid)->first();
+							if(!isset($summoner_stats)){
+								$summoner_stats = new SummonerStat;
+								$summoner_stats->summoner_id = $user->summoner->summonerid;
+							}
+							$summoner_stats->games += 1;
 					
 					foreach($details["teams"] as $game_details) {
 						if($game_details["teamId"] == $newGame["teamId"]) {
+							$summoner_stats->towers += $game_details["towerKills"];
 							$newGame->towerKills = $game_details["towerKills"];
 							$newGame->firstTower = $game_details["firstTower"];
 							$newGame->inhibitorKills = $game_details["inhibitorKills"];
@@ -700,7 +729,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$newGame->firstBlood = $game_details["firstBlood"];
 							$newGame->firstInhibitor = $game_details["firstInhibitor"];
 							$newGame->baronKills = $game_details["baronKills"];
+							$summoner_stats->barons += $game_details["baronKills"];
 							$newGame->dragonKills = $game_details["dragonKills"];
+							$summoner_stats->dragons += $game_details["dragonKills"];
 							$newGame->firstDragon = $game_details["firstDragon"];
 						}
 					}
@@ -708,9 +739,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					foreach($details["participants"] as $my_game_details) {
 						if($my_game_details["championId"] == $newGame["championId"]) {
 							
+							$summoner_stats->doublekills += $my_game_details["stats"]["doubleKills"];
 							$newGame->doubleKills = $my_game_details["stats"]["doubleKills"];
+							$summoner_stats->triplekills += $my_game_details["stats"]["tripleKills"];
 							$newGame->tripleKills = $my_game_details["stats"]["tripleKills"];
+							$summoner_stats->quadrakills += $my_game_details["stats"]["quadraKills"];
 							$newGame->quadraKills = $my_game_details["stats"]["quadraKills"];
+							$summoner_stats->pentakills += $my_game_details["stats"]["pentaKills"];
 							$newGame->pentaKills = $my_game_details["stats"]["pentaKills"];
 							
 							
@@ -818,7 +853,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							
 							$newGame->incomplete = 0;
 							$newGame->save();
-							
+							$summoner_stats->save();
 						}
 					}
 				}
