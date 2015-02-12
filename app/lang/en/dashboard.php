@@ -57,4 +57,5 @@ return array(
 	'inactive' => 'Quest inactive',
 	'livestream' => 'Livestream',
 	'claim_reward' => 'Claim reward',
+	'dailyquest_completed' => 'You completed a daily quest!'
 );

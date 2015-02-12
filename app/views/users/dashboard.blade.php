@@ -230,7 +230,7 @@
 						<br/>
 						Already claimed
 					@else
-						20 Gold + 200 EXP<br/>
+						100 QP + 500 EXP<br/>
 						@if($dailyprogress->wins == 3)
 							<form id="frm" method="post" action="/quests/dailyprogress/wins">
 								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -258,7 +258,7 @@
 						<br/>
 						Already claimed
 					@else 
-						10 Gold + 200 EXP<br/>
+						75 QP + 400 EXP<br/>
 						@if($dailyprogress->quests_completed == 5)
 							<form id="frm" method="post" action="/quests/dailyprogress/quests">
 								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -286,7 +286,7 @@
 						<br/>
 						Already claimed
 					@else
-						25 QP + 200 EXP<br/>
+						50 QP + 250 EXP<br/>
 						@if($dailyprogress->top_games == 2)
 							<form id="frm" method="post" action="/quests/dailyprogress/top">
 								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -314,7 +314,7 @@
 					<br/>
 					Already claimed
 				@else
-					25 QP + 200 EXP<br/>
+					50 QP + 250 EXP<br/>
 					@if($dailyprogress->mid_games == 2)
 						<form id="frm" method="post" action="/quests/dailyprogress/mid">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -342,7 +342,7 @@
 						<br/>
 						Already claimed
 					@else
-					25 QP + 200 EXP<br/>
+					50 QP + 250 EXP<br/>
 					@if($dailyprogress->jungle_games == 2)
 						<form id="frm" method="post" action="/quests/dailyprogress/jungle">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -370,7 +370,7 @@
 					<br/>
 					Already claimed
 				@else
-					25 QP + 200 EXP<br/>					
+					50 QP + 250 EXP<br/>					
 					@if($dailyprogress->bot_games == 2)
 						<form id="frm" method="post" action="/quests/dailyprogress/bot">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
