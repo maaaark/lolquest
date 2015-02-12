@@ -328,7 +328,7 @@
 					<br/>
 					Already claimed
 				@else
-					20 Gold + 200 EXP<br/>
+					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if(1==2)
 						<form id="frm" method="post" action="/quests/dailyprogress/wins">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -500,7 +500,7 @@
 					<br/>
 					Already claimed
 				@else
-					20 Gold + 200 EXP<br/>
+					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if(1==2)
 						<form id="frm" method="post" action="/quests/dailyprogress/wins">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -671,7 +671,7 @@
 					<br/>
 					Already claimed
 				@else
-					20 Gold + 200 EXP<br/>
+					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if(1==2)
 						<form id="frm" method="post" action="/quests/dailyprogress/wins">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
@@ -841,7 +841,7 @@
 					<br/>
 					Already claimed
 				@else
-					20 Gold + 200 EXP<br/>
+					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if(1==2)
 						<form id="frm" method="post" action="/quests/dailyprogress/wins">
 							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
