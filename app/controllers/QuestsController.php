@@ -35,18 +35,18 @@ class QuestsController extends \BaseController {
 				if($daily->wins >= 3) {
 					$daily->claimed_wins = true;
 					$daily->save();
-					$user->reward(50, 250, false, 0);
+					$user->reward(100, 500, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			} elseif($progress == "quests") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
 				if($daily->quests_completed >= 5) {
 					$daily->claimed_quests = true;
 					$daily->save();
-					$user->reward(50, 250, false, 0);
+					$user->reward(75, 400, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			} elseif($progress == "top") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
@@ -55,7 +55,7 @@ class QuestsController extends \BaseController {
 					$daily->save();
 					$user->reward(50, 250, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			} elseif($progress == "jungle") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
@@ -64,7 +64,7 @@ class QuestsController extends \BaseController {
 					$daily->save();
 					$user->reward(50, 250, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			} elseif($progress == "mid") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
@@ -73,7 +73,7 @@ class QuestsController extends \BaseController {
 					$daily->save();
 					$user->reward(50, 250, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			} elseif($progress == "bot") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
@@ -82,7 +82,7 @@ class QuestsController extends \BaseController {
 					$daily->save();
 					$user->reward(50, 250, false, 0);
 					$user->save();
-					return Redirect::to('dashboard')->with('success', trans("dashboard.quest_completed"));
+					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
 			}
 		}

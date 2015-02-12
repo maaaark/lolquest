@@ -14,7 +14,7 @@
 					<option value="1">Top-Lane</option>
 					@endif
 					@if($user->trophy_jungle == 0)
-					<option value="2">Jungle</option>
+					<!--<option value="2">Jungle</option>-->
 					@endif
 					@if($user->trophy_mid == 0)
 					<option value="3">Mid-Lane</option>
