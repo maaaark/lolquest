@@ -159,7 +159,22 @@
 	<div class="daily_quests"></br></br>
 	<h3>Lifetime Challenges</h3>
 	<br/>
-	<table width="100%" class="table table-striped daily_quests_table">
+	
+	
+	<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  	<ul class="nav nav-tabs" role="tablist">
+  	  	<li role="presentation" class="active"><a href="#current" aria-controls="current" role="tab" data-toggle="tab">Current Challenges</a></li>
+    	<li role="presentation"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">Stats</a></li>
+    	<li role="presentation"><a href="#objectives" aria-controls="objectives" role="tab" data-toggle="tab">Objectives</a></li>
+    	<li role="presentation"><a href="#others" aria-controls="others" role="tab" data-toggle="tab">Others</a></li>
+    </ul>
+  
+  	<div class="tab-content">
+  		<div role="tabpanel" class="tab-pane fade in active" id="current">
+  			<!-- CURRENT CHALLENGES-->
+  			<table width="100%" class="table table-striped daily_quests_table">
 	@foreach($user->challenges as $challenge)
 		<tr>
 			<td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>
@@ -191,6 +206,16 @@
 		</tr>
 	@endforeach
 	</table>
+  			<!-- END CURRENT CHALLENGES-->
+  		</div>
+  		<div role="tabpanel" class="tab-pane fade" id="stats">STATS</div>
+  		<div role="tabpanel" class="tab-pane fade" id="objectives">OBJECTIVES</div>
+  		<div role="tabpanel" class="tab-pane fade" id="others">OTHERS</div>
+	</div>
+
+
+	
+	
 	</div>
 	<br/><br/>
 @stop
