@@ -662,7 +662,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								$summoner_stats->losses +=1;
 							}
 							$newGame->save();
-							$summoner_stats->save();
+							if($game["subType"] != 'BOT_3x3' && $game["subType"] != 'NONE' && $game["subType"] != 'BOT' && $newGame->createDate >= 1423785600000){
+								$summoner_stats->save();
+							}
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item0));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item1));
 							$newGame->items()->attach($newGame->id, array("item_id"=>$item2));

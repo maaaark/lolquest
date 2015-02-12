@@ -278,7 +278,21 @@ class UsersController extends \BaseController {
 				$user->verify_string = str_random(8);
 				$user->summoner_status = 1;
 				$user->save();
-				
+				$i=1;
+				do
+				{
+					$seachchallenge = Challenge::where('type', '=', $i)->orderBy('value', 'asc')->first();
+					if(!$seachchallenge){
+						$i=0;
+					} else {
+						$challenge = New ChallengeUser;
+						$challenge->user_id = $user->id;
+						$challenge->active = 1;
+						$challenge->challenge_id = $seachchallenge->id;
+						$i+=1;
+						$challenge->save();
+					}
+				} while ($i>0);
 				$user->roles()->attach($roleMember->id, array("user_id"=>$user->id));
 				
 				// Generate Daily Progress
@@ -747,9 +761,12 @@ class UsersController extends \BaseController {
 		if (Auth::check())
 		{
 			$user = User::find(Auth::user()->id);
-			$challenges = $user->challenges;
+			$userstats = SummonerStat::where('summoner_id','=', $user->summoner->summonerid)->first();
 			$playerroles = Playerrole::all();
-                        
+			$statchallenges = Challenge::where('type','=', 1)->orwhere('type','=', 2)->orwhere('type','=', 3)->orwhere('type','=', 6)->orwhere('type','=', 7)->orwhere('type','=', 8)->orwhere('type','=', 12)->orwhere('type','=', 13)->orwhere('type','=', 14)->orwhere('type','=', 15)->orderBy('type','asc')->orderBy('value', 'asc')->get();
+			$objectivechallenges = Challenge::where('type','=', 11)->orwhere('type','=', 16)->orwhere('type','=', 17)->orderBy('type','asc')->orderBy('value', 'asc')->get();
+			$otherchallenges = Challenge::where('type','=', 4)->orwhere('type','=', 5)->orwhere('type','=', 9)->orwhere('type','=', 10)->orderBy('type','asc')->orderBy('value', 'asc')->get();
+
                         // Top Champs
                         $top_champions = Config::get('settings.top_champions');
                         $jungle_champions = Config::get('settings.jungle_champions');
@@ -763,7 +780,7 @@ class UsersController extends \BaseController {
                         $full_marksman_champions = Champion::whereIn('champion_id', $marksman_champions)->get();
                         $full_support_champions = Champion::whereIn('champion_id', $support_champions)->get();
                         
-			return View::make('users.challenges', compact('user','playerroles','full_top_champions','full_jungle_champions','full_mid_champions','full_marksman_champions','full_support_champions'));
+			return View::make('users.challenges', compact('user','playerroles','full_top_champions','full_jungle_champions','full_mid_champions','full_marksman_champions','full_support_champions','userstats','statchallenges','objectivechallenges','otherchallenges'));
                         } else {
                                 return Redirect::to('login');
                         }

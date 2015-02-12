@@ -41,10 +41,35 @@ class RefreshUserChallenges extends Command {
     {
 		$users = User::get();
 		foreach($users as $user) {
-			$challenge = New UserChallenge;
-			$challenge->user_id = $user->id;
-			$challenge->challenge_id = 1;
-			$challenge->save();
+			if($user->summoner){
+				$summonerstats = SummonerStat::where('summoner_id','=', $user->summoner->summonerid)->first();
+				if(!$summonerstats){
+					$summoner_stats = new SummonerStat;
+					$summoner_stats->summoner_id = $user->summoner->summonerid;
+					$summoner_stats->save();
+				}
+				echo "$user->id\n";
+			}
+			$i=1;
+			do
+			{
+				$searchchallenge = Challenge::where('type', '=', $i)->orderBy('value', 'asc')->first();
+				if(!$searchchallenge){
+					$i=0;
+				} else {
+					$check = ChallengeUser::where('user_id','=', $user->id)->where('challenge_id','=',$searchchallenge->id)->first();
+					if(!$check) {
+						$challenge = New ChallengeUser;
+						$challenge->user_id = $user->id;
+						$challenge->active = 1;
+						$challenge->challenge_id = $searchchallenge->id;
+						$i+=1;
+						$challenge->save();
+					} else {
+						$i+=1;
+					}
+				}
+			} while ($i>0);
 		}
     }
 
