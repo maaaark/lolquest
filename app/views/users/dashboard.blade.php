@@ -202,8 +202,16 @@
 	<br/>-->
 	
 	<div class="daily_quests">
-		<h3>Daily Quests</h3>
-		<div class="daily_reset">Daily reset is at 2AM CET </div>
+		<table width="100%">
+			<tr>
+				<td width="50%"><h3>Daily Quests</h3></td>
+				<td style="text-align: right;">
+					<a href="/refresh_summoner" class="btn btn-primary inactive_at_click">Update daily quests</a><br/>
+					<div class="daily_reset">Daily reset is at 2AM CET </div>
+				</td>
+			</tr>
+		</table>
+		
 		<br/>
 		<table width="100%" class="table table-striped daily_quests_table">
 			<tr>

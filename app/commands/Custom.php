@@ -44,5 +44,6 @@ class Custom extends Command {
 			$daily->user_id = $user->id;
 			$daily->save();
 		}
+		echo "Daily Progress für alle User angelegt \n"
 	}
 }
