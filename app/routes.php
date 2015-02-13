@@ -161,6 +161,7 @@ Route::get('/cancel_challenge', 'QuestsController@cancel_challenge');
 
 // Challenges Controller
 Route::post('/finish_challenge', ['before' => 'csrf', 'uses' => 'ChallengesController@finish_challenge']);
+Route::post('/challenge/lifetime/{challenge_id}/{progress}', 'UsersController@challengedone');
 
 // Ladders Controller
 Route::get('/ladders', 'LaddersController@index');
