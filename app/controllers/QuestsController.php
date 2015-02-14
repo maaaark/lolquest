@@ -50,7 +50,7 @@ class QuestsController extends \BaseController {
 				}
 			} elseif($progress == "top") {
 				$daily = Dailyprogess::where("user_id", "=", $user->id)->first();
-				if($daily->top_games >= 5) {
+				if($daily->top_games >= 2) {
 					$daily->claimed_top = true;
 					$daily->save();
 					$user->reward(50, 250, false, 0);

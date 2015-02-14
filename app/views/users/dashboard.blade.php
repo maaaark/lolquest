@@ -287,7 +287,7 @@
 						Already claimed
 					@else
 						50 QP + 250 EXP<br/>
-						@if($dailyprogress->top_games == 2)
+						@if($dailyprogress->top_games >= 2)
 							<form id="frm" method="post" action="/quests/dailyprogress/top">
 								<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
