@@ -27,17 +27,7 @@ class Challenge extends \Eloquent {
 	
 	public function users()
     {
-        return $this->belongsToMany('User');
+        return $this->belongsToMany('User')->withPivot('active');
     }
-	
-	public function first_challenges()
-    {
-		$users = User::get();
-		foreach($users as $user) {
-			$user->challenges()->attach(1);
-		}
-    }
-	
-	
-	
+
 }

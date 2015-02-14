@@ -784,8 +784,35 @@ class UsersController extends \BaseController {
                         } else {
                                 return Redirect::to('login');
                         }
-		// show the form
-		
+		// show the form	
+	}
+	
+	public function challengedone($challenge_id, $progress) {
+		if(Auth::check()) {
+			$user = User::find(Auth::user()->id);
+			$challenge = Challenge::where('id','=', $challenge_id)->first();
+			$newchallenge = Challenge::where('type','=',$challenge->type)->orderBy('value', 'asc')->where('id','>',$challenge->id )->first();
+			$challengeactive = ChallengeUser::where('user_id', '=', $user->id)->where('challenge_id','=',$challenge_id)->first();
+			if($challenge && $challengeactive){
+				if($challenge->value <= $progress){
+				if($newchallenge){
+					$userchallenge = New ChallengeUser;
+					$userchallenge->user_id = $user->id;
+					$userchallenge->active = 1;
+					$userchallenge->challenge_id = $newchallenge->id;
+					$userchallenge->save();
+				}
+					$challengeactive->active = 0;
+					$challengeactive->save();
+					$user->reward($challenge->qp, $challenge->exp, false, 0);
+					return Redirect::to('challenges')->with('success', 'Challenge completed');
+				} else {
+					return Redirect::to('challenges')->with('error', 'Challenge not done');
+				}
+			} else {
+				return Redirect::to('challenges')->with('error', 'Challenge not found');
+			}
+		}
 	}
 	
 	public function doLogin()

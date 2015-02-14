@@ -79,8 +79,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function challenges()
     {
-        return $this->belongsToMany('Challenge');
+        return $this->belongsToMany('Challenge')->orderby('type','asc')->orderby('value','asc')->withPivot('active');
     }
+	
 	
 	public function title()
     {
@@ -234,6 +235,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return false;
     }
+	
+	public function checkchallenge($user_id, $challenge_id)
+	{
+		$checkchallenges = ChallengeUser::where('user_id','=', $user_id)->where('challenge_id','=', $challenge_id)->first();
+		if($checkchallenges){
+			if($checkchallenges->active == 0){
+				return true;
+			}
+		}
+	}
 	
 	public function openFriends()
     {
