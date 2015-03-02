@@ -21,4 +21,3 @@
 <script src="/js/jquery.countdown.min.js"></script>
 <script src="/js/summernote.min.js"></script>
 @include('layouts.countdown')
-{{ HTML::script('js/custom.js') }}
