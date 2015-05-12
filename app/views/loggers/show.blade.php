@@ -1,0 +1,1 @@
+/Users/marktomicki/web/lolquest/app/views/loggers/show.blade.php

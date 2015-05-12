@@ -15,7 +15,7 @@
 					
 						<div class="col-lg-4 col-md-4 col-sm-6 col-sm-6 col-xs-6">
 							<div class="product">
-								<img class="img-circle" alt="" src="/img/champions/{{ $champion->champion_id }}_92.png" width="100">
+								<img class="img-circle" alt="" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $champion->key }}.png" width="100">
 								<h3>{{ $champion->name }}</h3>
 								Site Background for {{ $champion->name }}<br/>
 								<br/>

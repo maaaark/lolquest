@@ -65,7 +65,7 @@
 
 
 	@if(Auth::check())
-		@if(Auth::user()->team_id != 0)
+		@if(Auth::user()->team_id < 0)
 			<div class="sidebar_box">
 					<div class="sidebar_headline"><i class="fa fa-group"></i>&nbsp;&nbsp;{{ trans("sidebar.my_team") }}</div>
 					<table>
@@ -88,7 +88,7 @@
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ Session::get('daily_quest')->champion->key }}.png" width="40"></a></td>
+					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ Session::get('daily_quest')->champion->key }}.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
@@ -110,7 +110,7 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $quest->champion->key }}.png" width="40"></a></td>
+				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $quest->champion->key }}.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard">{{ $quest->questtype->name }}</a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>
@@ -131,7 +131,7 @@
 				<tr style="background: #2d2d2d;">
 					<td width="30">{{ Session::get('my_ladder_rang')->rang }}.</td>
 					<td width="40" class="hidden-xs"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">
-					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.png" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ Session::get('my_ladder_rang')->user->summoner->profileIconId }}.png" class="img-circle" width="25" />
 					</a></strong></td>
 					<td width="140"><strong><a href="/summoner/{{ Session::get('my_ladder_rang')->user->region }}/{{ Session::get('my_ladder_rang')->user->summoner_name }}">{{ Session::get('my_ladder_rang')->user->summoner_name }}</a></strong></td>
 					<td class="hidden-sm hidden-xs"><strong>{{ Session::get('my_ladder_rang')->month_exp }} EXP</strong></td>			
@@ -143,7 +143,7 @@
 				<tr>
 					<td width="30">{{ $friend_ladder->rang }}.</td>
 					<td width="40" class="hidden-xs"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">
-					<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $friend_ladder->profileIconId }}.png" class="img-circle" width="25" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $friend_ladder->profileIconId }}.png" class="img-circle" width="25" />
 					</a></td>
 					<td width="140"><a href="/summoner/{{ $friend_ladder->region }}/{{ $friend_ladder->summoner_name }}">{{ $friend_ladder->summoner_name }}</a></td>
 					<td class="hidden-sm hidden-xs">{{ $friend_ladder->month_exp }} EXP</td>			

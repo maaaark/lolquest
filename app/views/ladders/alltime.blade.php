@@ -1,5 +1,5 @@
 @extends('templates.default')
-@section('title', "Top 100 Summoner")
+@section('title', "Top 100 Quester")
 @section('content')
 	<?php $i=1; ?>
 	<br/>
@@ -33,7 +33,7 @@
 			<td width="20">
 				@if($row->summoner) 
 					<a href="/summoner/{{ $row->region }}/{{ $row->summoner_name }}">
-						<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $row->summoner->profileIconId }}.png" class="img-circle" width="20" />
+						<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $row->summoner->profileIconId }}.png" class="img-circle" width="20" />
 					</a>
 				@else
 					-

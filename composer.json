@@ -7,7 +7,7 @@
         "laravel/framework": "4.2.*",
         "way/generators": "2.*",
         "efficiently/authority-controller": "1.1.*",
-        "barryvdh/laravel-ide-helper": "1.*",
+        "barryvdh/laravel-ide-helper": "~1.11",
         "doctrine/dbal": "2.3",
         "barryvdh/laravel-cors": "0.2.x",
 		"anouar/paypalpayment": "dev-master"
@@ -29,6 +29,7 @@
         ],
         "post-update-cmd": [
             "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-create-project-cmd": [
