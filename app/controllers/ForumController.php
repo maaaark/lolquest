@@ -193,10 +193,11 @@ class ForumController extends \BaseController {
 		if(Auth::check()) {
 			$replies = ForumReply::where('id', '=', $replayID)->first();
 			
-			if($userID === $replies->user_id) {
-				
+			if(Auth::user()->id === $replies->user_id || Auth::user()->hasRole("admin")) {
 				return View::make('forum.edit_reply', compact('replies'));
-			}
+			} else {
+                return Redirect::to("/403");
+            }
 		}
 		
 	}
