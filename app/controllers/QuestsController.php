@@ -292,7 +292,7 @@ class QuestsController extends \BaseController {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->dailyprogress->addQuestCompleted($user, $game);
+							$user->dailyprogress->addQuestCompleted($user);
 							return Redirect::to('/quest_finished/'.$quest->id);
 						}
 					}
@@ -309,7 +309,7 @@ class QuestsController extends \BaseController {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-							$user->dailyprogress->addQuestCompleted($user, $game);
+							$user->dailyprogress->addQuestCompleted($user);
 							return Redirect::to('/quest_finished/'.$quest->id);
 						}
 					}
@@ -335,7 +335,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -358,7 +358,7 @@ class QuestsController extends \BaseController {
 							}
 							
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -379,7 +379,7 @@ class QuestsController extends \BaseController {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 							$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -400,7 +400,7 @@ class QuestsController extends \BaseController {
 								$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 							}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -422,7 +422,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 								}
 							}
@@ -444,7 +444,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -466,7 +466,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -487,7 +487,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -507,7 +507,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -527,7 +527,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -548,7 +548,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -569,7 +569,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -591,7 +591,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -613,7 +613,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 									$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-									$user->dailyprogress->addQuestCompleted($user, $game);
+									$user->dailyprogress->addQuestCompleted($user);
 									return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -634,7 +634,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false, $quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								$user->checkAchievement(6, $user->lifetime_qp);
 								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
@@ -658,7 +658,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false, $quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								$user->checkAchievement(6, $user->lifetime_qp);
 								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
@@ -682,7 +682,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false, $quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								$user->checkAchievement(6, $user->lifetime_qp);
 								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
@@ -706,7 +706,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false, $quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								$user->checkAchievement(6, $user->lifetime_qp);
 								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
@@ -730,7 +730,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false, $quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								$user->checkAchievement(6, $user->lifetime_qp);
 								$user->checkAchievement(2, $user->finishedQuestsCount());
 								$user->save();
@@ -753,7 +753,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -774,7 +774,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -795,7 +795,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -815,7 +815,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -836,7 +836,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -856,7 +856,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -876,7 +876,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -896,7 +896,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -917,7 +917,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -937,7 +937,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -957,7 +957,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}
@@ -978,7 +978,7 @@ class QuestsController extends \BaseController {
 									$user->reward($quest->questtype->qp,$quest->questtype->exp,false,$quest->champion_id);
 								}
 								$user->timeline("quest_complete", $quest->id, 0, 0, 0, 0, 0);
-								$user->dailyprogress->addQuestCompleted($user, $game);
+								$user->dailyprogress->addQuestCompleted($user);
 								return Redirect::to('/quest_finished/'.$quest->id);
 							}
 						}

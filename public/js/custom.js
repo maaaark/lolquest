@@ -26,7 +26,7 @@ $( document ).ready(function() {
 	});
 	
 	$('#frm').bind('submit', function(e) {
-	   $('.inactive_at_click').attr('disabled', 'disabled');
+	   $('input.inactive_at_click').attr('disabled', 'disabled');
 	});
 	
 	
@@ -35,7 +35,11 @@ $( document ).ready(function() {
 	  $(this).tab('show')
 	})
 
-	
+
+    $('input.inactive_at_click').click(function() {
+        $(this).attr('disabled', 'disabled');
+    })
+
 	$('#myTab a[href="#profile"]').tab('show')
 	$('#myTab a').click(function (e) {
 	  //e.preventDefault();

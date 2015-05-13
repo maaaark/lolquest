@@ -16,7 +16,7 @@ class Dailyprogess extends \Eloquent {
 		}
 	}
 	
-	public function addQuestCompleted($user, $game) {
+	public function addQuestCompleted($user) {
 		$progress = Dailyprogess::where('user_id', '=', $user->id)->first();
 		if($progress->quests_completed < 5) {
 			$progress->quests_completed = $progress->quests_completed +1;

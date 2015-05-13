@@ -45,7 +45,7 @@ class RefreshTotalExp extends Command {
             foreach($finished_quests as $quest) {
                 $exp = $exp + $quest->questtype->exp;
             }
-            $user->exp = $exp;
+            $user->quest_exp = $exp;
             $user->save();
             echo "$user->id - EXP für User $user->summoner_name gespeichert ($user->exp) \n";
         }
