@@ -46,7 +46,7 @@
 		@foreach($user->openFriends() as $openfriend)
 				@if($user->getFriendUser($openfriend->user_id))
 				<td width="50">
-					<a href="/summoner/{{$user->getFriendUser($openfriend->user_id)->region}}/{{$user->getFriendUser($openfriend->user_id)->summoner_name}}"><img src="/img/profileicons/profileIcon{{ $user->getFriendUser($openfriend->user_id)->summoner->profileIconId }}.jpg" width="30" class="img-circle" /></a>
+					<a href="/summoner/{{$user->getFriendUser($openfriend->user_id)->region}}/{{$user->getFriendUser($openfriend->user_id)->summoner_name}}"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $user->getFriendUser($openfriend->user_id)->summoner->profileIconId }}.png" width="30" class="img-circle" /></a>
 				</td>
 				<td width="110">
 					<a href="/summoner/{{$user->getFriendUser($openfriend->user_id)->region}}/{{$user->getFriendUser($openfriend->user_id)->summoner_name}}">
@@ -67,7 +67,7 @@
 		@foreach($user->friends as $friend)
 				<td width="50">
 					<a href="/summoner/{{$friend->region}}/{{$friend->summoner_name}}">
-					<img src="/img/profileicons/profileIcon{{ $friend->summoner->profileIconId }}.jpg" width="30" class="img-circle" />
+					<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $friend->summoner->profileIconId }}.png" width="30" class="img-circle" />
 					</a>
 				</td>
 				<td width="110">
