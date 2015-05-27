@@ -11,7 +11,7 @@
 	<table width="100%" class="profile">
 		<tr>
 			<td valign="top" width="130" style="text-align: center; padding-right: 15px;">
-				<img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $user->summoner->profileIconId }}.png" width="100" class="img-circle" /><br/>
+				<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $user->summoner->profileIconId }}.png" width="100" class="img-circle" /><br/>
 				<br/>
 				{{ trans("users.level_profile") }}: {{ $user->level_id }}<br/><br/>
 				@if(Auth::user())
@@ -45,12 +45,6 @@
 						<td class="attribute">{{ trans("users.region") }}</td>
 						<td>{{ $user->region }}</td>
 					</tr>
-					@if($user->team_id != 0)
-					<tr>
-						<td class="attribute">{{ trans("users.team") }}</td>
-						<td><a href="/teams/{{ $user->team->region }}/{{ $user->team->clean_name }}"><img src="/img/teams/logo/{{ $user->team->logo }}" class="img-circle" width="20" /> {{ $user->team->name }}</a></td>
-					</tr>
-					@endif
 					<tr>
 						<td class="attribute">{{ trans("users.level") }}</td>
 						<td>{{ $user->summoner->summonerLevel }}</td>
@@ -156,7 +150,7 @@
 						@foreach($quests_done as $quest)
 							<tr>
 								<td width="50">
-									<img src="/img/champions/{{ $quest->champion_id }}_92.png" class="img-circle" width="35" />
+									<img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $quest->champion->key }}.png" class="img-circle" width="35" />
 								</td>
 								<td>
 									{{ $quest->questtype->name }}
@@ -250,7 +244,7 @@
 				?>
 				<tr class="<?php echo $class; ?>">
 					<td>
-						<a href="/champions/{{ $game->champion->key }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/champion/{{ $game->champion->key }}.png" class="img-circle" width="35" /></a>
+						<a href="/champions/{{ $game->champion->key }}"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $game->champion->key }}.png" class="img-circle" width="35" /></a>
 					</td>
 					<td class="game_kda">
 					{{ $game->championsKilled }} / {{ $game->numDeaths }} / {{ $game->assists }}<br/>
@@ -393,9 +387,9 @@
 		@foreach($champion_quests as $champion_quest)
 			<li>
 			@if($champion_quest->quests == 0)
-				<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
+				<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $champion_quest->key }}.png" width="30" style="opacity: 0.4;" title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
 			@else
-				<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="/img/champions_small/{{ $champion_quest->champion_id }}_92.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
+				<a href="/champions/{{ $champion_quest->key }}"><img class="img-circle quest_avatar" alt="{{ $champion_quest->name }}" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $champion_quest->key }}.png" width="30"  title="{{ $champion_quest->name }}: {{ $champion_quest->quests }} Quests done" /></a>
 			@endif
 			</li>
 		@endforeach

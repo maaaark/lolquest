@@ -1,5 +1,5 @@
 @extends('templates.full')
-@section('title', 'Login')
+@section('title', 'Access Denied')
 @section('content')
 <div class="login_form">
 	<div class="inner_login">

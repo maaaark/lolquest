@@ -134,7 +134,7 @@
 					@foreach($arena_ladder as $arena)
 					<tr>
 						<td width="60">{{ $arena->rang }}.</td>
-						<td style="width: 30px;"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $arena->user->summoner->profileIconId }}.png" width="30" class="img-circle" /></td>
+						<td style="width: 30px;"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $arena->user->summoner->profileIconId }}.png" width="30" class="img-circle" /></td>
 						<td><a href="/summoner/{{ $arena->user->region }}/{{ $arena->user->summoner_name }}">{{ $arena->user->summoner->name }}</a></td>
 						<td>{{ $arena->arena_quests }}</td>
 						<td>

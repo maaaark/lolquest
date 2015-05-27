@@ -11,7 +11,7 @@
 			
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
-					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $topic->user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
+					<a href="/summoner/{{ $topic->user->region }}/{{ $topic->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $topic->user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $topic->user->summoner->name }}</strong><br/>
 					@if($topic->user->title() != false)
@@ -20,10 +20,13 @@
 					@if($topic->user->hasRole('admin'))
 						<div class="admin_user">Administrator</div>
 					@endif
+
+                            <!--
 					@if(Session::get('my_ladder_rang'))
 						<div class="ladder_badge">Rang {{ Session::get('my_ladder_rang')->rang }}</div>
 					@endif
-					
+					-->
+
 					{{ trans("forum.level") }} {{ $topic->user->level_id }}<br/>
 					{{ $topic->user->replies->count() }} {{ trans("forum.posts") }}
 				</td>
@@ -41,7 +44,7 @@
 			@foreach($replies as $reply)
 			<tr>
 				<td width="100" style="text-align: center;" valign="top">
-					<a href="/summoner/{{ $reply->user->region }}/{{ $reply->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/4.21.5/img/profileicon/{{ $reply->user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
+					<a href="/summoner/{{ $reply->user->region }}/{{ $reply->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $reply->user->summoner->profileIconId }}.png" class="img-circle" width="50" /></a>
 					<br/>
 					<strong>{{ $reply->user->summoner->name }}</strong><br/>
 					@if($reply->user->title() != false)

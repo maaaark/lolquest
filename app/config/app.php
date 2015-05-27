@@ -126,6 +126,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
 		'Anouar\Paypalpayment\PaypalpaymentServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	),
 
 	/*

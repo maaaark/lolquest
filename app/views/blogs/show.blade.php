@@ -22,7 +22,7 @@ $( document ).ready(function() {
 });
 </script>
 	<div class="blog_date">
-		<a href="/summoner/{{ $blog->user->region }}/{{ $blog->user->summoner_name }}"><img src="/img/profileicons/profileIcon{{ $blog->user->summoner->profileIconId }}.jpg" class="img-circle" width="30" />
+		<a href="/summoner/{{ $blog->user->region }}/{{ $blog->user->summoner_name }}"><img src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/profileicon/{{ $blog->user->summoner->profileIconId }}.png" class="img-circle" width="30" />
 		&nbsp;&nbsp;{{ $blog->user->summoner->name }}</a> - {{ $blog->created_at->diffForHumans() }} - {{ $blog->comments->count() }} {{ trans("blog.comments") }}
 	</div>
 	<div class="blog_post">

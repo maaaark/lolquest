@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.8 on 2015-05-12.
+ * Generated for Laravel 4.2.9 on 2015-04-30.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -654,7 +654,7 @@ namespace {
         /**
          * Register a binding with the container.
          *
-         * @param string $abstract
+         * @param string|array $abstract
          * @param \Closure|string|null $concrete
          * @param bool $shared
          * @return void 
@@ -696,7 +696,7 @@ namespace {
          * Wrap a Closure such that it is shared.
          *
          * @param \Closure $closure
-         * @return \Illuminate\Container\Closure 
+         * @return \Closure 
          * @static 
          */
         public static function share($closure){
@@ -1675,10 +1675,11 @@ namespace {
          * Set the event dispatcher instance.
          *
          * @param \Illuminate\Events\Dispatcher
+         * @return void 
          * @static 
          */
         public static function setDispatcher($events){
-            return \Illuminate\Auth\Guard::setDispatcher($events);
+            \Illuminate\Auth\Guard::setDispatcher($events);
         }
         
         /**
@@ -2923,9 +2924,23 @@ namespace {
          * @return array 
          * @static 
          */
-        public static function select($query, $bindings = array()){
+        public static function selectFromWriteConnection($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::select($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectFromWriteConnection($query, $bindings);
+        }
+        
+        /**
+         * Run a select statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return array 
+         * @static 
+         */
+        public static function select($query, $bindings = array(), $useReadPdo = true){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::select($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3150,7 +3165,7 @@ namespace {
         /**
          * Get the current PDO connection.
          *
-         * @return \Illuminate\Database\PDO 
+         * @return \PDO 
          * @static 
          */
         public static function getPdo(){
@@ -3161,7 +3176,7 @@ namespace {
         /**
          * Get the current PDO connection used for reading.
          *
-         * @return \Illuminate\Database\PDO 
+         * @return \PDO 
          * @static 
          */
         public static function getReadPdo(){
@@ -3195,6 +3210,21 @@ namespace {
         
         /**
          * Set the reconnect instance on the connection.
+<<<<<<< HEAD
+         *
+         * @param callable $reconnector
+         * @return $this 
+         * @static 
+         */
+        public static function setReconnector($reconnector){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::setReconnector($reconnector);
+        }
+        
+        /**
+         * Get the database connection name.
+=======
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          *
          * @param callable $reconnector
          * @return $this 
@@ -3557,7 +3587,7 @@ namespace {
          *
          * @param array $columns
          * @return \Illuminate\Database\Eloquent\Model|static 
-         * @throws ModelNotFoundException
+         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
          * @static 
          */
         public static function firstOrFail($columns = array()){
@@ -3640,6 +3670,7 @@ namespace {
          * Run the default delete function on the builder.
          *
          * @return mixed 
+<<<<<<< HEAD
          * @static 
          */
         public static function forceDelete(){
@@ -3653,6 +3684,21 @@ namespace {
          * @return void 
          * @static 
          */
+=======
+         * @static 
+         */
+        public static function forceDelete(){
+            return \Illuminate\Database\Eloquent\Builder::forceDelete();
+        }
+        
+        /**
+         * Register a replacement for the default delete function.
+         *
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
         public static function onDelete($callback){
             \Illuminate\Database\Eloquent\Builder::onDelete($callback);
         }
@@ -3661,7 +3707,7 @@ namespace {
          * Get the hydrated models without eager loading.
          *
          * @param array $columns
-         * @return array|static[] 
+         * @return \Illuminate\Database\Eloquent\Model[] 
          * @static 
          */
         public static function getModels($columns = array()){
@@ -6113,6 +6159,26 @@ namespace {
         }
         
         /**
+         * Returns the client IP address.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function ip(){
+            return \Illuminate\Http\Request::ip();
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function ips(){
+            return \Illuminate\Http\Request::ips();
+        }
+        
+        /**
          * Determine if the request contains a given input item key.
          *
          * @param string|array $key
@@ -7144,6 +7210,17 @@ namespace {
         public static function setDefaultLocale($locale){
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::setDefaultLocale($locale);
+        }
+        
+        /**
+         * Get the default locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getDefaultLocale();
         }
         
         /**
@@ -7612,6 +7689,8 @@ namespace {
         
         /**
          * Register a file log handler.
+<<<<<<< HEAD
+=======
          *
          * @param string $path
          * @param string $level
@@ -7624,6 +7703,7 @@ namespace {
         
         /**
          * Register a daily file log handler.
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          *
          * @param string $path
          * @param int $days
@@ -7633,6 +7713,18 @@ namespace {
          */
         public static function useDailyFiles($path, $days = 0, $level = 'debug'){
             \Illuminate\Log\Writer::useDailyFiles($path, $days, $level);
+        }
+        
+        /**
+         * Register an error_log handler.
+         *
+         * @param string $level
+         * @param integer $messageType
+         * @return void 
+         * @static 
+         */
+        public static function useErrorLog($level = 'debug', $messageType = 0){
+            \Illuminate\Log\Writer::useErrorLog($level, $messageType);
         }
         
         /**
@@ -7752,11 +7844,11 @@ namespace {
          * @param array $data
          * @param \Closure|string $callback
          * @param string $queue
-         * @return void 
+         * @return mixed 
          * @static 
          */
         public static function queue($view, $data, $callback, $queue = null){
-            \Illuminate\Mail\Mailer::queue($view, $data, $callback, $queue);
+            return \Illuminate\Mail\Mailer::queue($view, $data, $callback, $queue);
         }
         
         /**
@@ -7766,11 +7858,11 @@ namespace {
          * @param string|array $view
          * @param array $data
          * @param \Closure|string $callback
-         * @return void 
+         * @return mixed 
          * @static 
          */
         public static function queueOn($queue, $view, $data, $callback){
-            \Illuminate\Mail\Mailer::queueOn($queue, $view, $data, $callback);
+            return \Illuminate\Mail\Mailer::queueOn($queue, $view, $data, $callback);
         }
         
         /**
@@ -7781,11 +7873,11 @@ namespace {
          * @param array $data
          * @param \Closure|string $callback
          * @param string $queue
-         * @return void 
+         * @return mixed 
          * @static 
          */
         public static function later($delay, $view, $data, $callback, $queue = null){
-            \Illuminate\Mail\Mailer::later($delay, $view, $data, $callback, $queue);
+            return \Illuminate\Mail\Mailer::later($delay, $view, $data, $callback, $queue);
         }
         
         /**
@@ -7796,11 +7888,11 @@ namespace {
          * @param string|array $view
          * @param array $data
          * @param \Closure|string $callback
-         * @return void 
+         * @return mixed 
          * @static 
          */
         public static function laterOn($queue, $delay, $view, $data, $callback){
-            \Illuminate\Mail\Mailer::laterOn($queue, $delay, $view, $data, $callback);
+            return \Illuminate\Mail\Mailer::laterOn($queue, $delay, $view, $data, $callback);
         }
         
         /**
@@ -7828,6 +7920,7 @@ namespace {
         
         /**
          * Check if the mailer is pretending to send messages.
+<<<<<<< HEAD
          *
          * @return bool 
          * @static 
@@ -7839,6 +7932,19 @@ namespace {
         /**
          * Get the view factory instance.
          *
+=======
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isPretending(){
+            return \Illuminate\Mail\Mailer::isPretending();
+        }
+        
+        /**
+         * Get the view factory instance.
+         *
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          * @return \Illuminate\View\Factory 
          * @static 
          */
@@ -8280,6 +8386,19 @@ namespace {
         }
         
         /**
+<<<<<<< HEAD
+=======
+         * Determine if the application is in maintenance mode.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isDownForMaintenance(){
+            return \Illuminate\Queue\QueueManager::isDownForMaintenance();
+        }
+        
+        /**
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          * Push a new job onto the queue.
          *
          * @param string $job
@@ -8701,6 +8820,26 @@ namespace {
          */
         public static function secure(){
             return \Illuminate\Http\Request::secure();
+        }
+        
+        /**
+         * Returns the client IP address.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function ip(){
+            return \Illuminate\Http\Request::ip();
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function ips(){
+            return \Illuminate\Http\Request::ips();
         }
         
         /**
@@ -9735,6 +9874,17 @@ namespace {
         public static function setDefaultLocale($locale){
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::setDefaultLocale($locale);
+        }
+        
+        /**
+         * Get the default locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getDefaultLocale();
         }
         
         /**
@@ -10759,6 +10909,17 @@ namespace {
          */
         public static function setId($id){
             return \Illuminate\Session\Store::setId($id);
+        }
+        
+        /**
+         * Determine if this is a valid session ID.
+         *
+         * @param string $id
+         * @return bool 
+         * @static 
+         */
+        public static function isValidId($id){
+            return \Illuminate\Session\Store::isValidId($id);
         }
         
         /**

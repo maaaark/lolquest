@@ -16,7 +16,7 @@ class ProductsController extends \BaseController {
 	{
 		//$products = Product::all();
 		//return View::make('shop.index', compact('products'));
-		return Redirect::to("/shop/beta_key");
+		return Redirect::to("/shop/quest_slot");
 	}
 	
 	public function skin_purchased()
