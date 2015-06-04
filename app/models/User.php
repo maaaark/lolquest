@@ -350,9 +350,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				) AS quests
 			FROM champions
 			ORDER BY name ASC
-		'));
+			'));
 		foreach($champion_quests as $champion_quest) {
-			if($champion_quest->quests == 1) {
+			if($champion_quest->quests != 0) {
 				$champions += 1;
 			}
 		}

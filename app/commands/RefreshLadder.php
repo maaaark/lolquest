@@ -53,8 +53,6 @@ class RefreshLadder extends Command {
 			GROUP BY user_id
 			ORDER BY total_exp DESC, total_quests DESC, updated_at ASC
 		'));	
-		$model = new AchievementUser;
-		$model->setTable("achievement_user");
 		
 		foreach($ladder as $key => $row) {
 			$user = User::find($row->user_id);
