@@ -196,9 +196,6 @@ class BaseController extends Controller {
 		}
 	}
 
-    public function classes() {
-        $champions = Champion::all();
-        return View::make('pages.roles', compact('champions'));
-    }
+    
 
 }
