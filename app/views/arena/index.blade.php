@@ -73,7 +73,7 @@
 								Time left: <span class="arena_quest_timer"></span><br/>
 								<br/>
 								<form id="frm" method="post" action="/arena/finish_quest">
-									<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('arena.finish_quest') }}">
+									<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('arena.finish_quest') }}">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>
 								<br/>
@@ -97,7 +97,7 @@
 							<h3>Join the Arena</h3>
 							@if(Auth::user()->qp >= 500)
 								<form id="frm" method="post" action="/arena/start_arena">
-									<input class="inactive_at_click btn btn-primary" type="submit" value="{{ trans('arena.join_button') }}">
+									<input class="inactive_at_click btn btn-primary" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('arena.join_button') }}">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>
 							@else 
@@ -106,7 +106,7 @@
 							<br/>
 							@if(Auth::user()->lp >= 50)
 								<form id="frm" method="post" action="/arena/start_arena">
-									<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('arena.join_button_lp') }}">
+									<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('arena.join_button_lp') }}">
 									<input type="hidden" name="lp" value="1">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>

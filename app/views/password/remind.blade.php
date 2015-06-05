@@ -6,7 +6,7 @@
 	<h2 style="margin-top: 0;">Forgot password</h2>
 	<form action="{{ action('RemindersController@postRemind') }}" method="POST">
 		<input type="email" class="form-control" placeholder="E-Mail" name="email"><br/>
-		<input type="submit" class="btn btn-primary" value="Send Mail">
+		<input type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" class="btn btn-primary" value="Send Mail">
 	</form>
 	</div>
 </div>

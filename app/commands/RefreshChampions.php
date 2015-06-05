@@ -38,7 +38,7 @@ class RefreshChampions extends Command {
 	public function fire()
 	{
 		$api_key = Config::get('api.key');
-		$summoner_data = "https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?dataById=true&champData=info,stats&api_key=".$api_key;
+		$summoner_data = "https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?dataById=true&champData=info,stats,tags&api_key=".$api_key;
 		$json = @file_get_contents($summoner_data);
 		if($json === FALSE) {
 			return View::make('login');
@@ -74,7 +74,28 @@ class RefreshChampions extends Command {
 					$new_champion->crit = $champion["stats"]["crit"];
 					$new_champion->hpregenperlevel = $champion["stats"]["hpregenperlevel"];
 					$new_champion->armorperlevel = $champion["stats"]["armorperlevel"];
-					
+
+                    foreach($champion["tags"] as $tag) {
+                        if($tag == "Mage") {
+                            $new_champion->mage = 1;
+                        }
+                        if($tag == "Tank") {
+                            $new_champion->tank = 1;
+                        }
+                        if($tag == "Fighter") {
+                            $new_champion->fighter = 1;
+                        }
+                        if($tag == "Support") {
+                            $new_champion->support = 1;
+                        }
+                        if($tag == "Marksman") {
+                            $new_champion->marksman = 1;
+                        }
+                        if($tag == "Assassin") {
+                            $new_champion->assassin = 1;
+                        }
+
+                    }
 					
 					$new_champion->save();
 					echo "Saved Champion".$champion["name"]."\n";
@@ -83,7 +104,7 @@ class RefreshChampions extends Command {
 			}
 		}
 		
-		//echo "\n\nChampions refreshed\n\n";
+		echo "\nChampions refreshed\n";
 	}
 
 

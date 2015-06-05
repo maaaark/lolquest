@@ -40,7 +40,7 @@
                                                     <p><a class="btn btn-warning" href="" role="button">{{ trans("dashboard.inactive") }}</a></p>
                                                 @else
                                                     <form id="frm" method="post" action="/quests/check_quest/{{ $quest->id }}">
-                                                        <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.complete') }}">
+                                                        <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.complete') }}">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     </form><br/>
                                                 @endif
@@ -198,6 +198,9 @@
                         Sometimes your recent games may not be up to date and you can't finish a quest, even if you completed the requirements. Try again a few minutes later. It is possible, that the Riot API is lagging and some games will take some minutes or hours to be shown in the history. There is nothing we can do about this.
                     </div>
                     <br/>-->
+                    @foreach(unserialize($user->daily_quests) as $daily)
+                        {{ $daily }}<br/>
+                    @endforeach
 
                     <div class="daily_quests">
                         <table width="100%">
@@ -212,6 +215,7 @@
 
                         <br/>
                         <table width="100%" class="table table-striped daily_quests_table">
+                            @if(in_array(1, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/gold_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -231,7 +235,7 @@
                                         100 QP + 500 EXP<br/>
                                         @if($dailyprogress->wins == 3)
                                             <form id="frm" method="post" action="/quests/dailyprogress/wins">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -240,6 +244,9 @@
                                     @endif
                                 </td>
                             </tr>
+                            @endif
+
+                            @if(in_array(2, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/silver_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -259,7 +266,7 @@
                                         75 QP + 400 EXP<br/>
                                         @if($dailyprogress->quests_completed == 5)
                                             <form id="frm" method="post" action="/quests/dailyprogress/quests">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -268,6 +275,8 @@
                                     @endif
                                 </td>
                             </tr>
+                            @endif
+                                @if(in_array(3, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -287,7 +296,7 @@
                                         50 QP + 250 EXP<br/>
                                         @if($dailyprogress->top_games >= 2)
                                             <form id="frm" method="post" action="/quests/dailyprogress/top">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -296,6 +305,8 @@
                                     @endif
                                 </td>
                             </tr>
+                                @endif
+                                @if(in_array(4, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -315,7 +326,7 @@
                                         50 QP + 250 EXP<br/>
                                         @if($dailyprogress->mid_games == 2)
                                             <form id="frm" method="post" action="/quests/dailyprogress/mid">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -324,6 +335,8 @@
                                     @endif
                                 </td>
                             </tr>
+                                @endif
+                                @if(in_array(5, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -343,7 +356,7 @@
                                         50 QP + 250 EXP<br/>
                                         @if($dailyprogress->jungle_games == 2)
                                             <form id="frm" method="post" action="/quests/dailyprogress/jungle">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -352,6 +365,8 @@
                                     @endif
                                 </td>
                             </tr>
+                                @endif
+                                @if(in_array(6, unserialize($user->daily_quests)))
                             <tr>
                                 <td valign="top" width="100"><img width="75" src="/img/leagues/bronze_5.png"><br/><br/></td>
                                 <td valign="top">
@@ -371,7 +386,7 @@
                                         50 QP + 250 EXP<br/>
                                         @if($dailyprogress->bot_games == 2)
                                             <form id="frm" method="post" action="/quests/dailyprogress/bot">
-                                                <input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         @else
@@ -380,6 +395,194 @@
                                     @endif
                                 </td>
                             </tr>
+                                @endif
+                                @if(in_array(7, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/fighter.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Fighter</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Fighter<br/>
+                                    Check out <a href="/champion/classes">which champions are fighter.</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->fighter_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->fighter_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_fighter == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->bot_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/fighter">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
+                                @if(in_array(8, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/mage.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Mage</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Mage<br/>
+                                        Check out <a href="/champion/classes">which champions are mages.</a></div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->mage_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->mage_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_mage == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->mage_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/mage">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
+                                @if(in_array(9, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/tank.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Tank</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Tank<br/>
+                                        Check out <a href="/champion/classes">which champions are tanks.</a></div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->tank_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->tank_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_tank == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->tank_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/tank">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
+                                @if(in_array(10, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/assassin.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Assassin</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Assassin<br/>
+                                        Check out <a href="/champion/classes">which champions are assassins.</a></div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->assassin_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->assassin_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_assassin == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->assassin_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/assassin">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
+                                @if(in_array(11, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/marksman.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Marksman</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Marksman<br/>
+                                        Check out <a href="/champion/classes">which champions are marksmans.</a></div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->marksman_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->marksman_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_marksman == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->marksman_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/marksman">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
+                                @if(in_array(12, unserialize($user->daily_quests)))
+                            <tr>
+                                <td valign="top" width="100"><img width="75" src="/img/roles/support.jpg" class="img-circle"><br/><br/></td>
+                                <td valign="top">
+                                    <strong>Daily Supporter</strong><br/>
+                                    <div class="daily_description">Play 2 Games as Supporter<br/>
+                                        Check out <a href="/champion/classes">which champions are supporter.</a></div>
+                                    <div class="progress">
+                                        <div class="overlay_progress uppercase small" style="text-align: center;">{{ $dailyprogress->support_games }} / 2 Games</div>
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: {{ round((100/2)*$dailyprogress->support_games,0) }}% ;"></div>
+                                    </div>
+                                </td>
+                                <td valign="top" width="150" style="text-align: center;">
+                                    <br/>
+                                    @if($dailyprogress->claimed_support == 1)
+                                        <br/>
+                                        Already claimed
+                                    @else
+                                        50 QP + 250 EXP<br/>
+                                        @if($dailyprogress->support_games == 2)
+                                            <form id="frm" method="post" action="/quests/dailyprogress/support">
+                                                <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            </form>
+                                        @else
+                                            <a href="#" class="btn btn-primary not_finished_daily">Claim reward</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                                @endif
                         </table>
                     </div>
                     <br/><br/>

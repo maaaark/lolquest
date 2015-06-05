@@ -25,7 +25,7 @@
 						@endif
 				</td>
 				<td valign="center">
-					<a href="/forum/{{ $category->id }}/{{ $topic->id }}/{{ $topic->url_name }}">{{ $topic->topic }}</a><br/>
+					<a href="/forum/{{ $category->id }}/topic/{{ $topic->id }}">{{ $topic->topic }}</a><br/>
 					<small>{{ trans("forum.by") }} <strong>{{ $topic->user->summoner->name }}</strong></small>
 				</td>
 				<td>

@@ -72,6 +72,8 @@ class BlogsController extends \BaseController {
 		return Redirect::route('blogs.index');
 	}
 
+
+
 	/**
 	 * Display the specified blog.
 	 *

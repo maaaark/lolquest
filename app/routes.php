@@ -57,7 +57,7 @@ Route::get('/forum/open_topic/{topic_id}', array('uses' => 'ForumController@open
 Route::get('/forum/delete_topic/{topic_id}', array('uses' => 'ForumController@delete_topic'));
 Route::get('/forum', array('uses' => 'ForumController@index'));
 Route::get('/forum/{category_id}/{url_name}', array('uses' => 'ForumController@category'));
-Route::get('/forum/{category_id}/{topic_id}/{topic_url_name}', array('uses' => 'ForumController@topic'));
+Route::get('/forum/{category_id}/topic/{topic_id}', array('uses' => 'ForumController@topic'));
 
 
 Route::post('/forum/{category_id}/{url_name}/{topic_id}/{topic_url_name}/save_reply', array('uses' => 'ForumController@save_reply'));
@@ -203,13 +203,17 @@ Route::get('shop/history', 'ProductsController@history');
 Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
 Route::get('shop/quest_slot', 'ProductsController@quest_slot');
 Route::get('shop/gold', 'ProductsController@lp');
-
+Route::get('/champion/classes', 'BaseController@classes');
 
 // PAYPAL
 Route::post('payments/success', 'ProductsController@payment_success');
 Route::get('payments/success', 'ProductsController@payment_success');
 
 // Pages
+Route::get('', function()
+{
+    return View::make('pages.roles');
+});
 Route::get('contact', function()
 {
 	return View::make('pages.contact');
@@ -283,3 +287,22 @@ Route::group(array('prefix' => 'api/v1'), function()
 
 Route::get('/api/users', 'ApiController@users_test');
 
+
+
+App::error(function($exception, $code)
+{
+    switch ($code)
+    {
+        case 403:
+            return Response::view('layouts.403', array(), 403);
+
+        case 404:
+            return Response::view('layouts.404', array(), 404);
+
+        case 500:
+            return Response::view('layouts.404', array(), 500);
+
+        default:
+            return Response::view('layouts.404', array(), $code);
+    }
+});

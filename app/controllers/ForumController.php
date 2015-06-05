@@ -47,9 +47,8 @@ class ForumController extends \BaseController {
 	}
 
 	
-	public function topic($category_id, $topic_id, $url_name)
+	public function topic($category_id, $topic_id)
 	{
-		$url_name = urlencode($url_name);
 		$category = ForumCategory::where('id', '=', $category_id)->first();
 		$topic = ForumTopic::where('id', '=', $topic_id)->first();
 		$replies = ForumReply::where('forum_topic_id', '=', $topic->id)->paginate(15);

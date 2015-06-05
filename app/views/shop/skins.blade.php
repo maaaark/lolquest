@@ -62,7 +62,7 @@
 										<button type="button" class="btn btn-inactive">{{ trans("dashboard.low_qp") }}</button>	
 									@else
 										<form id="frm" method="post" action="/shop/buy_skin/{{ $champion->champion_id }}">
-											<input type="submit" class="btn btn-success" value='{{ trans("shop.buy") }}'>
+											<input type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" class="btn btn-success" value='{{ trans("shop.buy") }}'>
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										</form>
 									@endif

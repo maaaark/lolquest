@@ -1,5 +1,5 @@
 <ul class="nav nav-pills nav-stacked">
-@if(Auth::user()->hasRole('admin'))
+@if(Auth::check() && Auth::user()->hasRole('admin'))
   <li><a href="/shop/gold">{{ trans("shop.gold_sidebar") }}</a></li>
 @endif
   <!--<li><a href="/shop/beta_key">{{ trans("shop.beta_key") }}</a></li>-->

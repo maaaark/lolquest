@@ -53,7 +53,32 @@ class RefreshDailyProgress extends Command {
 			$daily->claimed_jungle = 0;
 			$daily->claimed_mid = 0;
 			$daily->claimed_bot = 0;
+
+            $daily->fighter_games = 0;
+            $daily->assassin_games = 0;
+            $daily->mage_games = 0;
+            $daily->marksman_games = 0;
+            $daily->tank_games = 0;
+            $daily->support_games = 0;
+
+            $daily->claimed_fighter = 0;
+            $daily->claimed_assassin = 0;
+            $daily->claimed_mage = 0;
+            $daily->claimed_marksman = 0;
+            $daily->claimed_tank = 0;
+            $daily->claimed_support = 0;
+
 			$daily->save();
 		}
+
+        $users = User::all();
+        foreach($users as $user) {
+            $random_dailies = range(1,12);
+            shuffle($random_dailies);
+            $random_dailies = array_slice($random_dailies,2,3);
+            $random_dailies = serialize($random_dailies);
+            $user->daily_quests = $random_dailies;
+            $user->save();
+        }
 	}
 }

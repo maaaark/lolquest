@@ -691,7 +691,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								$team->save();
 								$user->checkTeamAchievement(9, $team->assists);	
 							}
-							
+
+                            if($newGame->gameType == "MATCHED_GAME") {
+                                $champion = Champion::where("champion_id", "=", $newGame->championId)->first();
+                                if($champion->fighter == 1) {
+                                    $user->dailyprogress->addFighterGame($user);
+                                } elseif($champion->tank == 1) {
+                                    $user->dailyprogress->addTankGame($user);
+                                } elseif($champion->marksman == 1) {
+                                    $user->dailyprogress->addMarksmanGame($user);
+                                } elseif($champion->support == 1) {
+                                    $user->dailyprogress->addSupportGame($user);
+                                } elseif($champion->mage == 1) {
+                                    $user->dailyprogress->addMageGame($user);
+                                } elseif($champion->assassin == 1) {
+                                    $user->dailyprogress->addAssassinGame($user);
+                                }
+                                $user->save();
+                            }
 							
 							
 						}

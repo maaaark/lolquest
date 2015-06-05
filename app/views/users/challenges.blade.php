@@ -37,7 +37,7 @@
 					{{ trans("dashboard.challenge_mode_".$user->challenge_mode) }}<br/>
 					<br/>
 					<form id="frm" action="/finish_challenge" method="post">
-						<input class="btn btn-success" type="submit" value="{{ trans('dashboard.finish_challenge') }}">
+						<input class="btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.finish_challenge') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</form><br/>
 					<div class="cancel_challenge"><a href="/cancel_challenge" class="btn btn-danger" id="cancel_challenge"  style='width: 155px; margin-top: 12px;'>{{ trans("dashboard.cancel_challenge") }}</a></div>
@@ -328,87 +328,87 @@
 					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if($challenge->type == 1 && $userstats->ingamegold >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->ingamegold}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 2 && $userstats->dmg >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dmg}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 3 && $userstats->heal >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->heal}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 4 && $userstats->kills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->kills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 5 && $userstats->assists >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->assists}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 6 && $userstats->wins >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wins}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 7 && $userstats->games >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->games}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 8 && $userstats->dmgtaken >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dmgtaken}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 9 && $userstats->wards >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wards}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 10 && $userstats->wardkills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wardkills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 11 && $userstats->towers >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->towers}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 12 && $userstats->doublekills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->doublekills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 13 && $userstats->tripplekills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->tripplekills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 14 && $userstats->quadrakills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->quadrakills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 15 && $userstats->pentakills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->pentakills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 16 && $userstats->dragons >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dragons}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 17&& $userstats->barons >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->barons}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@else
@@ -564,52 +564,52 @@
 					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if($challenge->type == 1 && $userstats->ingamegold >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->ingamegold}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 2 && $userstats->dmg >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dmg}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 3 && $userstats->heal >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->heal}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 6 && $userstats->wins >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wins}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 7 && $userstats->games >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->games}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 8 && $userstats->dmgtaken >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dmgtaken}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 12 && $userstats->doublekills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->doublekills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 13 && $userstats->tripplekills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->tripplekills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 14 && $userstats->quadrakills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->quadrakills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 15 && $userstats->pentakills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->pentakills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@else
@@ -680,17 +680,17 @@
 					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if ($challenge->type == 11 && $userstats->towers >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->towers}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 16 && $userstats->dragons >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->dragons}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 17&& $userstats->barons >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->barons}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@else
@@ -772,22 +772,22 @@
 					{{$challenge->exp}} EXP + {{$challenge->qp}} QP<br/>
 					@if ($challenge->type == 4 && $userstats->kills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->kills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 5 && $userstats->assists >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->assists}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 9 && $userstats->wards >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wards}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@elseif ($challenge->type == 10 && $userstats->wardkills >= $challenge->value)
 						<form id="frm" method="post" action="/challenge/lifetime/{{$challenge->id}}/{{$userstats->wardkills}}">
-							<input class="inactive_at_click btn btn-success" type="submit" value="{{ trans('dashboard.claim_reward') }}">
+							<input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</form>
 					@else

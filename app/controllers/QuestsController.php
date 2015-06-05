@@ -84,7 +84,61 @@ class QuestsController extends \BaseController {
 					$user->save();
 					return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
 				}
-			}
+			} elseif($progress == "fighter") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->fighter_games >= 2) {
+                    $daily->claimed_fighter = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            } elseif($progress == "mage") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->mage_games >= 2) {
+                    $daily->claimed_mage = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            } elseif($progress == "assassin") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->assassin_games >= 2) {
+                    $daily->claimed_assassin = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            } elseif($progress == "tank") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->tank_games >= 2) {
+                    $daily->claimed_tank = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            } elseif($progress == "marksman") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->marksman_games >= 2) {
+                    $daily->claimed_marksman = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            } elseif($progress == "support") {
+                $daily = Dailyprogess::where("user_id", "=", $user->id)->first();
+                if($daily->support_games >= 2) {
+                    $daily->claimed_support = true;
+                    $daily->save();
+                    $user->reward(50, 250, false, 0);
+                    $user->save();
+                    return Redirect::to('dashboard')->with('success', trans("dashboard.dailyquest_completed"));
+                }
+            }
 		}
 		return Redirect::to('dashboard')->with('error', trans("dashboard.no_quest_found"));
 	}
