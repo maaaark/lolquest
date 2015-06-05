@@ -198,9 +198,6 @@
                         Sometimes your recent games may not be up to date and you can't finish a quest, even if you completed the requirements. Try again a few minutes later. It is possible, that the Riot API is lagging and some games will take some minutes or hours to be shown in the history. There is nothing we can do about this.
                     </div>
                     <br/>-->
-                    @foreach(unserialize($user->daily_quests) as $daily)
-                        {{ $daily }}<br/>
-                    @endforeach
 
                     <div class="daily_quests">
                         <table width="100%">
