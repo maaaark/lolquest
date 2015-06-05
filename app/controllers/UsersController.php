@@ -792,15 +792,18 @@ class UsersController extends \BaseController {
 			$user = User::find(Auth::user()->id);
 			$challenge = Challenge::where('id','=', $challenge_id)->first();
 			$newchallenge = Challenge::where('type','=',$challenge->type)->orderBy('value', 'asc')->where('id','>',$challenge->id )->first();
-			$challengeactive = ChallengeUser::where('user_id', '=', $user->id)->where('challenge_id','=',$challenge_id)->first();
+			if($newchallenge){
+				$alreadyexist = ChallengeUser::where('user_id', '=', $user->id)->where('challenge_id','=',$newchallenge->id)->first();
+			}
+			$challengeactive = ChallengeUser::where('user_id', '=', $user->id)->where('challenge_id','=',$challenge_id)->where('active', '=', 1)->first();
 			if($challenge && $challengeactive){
 				if($challenge->value <= $progress){
-				if($newchallenge){
-					$userchallenge = New ChallengeUser;
-					$userchallenge->user_id = $user->id;
-					$userchallenge->active = 1;
-					$userchallenge->challenge_id = $newchallenge->id;
-					$userchallenge->save();
+				if($newchallenge && !$alreadyexist){
+						$userchallenge = New ChallengeUser;
+						$userchallenge->user_id = $user->id;
+						$userchallenge->active = 1;
+						$userchallenge->challenge_id = $newchallenge->id;
+						$userchallenge->save();
 				}
 					$challengeactive->active = 0;
 					$challengeactive->save();

@@ -350,9 +350,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				) AS quests
 			FROM champions
 			ORDER BY name ASC
-		'));
+			'));
 		foreach($champion_quests as $champion_quest) {
-			if($champion_quest->quests == 1) {
+			if($champion_quest->quests != 0) {
 				$champions += 1;
 			}
 		}
@@ -934,7 +934,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				}
 				$user_achievement = Achievement::where('type', "=", $type)->where('id','>',$achiv_id)->first(); 
 				if($user_achievement){
-					if($user_achievement->factor <= $factor) {
+					if($user_achievement->factor <= $factor && Auth::user()->hasachievement($user_achievement->id) == false) {
 						Auth::user()->achievements()->attach($user_achievement->id);
 						Auth::user()->achievement_points += $user_achievement->points;
 						Auth::user()->save();

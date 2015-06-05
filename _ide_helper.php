@@ -3210,6 +3210,21 @@ namespace {
         
         /**
          * Set the reconnect instance on the connection.
+<<<<<<< HEAD
+         *
+         * @param callable $reconnector
+         * @return $this 
+         * @static 
+         */
+        public static function setReconnector($reconnector){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::setReconnector($reconnector);
+        }
+        
+        /**
+         * Get the database connection name.
+=======
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          *
          * @param callable $reconnector
          * @return $this 
@@ -3655,6 +3670,7 @@ namespace {
          * Run the default delete function on the builder.
          *
          * @return mixed 
+<<<<<<< HEAD
          * @static 
          */
         public static function forceDelete(){
@@ -3668,6 +3684,21 @@ namespace {
          * @return void 
          * @static 
          */
+=======
+         * @static 
+         */
+        public static function forceDelete(){
+            return \Illuminate\Database\Eloquent\Builder::forceDelete();
+        }
+        
+        /**
+         * Register a replacement for the default delete function.
+         *
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
         public static function onDelete($callback){
             \Illuminate\Database\Eloquent\Builder::onDelete($callback);
         }
@@ -7658,6 +7689,8 @@ namespace {
         
         /**
          * Register a file log handler.
+<<<<<<< HEAD
+=======
          *
          * @param string $path
          * @param string $level
@@ -7670,6 +7703,7 @@ namespace {
         
         /**
          * Register a daily file log handler.
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          *
          * @param string $path
          * @param int $days
@@ -7679,6 +7713,18 @@ namespace {
          */
         public static function useDailyFiles($path, $days = 0, $level = 'debug'){
             \Illuminate\Log\Writer::useDailyFiles($path, $days, $level);
+        }
+        
+        /**
+         * Register an error_log handler.
+         *
+         * @param string $level
+         * @param integer $messageType
+         * @return void 
+         * @static 
+         */
+        public static function useErrorLog($level = 'debug', $messageType = 0){
+            \Illuminate\Log\Writer::useErrorLog($level, $messageType);
         }
         
         /**
@@ -7874,6 +7920,7 @@ namespace {
         
         /**
          * Check if the mailer is pretending to send messages.
+<<<<<<< HEAD
          *
          * @return bool 
          * @static 
@@ -7885,6 +7932,19 @@ namespace {
         /**
          * Get the view factory instance.
          *
+=======
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isPretending(){
+            return \Illuminate\Mail\Mailer::isPretending();
+        }
+        
+        /**
+         * Get the view factory instance.
+         *
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          * @return \Illuminate\View\Factory 
          * @static 
          */
@@ -8326,6 +8386,8 @@ namespace {
         }
         
         /**
+<<<<<<< HEAD
+=======
          * Determine if the application is in maintenance mode.
          *
          * @return bool 
@@ -8336,6 +8398,7 @@ namespace {
         }
         
         /**
+>>>>>>> f373d8c643b567c7f467067a4fd64156390dce3c
          * Push a new job onto the queue.
          *
          * @param string $job
