@@ -286,23 +286,3 @@ Route::group(array('prefix' => 'api/v1'), function()
 });
 
 Route::get('/api/users', 'ApiController@users_test');
-
-
-
-App::error(function($exception, $code)
-{
-    switch ($code)
-    {
-        case 403:
-            return Response::view('layouts.403', array(), 403);
-
-        case 404:
-            return Response::view('layouts.404', array(), 404);
-
-        case 500:
-            return Response::view('layouts.404', array(), 500);
-
-        default:
-            return Response::view('layouts.404', array(), $code);
-    }
-});
