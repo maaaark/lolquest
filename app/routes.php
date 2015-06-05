@@ -209,11 +209,6 @@ Route::get('shop/gold', 'ProductsController@lp');
 Route::post('payments/success', 'ProductsController@payment_success');
 Route::get('payments/success', 'ProductsController@payment_success');
 
-// Pages
-Route::get('', function()
-{
-    return View::make('pages.roles');
-});
 Route::get('contact', function()
 {
 	return View::make('pages.contact');
