@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0b8abad-bcd9-4537-a5f3-8257b7e34c7b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/dashboard.blade.php" afterPath="$PROJECT_DIR$/app/views/users/dashboard.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
     </list>
     <ignored path="lolquest.net.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,11 +51,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.235294" vertical-offset="3699" max-vertical-offset="4260">
-              <caret line="287" column="53" selection-start-line="287" selection-start-column="53" selection-end-line="287" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.26857144" vertical-offset="416" max-vertical-offset="4395">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <element signature="e#7#392#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roles.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pages/roles.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="1365">
+              <caret line="10" column="35" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -65,84 +76,8 @@
       <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.166666" vertical-offset="2549" max-vertical-offset="3135">
-              <caret line="199" column="18" selection-start-line="199" selection-start-column="8" selection-end-line="199" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8235292" vertical-offset="10278" max-vertical-offset="16155">
-              <caret line="705" column="77" selection-start-line="705" selection-start-column="77" selection-end-line="705" selection-end-column="77" />
-              <folding>
-                <element signature="e#7#41#0#PHP" expanded="true" />
-                <marker date="1433520355000" expanded="true" signature="7387:7610" placeholder="..." />
-                <marker date="1433520355000" expanded="true" signature="7395:7608" placeholder="..." />
-                <marker date="1433520355000" expanded="true" signature="7400:7605" placeholder="SELECT * , (..champions..." />
-                <marker date="1433520355000" expanded="true" signature="7417:7550" placeholder="SELECT COUNT..quests..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/dashboard.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375" vertical-offset="2880" max-vertical-offset="8865">
-              <caret line="199" column="28" selection-start-line="199" selection-start-column="28" selection-end-line="199" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2015_06_01_145048_add_roles_to_dailyprogresses.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_06_01_145048_add_roles_to_dailyprogresses.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.625" vertical-offset="27" max-vertical-offset="765">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="faq.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/faq.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="540">
-              <caret line="7" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roles.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/roles.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30716723" vertical-offset="0" max-vertical-offset="1365">
-              <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0" vertical-offset="17490" max-vertical-offset="20580">
-              <caret line="1184" column="17" selection-start-line="1184" selection-start-column="17" selection-end-line="1184" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RefreshChampions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/commands/RefreshChampions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.625" vertical-offset="1137" max-vertical-offset="1725">
-              <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+            <state vertical-scroll-proportion="-10.708333" vertical-offset="2758" max-vertical-offset="3135">
+              <caret line="201" column="5" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -202,13 +137,13 @@
         <option value="$PROJECT_DIR$/app/storage/views/52edb62206c8f4f6a7e19e0d163fc631" />
         <option value="$PROJECT_DIR$/app/storage/views/6d3533ac5f4f6b6d2d509710b65208a7" />
         <option value="$PROJECT_DIR$/app/controllers/BlogsController.php" />
-        <option value="$PROJECT_DIR$/app/controllers/BaseController.php" />
         <option value="$PROJECT_DIR$/app/commands/RefreshChampions.php" />
         <option value="$PROJECT_DIR$/app/commands/RefreshDonators.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/app/views/pages/roles.blade.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/views/users/dashboard.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/BaseController.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
       </list>
     </option>
   </component>
@@ -546,7 +481,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291536" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958949" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -853,20 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8235292" vertical-offset="10278" max-vertical-offset="16155">
-          <caret line="705" column="77" selection-start-line="705" selection-start-column="77" selection-end-line="705" selection-end-column="77" />
-          <folding>
-            <element signature="e#7#41#0#PHP" expanded="true" />
-            <marker date="1433520355000" expanded="true" signature="7387:7610" placeholder="..." />
-            <marker date="1433520355000" expanded="true" signature="7395:7608" placeholder="..." />
-            <marker date="1433520355000" expanded="true" signature="7400:7605" placeholder="SELECT * , (..champions..." />
-            <marker date="1433520355000" expanded="true" signature="7417:7550" placeholder="SELECT COUNT..quests..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/storage/views/6d3533ac5f4f6b6d2d509710b65208a7">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21895425" vertical-offset="466" max-vertical-offset="12390">
@@ -885,7 +806,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/faq.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="540">
+        <state vertical-scroll-proportion="0.17918089" vertical-offset="0" max-vertical-offset="586">
           <caret line="7" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="5" />
           <folding />
         </state>
@@ -915,22 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/commands/RefreshChampions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.625" vertical-offset="1137" max-vertical-offset="1725">
-          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_06_01_145048_add_roles_to_dailyprogresses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.625" vertical-offset="27" max-vertical-offset="765">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/TeamsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3148148" vertical-offset="1261" max-vertical-offset="5535">
@@ -947,43 +852,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_06_01_145048_add_roles_to_dailyprogresses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31228667" vertical-offset="27" max-vertical-offset="765">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5313059" vertical-offset="10278" max-vertical-offset="16155">
+          <caret line="705" column="77" selection-start-line="705" selection-start-column="77" selection-end-line="705" selection-end-column="77" />
+          <folding>
+            <element signature="e#7#41#0#PHP" expanded="true" />
+            <marker date="1433520355000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433520355000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433520355000" expanded="true" signature="-1:-1" placeholder="SELECT * , (..champions..." />
+            <marker date="1433520355000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..quests..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/commands/RefreshChampions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.721843" vertical-offset="1137" max-vertical-offset="1725">
+          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="17490" max-vertical-offset="20580">
+        <state vertical-scroll-proportion="0.46312177" vertical-offset="17490" max-vertical-offset="20580">
           <caret line="1184" column="17" selection-start-line="1184" selection-start-column="17" selection-end-line="1184" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.235294" vertical-offset="3699" max-vertical-offset="4260">
-          <caret line="287" column="53" selection-start-line="287" selection-start-column="53" selection-end-line="287" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/dashboard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="2880" max-vertical-offset="8865">
-          <caret line="199" column="28" selection-start-line="199" selection-start-column="28" selection-end-line="199" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.166666" vertical-offset="2549" max-vertical-offset="3135">
-          <caret line="199" column="18" selection-start-line="199" selection-start-column="8" selection-end-line="199" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/roles.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30716723" vertical-offset="0" max-vertical-offset="1365">
-          <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="1365">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.7002652" vertical-offset="1112" max-vertical-offset="8865">
+          <caret line="142" column="68" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.708333" vertical-offset="2758" max-vertical-offset="3135">
+          <caret line="201" column="5" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26857144" vertical-offset="416" max-vertical-offset="4395">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -190,6 +190,7 @@ Route::get('shop/buy/{id}', 'ProductsController@buy');
 Route::post('/shop/buy_skin/{id}', ['before' => 'csrf', 'uses' => 'ProductsController@buy_skin']);
 
 //Route::get('shop/buy_betakey', 'ProductsController@buy_betakey');
+Route::get('/champion/classes', 'BaseController@classes');
 Route::get('shop/buy_betakey/success/{id}', 'ProductsController@show_betakey');
 Route::get('shop/offers', 'ProductsController@offers');
 Route::get('shop/buy_qp', 'ProductsController@buy_qp');
@@ -203,7 +204,6 @@ Route::get('shop/history', 'ProductsController@history');
 Route::get('/shop/skin_purchased', 'ProductsController@skin_purchased');
 Route::get('shop/quest_slot', 'ProductsController@quest_slot');
 Route::get('shop/gold', 'ProductsController@lp');
-Route::get('/champion/classes', 'BaseController@classes');
 
 // PAYPAL
 Route::post('payments/success', 'ProductsController@payment_success');
