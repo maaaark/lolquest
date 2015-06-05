@@ -413,7 +413,7 @@
                                         Already claimed
                                     @else
                                         50 QP + 250 EXP<br/>
-                                        @if($dailyprogress->bot_games == 2)
+                                        @if($dailyprogress->fighter_games == 2)
                                             <form id="frm" method="post" action="/quests/dailyprogress/fighter">
                                                 <input class="inactive_at_click btn btn-success" type="submit" onclick="this.disabled=true;this.value='Please wait...';this.form.submit();" value="{{ trans('dashboard.claim_reward') }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
