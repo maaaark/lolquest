@@ -41,7 +41,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasOne('Summoner')->where("region", "=", $this->region);
     }
-	
+
+    public function lottery()
+    {
+        return $this->hasOne('Lottery');
+    }
+
 	public function ladder()
     {
         return $this->hasOne('Ladder');

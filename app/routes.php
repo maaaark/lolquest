@@ -181,6 +181,9 @@ Route::get('/arena/stop_arena', 'ArenasController@stop_arena');
 // Notification Controller
 Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_note');
 
+// Lottery
+Route::get('/lottery', 'LotteriesController@lottery');
+Route::post('/lottery/enterlottery', ['before' => 'csrf', 'uses' => 'LotteriesController@enterLottery']);
 
 // Shop Controller
 Route::get('shop', 'ProductsController@index');
