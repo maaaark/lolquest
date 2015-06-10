@@ -185,6 +185,7 @@ Route::get('/notifications/delete_note/{id?}', 'NotificationsController@delete_n
 Route::get('/lottery', 'LotteriesController@lottery');
 Route::post('/lottery/enterlottery', ['before' => 'csrf', 'uses' => 'LotteriesController@enterLottery']);
 
+
 // Shop Controller
 Route::get('shop', 'ProductsController@index');
 Route::get('shop/buy/{id}', 'ProductsController@buy');

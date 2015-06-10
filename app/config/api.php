@@ -5,5 +5,7 @@ $setting_data['use_riot_api'] = 1;
 $setting_data['problems'] = 0;
 $setting_data['gold_option'] = 1;
 $setting_data['patch'] = "5.10.1";
+$setting_data['lottery_costs'] = 1000;
+$setting_data['lottery_costs_gold'] = 50;
 
 return $setting_data;

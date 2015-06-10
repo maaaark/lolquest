@@ -28,8 +28,15 @@ $( document ).ready(function() {
 	$('#frm').bind('submit', function(e) {
 	   $('input.inactive_at_click').attr('disabled', 'disabled');
 	});
-	
-	
+
+
+    $('#buy_ticket_amount').on('change', function() {
+        var amount = this.value * 1000;
+        var gold_amount = this.value * 20;
+        $('#lottery_gold_button').val('Buy for '+gold_amount+' Gold');
+        $('#lottery_qp_button').val('Buy for '+amount+' QP');
+    });
+
 	$('#challenges a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')

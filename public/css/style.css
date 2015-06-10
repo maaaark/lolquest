@@ -1191,6 +1191,12 @@ a.remove {
 	text-align: center;
 	padding-top: 100px;
 }
+.lottery_button {
+    width: 250px;
+}
+.close_date {
+    font-style: italic;
+}
 .quest_done_background {
 	background: url("../img/login_background.jpg") #fff;
 	height: 600px;
