@@ -39,7 +39,7 @@ class LaddersController extends \BaseController {
 	
 	public function alltime()
 	{
-		$users = User::orderBy('quest_exp', 'DESC')->limit(100)->get();
+		$users = User::orderBy('exp', 'DESC')->limit(100)->get();
 		return View::make('ladders.alltime', compact('users'));
 	}
 	
