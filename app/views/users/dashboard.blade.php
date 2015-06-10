@@ -149,7 +149,7 @@
                                             <br/><br/>
                                             <br/>
                                             @if($user->summoner_status == 2)
-                                                <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;', 'name' => 'send', 'id' => 'send')) }}</p>
+                                                <p>{{ Form::submit(trans("dashboard.get"), array('class' => 'btn btn-primary', 'style' => 'margin-top: 22px;', 'name' => 'send', 'id' => 'send', 'onClick' => "this.disabled=true;this.value='Please wait...';this.form.submit();")) }}</p>
                                             @else
                                                 <p><a href="/verify" class="btn btn-primary">{{ trans("dashboard.verify_first") }}</a></p>
                                             @endif

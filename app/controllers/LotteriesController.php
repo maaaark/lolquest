@@ -26,7 +26,7 @@ class LotteriesController extends \BaseController {
             } else {
                 $user->qp = $user->qp - $qp_amount;
                 $lottery = Lottery::where("user_id","=",Auth::user()->id)->first();
-                if($lottery->count() <= 0) {
+                if(!$lottery) {
                     $lottery = new Lottery();
                     $lottery->amount = 0;
                     $lottery->user_id = Auth::user()->id;
