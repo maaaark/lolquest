@@ -109,10 +109,10 @@ class ForumController extends \BaseController {
 				$reply->user_id = Auth::user()->id;
 				$reply->save();
 				
-				return Redirect::to("/forum/".$topic->category->id."/".$topic->id."/".$topic->url_name."/")->with('success', trans("forum.post_created"));
+				return Redirect::to("/forum/".$topic->category->id."/topic/".$topic->id)->with('success', trans("forum.post_created"));
 				
 			} else {
-				return Redirect::to("/forum/".$category_id."/".$category_url_name."/".Input::get('topic_id')."/".$url_name."/reply")->withInput()
+				return Redirect::to("/forum/reply/".$category_id."/".Input::get('topic_id'))->withInput()
 				->withErrors($validation)
 				->with('message', 'There were validation errors.');
 			}

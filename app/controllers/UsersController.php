@@ -277,6 +277,13 @@ class UsersController extends \BaseController {
 				$roleMember = Role::where('name', 'member')->firstOrFail();
 				$user->verify_string = str_random(8);
 				$user->summoner_status = 1;
+
+                $random_dailies = range(1,12);
+                shuffle($random_dailies);
+                $random_dailies = array_slice($random_dailies,2,3);
+                $random_dailies = serialize($random_dailies);
+                $user->daily_quests = $random_dailies;
+
 				$user->save();
 				$i=1;
 				do
