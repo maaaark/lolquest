@@ -88,7 +88,6 @@
 		<div class="daily_quest">
 			<table>
 				<tr>
-					<td valign="top" class="hidden-xs" width="50"><a href="/champions/{{ Session::get('daily_quest')->champion->key }}"><img class="img-circle" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ Session::get('daily_quest')->champion->key }}.png" width="40"></a></td>
 					<td valign="top" width="100%" style="padding-left: 10px;">
 						<div class="daily_headline">{{ Session::get('daily_quest')->questtype->name }}&nbsp;&nbsp;&nbsp;(<span class="clock"></span>)</div>
 						<div class="sidebar_questtext">{{ trans("quests.".Session::get('daily_quest')->questtype->id) }}</div>
@@ -110,7 +109,6 @@
 		@if(Session::has('my_open_quests'))
 			@foreach(Session::get('my_open_quests') as $quest)
 			<tr>
-				<td valign="top" class="hidden-xs" width="50"><a href="/dashboard"><img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="http://ddragon.leagueoflegends.com/cdn/5.8.1/img/champion/{{ $quest->champion->key }}.png" width="40"></a></td>
 				<td valign="top">
 					<a href="/dashboard">{{ $quest->questtype->name }}</a><br/>
 					<div class="sidebar_questtext">{{ trans("quests.".$quest->type_id) }}</div>

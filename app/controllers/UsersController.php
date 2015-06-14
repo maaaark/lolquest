@@ -815,6 +815,7 @@ class UsersController extends \BaseController {
 					$challengeactive->active = 0;
 					$challengeactive->save();
 					$user->reward($challenge->qp, $challenge->exp, false, 0);
+					Auth::user()->notify(1, trans("challenges.Challenge_done").$challenge->name.'</a>');
 					return Redirect::to('challenges')->with('success', 'Challenge completed');
 				} else {
 					return Redirect::to('challenges')->with('error', 'Challenge not done');

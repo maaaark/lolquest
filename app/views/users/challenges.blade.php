@@ -159,8 +159,7 @@
 	<div class="daily_quests"></br></br>
 	<h3>Lifetime Challenges</h3>
 	<br/>
-	
-	
+@if($userstats)
 	<div role="tabpanel">
 
   <!-- Nav tabs -->
@@ -798,8 +797,13 @@
 		</tr>
 	@endforeach
 	</table>
+@else
+	Please update your games to see the Lifetime Challenges.
+@endif
+	
   			<!-- END OTHER CHALLENGES--></div>
 	</div>
+
 
 
 	

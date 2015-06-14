@@ -2,6 +2,7 @@
 
 return array(
 	'available_champions' => 'Valid Champions for this Challenge are:', 
+	'Challenge_done' => 'You have completed the Challenge: ', 
 	'1_champions' => 'Renekton, Trundle, Jax, Irelia, Jayce, Wukong, Pantheon, Lee Sin, Riven, Rumble, Shen, Vladimir, Yorick, Darius, Kayle, Gangplank',
 	'2_champions' => 'Lee Sin, Udyr, Xin Zhao, Pantheon, Kha Zix, Amumu, Hecarim, Master Yi, Nautilus, Nocturn, Rammus, Rengar, Shaco, Warwick, Vi, Elise, Evelyn',
 	'3_champions' => 'Ahri, Orianna, Gragas, Katarina, Brand, Kassadin, Yasuo, LeBlanc, Lissandra, Lulu, Twisted Fate, Heimerdinger, Malzahar, Xerath, Ziggs',
