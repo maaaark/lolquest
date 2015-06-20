@@ -28,7 +28,7 @@
 		$( document ).ready(function() {
 		  //programmatically trigger propogating hide event
 		  @foreach(Auth::user()->notifications as $note)
-			  $.notify('{{ $note->message }} <div  style="float:right"  class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>', "success"); 
+			  $.notify('{{ $note->message }} <div  style="float:right;width:20px;text-align:right;"  class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>', "success"); 
 		  @endforeach
 		});
 		</script>

@@ -160,7 +160,7 @@ pluginOptions = {
   arrowSize: 5,
   breakNewLines: true,
   elementPosition: 'bottom',
-  globalPosition: 'top center',
+  globalPosition: 'top right',
   style: 'bootstrap',
   className: 'error',
   showAnimation: 'slideDown',
@@ -319,8 +319,11 @@ Notification = (function() {
       if (align === 'middle') {
         css.top = '40%';
       } else if (align === 'center') {
-		css.top = '10%';
+		css.top = '5%';
         css.left = '40%';
+      } else if (align === 'right') {
+		css.top = '5%';
+		css.right='0px';
       } else {
         css[align] = 0;
       }
@@ -561,7 +564,6 @@ $.notify.addStyle("bootstrap", {
       "background-color": "#fcf8e3",
       "border": "1px solid #fbeed5",
       "border-radius": "4px",
-	  "width":"120%",
       "white-space": "nowrap",
       "padding-left": "25px",
       "background-repeat": "no-repeat",
