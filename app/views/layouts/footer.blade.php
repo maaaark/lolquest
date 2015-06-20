@@ -20,4 +20,19 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.countdown.min.js"></script>
 <script src="/js/summernote.min.js"></script>
+<script src="/js/notify.js"></script>
+
+@if(Auth::user())
+	@if(Auth::user()->notifications->count() > 0)
+		<script type="text/javascript">
+		$( document ).ready(function() {
+		  //programmatically trigger propogating hide event
+		  @foreach(Auth::user()->notifications as $note)
+			  $.notify('{{ $note->message }} <div  style="float:right"  class="delete_note"><a href="/notifications/delete_note/{{ $note->id }}">x</a></div>', "success"); 
+		  @endforeach
+		});
+		</script>
+	@endif
+@endif
+
 @include('layouts.countdown')

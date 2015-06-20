@@ -21,9 +21,8 @@
 		</div>
 </div>	
 
-	
+<!-- 
 @if(Auth::check())
-	
 	@if(Session::get('notifications_amount') > 0)
 
 	<div class="sidebar_box">
@@ -63,7 +62,7 @@
 	</div>
 	@endif
 
-
+-->
 	@if(Auth::check())
 		@if(Auth::user()->team_id < 0)
 			<div class="sidebar_box">

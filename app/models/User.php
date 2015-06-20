@@ -966,7 +966,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 							$new_title = new UserTitle;
 							$new_title->user_id = Auth::user()->id;
 							$new_title->title_id = $user_achievement->title->id;
-							Auth::user()->notify(2, trans("achievements.receive_title").'</br><a href="/settings/title> '.$user_achievement->title->title.'</a>');
+							Auth::user()->notify(2, trans("achievements.receive_title").'</br><a href="/settings/title"> '.$user_achievement->title->title.'</a>');
 							$new_title->save();
 						}
 					}
