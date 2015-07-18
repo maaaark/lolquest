@@ -28,4 +28,5 @@ class Title extends \Eloquent {
     {
 		return $this->hasMany('Achievement');
     }
+	
 }
