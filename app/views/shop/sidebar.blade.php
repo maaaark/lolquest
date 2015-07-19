@@ -8,6 +8,7 @@
   <li><a href="/shop/backgrounds">{{ trans("shop.backgrounds") }}</a></li>-->
   <li><a href="/shop/riot_points">{{ trans("shop.rp") }}</a></li>
   <li><a href="/shop/skins">{{ trans("shop.skins") }}</a></li>
+  <li><a href="/shop/loots">{{ trans("shop.loots") }}</a></li>
   @if(Auth::check())
   <li><a href="/shop/history">{{ trans("shop.history") }}</a></li>
   @endif

@@ -224,6 +224,52 @@ class ProductsController extends \BaseController {
 		return View::make('shop.skins', compact('champions', 'bought_skins'));
 	}
 	
+	
+		public function loots()
+	{
+		$products = Product::where("cat_id", "=", 2)->get();
+		return View::make('shop.loots', compact('products'));
+	}
+	
+	public function buy_loot()
+	{
+		if (Auth::check()) { 
+			$user = User::find(Auth::user()->id);
+			
+			if($user->qp >= 500) {
+				
+				$user->qp = $user->qp - 500;
+				$user->save();
+				
+				$key = new LootUser;
+				$key->loot_id = 1;
+				$key->user_id = $user->id;
+				$key->save();
+				
+				$transaction = new Transaction;
+				$transaction->user_id = Auth::user()->id;
+				$transaction->product_id = 9;
+				$transaction->currency = "QP";
+				$transaction->price = 500;
+				$transaction->description = $user->summoner->summoner_name." bought a Loot Chest: ".$key->key;
+				$transaction->save();	
+				
+				Auth::user()->notify(2, '<a href="#">'.trans("achievements.receive_LootChest").'</a>');
+				
+				return Redirect::to("/shop/loots");			
+				
+			} else {
+				$products = Product::where("cat_id", "=", 2)->get();
+				return Redirect::to('shop')->with('error', trans("shop.no_qp"));
+			}
+			
+			return View::make('shop.done', compact('products'));
+		} else {
+			return Redirect::to('login');
+		}
+	}
+	
+	
 	public function history()
 	{
 		if(Auth::check()) {

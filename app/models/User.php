@@ -36,6 +36,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->belongsTo('Level');
     }
+	
+	public function loots()
+    {
+		return $this->belongsToMany('Loot')->withTimestamps();
+    }
+	
 
 	public function summoner()
     {

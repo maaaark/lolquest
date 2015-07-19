@@ -17,6 +17,7 @@ return array(
 	'backgrounds' => 'Backgrounds',
 	'ep_boost' => 'EP Boosts',
 	'skins' => 'Skins',
+	'loots' => 'Loot Chest',
 	'NA' => 'Not yet available',
 	'skin_info' => 'Dont have any Siteskins yet?<br/> <a href="/shop/skins">Go and buy you favorite Champion Siteskin!</a>',
 	'shop' => 'Shop',

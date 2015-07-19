@@ -27,4 +27,5 @@ return array(
 	'Call' => 'Completed the ALL challenges',
 	'AP' => 'Achievement Points',
 	'receive_title' => 'Title unlocked: ',
+	'receive_LootChest' => 'You have an Mystery Chest, Klick to open it!',
 );
