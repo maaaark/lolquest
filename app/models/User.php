@@ -39,7 +39,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function loots()
     {
-		return $this->belongsToMany('Loot')->withTimestamps();
+        return $this->hasMany('LootUser');
     }
 	
 
@@ -226,6 +226,44 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return false;
     }
+	
+	public function loot_reward($loot_id) {
+		$user = User::find(Auth::user()->id);
+		$loot = Loot::find($loot_id);
+		
+		if($loot && $user){
+			if($loot->factor == 1) {
+				
+			} elseif($loot->factor == 2) {
+				$user->exp += 750;
+				if($user->exp > ($user->level->exp_level-1)) {
+					$user->level_id +=1;
+					$user->checkAchievement(1, $user->level_id);
+				}		
+			} elseif($loot->factor == 3){
+				$user->lp += 25;
+			} elseif($loot->factor == 4){
+
+			} elseif($loot->factor == 5){
+				$skins = $user->availableItems();
+				$skin = new Skin;
+				$skin->user_id = $user->id;
+				$skin->champion_id = $skins->champion_id;
+				$skin->save();
+			} elseif($loot->factor == 6){
+
+			} else {
+				return Redirect::to('/dashboard')->with('error', 'No reward found');
+			}
+			$user->save();
+		}
+	}
+	
+	public function availableItems()
+	{
+		$ids = \DB::table('skins')->where('user_id', '=', Auth::user()->id)->lists('user_id');
+		return \Champion::whereNotIn('id', $ids)->orderBy(DB::raw('RAND()'))->first();
+	}
 	
 	public function hasOpenQuestType($type_id) {
 		$quest_type_count = Quest::where("user_id","=",$this->id)->where("type_id", "=", $type_id)->where("finished", "=", 0)->count();

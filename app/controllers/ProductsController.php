@@ -254,7 +254,7 @@ class ProductsController extends \BaseController {
 				$transaction->description = $user->summoner->summoner_name." bought a Loot Chest: ".$key->key;
 				$transaction->save();	
 				
-				Auth::user()->notify(2, '<a href="#">'.trans("achievements.receive_LootChest").'</a>');
+				Auth::user()->notify(2, '<a href="/lootchest/1">'.trans("achievements.receive_LootChest").'</a>');
 				
 				return Redirect::to("/shop/loots");			
 				

@@ -373,8 +373,7 @@ class UsersController extends \BaseController {
 					) AS quests
 				FROM champions
 				ORDER BY name ASC
-				'));
-			
+				'));	
 				return View::make('users.show', compact('user', 'games', 'quests_done', 'champion_quests', 'ladder'));
 			} else {
 				return View::make('users.show', compact('user'));
@@ -397,6 +396,40 @@ class UsersController extends \BaseController {
 			return Redirect::to("/login");
 		}
 	}
+	
+	public function lootchest($notify)
+	{
+		if(Auth::user()) {
+			$uchest = LootUser::where('user_id','=',Auth::user()->id)->where('loot_id','=', 1)->first();
+			if($uchest) {
+				$loots = Loot::where('id','>', 1)->orderby('factor','asc')->get(); 
+				$noti = Notification::where('id', '=', $notify)->where('user_id','=',Auth::user()->id)->first();
+				$random = rand(999,1);
+				$count = 0;					
+				$help = 0;
+				foreach($loots as $loot){
+					$help = $help + $loot->multiplier;
+					if($help >= $random && $count != 1) {				
+						$count = 1;
+						$uchest->loot_id = $loot->id;
+						$uchest->used = 1;
+						$uchest->save();
+						Auth::user()->notify(2, 'you have opended a LootChest, your reward: '.$loot->name);
+						if($noti){
+							$noti->delete();
+						}
+						Auth::user()->loot_reward($loot->id);
+						return Redirect::to("/dashboard")->with('success', trans("users.openchest").$loot->name);
+					}
+				}
+			} else {
+				return Redirect::to("/dashboard")->with('error', 'No Chest available!');
+			}
+		} else {
+		return Redirect::to('login');
+		}
+	}
+	
 	
 	public function refresh_summoner() {
 		if (Auth::check()) {
